@@ -543,29 +543,24 @@ entries.
 There will be two navigation buttons, and each of them could reload the
 application page and pass the parameters to it.
 
-> - ```
->   The *Previous* button will display the first 25 entries. If there are no other entries, the button will not be displayed;
->   ```
-> - ```
->   The Next button will display the next 25 entries. If there are no other entries, the button will not be displayed.
->   ```
+- The _Previous_ button will display the first 25 entries. If there are no other
+  entries, the button will not be displayed;
+- The Next button will display the next 25 entries. If there are no other
+  entries, the button will not be displayed.
 
 #### Variables {#variables}
 
 The navigation buttons require two variables to store the table view states:
 
-> - `#table_view_offset#`
->
->   > This variable stores the offset of current table view.
->   >
->   > The navigation buttons will pass it as a parameter when the page is
->   > reloaded.
->
-> - `#record_count#`
->
->   > This variable stores the total number of entries in the table.
->
->   > The value will be calculated.
+- `#table_view_offset#`
+
+> This variable stores the offset of current table view. The navigation buttons
+> will pass it as a parameter when the page is reloaded.
+
+- `#record_count#`
+
+> This variable stores the total number of entries in the table. The value will
+> be calculated.
 
 #### Entry count {#entry-count}
 
@@ -573,9 +568,9 @@ To count `#record_count#`, please modify the existing
 [DBFind](../topics/script.md#dbfind) function call. The variable specified in
 the `.count()` call will store the entry count.
 
-> ```text
-> DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count)
-> ```
+```text
+DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count)
+```
 
 #### Table offset {#table-offset}
 
@@ -584,54 +579,54 @@ The table view offset must be passed to the page when the page is opened. If
 
 Add the following code to the top of the page.
 
-> ```text
-> If(GetVar(table_view_offset)){
-> }.Else{
->     SetVar(table_view_offset, 0)
-> }
-> ```
+```text
+If(GetVar(table_view_offset)){
+}.Else{
+    SetVar(table_view_offset, 0)
+}
+```
 
 Modify the [DBFind](../topics/script.md#dbfind) function call again. This time
 it must use the new table view offset.
 
-> ```text
-> DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count).Offset(#table_view_offset#)
-> ```
+```text
+DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count).Offset(#table_view_offset#)
+```
 
 #### Button code {#button-code}
 
 Find the [Div](../topics/templates2.md#div) function call that defines the
 footer: `Div(Class:panel-footer text-right)`. Add the button code into it.
 
-> ```text
-> Div(Class: panel-footer text-right) {
->
-> }
-> ```
+```text
+Div(Class: panel-footer text-right) {
+
+}
+```
 
 The _Previous_ button will only appear if there is at least one Next to return.
 When adding a button, the new table view offset `offset_previous` of the page
 will be calculated. The parameters are passed to `PageParams` of the reopened
 page.
 
-> ```text
-> If(#table_view_offset# >= 25) {
->     SetVar(offset_previous, Calculate(#table_view_offset# - 25))
->     Button(Class: btn btn-primary, Body: Previous, Page: AppPage, PageParams:"table_view_offset=#offset_previous#")
-> }
-> ```
+```text
+If(#table_view_offset# >= 25) {
+    SetVar(offset_previous, Calculate(#table_view_offset# - 25))
+    Button(Class: btn btn-primary, Body: Previous, Page: AppPage, PageParams:"table_view_offset=#offset_previous#")
+}
+```
 
 The Next button will only be displayed when the total number of records is
 greater than the number displayed on the page. When a button is added, the new
 table view offset `offset_next` of the page will be calculated. The parameters
 are passed to `PageParams` of the reopened page.
 
-> ```text
-> If(#record_count# >= Calculate(#table_view_offset# + 25)) {
->     SetVar(offset_next, Calculate(#table_view_offset# + 25))
->     Button(Class: btn btn-primary, Body: Next, Page: AppPage, PageParams:"table_view_offset=#offset_next#")
-> }
-> ```
+```text
+If(#record_count# >= Calculate(#table_view_offset# + 25)) {
+    SetVar(offset_next, Calculate(#table_view_offset# + 25))
+    Button(Class: btn btn-primary, Body: Next, Page: AppPage, PageParams:"table_view_offset=#offset_next#")
+}
+```
 
 ![image](/img/app-tut-navigation.png)
 
