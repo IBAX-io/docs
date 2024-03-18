@@ -10,5 +10,29 @@
   "item.label.GitHub": {
     "message": "GitHub",
     "description": "Navbar item with label GitHub"
+  },
+  "item.label.Concept": {
+    "message": "Concept",
+    "description": "Navbar item with label Concept"
+  },
+  "item.label.Tutorial": {
+    "message": "Tutorial",
+    "description": "Navbar item with label Tutorial"
+  },
+  "item.label.Guide": {
+    "message": "Guide",
+    "description": "Navbar item with label Guide"
+  },
+  "item.label.Reference": {
+    "message": "Reference",
+    "description": "Navbar item with label Reference"
+  },
+  "item.label.Deployment": {
+    "message": "Deployment",
+    "description": "Navbar item with label Deployment"
+  },
+  "item.label.Needle": {
+    "message": "Needle",
+    "description": "Navbar item with label Needle"
   }
 }
