@@ -338,14 +338,13 @@ Weaver's menu. Ecosystem parameters can be divided into the following groups:
 > - Access rights parameters: used to define access permissions for application
 >   elements
 >
->     > - change the table structure (changing_tables);
->     > - change the contract (changing_contracts);
->     > - change the user page (changing_page);
->     > - change the menu (changing_menu);
->     > - change the multi-language resources (changing_language).
+>   > - change the table structure (changing_tables);
+>   > - change the contract (changing_contracts);
+>   > - change the user page (changing_page);
+>   > - change the menu (changing_menu);
+>   > - change the multi-language resources (changing_language).
 >
 > - Technical parameters: used to define the user styles (stylesheet);
->
 > - User parameters: used to define constants or lists (separated by commas)
 >   required for application operation.
 

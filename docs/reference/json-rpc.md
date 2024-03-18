@@ -128,11 +128,11 @@ Block height or block HASH, example:
 
 2. - _Object_ - Block information object
 
-     - **id** - _Number_ - block height, example: `{"id":2}`
-     - **hash** - _[Hex](#hex) String_ - Block HASH, Example:
-       `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
+   - **id** - _Number_ - block height, example: `{"id":2}`
+   - **hash** - _[Hex](#hex) String_ - Block HASH, Example:
+     `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
 
-     **Block Height and Block HASH can only choose one**.
+   **Block Height and Block HASH can only choose one**.
 
 ### Batch requests {#batch-requests}
 
