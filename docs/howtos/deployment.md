@@ -283,7 +283,8 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
 
 :::tip
 
-If you want to create your own blockchain network, you must use the `--test=true` option. Otherwise, you cannot create a new account.
+If you want to create your own blockchain network, you must use the
+`--test=true` option. Otherwise, you cannot create a new account.
 
 :::
 
@@ -605,9 +606,9 @@ new blockchain platform and has the administrator access.
 
 :::tip
 
-There are two private key files in this directory. The `PrivateKey` file is
-used create the node owner's account. The `NodePrivateKey` file is the private
-key of the node itself and must be kept secret.
+There are two private key files in this directory. The `PrivateKey` file is used
+create the node owner's account. The `NodePrivateKey` file is the private key of
+the node itself and must be kept secret.
 
 :::
 
