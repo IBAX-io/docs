@@ -29,7 +29,8 @@ served using any static contents hosting service.
 
 ### Local development server
 
-This command starts the Docusaurus local development server and opens up a browser window.
+This command starts the Docusaurus local development server and opens up a
+browser window.
 
 ```
 $ yarn serve
