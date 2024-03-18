@@ -394,7 +394,7 @@ file.
 :::tip
 
 In the current version, automatic type conversion is not fully applicable for
-these commands. see [Operator](../needle/spec.md#operator-spec-operator).
+these commands. see [Operator](../needle/spec.md#spec-operator).
 
 :::
 
