@@ -605,7 +605,7 @@ Button(Body, Page, Class, Contract, Params, PageParams)
   pageField2=idname2. Variables with target page parameter names #pageField1 and
   #pageField2 are created on the target page and assigned the specified
   values.See more parameter passing specifications
-  [passing parameters to the page using PageParams](#pageparams)
+  [passing parameters to the page using PageParams](#use-pageparams-to-pass-parameters-to-pages)
 
 > CompositeContract
 
