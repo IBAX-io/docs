@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">IBAX Overview | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/concepts/about-the-platform"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="IBAX Overview | IBAX"><meta data-rh="true" name="description" content="- Features"><meta data-rh="true" property="og:description" content="- Features"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/concepts/about-the-platform"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/about-the-platform" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/about-the-platform" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.d804f848.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.79890833.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -116,7 +116,6 @@ cards or dedicated physical devices. In the current implementation, the private
 key is encrypted with the ECDSA algorithm and stored at the Weaver side. All
 transactions are signed with the ECDSA algorithm.</p>
 <p>The structure of a transaction complies with the following format:</p>
-<blockquote>
 <ul>
 <li>ID - ID of the contract implemented;</li>
 <li>Params - parameters sent to the contract;</li>
@@ -127,7 +126,6 @@ transactions are signed with the ECDSA algorithm.</p>
 <li>ТokenEcosystem - ID of the ecosystem, 1 by default, and tokens within it are
 used to cover the transaction costs.</li>
 </ul>
-</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="network-protocol">Network protocol<a href="#network-protocol" class="hash-link" aria-label="Direct link to Network protocol" title="Direct link to Network protocol">​</a></h3>
 <p>Transactions will be sent to honor nodes by users, where they are subject to
 basic verification to ensure the formats are correct and then are added to the
@@ -150,61 +148,44 @@ database.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-and-transaction-verification">Block and transaction verification<a href="#block-and-transaction-verification" class="hash-link" aria-label="Direct link to Block and transaction verification" title="Direct link to Block and transaction verification">​</a></h3>
 <p>After generating or receiving a new block, it will be verified on all other
 honor nodes, which cover the following:</p>
-<blockquote>
 <ul>
-<li>
-<p>The first byte of the data received should be 0. If not, the data received
-will not be considered as a block;</p>
-</li>
-<li>
-<p>The received block generation timestamp should be before the current
-timestamp;</p>
-</li>
-<li>
-<p>The block generation timestamp should correspond to the time interval at
-which the honor node having privilege to generate new blocks;</p>
-</li>
-<li>
-<p>The height of a new block should be greater than the height of the largest
-block on the existing blockchain;</p>
-</li>
-<li>
-<p>It cannot exceed the maximum expenses allowed for all transactions in the
-block;</p>
-</li>
-<li>
-<p>The block must be properly signed with the secret key of the node which it
-is located. The signature data should contain:</p>
-<blockquote>
+<li>The first byte of the data received should be 0. If not, the data received
+will not be considered as a block;</li>
+<li>The received block generation timestamp should be before the current
+timestamp;</li>
+<li>The block generation timestamp should correspond to the time interval at which
+the honor node having privilege to generate new blocks;</li>
+<li>The height of a new block should be greater than the height of the largest
+block on the existing blockchain;</li>
+<li>It cannot exceed the maximum expenses allowed for all transactions in the
+block;</li>
+<li>The block must be properly signed with the secret key of the node which it is
+located. The signature data should contain:<!-- -->
 <ul>
-<li>The height of the block, the hash of the previous block, the timestamp
-of the block, the ID of the ecosystem where the block is located, and
-the account address of the honor node of the block;</li>
-<li>The position of the honor node in the platform parameter full_nodes
-array, the Merkel Root (MrklRoot) of all transactions in the block, and
-the revert hash of the previous block.</li>
+<li>The height of the block, the hash of the previous block, the timestamp of
+the block, the ID of the ecosystem where the block is located, and the
+account address of the honor node of the block;</li>
+<li>The position of the honor node in the platform parameter full_nodes array,
+the Merkel Root (MrklRoot) of all transactions in the block, and the revert
+hash of the previous block.</li>
 </ul>
-</blockquote>
 </li>
 </ul>
-</blockquote>
 <p>To check the correctness of each transaction in the block with the following
 methods:</p>
-<blockquote>
 <ul>
 <li>The hash of each transaction must be unique;</li>
 <li>A key-signed transaction cannot exceed the limit
 (<a href="/docs/reference/platform-parameters#max-tx-block-per-user">max_tx_block_per_user</a>);</li>
 <li>It cannot exceed the limit of the maximum transaction size
 (<a href="/docs/reference/platform-parameters#max-tx-size">max_tx_size</a>);</li>
-<li>The transaction time can neither be greater than the block generation time
-nor be greater than the block generation time plus 600 seconds, and it can
-be no less than the block generation time minus 86400 seconds;</li>
+<li>The transaction time can neither be greater than the block generation time or
+be greater than the block generation time plus 600 seconds, and it can be no
+less than the block generation time minus 86400 seconds;</li>
 <li>The transaction must be signed properly;</li>
 <li>The user who implements the contract must have sufficient tokens in his
 account to pay for the transaction cost.</li>
 </ul>
-</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="database">Database<a href="#database" class="hash-link" aria-label="Direct link to Database" title="Direct link to Database">​</a></h3>
 <p>The underlying data storage layer of IBAX Network is a <code>PGSQL</code> database
 completely open to the public. Based on the permission design of the IBAX
@@ -252,7 +233,6 @@ deep understanding of the blockchain technology.</p>
 functions needed to create applications in the ecosystem, without the support of
 any software module.</p>
 <p>The IDE mainly includes the following parts:</p>
-<blockquote>
 <ul>
 <li>list of ecosystem parameters;</li>
 <li>contract editor;</li>
@@ -261,7 +241,6 @@ any software module.</p>
 <li>multi-language resources editor;</li>
 <li>application import/export functions.</li>
 </ul>
-</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="applications">Applications<a href="#applications" class="hash-link" aria-label="Direct link to Applications" title="Direct link to Applications">​</a></h3>
 <p>An application is a collection of elements such as database tables, smart
 contracts, and user pages with access rights for configuration. The ecosystem to
@@ -353,16 +332,11 @@ though it is updated synchronously in a relational database.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="ecosystem-parameters">Ecosystem Parameters<a href="#ecosystem-parameters" class="hash-link" aria-label="Direct link to Ecosystem Parameters" title="Direct link to Ecosystem Parameters">​</a></h3>
 <p>You may view and edit the list of ecosystem parameters (<strong>1_parameters</strong>) in
 Weaver&#x27;s menu. Ecosystem parameters can be divided into the following groups:</p>
-<blockquote>
 <ul>
-<li>
-<p>General parameters: the account of the ecosystem creator (founder_account)
-and other information;</p>
-</li>
-<li>
-<p>Access rights parameters: used to define access permissions for application
-elements</p>
-<blockquote>
+<li>General parameters: the account of the ecosystem creator (founder_account) and
+other information;</li>
+<li>Access rights parameters: used to define access permissions for application
+elements<!-- -->
 <ul>
 <li>change the table structure (changing_tables);</li>
 <li>change the contract (changing_contracts);</li>
@@ -370,17 +344,11 @@ elements</p>
 <li>change the menu (changing_menu);</li>
 <li>change the multi-language resources (changing_language).</li>
 </ul>
-</blockquote>
 </li>
-<li>
-<p>Technical parameters: used to define the user styles (stylesheet);</p>
-</li>
-<li>
-<p>User parameters: used to define constants or lists (separated by commas)
-required for application operation.</p>
-</li>
+<li>Technical parameters: used to define the user styles (stylesheet);</li>
+<li>User parameters: used to define constants or lists (separated by commas)
+required for application operation.</li>
 </ul>
-</blockquote>
 <p>You may specify the edit permission for parameters of each ecosystem.</p>
 <p>You may use the <a href="/docs/topics/script#ecosysparam">EcosysParam</a> function to
 retrieve the value of an ecosystem parameter by passing the ecosystem parameter

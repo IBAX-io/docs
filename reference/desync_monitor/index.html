@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">Synchronized Monitoring Tool | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/reference/desync_monitor"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Synchronized Monitoring Tool | IBAX"><meta data-rh="true" name="description" content="synchronized-monitoring-tool}"><meta data-rh="true" property="og:description" content="synchronized-monitoring-tool}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/reference/desync_monitor"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/desync_monitor" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/desync_monitor" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.d804f848.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.79890833.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -25,35 +25,27 @@ the email address specified in the command.</li>
 <p>The tool is located in the <code>tools/desync_monitor/</code> directory.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="command-prompt-flags">Command prompt flags<a href="#command-prompt-flags" class="hash-link" aria-label="Direct link to Command prompt flags" title="Direct link to Command prompt flags">​</a></h2>
 <p>The following flags can be used from the command prompt:</p>
-<blockquote>
 <ul>
-<li><strong>confPath</strong> -- Path of the configuration file. The default file name is
+<li><strong>confPath</strong> - Path of the configuration file. The default file name is
 <code>config.toml</code>;</li>
-<li><strong>nodesList</strong> -- Node list of the requested block, separated by commas. The
+<li><strong>nodesList</strong> - Node list of the requested block, separated by commas. The
 default is <code>127.0.0.1:7079</code>;</li>
-<li><strong>daemonMode</strong> -- Started as a daemon and should be used when authentication
-is required every N seconds. This flag is set to <code>false</code> by default;</li>
-<li><strong>queryingPeriod</strong> -- If the tool is started as a daemon, this parameter
-sets the time interval (in seconds) between checks, <code>1</code> second by default.</li>
-</ul>
-</blockquote>
+<li><strong>daemonMode</strong> - Started as a daemon and should be used when authentication is
+required every N seconds. This flag is set to <code>false</code> by default;</li>
+<li><strong>queryingPeriod</strong> - If the tool is started as a daemon, this parameter sets
+the time interval (in seconds) between checks, <code>1</code> second by default.</li>
+<li><strong>alertMessageTo</strong> - The email address to which synchronization warning errors
+will be sent.<!-- -->
 <ul>
-<li>
-<p><strong>alertMessageTo</strong> -- The email address to which synchronization warning
-errors will be sent.</p>
-<blockquote>
-<ul>
-<li><strong>alertMessageSubj</strong> -- Message subject in the warning message, the
+<li><strong>alertMessageSubj</strong> - Message subject in the warning message, the
 <code>node synchronization</code> problem by default;</li>
-<li><strong>alertMessageFrom</strong> -- Address where the message was sent.</li>
-<li><strong>smtpHost</strong> -- SMTP server host, used to send emails, the <code>&quot;&quot;</code> by
+<li><strong>alertMessageFrom</strong> - Address where the message was sent;</li>
+<li><strong>smtpHost</strong> - SMTP server host, used to send emails, the <code>&quot;&quot;</code> by default;</li>
+<li><strong>smtpPort</strong> - SMTP server port, used to send email messages, <code>25</code> by
 default;</li>
-<li><strong>smtpPort</strong> -- SMTP server port, used to send email messages, <code>25</code> by
-default;</li>
-<li><strong>smtpUsername</strong> -- SMTP server username, <code>&quot;&quot;</code> by default;</li>
-<li><strong>smtpPassword</strong> -- SMTP server password, <code>&quot;&quot;</code> by default.</li>
+<li><strong>smtpUsername</strong> - SMTP server username, <code>&quot;&quot;</code> by default;</li>
+<li><strong>smtpPassword</strong> - SMTP server password, <code>&quot;&quot;</code> by default.</li>
 </ul>
-</blockquote>
 </li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="configuration">Configuration<a href="#configuration" class="hash-link" aria-label="Direct link to Configuration" title="Direct link to Configuration">​</a></h2>
@@ -68,32 +60,26 @@ up the binary file.</p>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="daemon">[daemon]<a href="#daemon" class="hash-link" aria-label="Direct link to [daemon]" title="Direct link to [daemon]">​</a></h3>
 <p>Configuration of the daemon mode.</p>
-<blockquote>
 <ul>
 <li><strong>daemon_mode</strong> -- A tool works as a daemon and performs synchronization
 checks.</li>
 <li><strong>querying_period</strong> -- Time interval between synchronization checks.</li>
 </ul>
-</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="alert-message">[alert_message]<a href="#alert-message" class="hash-link" aria-label="Direct link to [alert_message]" title="Direct link to [alert_message]">​</a></h3>
 <p>Warning message parameters.</p>
-<blockquote>
 <ul>
 <li><strong>to</strong> -- recipient&#x27;s e-mail of synchronization error warning messages;</li>
 <li><strong>subject</strong> -- message subject;</li>
 <li><strong>from</strong> -- sender&#x27;s e-mail.</li>
 </ul>
-</blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="smtp">[smtp]<a href="#smtp" class="hash-link" aria-label="Direct link to [smtp]" title="Direct link to [smtp]">​</a></h3>
 <p>Simple Mail Transfer Protocol (SMTP) server parameters, used to send
 synchronization error messages.</p>
-<blockquote>
 <ul>
 <li><strong>host</strong> -- SMTP server hose;</li>
 <li><strong>port</strong> -- SMTP server port;</li>
 <li><strong>username</strong> -- SMTP server user name;</li>
 <li><strong>password</strong> --SMTP server password;</li>
-</ul>
-</blockquote></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/reference/desync_monitor.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/reference/backend-config"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Server Configuration File</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/reference/json-rpc"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">JSON-RPC Application Programming Interface</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#location" class="table-of-contents__link toc-highlight">Location</a></li><li><a href="#command-prompt-flags" class="table-of-contents__link toc-highlight">Command prompt flags</a></li><li><a href="#configuration" class="table-of-contents__link toc-highlight">Configuration</a><ul><li><a href="#nodes-list" class="table-of-contents__link toc-highlight">nodes_list</a></li><li><a href="#daemon" class="table-of-contents__link toc-highlight">[daemon]</a></li><li><a href="#alert-message" class="table-of-contents__link toc-highlight">[alert_message]</a></li><li><a href="#smtp" class="table-of-contents__link toc-highlight">[smtp]</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/reference/desync_monitor.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/reference/backend-config"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">Server Configuration File</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/reference/json-rpc"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">JSON-RPC Application Programming Interface</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#location" class="table-of-contents__link toc-highlight">Location</a></li><li><a href="#command-prompt-flags" class="table-of-contents__link toc-highlight">Command prompt flags</a></li><li><a href="#configuration" class="table-of-contents__link toc-highlight">Configuration</a><ul><li><a href="#nodes-list" class="table-of-contents__link toc-highlight">nodes_list</a></li><li><a href="#daemon" class="table-of-contents__link toc-highlight">[daemon]</a></li><li><a href="#alert-message" class="table-of-contents__link toc-highlight">[alert_message]</a></li><li><a href="#smtp" class="table-of-contents__link toc-highlight">[smtp]</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>
