@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
-<title data-rh="true">Platform Parameters | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/reference/platform-parameters"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Platform Parameters | IBAX"><meta data-rh="true" name="description" content="platform-parameters}"><meta data-rh="true" property="og:description" content="platform-parameters}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/reference/platform-parameters"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.746325ac.js" defer="defer"></script>
+<title data-rh="true">Platform Parameters | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/reference/platform-parameters"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Platform Parameters | IBAX"><meta data-rh="true" name="description" content="These are parameters to configure IBAX. They are applicable to the blockchain"><meta data-rh="true" property="og:description" content="These are parameters to configure IBAX. They are applicable to the blockchain"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/reference/platform-parameters"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
+<script src="/docs/assets/js/runtime~main.d804f848.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -103,8 +103,6 @@ by definitions in the legal system of the platform.</p>
 </ul>
 <p>Price for operations:</p>
 <ul>
-<li><a href="#platform-parameters">Platform Parameters</a>
-<ul>
 <li><a href="#location-to-store-platform-parameters">Location to store platform parameters</a></li>
 <li><a href="#change-of-platform-parameters">Change of platform parameters</a></li>
 <li><a href="#configure-platform-parameters">Configure platform parameters</a>
@@ -128,7 +126,7 @@ by definitions in the legal system of the platform.</p>
 <li><a href="#default-ecosystem-page">default ecosystem page</a></li>
 <li><a href="#fuel-rate">fuel rate</a></li>
 <li><a href="#price-create-rate">price create rate</a></li>
-<li><a href="#full-nodes">full nodes</a></li>
+<li><a href="#honor-nodes">honor nodes</a></li>
 <li><a href="#gap-between-blocks">gap between blocks</a></li>
 <li><a href="#incorrect-blocks-per-day">incorrect blocks per day</a></li>
 <li><a href="#max-block-generation-time">max block generation time</a></li>
@@ -192,8 +190,6 @@ by definitions in the legal system of the platform.</p>
 </ul>
 </li>
 </ul>
-</li>
-</ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="depreciated">Depreciated<a href="#depreciated" class="hash-link" aria-label="Direct link to Depreciated" title="Direct link to Depreciated">​</a></h2>
 <p>Depreciated parameters:</p>
 <ul>
@@ -203,7 +199,7 @@ by definitions in the legal system of the platform.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-reward">block reward<a href="#block-reward" class="hash-link" aria-label="Direct link to block reward" title="Direct link to block reward">​</a></h3>
 <p>The number of IBXC tokens granted to the honor node that generates the block.</p>
 <p>The account that receives the reward is specified in the
-<a href="#full-nodes">full nodes</a> parameter.</p>
+<a href="#honor-nodes">honor nodes</a> parameter.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="blockchain-url">blockchain url<a href="#blockchain-url" class="hash-link" aria-label="Direct link to blockchain url" title="Direct link to blockchain url">​</a></h3>
 <p>Depreciated.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="commission-size">commission size<a href="#commission-size" class="hash-link" aria-label="Direct link to commission size" title="Direct link to commission size">​</a></h3>
@@ -308,7 +304,7 @@ node will be banned in the network for this time period.</p>
 <p>When a node receives an incorrect block from another node, it will locally ban
 the sender&#x27;s node during this time period.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="number-of-nodes">number of nodes<a href="#number-of-nodes" class="hash-link" aria-label="Direct link to number of nodes" title="Direct link to number of nodes">​</a></h3>
-<p>The maximum number of honor nodes in the <a href="#full-nodes">full nodes</a> parameter.</p>
+<p>The maximum number of honor nodes in the <a href="#honor-nodes">honor nodes</a> parameter.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-ecosystem">price create ecosystem<a href="#price-create-ecosystem" class="hash-link" aria-label="Direct link to price create ecosystem" title="Direct link to price create ecosystem">​</a></h3>
 <p>The fuel fee to create a new single ecosystem.</p>
 <p>This parameter defines the additional fuel fee of the <code>@1NewEcosystem</code> contract.
