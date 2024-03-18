@@ -2778,15 +2778,16 @@ UpdateRolesNotifications(1, 1, 2)
 
 Sends HTTP requests to the specified address.
 
-> Note
+:::tip
 
-> This function can only be used in CLB contracts.
+This function can only be used in CLB contracts.
+
+:::
 
 **Syntax**
 
 ```
 HTTPRequest(url string, method string, heads map, pars map) string
-
 ```
 
 - **Url**
@@ -2823,15 +2824,16 @@ json = JSONToMap(ret)
 This function is similar to the HTTPRequest function, but it sends a POST
 request and the request parameters are strings.
 
-> Note
+:::tip
 
-> This function can only be used in CLB contracts
+This function can only be used in CLB contracts
+
+:::
 
 **Syntax**
 
 ```
 HTTPPostJSON(url string, heads map, pars string) string
-
 ```
 
 - **Url**
@@ -2890,7 +2892,6 @@ DateTime(unixtime int) string
 
 ```
 DateTime(1532325250)
-
 ```
 
 ### UnixDateTime {#unixdatetime}
@@ -2919,7 +2920,6 @@ This function can only be used in the master CLB mode.
 
 ```
 CreateOBS(OBSName string, DBUser string, DBPassword string, OBSAPIPort int)
-
 ```
 
 - **OBSName**
@@ -2942,7 +2942,6 @@ CreateOBS(OBSName string, DBUser string, DBPassword string, OBSAPIPort int)
 
 ```
 CreateOBS("obsname", "obsuser", "obspwd", 8095)
-
 ```
 
 ### GetOBSList {#getobslist}
@@ -2955,7 +2954,6 @@ This function can only be used in the master CLB mode.
 
 ```
 GetOBSList()
-
 ```
 
 > **Return value**
@@ -2973,7 +2971,6 @@ This function can only be used in the master CLB mode.
 
 ```
 RunOBS(OBSName string)
-
 ```
 
 - **OBSName**
@@ -2992,7 +2989,6 @@ This function can only be used in the master CLB mode.
 
 ```
 StopOBS(OBSName string)
-
 ```
 
 - **OBSName**
@@ -3011,7 +3007,6 @@ This function can only be used in the master CLB mode.
 
 ```
 RemoveOBS(OBSName string)
-
 ```
 
 - **OBSName**

@@ -281,10 +281,11 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
 
 5. Generate the first block:
 
-> Note
->
-> If you want to create your own blockchain network, you must use the
-> `--test=true` option. Otherwise, you cannot create a new account.
+:::tip
+
+If you want to create your own blockchain network, you must use the `--test=true` option. Otherwise, you cannot create a new account.
+
+:::
 
 ```shell
 /opt/backenddir/go-ibax generateFirstBlock \
@@ -602,11 +603,13 @@ new blockchain platform and has the administrator access.
    –Load the backup of the node owner's private key located in the
    `/opt/backenddir/node1/PrivateKey` file.
 
-> Note:
->
-> There are two private key files in this directory. The `PrivateKey` file is
-> used create the node owner's account. The `NodePrivateKey` file is the private
-> key of the node itself and must be kept secret.
+:::tip
+
+There are two private key files in this directory. The `PrivateKey` file is
+used create the node owner's account. The `NodePrivateKey` file is the private
+key of the node itself and must be kept secret.
+
+:::
 
 3. After logging in to the account, since no role has been created at this time,
    please select the Without role option.

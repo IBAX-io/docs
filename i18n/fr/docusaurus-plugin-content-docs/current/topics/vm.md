@@ -391,12 +391,12 @@ file.
 
 ### Stack operation commands {#stack-operation-commands}
 
-> Note
+:::tip
 
-> In the current version, automatic type conversion is not fully applicable for
-> these commands. For example,
+In the current version, automatic type conversion is not fully applicable for
+these commands. see [Operator](../needle/spec.md#operator-spec-operator).
 
-> `string + float | int | decimal => float | int | decimal, float + int | str => float, but int + string => runtime error`.
+:::
 
 The following are commands for direct stack processing. The Value field is not
 used in these commands.
