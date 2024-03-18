@@ -1,16 +1,20 @@
 # Platform Parameters {#platform-parameters}
 
-These are parameters to configure IBAX. They are applicable to the blockchain network and all ecosystems within it.
+These are parameters to configure IBAX. They are applicable to the blockchain
+network and all ecosystems within it.
 
 ## Location to store platform parameters {#location-to-store-platform-parameters}
 
 Platform parameters are stored in the `system parameters` table.
 
-This table is located in the first (default) ecosystem created on the blockchain network.
+This table is located in the first (default) ecosystem created on the blockchain
+network.
 
 ## Change of platform parameters {#change-of-platform-parameters}
 
-Change of platform parameters can only be made through voting. You can only use the UpdateSysParam contract to change any platform parameter, which is managed by definitions in the legal system of the platform.
+Change of platform parameters can only be made through voting. You can only use
+the UpdateSysParam contract to change any platform parameter, which is managed
+by definitions in the legal system of the platform.
 
 ## Configure platform parameters {#configure-platform-parameters}
 
@@ -200,7 +204,8 @@ Depreciated parameters:
 
 The number of IBXC tokens granted to the honor node that generates the block.
 
-The account that receives the reward is specified in the [full nodes](#full-nodes) parameter.
+The account that receives the reward is specified in the
+[full nodes](#full-nodes) parameter.
 
 ### blockchain url {#blockchain-url}
 
@@ -210,9 +215,11 @@ Depreciated.
 
 Percentage of the commission.
 
-The amount of the commission is calculated as a percentage of the total cost of implement the contract. The unit of the commission token is IBXC.
+The amount of the commission is calculated as a percentage of the total cost of
+implement the contract. The unit of the commission token is IBXC.
 
-The commission will be transferred to the account address specified in the commission_wallet parameter.
+The commission will be transferred to the account address specified in the
+commission_wallet parameter.
 
 ### commission wallet {#commission-wallet}
 
@@ -245,6 +252,7 @@ The format of this parameter:
 - `ecosystem_id`
 
   Ecosystem ID.
+
 - `token_to_fuel_rate`
 
   Exchange rate of the token by fuel unit.
@@ -253,7 +261,8 @@ For example:
 
 `[["1","1000000000000"], ["2", "1000"]]`
 
-One token of Ecosystem 1 is exchanged for 1,000,000,000,000 fuel units. One token of Ecosystem 2 is exchanged for 1,000 fuel units.
+One token of Ecosystem 1 is exchanged for 1,000,000,000,000 fuel units. One
+token of Ecosystem 2 is exchanged for 1,000 fuel units.
 
 ### price create rate {#price-create-rate}
 
@@ -269,12 +278,15 @@ The format of this parameter:
 
 - `tcp_address`
 
-  TCP address and port of the node host.
-  Transactions and new blocks will be sent to this host address, which can also be used to obtain the complete blockchain from the first block.
+  TCP address and port of the node host. Transactions and new blocks will be
+  sent to this host address, which can also be used to obtain the complete
+  blockchain from the first block.
+
 - `api_address`
 
-  API address and port of the node host.
-  Through the API address, you can access any function of the platform without using Weaver. See details in RESTful API.
+  API address and port of the node host. Through the API address, you can access
+  any function of the platform without using Weaver. See details in RESTful API.
+
 - `public_key`
 
   Public key of the node, which is used to verify the block signature.
@@ -283,19 +295,26 @@ The format of this parameter:
 
 The time interval (in seconds) of generating two blocks on a node.
 
-All nodes in the network use it to determine when to generate a new block. If the current node does not generate a new block within this time period, the turn passes to the next node in the list of honor nodes.
+All nodes in the network use it to determine when to generate a new block. If
+the current node does not generate a new block within this time period, the turn
+passes to the next node in the list of honor nodes.
 
 The minimum value of this parameter is `1` second.
 
 ### incorrect blocks per day {#incorrect-blocks-per-day}
 
-The number of bad blocks that a node is allowed to generate per day before being banned.
+The number of bad blocks that a node is allowed to generate per day before being
+banned.
 
-When more than half of the nodes in the network receive the same number of bad blocks from a node, the node will be banned from the network within a time period specified in [node ban time](#node-ban-time).
+When more than half of the nodes in the network receive the same number of bad
+blocks from a node, the node will be banned from the network within a time
+period specified in [node ban time](#node-ban-time).
 
 ### max block generation time {#max-block-generation-time}
 
-The maximum time for generating a block, in milliseconds. If a block is not successfully generated within this time period, a timeout error will be reported.
+The maximum time for generating a block, in milliseconds. If a block is not
+successfully generated within this time period, a timeout error will be
+reported.
 
 ### max block size {#max-block-size}
 
@@ -339,13 +358,16 @@ The maximum size of a transaction in bytes.
 
 The global ban period of the node, in milliseconds.
 
-When more than half of the nodes in the network receive bad blocks from a node up to the number of [incorrect blocks per day](#incorrect-blocks-per-day), the node will be banned in the network for this time period.
+When more than half of the nodes in the network receive bad blocks from a node
+up to the number of [incorrect blocks per day](#incorrect-blocks-per-day), the
+node will be banned in the network for this time period.
 
 ### node ban time local {#node-ban-time-local}
 
 The local ban period of the node, in milliseconds.
 
-When a node receives an incorrect block from another node, it will locally ban the sender's node during this time period.
+When a node receives an incorrect block from another node, it will locally ban
+the sender's node during this time period.
 
 ### number of nodes {#number-of-nodes}
 
@@ -355,57 +377,79 @@ The maximum number of honor nodes in the [full nodes](#full-nodes) parameter.
 
 The fuel fee to create a new single ecosystem.
 
-This parameter defines the additional fuel fee of the `@1NewEcosystem` contract. When the contract is implemented, the fuel fee for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel fee of the `@1NewEcosystem` contract.
+When the contract is implemented, the fuel fee for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create application {#price-create-application}
 
 The fuel fee to create a new single application.
 
-This parameter defines the additional fuel fee of the `@1NewApplication` contract. When the contract is implemented, the fuel fee for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel fee of the `@1NewApplication`
+contract. When the contract is implemented, the fuel fee for executing various
+functions of this contract will also be calculated and included in the total
+cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create table {#price-create-table}
 
 The fuel fee to create a new single table.
 
-This parameter defines the additional fuel cost of the `@1NewTable` contract. When the contract is implemented, the fuel cost for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel cost of the `@1NewTable` contract.
+When the contract is implemented, the fuel cost for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create column {#price-create-column}
 
 The fuel fee to create a new single table field.
 
-This parameter defines the additional fuel cost of the `@1NewColumn` contract. When the contract is implemented, the fuel cost for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel cost of the `@1NewColumn` contract.
+When the contract is implemented, the fuel cost for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create contract {#price-create-contract}
 
 The fuel fee to create a new single contract.
 
-This parameter defines the additional fuel cost of the `@1NewContract` contract. When the contract is implemented, the fuel cost for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel cost of the `@1NewContract` contract.
+When the contract is implemented, the fuel cost for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create menu {#price-create-menu}
 
 The fuel fee to create a new single menu.
 
-This parameter defines the additional fuel cost of the `@1NewMenu` contract. When the contract is implemented, the fuel cost for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel cost of the `@1NewMenu` contract.
+When the contract is implemented, the fuel cost for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price create page {#price-create-page}
 
 The fuel fee to create a new single page.
 
-This parameter defines the additional fuel cost of the `@1NewPage` contract. When the contract is implemented, the fuel cost for executing various functions of this contract will also be calculated and included in the total cost.
+This parameter defines the additional fuel cost of the `@1NewPage` contract.
+When the contract is implemented, the fuel cost for executing various functions
+of this contract will also be calculated and included in the total cost.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and [price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
+[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
 
 ### price exec address to id {#price-exec-address-to-id}
 
@@ -417,11 +461,13 @@ The fuel fee of calling the `Activate()` function, calculated in fuel units.
 
 ### price exec column condition {#price-exec-column-condition}
 
-The fuel fee of calling the `ColumnCondition()` function, calculated in fuel units.
+The fuel fee of calling the `ColumnCondition()` function, calculated in fuel
+units.
 
 ### price exec compile contract {#price-exec-compile-contract}
 
-The fuel fee of calling the `CompileContract()` function, calculated in fuel units.
+The fuel fee of calling the `CompileContract()` function, calculated in fuel
+units.
 
 ### price exec contains {#price-exec-contains}
 
@@ -429,15 +475,18 @@ The fuel fee of calling the `Contains()` function, calculated in fuel units.
 
 ### price exec contract by id {#price-exec-contract-by-id}
 
-The fuel fee of calling the `GetContractById()` function, calculated in fuel units.
+The fuel fee of calling the `GetContractById()` function, calculated in fuel
+units.
 
 ### price exec contract by name {#price-exec-contract-by-name}
 
-The fuel fee of calling the GetContractByName() function, calculated in fuel units.
+The fuel fee of calling the GetContractByName() function, calculated in fuel
+units.
 
 ### price exec contracts list {#price-exec-contracts-list}
 
-The fuel fee of calling the `ContractsList()` function, calculated in fuel units.
+The fuel fee of calling the `ContractsList()` function, calculated in fuel
+units.
 
 ### price exec create column {#price-exec-create-column}
 
@@ -445,7 +494,8 @@ The fuel fee of calling the `CreateColumn()` function, calculated in fuel units.
 
 ### price exec create ecosystem {#price-exec-create-ecosystem}
 
-The fuel fee of calling the `CreateEcosystem()` function, calculated in fuel units.
+The fuel fee of calling the `CreateEcosystem()` function, calculated in fuel
+units.
 
 ### price exec create table {#price-exec-create-table}
 
@@ -461,11 +511,13 @@ The fuel fee of calling the `Eval()` function, calculated in fuel units.
 
 ### price exec eval condition {#price-exec-eval-condition}
 
-The fuel fee of calling the `EvalCondition()` function, calculated in fuel units.
+The fuel fee of calling the `EvalCondition()` function, calculated in fuel
+units.
 
 ### price exec flush contract {#price-exec-flush-contract}
 
-The fuel fee of calling the `FlushContract()` function, calculated in fuel units.
+The fuel fee of calling the `FlushContract()` function, calculated in fuel
+units.
 
 ### price exec has prefix {#price-exec-has-prefix}
 
@@ -529,11 +581,13 @@ The fuel fee of calling the `SysParamInt()` function, calculated in fuel units.
 
 ### price exec sys param string {#price-exec-sys-param-string}
 
-The fuel fee of calling the `SysParamString()` function, calculated in fuel units.
+The fuel fee of calling the `SysParamString()` function, calculated in fuel
+units.
 
 ### price exec table conditions {#price-exec-table-conditions}
 
-The fuel fee of calling the `TableConditions()` function, calculated in fuel units.
+The fuel fee of calling the `TableConditions()` function, calculated in fuel
+units.
 
 ### price exec unbind wallet {#price-exec-unbind-wallet}
 
@@ -545,7 +599,8 @@ The fuel fee of calling the `UpdateLang()` function, calculated in fuel units.
 
 ### price exec validate condition {#price-exec-validate-condition}
 
-The fuel fee of calling the `ValidateCondition()` function, calculated in fuel units.
+The fuel fee of calling the `ValidateCondition()` function, calculated in fuel
+units.
 
 ### price tx data {#price-tx-data}
 
@@ -555,8 +610,11 @@ The fuel fee for every 1024 bytes of a transaction, calculated in fuel units.
 
 The fee by transaction size, its unit is the IBXC token.
 
-Except the ecosystem 1, a block space usage fee will be incurred proportionally when implementing a contract in other ecosystems, and its rate is _price tx size wallet_ IBXC tokens per megabyte.
+Except the ecosystem 1, a block space usage fee will be incurred proportionally
+when implementing a contract in other ecosystems, and its rate is _price tx size
+wallet_ IBXC tokens per megabyte.
 
 ### rollback blocks {#rollback-blocks}
 
-Maximum number of blocks that can be rolled back when detecting a fork in the blockchain.
+Maximum number of blocks that can be rolled back when detecting a fork in the
+blockchain.

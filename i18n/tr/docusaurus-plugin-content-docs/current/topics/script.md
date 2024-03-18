@@ -134,17 +134,27 @@
   - [EditDelayedContract](#editdelayedcontract)
   - [UploadBinary](#uploadbinary)
 
-Smart Contract (hereinafter referred to as Contract) is one of the basic elements of an application. The implementation of a contract on a page by the user is usually a single operation that the purpose is to update or create a database entry. All data operations of an application form a contract system, and these contracts interact with each other through database or contract content functions.
+Smart Contract (hereinafter referred to as Contract) is one of the basic
+elements of an application. The implementation of a contract on a page by the
+user is usually a single operation that the purpose is to update or create a
+database entry. All data operations of an application form a contract system,
+and these contracts interact with each other through database or contract
+content functions.
 
 ## Contract Structure {#contract-structure}
 
-Use the keyword `contract` to declare a contract, followed by the contract name, and the contract content must be enclosed in braces. A contract mainly consists of three sections:
+Use the keyword `contract` to declare a contract, followed by the contract name,
+and the contract content must be enclosed in braces. A contract mainly consists
+of three sections:
 
-1. **data** - [data section](#data-section), where declares the variables of the input data, including variable name and variable type;
+1. **data** - [data section](#data-section), where declares the variables of the
+   input data, including variable name and variable type;
 
-2. **conditions** - [conditions section](#conditions-section), where validates the correctness of the data;
+2. **conditions** - [conditions section](#conditions-section), where validates
+   the correctness of the data;
 
-3. **action** - [action section](#action-section), where defines the data manipulations.
+3. **action** - [action section](#action-section), where defines the data
+   manipulations.
 
 ```
 contract MyContract {
@@ -164,12 +174,14 @@ contract MyContract {
 
 ### Data section {#data-section}
 
-The `data` section describes the contract data inputs and the form parameters received.
+The `data` section describes the contract data inputs and the form parameters
+received.
 
 The structure of each line by sequence:
 
 - Variable name - only receive variables, not arrays;
-- Variable data type - the [data type](#data-types-and-variables) of the variable;
+- Variable data type - the [data type](#data-types-and-variables) of the
+  variable;
 - optional - an optional parameter that do not need to fill in the form element.
 
 ```
@@ -189,7 +201,10 @@ contract my {
 
 The `conditions` section describes the validation of data received.
 
-The following commands are used for error warnings: serious errors `error`, warning errors `warning`, suggestive errors `info`. These three commands will generate an error that terminates the execution of contracts, and each error will print a different type of error log information. For example:
+The following commands are used for error warnings: serious errors `error`,
+warning errors `warning`, suggestive errors `info`. These three commands will
+generate an error that terminates the execution of contracts, and each error
+will print a different type of error log information. For example:
 
 ```
 if fuel == 0 {
@@ -205,7 +220,8 @@ if idexist > 0 {
 
 ### Action section {#action-section}
 
-The `action` section describes the main code of the contract, which retrieves other data and records the result values in tables. For example:
+The `action` section describes the main code of the contract, which retrieves
+other data and records the result values in tables. For example:
 
 ```
 action {
@@ -216,9 +232,14 @@ DBUpdate("keys", $recipient, {"+amount": $amount, "pub": $Pub})
 
 ## Variables {#variables}
 
-Variables declared in the data section are passed to other contract sections through the `$` symbol followed by the variable name. The `$` symbol can also be used to declare other variables that are not within the data section, which are considered as global variables of this contract and all contracts that this contract is nested.
+Variables declared in the data section are passed to other contract sections
+through the `$` symbol followed by the variable name. The `$` symbol can also be
+used to declare other variables that are not within the data section, which are
+considered as global variables of this contract and all contracts that this
+contract is nested.
 
-Pre-defined variables can be used in contracts, which contain transaction data that called the contract:
+Pre-defined variables can be used in contracts, which contain transaction data
+that called the contract:
 
 - `$time` - transaction timestamp;
 - `$ecosystem_id` - ecosystem ID;
@@ -227,17 +248,30 @@ Pre-defined variables can be used in contracts, which contain transaction data t
 - `$type` - contract ID in the virtual machine;
 - `$block_key_id` - account address of the node generated the block;
 - `$block_time` - block generation timestamp;
-- `$original_contract` - name of the contract that initially processed the transaction. It means the contract is called during transaction validation if the variable is an empty string. To check whether the contract is called by another contract or directly by the transaction, you need to compare the values of $original_contract and $this_contract. It means that the contract is called by the transaction if they are equal;
+- `$original_contract` - name of the contract that initially processed the
+  transaction. It means the contract is called during transaction validation if
+  the variable is an empty string. To check whether the contract is called by
+  another contract or directly by the transaction, you need to compare the
+  values of $original_contract and $this_contract. It means that the contract is
+  called by the transaction if they are equal;
 - `$this_contract` - name of the contract currently being executed;
 - `$guest_key` - guest account address;
-- `$stack` - contract array stack with a data type of array, containing all contracts executed. The first element of the array represents the name of the contract currently being executed, while the last element represents the name of the contract that initially processed the transaction;
-- `$node_position` - the index number of the verification node array where the block is located;
+- `$stack` - contract array stack with a data type of array, containing all
+  contracts executed. The first element of the array represents the name of the
+  contract currently being executed, while the last element represents the name
+  of the contract that initially processed the transaction;
+- `$node_position` - the index number of the verification node array where the
+  block is located;
 - `$txhash` - transaction hash;
 - `$contract` - the current contract structure array.
 
-Predefined variables can be accessed not only in contracts, but also in permission fields that defines the access permission conditions of the application elements. When used in permission fields, predefined variables for block information are always equal to zero, such as `$time`, `$block`, etc.
+Predefined variables can be accessed not only in contracts, but also in
+permission fields that defines the access permission conditions of the
+application elements. When used in permission fields, predefined variables for
+block information are always equal to zero, such as `$time`, `$block`, etc.
 
-A predefined variable `$result` is assigned with the return result of the contract.
+A predefined variable `$result` is assigned with the return result of the
+contract.
 
 ```
 contract my {
@@ -262,11 +296,16 @@ contract my {
 
 ## Nested Contracts {#nested-contracts}
 
-You can nest contracts in the conditions and action sections of the contract. Nested contracts can be called directly, and the contract parameters are specified in parentheses after the contract name, for example, `@1NameContract(Params)`. You may also call nested contracts with the [CallContract](#callcontract) function.
+You can nest contracts in the conditions and action sections of the contract.
+Nested contracts can be called directly, and the contract parameters are
+specified in parentheses after the contract name, for example,
+`@1NameContract(Params)`. You may also call nested contracts with the
+[CallContract](#callcontract) function.
 
 ## File upload {#file-upload}
 
-To upload a file using a form in the format of `multipart/form-data`, the data type of the contract must be `file`.
+To upload a file using a form in the format of `multipart/form-data`, the data
+type of the contract must be `file`.
 
 ```
 contract Upload {
@@ -277,11 +316,16 @@ contract Upload {
 }
 ```
 
-The [UploadBinary](#uploadbinary) contract is used to upload and store files. With the Logicor language function [Binary](templates2.md#binary) in the page editor, you can get the file download link.
+The [UploadBinary](#uploadbinary) contract is used to upload and store files.
+With the Logicor language function [Binary](templates2.md#binary) in the page
+editor, you can get the file download link.
 
 ## Queries in JSON format {#queries-in-json-format}
 
-In the contract language, **JSON** can be specified as a field type. You can use the syntax: **columnname->fieldname** to process the entry field. The value obtained is recorded in **columnname.fieldname**. The above syntax can be used in Columns,One,Where of the [DBFind](#dbfind) function.
+In the contract language, **JSON** can be specified as a field type. You can use
+the syntax: **columnname->fieldname** to process the entry field. The value
+obtained is recorded in **columnname.fieldname**. The above syntax can be used
+in Columns,One,Where of the [DBFind](#dbfind) function.
 
 ```
 var ret map
@@ -296,7 +340,12 @@ val = DBFind("mytable").WhereId($Id).One("doc->check")
 
 ## Queries with date and time operations {#queries-with-date-and-time-operations}
 
-You cannot directly query and update the date and time with the contract language functions, but you can use PostgreSQL functions and features in the Where statement as in the example below. For example, you need to compare the field date_column with the current time. If date_column is a timestamp type, the expression should be `date_column <NOW()`; if date_column is a Unix type, the expression should be `to_timestamp(date_column)> NOW()`.
+You cannot directly query and update the date and time with the contract
+language functions, but you can use PostgreSQL functions and features in the
+Where statement as in the example below. For example, you need to compare the
+field date_column with the current time. If date_column is a timestamp type, the
+expression should be `date_column <NOW()`; if date_column is a Unix type, the
+expression should be `to_timestamp(date_column)> NOW()`.
 
 ```
 Where("to_timestamp(date_column)> NOW()")
@@ -311,17 +360,22 @@ The following Needle function is used to process date and time in SQL format:
 
 ## Needle contract language {#needle-contract-language}
 
-The contract language includes a set of functions, operators and structures, which can realize data algorithm processing and database operations.
+The contract language includes a set of functions, operators and structures,
+which can realize data algorithm processing and database operations.
 
-The contract content can be modified if the contract editing permission is not set to `false`. The complete history of contract changes is stored in the blockchain, which is available in Weaver.
+The contract content can be modified if the contract editing permission is not
+set to `false`. The complete history of contract changes is stored in the
+blockchain, which is available in Weaver.
 
-Data operations in the blockchain are executed in accordance with the latest version of the contract.
+Data operations in the blockchain are executed in accordance with the latest
+version of the contract.
 
 ### Basic elements and structure {#basic-elements-and-structure}
 
 ### Data types and variables {#data-types-and-variables}
 
-Data type must be defined for every variables. Normally, data types are converted automatically. The following data types can be used:
+Data type must be defined for every variables. Normally, data types are
+converted automatically. The following data types can be used:
 
 - `bool` - Boolean, `true` or `false`;
 - `bytes` - a byte format;
@@ -330,17 +384,23 @@ Data type must be defined for every variables. Normally, data types are converte
 - `map` - an object array;
 - `money` - a big integer;
 - `float` - a 64-bit float number;
-- `string` - a string must be defined with double quotes or escape format: "This is a string" or \`This is a string\`;
+- `string` - a string must be defined with double quotes or escape format: "This
+  is a string" or \`This is a string\`;
 - `file` - an object array:
   - `Name` - file name, `string` type;
   - `MimeType` - **mime-type** file, `string` type;
   - `Body` - file content, `bytes` type.
 
-All identifiers, including the names of variables, functions and contracts, are case sensitive (MyFunc and myFunc are different names).
+All identifiers, including the names of variables, functions and contracts, are
+case sensitive (MyFunc and myFunc are different names).
 
-Use the **var** keyword to declare a variable, followed by the name and type of the variable. Variables declared in braces must be used in the same pair of braces.
+Use the **var** keyword to declare a variable, followed by the name and type of
+the variable. Variables declared in braces must be used in the same pair of
+braces.
 
-The default value of any variable declared is zero: the zero value of bool type is false, the zero value of all numeric types is 0, and the zero value, for strings, empty strings. An example of variable declaration:
+The default value of any variable declared is zero: the zero value of bool type
+is false, the zero value of all numeric types is 0, and the zero value, for
+strings, empty strings. An example of variable declaration:
 
 ```
 func myfunc( val int) int {
@@ -361,7 +421,9 @@ The contract language supports two array types:
 - `Array` - an array with index starting from 0;
 - `map` - an array of objects.
 
-When allocating and retrieving array elements, the index must be placed in square brackets. Multiple indexes are not supported in the array, and the array elements cannot be treated as myarr[i][j].
+When allocating and retrieving array elements, the index must be placed in
+square brackets. Multiple indexes are not supported in the array, and the array
+elements cannot be treated as myarr[i][j].
 
 ```
 var myarr array
@@ -377,7 +439,8 @@ s = Sprintf("%v, %v, %v", myarr[0] + mymap["value"], myarr[1], mymap["param"])
 // s = 877, This is a line, Parameter
 ```
 
-You can also define arrays of array type by specifying elements in `[]`. For map type `arrays`, please use `{}`.
+You can also define arrays of array type by specifying elements in `[]`. For map
+type `arrays`, please use `{}`.
 
 ```
 var my map
@@ -386,21 +449,27 @@ var mya array
 mya=["value1", {key2: i}, $Name]
 ```
 
-You can use such initialization in expressions. For example, use it in function parameters.
+You can use such initialization in expressions. For example, use it in function
+parameters.
 
 ```
 DBFind...Where({id: 1})
 ```
 
-For an array of objects, you must specify a key. Key are specified as strings in double quotes (`""`). If the key name is limited to letters, numbers and underscores, you can omit the double quotes.
+For an array of objects, you must specify a key. Key are specified as strings in
+double quotes (`""`). If the key name is limited to letters, numbers and
+underscores, you can omit the double quotes.
 
 ```
 {key1: "value1", key2: "value2"}
 ```
 
-An array can contain strings, numbers, variable names of any type, and variable names with the `$` symbol. It supports nested arrays. You can specify different maps or arrays as values.
+An array can contain strings, numbers, variable names of any type, and variable
+names with the `$` symbol. It supports nested arrays. You can specify different
+maps or arrays as values.
 
-Expressions cannot be used as array elements. Use a variable to store the expression result and specify this variable as an array element.
+Expressions cannot be used as array elements. Use a variable to store the
+expression result and specify this variable as an array element.
 
 ```
 [1+2, myfunc(), name["param"]] // don't do this
@@ -413,13 +482,20 @@ MyFunc({key: val, sub: {name: "My name", "color": "Red"}})
 
 ### If and While statements {#if-and-while-statements}
 
-The contract language supports standard **if** conditional statements and **while** loops, which can be used in contracts and functions. These statements can be nested within each other.
+The contract language supports standard **if** conditional statements and
+**while** loops, which can be used in contracts and functions. These statements
+can be nested within each other.
 
-**if** and **while** must be followed by a conditional statement. If the conditional statement returns a number, it is regarded as false when its value is 0.
+**if** and **while** must be followed by a conditional statement. If the
+conditional statement returns a number, it is regarded as false when its value
+is 0.
 
-val == 0 is equal to !val, val != 0 is equal to val. The **if** statement can have an **else** code block, and the **else** is executed when the **if** conditional statement is false.
+val == 0 is equal to !val, val != 0 is equal to val. The **if** statement can
+have an **else** code block, and the **else** is executed when the **if**
+conditional statement is false.
 
-The following comparison operators can be used in conditional statements: `<, >, >=, <=, ==, !=, ||, &&`
+The following comparison operators can be used in conditional statements:
+`<, >, >=, <=, ==, !=, ||, &&`
 
 ```
 if val> 10 || id != $block_key_id {
@@ -429,7 +505,9 @@ if val> 10 || id != $block_key_id {
 }
 ```
 
-The code block is executed when the conditional statement of the **while** loop is true. **break** means to terminate the loop of the code block. If you want to start a loop from the beginning, use **continue**.
+The code block is executed when the conditional statement of the **while** loop
+is true. **break** means to terminate the loop of the code block. If you want to
+start a loop from the beginning, use **continue**.
 
 ```
 var i int
@@ -446,17 +524,28 @@ while true {
 }
 ```
 
-In addition to conditional statements, Needle also supports standard arithmetic operations: `+`, `-`, `*`, `/`.
+In addition to conditional statements, Needle also supports standard arithmetic
+operations: `+`, `-`, `*`, `/`.
 
-Variables of string and bytes types can be used as a conditional statement. If the length of the type is greater than zero, the condition is true, otherwise it is false.
+Variables of string and bytes types can be used as a conditional statement. If
+the length of the type is greater than zero, the condition is true, otherwise it
+is false.
 
 ### Functions {#functions}
 
-Functions can perform some operations on the data received by the [data section](#data-section) of a contract: read and write data from the database, convert the type of value, and establish the interaction between contracts.
+Functions can perform some operations on the data received by the
+[data section](#data-section) of a contract: read and write data from the
+database, convert the type of value, and establish the interaction between
+contracts.
 
 #### Function declaration {#function-declaration}
 
-Use the func keyword to declare a function, followed by the name and the list of parameters passed to it and their types. All parameters are enclosed in parentheses and separated by commas. After the parentheses, the data type of the value returned by the function must be declared. The function body must be enclosed in braces. If the function has no parameters, the braces can be omitted. To return a value from a function, use the `return` keyword.
+Use the func keyword to declare a function, followed by the name and the list of
+parameters passed to it and their types. All parameters are enclosed in
+parentheses and separated by commas. After the parentheses, the data type of the
+value returned by the function must be declared. The function body must be
+enclosed in braces. If the function has no parameters, the braces can be
+omitted. To return a value from a function, use the `return` keyword.
 
 ```
 func myfunc(left int, right int) int {
@@ -470,11 +559,17 @@ func ooops {
 }
 ```
 
-Function do not return errors, because all error checks are performed automatically. If there is an error in any function, the contract will terminate its operation and present the error description in a window.
+Function do not return errors, because all error checks are performed
+automatically. If there is an error in any function, the contract will terminate
+its operation and present the error description in a window.
 
 #### Variable-length parameters {#variable-length-parameters}
 
-Functions can define variable-length parameters, use the `...` symbol as the last parameter type of the function to indicate variable-length parameters, with a data type of `array`. Variable-length parameters include all variables from the time the parameter is passed in the call. All types of variables can be passed, but you need to deal with conflicts of mismatching of data types.
+Functions can define variable-length parameters, use the `...` symbol as the
+last parameter type of the function to indicate variable-length parameters, with
+a data type of `array`. Variable-length parameters include all variables from
+the time the parameter is passed in the call. All types of variables can be
+passed, but you need to deal with conflicts of mismatching of data types.
 
 ```
 func sum(out string, values ...) {
@@ -499,9 +594,17 @@ func main() {
 
 #### Optional parameters {#optional-parameters}
 
-A function has many parameters, but we only need some of them when calling it. In this case, you can declare optional parameters in the following way: `func myfunc(name string).Param1(param string).Param2(param2 int) {...}`, then you can call the specified parameters in any order: `myfunc("name").Param2(100)`.
+A function has many parameters, but we only need some of them when calling it.
+In this case, you can declare optional parameters in the following way:
+`func myfunc(name string).Param1(param string).Param2(param2 int) {...}`, then
+you can call the specified parameters in any order:
+`myfunc("name").Param2(100)`.
 
-In the function body, you can handle these variables normally. If no specified optional parameters called, their default values are zero. You can also use ... to specify a variable-length parameter: `func DBFind(table string).Where(request string, params ...)` and then call it: `DBFind("mytable").Where({" id": $myid, "type": 2})`
+In the function body, you can handle these variables normally. If no specified
+optional parameters called, their default values are zero. You can also use ...
+to specify a variable-length parameter:
+`func DBFind(table string).Where(request string, params ...)` and then call it:
+`DBFind("mytable").Where({" id": $myid, "type": 2})`
 
 ```
 func DBFind(table string).Columns(columns string).Where(format string, tail ...)
@@ -598,18 +701,14 @@ Operations with date and time in SQL format:
 | ----------------------- | --------------------- | ----------------------------- |
 | [BlockTime](#blocktime) | [DateTime](#datetime) | [UnixDateTime](#unixdatetime) |
 
-Operations with platform parameters:
+Operations with platform parameters: | | | | | --------- | -------- |
+\------------ | | [SysParamString](#sysparamstring) | [SysParamInt](#sysparamint)
+\| [DBUpdateSysParam](#dbupdatesysparam) | |
+[UpdateNotifications](#updatenotifications) |
+[UpdateRolesNotifications](#updaterolesnotifications) | |
 
-|                                             |                                                       |                                       |
-| ------------------------------------------- | ----------------------------------------------------- | ------------------------------------- |
-| [SysParamString](#sysparamstring)           | [SysParamInt](#sysparamint)                           | [DBUpdateSysParam](#dbupdatesysparam) |
-| [UpdateNotifications](#updatenotifications) | [UpdateRolesNotifications](#updaterolesnotifications) |                                       |
-
-CLB mode function operation:
-
-|                             |                               |   |
-| --------------------------- | ----------------------------- | - |
-| [HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) |   |
+CLB mode function operation: | | | | | ----------- | ------------ | ---- | |
+[HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) | |
 
 Functions for master CLB nodes:
 
@@ -622,7 +721,8 @@ Functions for master CLB nodes:
 
 ### AppParam {#appparam}
 
-Returns the value of a specified application parameter (from the application parameter table app_params).
+Returns the value of a specified application parameter (from the application
+parameter table app_params).
 
 **Syntax**
 
@@ -650,9 +750,11 @@ AppParam(1, "app_account", 1)
 
 ### DBFind {#dbfind}
 
-Queries data from a specified table with the specified parameters and returns an array array consisting of an array of objects map.
+Queries data from a specified table with the specified parameters and returns an
+array array consisting of an array of objects map.
 
-`.Row()` can get the first map element in the query, `.One(column string)` can get the first map element of a specified column in the query.
+`.Row()` can get the first map element in the query, `.One(column string)` can
+get the first map element of a specified column in the query.
 
 **Syntax**
 
@@ -685,56 +787,51 @@ DBFind(table string)
 
   Example: `.Where({name: "John"})` or `.Where({"id": {"$gte": 4}})`.
 
-  This parameter must contain an array of objects with search criteria. The array can contain nested elements.
+  This parameter must contain an array of objects with search criteria. The
+  array can contain nested elements.
 
   Following syntactic constructions are used:
 
-  - `{"field1": "value1", "field2": "value2"}`
-    Equivalent to `field1 = "value1" AND field2 = "value2"`.
+  - `{"field1": "value1", "field2": "value2"}` Equivalent to
+    `field1 = "value1" AND field2 = "value2"`.
 
-  - `{"field1": {"$eq":"value"}}`
-    Equivalent to `field = "value"`.
+  - `{"field1": {"$eq":"value"}}` Equivalent to `field = "value"`.
 
-  - `{"field1": {"$neq": "value"}}`
-    Equivalent to `field != "value"`.
+  - `{"field1": {"$neq": "value"}}` Equivalent to `field != "value"`.
 
-  - `{"field1: {"$in": [1,2,3]}`
-    Equivalent to `field IN (1,2,3)`.
+  - `{"field1: {"$in": [1,2,3]}` Equivalent to `field IN (1,2,3)`.
 
-  - `{"field1": {"$nin": [1,2,3]}`
-    Equivalent to field NOT IN (1,2,3).
+  - `{"field1": {"$nin": [1,2,3]}` Equivalent to field NOT IN (1,2,3).
 
-  - `{"field": {"$lt": 12}}`
-    Equivalent to `field <12`.
+  - `{"field": {"$lt": 12}}` Equivalent to `field <12`.
 
-  - `{"field": {"$lte": 12}}`
-    Equivalent to f`ield <= 12`.
+  - `{"field": {"$lte": 12}}` Equivalent to f`ield <= 12`.
 
-  - `{"field": {"$gt": 12}}`
-    Equivalent to `field> 12`.
+  - `{"field": {"$gt": 12}}` Equivalent to `field> 12`.
 
-  - `{"field": {"$gte": 12}}`
-    Equivalent to `field >= 12`.
+  - `{"field": {"$gte": 12}}` Equivalent to `field >= 12`.
 
-  - `{"$and": [<expr1>, <expr2>, <expr3>]}`
-    Equivalent to `expr1 AND expr2 AND expr3`.
+  - `{"$and": [<expr1>, <expr2>, <expr3>]}` Equivalent to
+    `expr1 AND expr2 AND expr3`.
 
-  - `{"$or": [<expr1>, <expr2>, <expr3>]}`
-    Equivalent to `expr1 OR expr2 OR expr3`.
+  - `{"$or": [<expr1>, <expr2>, <expr3>]}` Equivalent to
+    `expr1 OR expr2 OR expr3`.
 
-  - `{field: {"$like": "value"}}`
-    Equivalent to `field like'%value%'` (fuzzy search).
+  - `{field: {"$like": "value"}}` Equivalent to `field like'%value%'` (fuzzy
+    search).
 
-  - `{field: {"$begin": "value"}}`
-    Equivalent to `field like'value%'` (starts with `value`).
+  - `{field: {"$begin": "value"}}` Equivalent to `field like'value%'` (starts
+    with `value`).
 
-  - `{field: {"$end": "value"}}`
-    Equivalent to `field like'%value'` (ends with `value`).
+  - `{field: {"$end": "value"}}` Equivalent to `field like'%value'` (ends with
+    `value`).
 
-  - `{field: "$isnull"}`
-    Equivalent to field is null.
+  - `{field: "$isnull"}` Equivalent to field is null.
 
-Make sure not to overwrite the keys of object arrays. For example, if you want to query with `id>2 and id<5`, you cannot use `{id:{"$gt": 2}, id:{"$lt": 5}}`, because the first element will be overwritten by the second element. You should use the following query structure:
+Make sure not to overwrite the keys of object arrays. For example, if you want
+to query with `id>2 and id<5`, you cannot use `{id:{"$gt": 2}, id:{"$lt": 5}}`,
+because the first element will be overwritten by the second element. You should
+use the following query structure:
 
 ```
 {id: [{"$gt": 2}, {"$lt": 5}]}
@@ -752,7 +849,8 @@ Make sure not to overwrite the keys of object arrays. For example, if you want t
 
   Used to sort the result set by a specified column, or by id by default.
 
-  If you use only one field for sorting, you can specify it as a string. To sort multiple fields, you need to specify an array of string objects:
+  If you use only one field for sorting, you can specify it as a string. To sort
+  multiple fields, you need to specify an array of string objects:
 
   Descending order: `{"field": "-1"}` Equivalent to `field desc`.
 
@@ -792,7 +890,8 @@ if ret != nil {
 
 ### DBRow {#dbrow}
 
-Queries data from a specified table with the specified parameters. Returns an array array consisting of an array of objects map.
+Queries data from a specified table with the specified parameters. Returns an
+array array consisting of an array of objects map.
 
 **Syntax**
 
@@ -849,7 +948,8 @@ Println(ret)
 
 Returns the aggregated data of a metric.
 
-The metrics are updated each time 100 blocks are generated. And the aggregated data is stored on a 1-day cycle.
+The metrics are updated each time 100 blocks are generated. And the aggregated
+data is stored on a 1-day cycle.
 
 **Syntax**
 
@@ -867,11 +967,13 @@ DBSelectMetrics(metric string, timeInterval string, aggregateFunc string) array
     Number of ecosystem pages.
 
     Return value: key - ecosystem ID, value - number of ecosystem pages.
+
   - **ecosystem_members**
 
     Number of ecosystem members.
 
     Return value: key - ecosystem ID, value - number of ecosystem members.
+
   - **ecosystem_tx**
 
     Number of ecosystem transactions.
@@ -880,7 +982,8 @@ DBSelectMetrics(metric string, timeInterval string, aggregateFunc string) array
 
 - **timeInterval**
 
-  The time interval for aggregating metric data. For example: `1 day`, `30 days`.
+  The time interval for aggregating metric data. For example: `1 day`,
+  `30 days`.
 
 - **aggregateFunc**
 
@@ -901,7 +1004,8 @@ while(i <Len(rows)) {
 
 ### EcosysParam {#ecosysparam}
 
-Returns the value of a specified parameter in the ecosystem parameters table parameters.
+Returns the value of a specified parameter in the ecosystem parameters table
+parameters.
 
 **Syntax**
 
@@ -934,18 +1038,22 @@ GetHistory(table string, id int) array
 - **table**
 
   Table name.
+
 - **Id**
 
   Entry ID.
 
 **Return value**
 
-Returns an array of objects of type map, which specify the history of changes to entries in tables.
+Returns an array of objects of type map, which specify the history of changes to
+entries in tables.
 
-Each array contains the fields of a record before making the next change.
-The array is sorted by order of most recent changes.
+Each array contains the fields of a record before making the next change. The
+array is sorted by order of most recent changes.
 
-The id field in the array points to the id of the rollback_tx table. block_id represents the block ID, while block_time represents the block generation timestamp.
+The id field in the array points to the id of the rollback_tx table. block_id
+represents the block ID, while block_time represents the block generation
+timestamp.
 
 **Example**
 
@@ -960,7 +1068,8 @@ if Len(list) > 0 {
 
 ### GetHistoryRow {#gethistoryrow}
 
-Returns a single snapshot from the change history of a specified entry in a specified table.
+Returns a single snapshot from the change history of a specified entry in a
+specified table.
 
 **Syntax**
 
@@ -998,13 +1107,15 @@ GetColumnType(table, column string) string
 - **table**
 
   Table name.
+
 - **column**
 
   Field Name.
 
-> **Return value**
+  > **Return value**
 
-The following types can be returned: `text, varchar, number, money, double, bytes, json, datetime, double`.
+  The following types can be returned:
+  `text, varchar, number, money, double, bytes, json, datetime, double`.
 
 **Example**
 
@@ -1027,12 +1138,15 @@ GetDataFromXLSX(binId int, line int, count int, sheet int) string
 - **binId**
 
   ID in XLSX format in the binary table binary.
+
 - **line**
 
   The starting line number, starting from 0 by default.
+
 - **count**
 
   The number of rows that need to be returned.
+
 - **sheet**
 
   List number, starting from 1 by default.
@@ -1057,6 +1171,7 @@ GetRowsCountXLSX(binId int, sheet int) int
 - **binId**
 
   ID in XLSX format in the binary table binary.
+
 - **sheet**
 
   List number, starting from 1 by default.
@@ -1070,7 +1185,9 @@ count = GetRowsCountXLSX(binid, 1)
 
 ### LangRes {#langres}
 
-Returns a multilingual resource with name label for language lang, specified as a two-character code, for example: `en`, `de`. If there is no language for a selected language, then the language resource of the `en` label is returned.
+Returns a multilingual resource with name label for language lang, specified as
+a two-character code, for example: `en`, `de`. If there is no language for a
+selected language, then the language resource of the `en` label is returned.
 
 **Syntax**
 
@@ -1081,6 +1198,7 @@ LangRes(label string, lang string) string
 - **label**
 
   Language resource name.
+
 - **lang**
 
   Two-character language code.
@@ -1107,19 +1225,21 @@ GetBlock(blockID int64) map
 
   Block ID.
 
-> **Return value**
+  > **Return value**
 
-Return an array of objects:
+  Return an array of objects:
 
-- **id**
+  - **id**
 
-  Block ID.
-- **time**
+    Block ID.
 
-  Block generation timestamp.
-- **key_id**
+  - **time**
 
-  The account address of the verification node generated the block.
+    Block generation timestamp.
+
+  - **key_id**
+
+    The account address of the verification node generated the block.
 
 **Example**
 
@@ -1143,6 +1263,7 @@ DBInsert(table string, params map) int
 - **tblname**
 
   Table name.
+
 - **params**
 
   An array of objects where keys are field names and values are inserted values.
@@ -1155,7 +1276,8 @@ DBInsert("mytable", {name: "John Smith", amount: 100})
 
 ### DBUpdate {#dbupdate}
 
-Changes the column value of a specified entry ID in a specified table. If the entry ID does not exist in the table, an error is returned.
+Changes the column value of a specified entry ID in a specified table. If the
+entry ID does not exist in the table, an error is returned.
 
 **Syntax**
 
@@ -1167,12 +1289,15 @@ DBUpdate(tblname string, id int, params map)
 - **tblname**
 
   Table name.
+
 - **Id**
 
   Entry ID.
+
 - **params**
 
-  An array of objects where keys are field names and values are new values after changes.
+  An array of objects where keys are field names and values are new values after
+  changes.
 
 **Example**
 
@@ -1182,7 +1307,8 @@ DBUpdate("mytable", myid, {name: "John Smith", amount: 100})
 
 ### DBUpdateExt {#dbupdateext}
 
-Changes the value of a column in a specified table that matches the query condition.
+Changes the value of a column in a specified table that matches the query
+condition.
 
 **Syntax**
 
@@ -1194,14 +1320,17 @@ DBUpdateExt(tblname string, where map, params map)
 - **tblname**
 
   Table name.
+
 - **where**
 
   Query conditions.
 
   For more details, see [DBFind](#dbfind).
+
 - **params**
 
-  An array of objects where keys are field names and values are new values after changes.
+  An array of objects where keys are field names and values are new values after
+  changes.
 
 **Example**
 
@@ -1264,6 +1393,7 @@ Append(src array, val anyType) array
 - **src**
 
   The original array.
+
 - **val**
 
   The value to be inserted.
@@ -1289,6 +1419,7 @@ Join(in array, sep string) string
 - **In**
 
   Array name.
+
 - **sep**
 
   Separator.
@@ -1304,7 +1435,8 @@ Join(in array, sep string) string
 
 ### Split {#split}
 
-Uses the sep separator to split the in string into elements and put them into an array.
+Uses the sep separator to split the in string into elements and put them into an
+array.
 
 **Syntax**
 
@@ -1315,6 +1447,7 @@ Split(in string, sep string) array
 - **In**
 
   String.
+
 - **sep**
 
   Separator.
@@ -1350,7 +1483,10 @@ if Len(mylist) == 0 {
 
 ### Row {#row}
 
-The list parameter must not be specified in this case. Return the first object array in the array list. If the list is empty, an empty result is returned. This function is mostly used in conjunction with the [DBFind](#dbfind) function. When using this function, you cannot specify parameters.
+The list parameter must not be specified in this case. Return the first object
+array in the array list. If the list is empty, an empty result is returned. This
+function is mostly used in conjunction with the [DBFind](#dbfind) function. When
+using this function, you cannot specify parameters.
 
 **Syntax**
 
@@ -1372,7 +1508,10 @@ The list parameter must not be specified in this case. Return the first object a
 
 ### One {#one}
 
-Returns the field value of the first object array in the array list. If the list array is empty, nil is returned. It is mostly used in conjunction with the [DBFind](#dbfind) function. When using this function, you cannot specify parameters.
+Returns the field value of the first object array in the array list. If the list
+array is empty, nil is returned. It is mostly used in conjunction with the
+[DBFind](#dbfind) function. When using this function, you cannot specify
+parameters.
 
 **Syntax**
 
@@ -1449,7 +1588,9 @@ arr = SortedKeys(val)
 
 ### CallContract {#callcontract}
 
-Calls the contract with a specified name. All parameters of the data section in the contract must be included in an object array. This function returns the value assigned to the **$result** variable by a specified contract.
+Calls the contract with a specified name. All parameters of the data section in
+the contract must be included in an object array. This function returns the
+value assigned to the **$result** variable by a specified contract.
 
 **Syntax**
 
@@ -1461,6 +1602,7 @@ CallContract(name string, params map)
 - **name**
 
   The name of the contract being called.
+
 - **params**
 
   An associative array of the contract input data.
@@ -1475,7 +1617,11 @@ CallContract("MyContract", par)
 
 ### ContractAccess {#contractaccess}
 
-Checks if the name of contract being executed matches one of the names listed in the parameters. Usually it is used to control contract access to tables. When editing table fields or inserting and adding new column fields in the permissions section of the table, please specify this function in the permissions fields.
+Checks if the name of contract being executed matches one of the names listed in
+the parameters. Usually it is used to control contract access to tables. When
+editing table fields or inserting and adding new column fields in the
+permissions section of the table, please specify this function in the
+permissions fields.
 
 **Syntax**
 
@@ -1498,7 +1644,11 @@ ContractAccess("MyContract","SimpleContract")
 
 Calls the conditions section in the contract with a specified name.
 
-For this type of contracts, the data section must be empty. If the conditions section is executed without error, it returns true. If there is an error during execution, the parent contract will also be terminated due to the error. This function is usually used to control the contract's access to tables and can be called in the permission fields when editing system tables.
+For this type of contracts, the data section must be empty. If the conditions
+section is executed without error, it returns true. If there is an error during
+execution, the parent contract will also be terminated due to the error. This
+function is usually used to control the contract's access to tables and can be
+called in the permission fields when editing system tables.
 
 **Syntax**
 
@@ -1519,7 +1669,8 @@ ContractConditions("MainCondition")
 
 ### EvalCondition {#evalcondition}
 
-Gets the value of the condfield field in the record with a 'name' field from the tablename table, and checks the conditions of the condfield field value.
+Gets the value of the condfield field in the record with a 'name' field from the
+tablename table, and checks the conditions of the condfield field value.
 
 **Syntax**
 
@@ -1531,9 +1682,11 @@ EvalCondition(tablename string, name string, condfield string)
 - **tablename**
 
   Table name.
+
 - **name**
 
   Queries the value with the 'name' field.
+
 - **condfield**
 
   The name of the field whose conditions needs to be checked.
@@ -1546,7 +1699,8 @@ EvalCondition(`menu`, $Name, `conditions`)
 
 ### GetContractById {#getcontractbyid}
 
-Returns its contract name by contract ID. If not found the contract, an empty string is returned.
+Returns its contract name by contract ID. If not found the contract, an empty
+string is returned.
 
 **Syntax**
 
@@ -1568,7 +1722,8 @@ name = GetContractById($IdContract)
 
 ### GetContractByName {#getcontractbyname}
 
-This function returns its contract ID by contract name. If not found the contract, zero is returned.
+This function returns its contract ID by contract name. If not found the
+contract, zero is returned.
 
 **Syntax**
 
@@ -1589,7 +1744,8 @@ id = GetContractByName(`NewBlock`)
 
 ### RoleAccess {#roleaccess}
 
-Checks whether the role ID of the contract caller matches one of the IDs specified in the parameter.
+Checks whether the role ID of the contract caller matches one of the IDs
+specified in the parameter.
 
 You can use this function to control contract access to tables and other data.
 
@@ -1612,7 +1768,8 @@ RoleAccess(1, 3)
 
 ### TransactionInfo {#transactioninfo}
 
-Queries transactions by specified hash value and returns information about the contract executed and its parameters.
+Queries transactions by specified hash value and returns information about the
+contract executed and its parameters.
 
 **Syntax**
 
@@ -1685,7 +1842,10 @@ Throw("Problem", "There is a problem")
 
 ### ValidateCondition {#validatecondition}
 
-Tries to compile the conditions specified by the condition parameter. If there is an error during the compilation process, an error is generated and the contract called is terminated. This function is designed to check the correctness of the conditional format.
+Tries to compile the conditions specified by the condition parameter. If there
+is an error during the compilation process, an error is generated and the
+contract called is terminated. This function is designed to check the
+correctness of the conditional format.
 
 **Syntax**
 
@@ -1696,6 +1856,7 @@ ValidateCondition(condition string, state int)
 - **condition**
 
   The conditional format that needs to be verified.
+
 - **state**
 
   Ecosystem ID. If you check the global condition, please specify it as 0.
@@ -1708,7 +1869,8 @@ ValidateCondition(`ContractAccess("@1MyContract")`, 1)
 
 ### AddressToId {#addresstoid}
 
-Returns the corresponding account address by wallet address. If an invalid address is specified, '0' is returned.
+Returns the corresponding account address by wallet address. If an invalid
+address is specified, '0' is returned.
 
 **Syntax**
 
@@ -1729,7 +1891,8 @@ wallet = AddressToId($Recipient)
 
 ### IdToAddress {#idtoaddress}
 
-Returns the corresponding wallet address by account address. If an invalid address is specified, the invalid address 'invalid' is returned.
+Returns the corresponding wallet address by account address. If an invalid
+address is specified, the invalid address 'invalid' is returned.
 
 **Syntax**
 
@@ -1869,9 +2032,11 @@ FormatMoney(exp string, digit int) string
 - **Exp**
 
   A number in string format.
+
 - **digit**
 
-  The exponent (positive or negative) of 10 in the expression `Exp/10^digit`. Positive values determine decimal places.
+  The exponent (positive or negative) of 10 in the expression `Exp/10^digit`.
+  Positive values determine decimal places.
 
 **Example**
 
@@ -1897,7 +2062,8 @@ Random(min int, max int) int
 
 - **max**
 
-  The upper limit of random numbers. The random number generated will be less than this value.
+  The upper limit of random numbers. The random number generated will be less
+  than this value.
 
 **Example**
 
@@ -1928,7 +2094,8 @@ val = Int(mystr)
 
 ### Hash {#hash}
 
-Returns the hash of a specified byte array or string, which is generated by the system encryption library crypto.
+Returns the hash of a specified byte array or string, which is generated by the
+system encryption library crypto.
 
 **Syntax**
 
@@ -2015,7 +2182,8 @@ json = JSONEncode(mydata)
 
 ### JSONEncodeIndent {#jsonencodeindent}
 
-Uses the specified indentation to convert a number, string, or array to a string in JSON format.
+Uses the specified indentation to convert a number, string, or array to a string
+in JSON format.
 
 **Syntax**
 
@@ -2183,8 +2351,7 @@ Available wildcards:
 - `%d` (integer)
 - `%s` (string)
 - `%f` (float)
-- `%v` (any type)
-  **Syntax**
+- `%v` (any type) **Syntax**
 
 ```
 Sprintf(pattern string, val ...) string
@@ -2203,11 +2370,15 @@ out = Sprintf("%s=%d", mypar, 6448)
 
 ### Substr {#substr}
 
-Returns the substring obtained from a specified string starting from the offset offset (calculated from 0 by default), and the maximum length is limited to length.
+Returns the substring obtained from a specified string starting from the offset
+offset (calculated from 0 by default), and the maximum length is limited to
+length.
 
-If the offset or length is less than zero, or the offset is greater than the length, an empty string is returned.
+If the offset or length is less than zero, or the offset is greater than the
+length, an empty string is returned.
 
-If the sum of the offset and length is greater than the string size, then, the substring will be returned starting from the offset to the end of the string.
+If the sum of the offset and length is greater than the string size, then, the
+substring will be returned starting from the offset to the end of the string.
 
 **Syntax**
 
@@ -2279,7 +2450,8 @@ val = ToUpper(val)
 
 ### TrimSpace {#trimspace}
 
-Deletes the leading and trailing spaces, tabs and newlines of a specified string.
+Deletes the leading and trailing spaces, tabs and newlines of a specified
+string.
 
 **Syntax**
 
@@ -2301,7 +2473,8 @@ val = TrimSpace(" mystr ")
 
 ### Floor {#floor}
 
-Returns the largest integer value less than or equal to a specified number, float number, and string.
+Returns the largest integer value less than or equal to a specified number,
+float number, and string.
 
 **Syntax**
 
@@ -2515,7 +2688,9 @@ maxcol = SysParam(`max_columns`)
 
 ### DBUpdateSysParam {#dbupdatesysparam}
 
-Updates the value and conditions of a platform parameter. If you do not need to change the value or conditions, please specify an empty string in the corresponding parameter.
+Updates the value and conditions of a platform parameter. If you do not need to
+change the value or conditions, please specify an empty string in the
+corresponding parameter.
 
 **Syntax**
 
@@ -2545,7 +2720,8 @@ DBUpdateSysParam(`fuel_rate`, `400000000000`, ``)
 
 ### UpdateNotifications {#updatenotifications}
 
-Obtains the notification list of a specified key from the database, and sends the notification obtained to Centrifugo.
+Obtains the notification list of a specified key from the database, and sends
+the notification obtained to Centrifugo.
 
 **Syntax**
 
@@ -2560,7 +2736,8 @@ UpdateNotifications(ecosystemID int, keys int...)
 
 - **key**
 
-  A list of account addresses, separated by commas. Or you can use an array to specify a list of account addresses.
+  A list of account addresses, separated by commas. Or you can use an array to
+  specify a list of account addresses.
 
 **Example**
 
@@ -2571,7 +2748,8 @@ UpdateNotifications(1, [$key_id, 23345355454, 35545454554])
 
 ### UpdateRolesNotifications {#updaterolesnotifications}
 
-Obtains the notification list of all account addresses of a specified role ID in the database, and sends the notification obtained to Centrifugo.
+Obtains the notification list of all account addresses of a specified role ID in
+the database, and sends the notification obtained to Centrifugo.
 
 **Syntax**
 
@@ -2586,7 +2764,8 @@ UpdateRolesNotifications(ecosystemID int, roles int ...)
 
 - **roles**
 
-  A list of role IDs, separated by commas. Or you can use an array to specify a list of role IDs.
+  A list of role IDs, separated by commas. Or you can use an array to specify a
+  list of role IDs.
 
 **Example**
 
@@ -2641,7 +2820,8 @@ json = JSONToMap(ret)
 
 ### HTTPPostJSON {#httppostjson}
 
-This function is similar to the HTTPRequest function, but it sends a POST request and the request parameters are strings.
+This function is similar to the HTTPRequest function, but it sends a POST
+request and the request parameters are strings.
 
 > Note
 
@@ -2780,7 +2960,8 @@ GetOBSList()
 
 > **Return value**
 
-An array of objects, where the key is the CLB name and the value is the process state.
+An array of objects, where the key is the CLB name and the value is the process
+state.
 
 ### RunOBS {#runobs}
 
@@ -2841,11 +3022,16 @@ It can only contain letters and numbers, and the space symbol cannot be used.
 
 ## System Contracts {#system-contracts}
 
-System contracts are created by default when the IBax blockchain platform is launched. All these contracts were created in the first ecosystem. This is why you need to specify their full names when calling them from other ecosystems, for example, `@1NewContract`.
+System contracts are created by default when the IBAX blockchain platform is
+launched. All these contracts were created in the first ecosystem. This is why
+you need to specify their full names when calling them from other ecosystems,
+for example, `@1NewContract`.
 
 ### NewEcosystem {#newecosystem}
 
-This contract creates a new ecosystem. To obtain the ID of the ecosystem created, you must quote the result filed returned in [txstatus](../reference/api2.md#txstatus).
+This contract creates a new ecosystem. To obtain the ID of the ecosystem
+created, you must quote the result filed returned in
+[txstatus](../reference/api2.md#txstatus).
 
 Parameters:
 
@@ -2853,7 +3039,8 @@ Parameters:
 
 ### EditEcosystemName {#editecosystemname}
 
-Changes the name of the ecosystem in the 1_ecosystems table that only exists in the first ecosystem.
+Changes the name of the ecosystem in the 1_ecosystems table that only exists in
+the first ecosystem.
 
 Parameters:
 
@@ -2867,9 +3054,11 @@ Creates a new contract in the current ecosystem.
 Parameters:
 
 - **ApplicationId** int - the application to which a new contract belongs;
-- **Value** string - contract source code. The upper layer must have only one contract;
+- **Value** string - contract source code. The upper layer must have only one
+  contract;
 - **Conditions** string - changes the conditions of the contract;
-- **TokenEcosystem** int "optional" - ecosystem ID. It determines which token will be used for transactions when the contract is activated.
+- **TokenEcosystem** int "optional" - ecosystem ID. It determines which token
+  will be used for transactions when the contract is activated.
 
 ### EditContract {#editcontract}
 
@@ -2883,7 +3072,9 @@ Parameters:
 
 ### BindWallet {#bindwallet}
 
-Binding the contract to the wallet address in the current ecosystem. After binding with the contract, the contract execution fee will be paid under this address.
+Binding the contract to the wallet address in the current ecosystem. After
+binding with the contract, the contract execution fee will be paid under this
+address.
 
 Parameters:
 
@@ -2892,7 +3083,9 @@ Parameters:
 
 ### UnbindWallet {#unbindwallet}
 
-Unbinding the contract from the wallet address in the current ecosystem. Only addresses bound to the contract can be unbound. After unbinding the contract, users who execute the contract will pay the execution fee.
+Unbinding the contract from the wallet address in the current ecosystem. Only
+addresses bound to the contract can be unbound. After unbinding the contract,
+users who execute the contract will pay the execution fee.
 
 Parameters:
 
@@ -2963,9 +3156,14 @@ Parameters:
 
 - **Conditions** string - conditions to change the page;
 
-- **ValidateCount** int "optional" - number of nodes required for page validation. If this parameter is not specified, the min_page_validate_count ecosystem parameter value is used. The value of this parameter cannot be less than min_page_validate_count and greater than max_page_validate_count;
+- **ValidateCount** int "optional" - number of nodes required for page
+  validation. If this parameter is not specified, the min_page_validate_count
+  ecosystem parameter value is used. The value of this parameter cannot be less
+  than min_page_validate_count and greater than max_page_validate_count;
 
-- **ValidateMode** int "optional" - mode of page validity check. The page will be checked when it is loaded if the value of this parameter is 0; or checked when it is loaded or exit the page if the value of this parameter is 1.
+- **ValidateMode** int "optional" - mode of page validity check. The page will
+  be checked when it is loaded if the value of this parameter is 0; or checked
+  when it is loaded or exit the page if the value of this parameter is 1.
 
 ### EditPage {#editpage}
 
@@ -2977,8 +3175,13 @@ Parameters:
 - **Value** string "optional" - source code of the new page;
 - **Menu** string "optional" - name of the new menu associated with the page;
 - **Conditions** string "optional" - new conditions to change the page;
-- **ValidateCount** int "optional" - number of nodes required for page validation. If this parameter is not specified, the min_page_validate_count ecosystem parameter value is used. The value of this parameter cannot be less than min_page_validate_count and greater than max_page_validate_count;
-- **ValidateMode** int "optional" - mode of page validity check. The page will be checked when it is loaded if the value of this parameter is 0; or checked when it is loaded or exit the page if the value of this parameter is 1.
+- **ValidateCount** int "optional" - number of nodes required for page
+  validation. If this parameter is not specified, the min_page_validate_count
+  ecosystem parameter value is used. The value of this parameter cannot be less
+  than min_page_validate_count and greater than max_page_validate_count;
+- **ValidateMode** int "optional" - mode of page validity check. The page will
+  be checked when it is loaded if the value of this parameter is 0; or checked
+  when it is loaded or exit the page if the value of this parameter is 1.
 
 ### AppendPage {#appendpage}
 
@@ -3017,12 +3220,17 @@ Parameters:
 
 - **ApplicationId** int - application ID of the associated table;
 - **Name** string - name of the new table;
-- **Columns** string - field array in JSON format `[{"name":"...", "type":"...","index": "0", "conditions":".. ."},...]`, where
+- **Columns** string - field array in JSON format
+  `[{"name":"...", "type":"...","index": "0", "conditions":".. ."},...]`, where
   - **name** - field name, only Latin characters;
-  - **type** - data type `varchar,bytea,number,datetime,money,text,double,character`;
+  - **type** - data type
+    `varchar,bytea,number,datetime,money,text,double,character`;
   - **index** - non-primary key field `0`, primary key `1`;
-  - **conditions** - conditions to change the field data, and the access permissions must be specified in JSON format "`{"update":"ContractConditions(MainCondition)", "read":"ContractConditions(MainCondition)"}`;
-- **Permissions** string - access permissions in JSON format `{"insert": "...", "new_column": "...", "update": "...", "read": ".. ."}`.
+  - **conditions** - conditions to change the field data, and the access
+    permissions must be specified in JSON format
+    "`{"update":"ContractConditions(MainCondition)", "read":"ContractConditions(MainCondition)"}`;
+- **Permissions** string - access permissions in JSON format
+  `{"insert": "...", "new_column": "...", "update": "...", "read": ".. ."}`.
   - **insert** - permission to insert entries;
   - **new_column** - permission to add a new column;
   - **update** - permission to change entry data;
@@ -3048,7 +3256,8 @@ Parameters:
 
 - **TableName** string - table name;
 - **Name** string - field name in Latin characters;
-- **Type** string - data type `varchar,bytea,number,money,datetime,text,double,character`;
+- **Type** string - data type
+  `varchar,bytea,number,money,datetime,text,double,character`;
 - **UpdatePerm** string - permission to change the value in the column;
 - **ReadPerm** string - permission to read the value in the column.
 
@@ -3065,37 +3274,47 @@ Parameters:
 
 ### NewLang {#newlang}
 
-Adds language resources to the current ecosystem, and the permission to do so is set in the changing_language parameter of the ecosystem parameters.
+Adds language resources to the current ecosystem, and the permission to do so is
+set in the changing_language parameter of the ecosystem parameters.
 
 Parameters:
 
 - **Name** string - name of the language resources in Latin characters;
-- **Trans** string - string in JSON format, with a two-character lang code as the key and the translated string as the value. For example, `{"en": "English text", "de": "deutscher text"}`.
+- **Trans** string - string in JSON format, with a two-character lang code as
+  the key and the translated string as the value. For example,
+  `{"en": "English text", "de": "deutscher text"}`.
 
 ### EditLang {#editlang}
 
-Changes the language resources in the current ecosystem, and the permission to do so is set in the changing_language parameter of the ecosystem parameter.
+Changes the language resources in the current ecosystem, and the permission to
+do so is set in the changing_language parameter of the ecosystem parameter.
 
 Parameters:
 
 - **Id** int - language resources ID.
-- **Trans** - string in JSON format, with a two-character lang code as the key and the translated string as the value. For example, `{"en": "English text", "de": "deutscher text"}`.
+- **Trans** - string in JSON format, with a two-character lang code as the key
+  and the translated string as the value. For example,
+  `{"en": "English text", "de": "deutscher text"}`.
 
 ### Import {#import}
 
-Imports an application into the current ecosystem and imports the data loaded from the [ImportUpload](#importupload) contract.
+Imports an application into the current ecosystem and imports the data loaded
+from the [ImportUpload](#importupload) contract.
 
 Parameters:
 
-- **Data** string - data imported in text format, which comes from a file exported by the ecosystem.
+- **Data** string - data imported in text format, which comes from a file
+  exported by the ecosystem.
 
 ### ImportUpload {#importupload}
 
-Loads an external application file into the buffer_data table of the current ecosystem for subsequent import.
+Loads an external application file into the buffer_data table of the current
+ecosystem for subsequent import.
 
 Parameters:
 
-- **InputFile** file - a file written to the buffer_data table of the current ecosystem.
+- **InputFile** file - a file written to the buffer_data table of the current
+  ecosystem.
 
 ### NewAppParam {#newappparam}
 
@@ -3122,15 +3341,20 @@ Parameters:
 
 Adds a new task to the delayed contracts scheduler daemon.
 
-The delayered contracts scheduler runs contracts required by the currently generated block.
+The delayered contracts scheduler runs contracts required by the currently
+generated block.
 
 Parameters:
 
 - **Contract** string - contract name;
-- **EveryBlock** int - the contract will be executed every such amount of blocks;
+- **EveryBlock** int - the contract will be executed every such amount of
+  blocks;
 - Conditions string - permission to change the task;
-- **BlockID** int "optional" - the block ID where the contract must be executed. If not specified, it will be calculated automatically by adding the "current block ID" + EveryBlock;
-- **Limit** int "optional" - the maximum number of task execution. If not specified, the task will be executed for an unlimited times.
+- **BlockID** int "optional" - the block ID where the contract must be executed.
+  If not specified, it will be calculated automatically by adding the "current
+  block ID" + EveryBlock;
+- **Limit** int "optional" - the maximum number of task execution. If not
+  specified, the task will be executed for an unlimited times.
 
 ### EditDelayedContract {#editdelayedcontract}
 
@@ -3140,21 +3364,30 @@ Parameters:
 
 - **Id** int - task ID;
 - **Contract** string - contract name;
-- **EveryBlock** int - the contract will be executed every such amount of blocks;
+- **EveryBlock** int - the contract will be executed every such amount of
+  blocks;
 - **Conditions** string - permission to change the task;
-- **BlockID** int "optional" - the block ID where the contract must be executed. If not specified, it will be calculated automatically by adding the "current block ID" + EveryBlock;
-- **Limit** int "optional" - the maximum number of task execution. If not specified, the task will be executed for an unlimited times.
-- **Deleted** int "optional" - task switching. A value of `1` will disable the task. A value of `0` will enable the task.
+- **BlockID** int "optional" - the block ID where the contract must be executed.
+  If not specified, it will be calculated automatically by adding the "current
+  block ID" + EveryBlock;
+- **Limit** int "optional" - the maximum number of task execution. If not
+  specified, the task will be executed for an unlimited times.
+- **Deleted** int "optional" - task switching. A value of `1` will disable the
+  task. A value of `0` will enable the task.
 
 ### UploadBinary {#uploadbinary}
 
-Adds or overwrites a static file in the X_binaries table. When calling a contract via HTTP API, the request must be in `multipart/form-data` format; the DataMimeType parameter will be used in conjunction with the form data.
+Adds or overwrites a static file in the X_binaries table. When calling a
+contract via HTTP API, the request must be in `multipart/form-data` format; the
+DataMimeType parameter will be used in conjunction with the form data.
 
 Parameters:
 
 - **Name** string - name of the static file;
 - **Data** bytes - content of the static file;
 - **DataMimeType** string "optional" - a static file in mime-type format;
-- **ApplicationId** int - the application ID associated with the X_binaries table.
+- **ApplicationId** int - the application ID associated with the X_binaries
+  table.
 
-If the DataMimeType parameter is not passed, the `application/octet-stream` format is used by default.
+If the DataMimeType parameter is not passed, the `application/octet-stream`
+format is used by default.

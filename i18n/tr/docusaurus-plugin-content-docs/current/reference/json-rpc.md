@@ -1,12 +1,24 @@
 # JSON-RPC Application Programming Interface {#json-rpc-application-programming-interface}
 
-In order for a software application to interact with the IBAX blockchain (fetch block data or send transactions to the network), it must be connected to an IBAX network node.
+In order for a software application to interact with the IBAX blockchain (fetch
+block data or send transactions to the network), it must be connected to an IBAX
+network node.
 
-Due to the generality and extensibility of the original REST API interface, it will become more and more complex with more and more interfaces and different clients. We realize the importance of interface unification to ensure that all clients can use the same set of specifications, regardless of the specific node and client implementation.
+Due to the generality and extensibility of the original REST API interface, it
+will become more and more complex with more and more interfaces and different
+clients. We realize the importance of interface unification to ensure that all
+clients can use the same set of specifications, regardless of the specific node
+and client implementation.
 
-JSON-RPC  is  a  stateless,  lightweight  remote  procedure  call  (RPC)  protocol.  It  defines  a number of data structures and their processing rules. It is transport independent, as these concepts can be used in the same process, via an interface, hypertext transfer protocol, or in many different messaging environments. It uses JSON (RFC 4627) as the data format.
+JSON-RPC is a stateless, lightweight remote procedure call (RPC) protocol. It
+defines a number of data structures and their processing rules. It is transport
+independent, as these concepts can be used in the same process, via an
+interface, hypertext transfer protocol, or in many different messaging
+environments. It uses JSON (RFC 4627) as the data format.
 
-JSON-RPC is compatible with most of the REST API interfaces, retaining the original REST API interface, the client using the REST API interface can easily transfer to the JSON-RPC interface, part of the interface:
+JSON-RPC is compatible with most of the REST API interfaces, retaining the
+original REST API interface, the client using the REST API interface can easily
+transfer to the JSON-RPC interface, part of the interface:
 
 - [`/data/{id}/data/{hash}`](api2.md#data-id-data-hash)
 - [`/data/{table}/id/{column}/{hash}`](api2.md#data-table-id-column-hash)
@@ -16,17 +28,28 @@ Available through the REST API interface.
 
 ## Client-side implementation {#client-side-implementation}
 
-Each client can use a different programming language when  implementing  the JSON-RPC specification, and you can use the
+Each client can use a different programming language when implementing the
+JSON-RPC specification, and you can use the
 [GO-SDK](https://github.com/IBAX-io/go-ibax-sdk)
 
 ## Curl example {#curl-example}
 
-The following provides examples of using the JSON RPC API by making curl requests to IBAX nodes. Each example includes a description of the particular endpoint, its parameters, the return type, and a working example of how it should be used.
+The following provides examples of using the JSON RPC API by making curl
+requests to IBAX nodes. Each example includes a description of the particular
+endpoint, its parameters, the return type, and a working example of how it
+should be used.
 
-Curl requests may return an error message related to the content type. This is because the --data option sets the content type to application/x-www-form-urlencoded. If your request has this problem, set the header manually by placing -H "Content-Type: application/json" at the beginning of the call. These examples also do not include the URL/Internet Protocol and port combination that must be the last parameter of the curl (e.g. 127.0.0.1:7079). A full curl request with this additional data takes would be in the following form:
+Curl requests may return an error message related to the content type. This is
+because the --data option sets the content type to
+application/x-www-form-urlencoded. If your request has this problem, set the
+header manually by placing -H "Content-Type: application/json" at the beginning
+of the call. These examples also do not include the URL/Internet Protocol and
+port combination that must be the last parameter of the curl (e.g.
+127.0.0.1:7079). A full curl request with this additional data takes would be in
+the following form:
 
 ```bash
-curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"ibax.maxBlockId","params":[],"id":1}' http://127.0.0.1:7079 
+curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"ibax.maxBlockId","params":[],"id":1}' http://127.0.0.1:7079
 ```
 
 ## Covenant {#covenant}
@@ -35,7 +58,8 @@ curl -X POST -H "Content-Type: application/json" -d '{"jsonrpc":"2.0","method":"
 
 **Hexadecimal code**
 
-When encoding byte arrays, hashes, and bytecode arrays: the encoding is hexadecimal, two hexadecimal digits per byte.
+When encoding byte arrays, hashes, and bytecode arrays: the encoding is
+hexadecimal, two hexadecimal digits per byte.
 
 ### Request type {#request-type}
 
@@ -49,17 +73,21 @@ When encoding byte arrays, hashes, and bytecode arrays: the encoding is hexadeci
 
 This field is an optional parameter.
 
-If there are multiple `Omitempty` fields in a row, but only want to pass the value of a certain field, then you need to set the unwanted field to null (the field type null value), Example:
+If there are multiple `Omitempty` fields in a row, but only want to pass the
+value of a certain field, then you need to set the unwanted field to null (the
+field type null value), Example:
 
 - **id** - _Number_ - [Omitempty](#omitempty) id
 - **name** - _String_ - [Omitempty](#omitempty) Name
 - **column** - _String_ - [Omitempty](#omitempty) Filter column names
 
-If only the name value is passed, then the request parameters are passed as follows
+If only the name value is passed, then the request parameters are passed as
+follows
 
 `"params":[0, "testname"]` - _Number_ null value is 0
 
-If only the column value is passed, then the request parameters are passed as follows
+If only the column value is passed, then the request parameters are passed as
+follows
 
 `"params":[0,"", "title,page"]` - _String_ empty value for ""
 
@@ -78,13 +106,16 @@ curl -X POST -H "Content-Type: application/json" -H "Authorization: Bearer ey...
 
 #### AccountOrKeyId {#accountorkeyid}
 
-For the account address parameter, you can use two formats of addresses, for example:
+For the account address parameter, you can use two formats of addresses, for
+example:
 
-1. - _String_ - Account Address `"XXXX-XXXX-XXXX-XXXX-XXXX"` or Account Id `"64842...538120"` .538120"\`
+1. - _String_ - Account Address `"XXXX-XXXX-XXXX-XXXX-XXXX"` or Account Id
+     `"64842...538120"` .538120"\`
 
 2. - _Object_ - Address object
    - **key_id** - _Number_ - Account Id, Example: `{"key_id":-64842...38120}`
-   - **account** - _String_ - Account address, Example: `{"account": "1196-...-...-...-3496"}`
+   - **account** - _String_ - Account address, Example:
+     `{"account": "1196-...-...-...-3496"}`
 
    **Account Id is preferred when both account address and account Id exist**.
 
@@ -92,20 +123,25 @@ For the account address parameter, you can use two formats of addresses, for exa
 
 Block height or block HASH, example:
 
-1. - _String_ - Block Height `"100"` or Block HASH`"4663aa47...a60753c18d9ba9cb4"`
+1. - _String_ - Block Height `"100"` or Block
+     HASH`"4663aa47...a60753c18d9ba9cb4"`
 
 2. - _Object_ - Block information object
 
-     - **id** - _Number_ - block height, example: `{"id":2}`
-     - **hash** - _[Hex](#hex) String_ - Block HASH, Example: `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
+   - **id** - _Number_ - block height, example: `{"id":2}`
 
-     **Block Height and Block HASH can only choose one**.
+   - **hash** - _[Hex](#hex) String_ - Block HASH, Example:
+     `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
+
+   **Block Height and Block HASH can only choose one**.
 
 ### Batch requests {#batch-requests}
 
-This feature can be used to reduce network latency, especially when acquiring a large number of largely independent data objects.
+This feature can be used to reduce network latency, especially when acquiring a
+large number of largely independent data objects.
 
-The following is an example of obtaining the highest block and total number of transactions:
+The following is an example of obtaining the highest block and total number of
+transactions:
 
 ```text
     //Request
@@ -141,9 +177,11 @@ If an error occurs, a JSON object with the following fields will be returned:
   Error text message.
 
 - error
+
   - code
 
     Response Status Code
+
   - message
 
     Response Status Description
@@ -251,7 +289,8 @@ If an error occurs, a JSON object with the following fields will be returned:
 
 [Authorization](#authorization) [Omitempty](#omitempty)
 
-Generate a temporary JWT token, which needs to be passed to [**Authorization**](#authorization) when calling **[login](#ibax-login)**.
+Generate a temporary JWT token, which needs to be passed to
+[**Authorization**](#authorization) when calling **[login](#ibax-login)**.
 
 **Parameters**
 
@@ -261,7 +300,8 @@ Generate a temporary JWT token, which needs to be passed to [**Authorization**](
 
 - **uid** - _String_ - The signature number.
 
-- **token** - _String_ - temporary token passed during login (temporary token has a 5 second lifespan).
+- **token** - _String_ - temporary token passed during login (temporary token
+  has a 5 second lifespan).
 
 - **network_id** - _String_ - The network identifier.
 
@@ -269,7 +309,8 @@ Generate a temporary JWT token, which needs to be passed to [**Authorization**](
 
 - **hasher** - _String_ - hash algorithm.
 
-In the case that no authorization is required(the request contains [Authorization](#authorization), the following message will be returned.
+In the case that no authorization is required(the request contains
+[Authorization](#authorization), the following message will be returned.
 
 - **expire** - _String_ - Expiration time.
 
@@ -325,27 +366,31 @@ User authentication.
 
 [Authorization](#authorization)
 
-The [**ibax.getUid**](#ibax-getuid) command should be called first in order to receive the unique value and sign it.
+The [**ibax.getUid**](#ibax-getuid) command should be called first in order to
+receive the unique value and sign it.
 
 The temporary JWT token for getuid needs to be passed in the request header.
 
-If the request is successful, the token received in the response is contained in [**Authorization**](#authorization).
+If the request is successful, the token received in the response is contained in
+[**Authorization**](#authorization).
 
 **Parameters**
 
 _Object_ - Authentication call object
 
-- **ecosystem_id** - _Number_ - Ecosystem ID. if not specified, defaults to the first ecosystem ID.
+- **ecosystem_id** - _Number_ - Ecosystem ID. if not specified, defaults to the
+  first ecosystem ID.
 
-- **expire** - _Number_ - The lifecycle of the JWT token in seconds, default is 28800,8 hours.
+- **expire** - _Number_ - The lifecycle of the JWT token in seconds, default is
+  28800,8 hours.
 
 - **public_key** - _[Hex](#hex) String_ - Hexadecimal account public key.
 
 - **key_id** - _String_ -
+
   > Account address `XXXX-... -XXXX`.
   >
-  > Use this parameter if the public key is already stored in the blockchain. It cannot be used with _pubkey_
-  > \> parameters are used together.
+  > Use this parameter if the public key is already stored in the blockchain. It> cannot be used with _pubkey_ parameters are used together.
 
 - **signature** - _String_ -
 
@@ -355,8 +400,7 @@ _Object_ - Authentication call object
 
 - **role_id** - _Number_ - Role ID, default role 0
 
-**Return Value**
-_Object_ - Authentication object
+**Return Value** _Object_ - Authentication object
 
 - **token** - _String_ - JWT token.
 
@@ -368,11 +412,14 @@ _Object_ - Authentication object
 
 - **notify_key** - _String_ - The notification ID.
 
-- **isnode** - _Bool_ - Whether the account address is the owner of the node. Values: `true,false`.
+- **isnode** - _Bool_ - Whether the account address is the owner of the node.
+  Values: `true,false`.
 
-- **isowner** - _Bool_ - Whether the account address is the creator of this ecosystem. Values: `true,false`.
+- **isowner** - _Bool_ - Whether the account address is the creator of this
+  ecosystem. Values: `true,false`.
 
-- **clb** - _Bool_ - Whether the logged-in ecosystem is a CLB. Values: `true,false`.
+- **clb** - _Bool_ - Whether the logged-in ecosystem is a CLB. Values:
+  `true,false`.
 
 - **timestamp** - _String_ - current timestamp
 
@@ -415,10 +462,10 @@ User authentication status.
 
 - None
 
-**Return Value**
-_Object_ - Authentication status object
+**Return Value** _Object_ - Authentication status object
 
-- **active** - _Bool_ - The current user authentication status. Values: `true,false`
+- **active** - _Bool_ - The current user authentication status. Values:
+  `true,false`
 
 - **exp** - _Number_ - [Omitempty](#omitempty) Token validity cutoff timestamp
 
@@ -449,7 +496,8 @@ Returns the current server version.
 
 **Return Value**
 
-- **vesion** - _String_ - version number (`big Version` + `branch name` + `git commit` + `time` + `node status`)
+- **vesion** - _String_ - version number (`big Version` + `branch name` +
+  `git commit` + `time` + `node status`)
 
 **Example**
 
@@ -471,16 +519,17 @@ Get the account address balance.
 
 **Parameters**
 
-- **key_id or account** - [_AccountOrKeyId_](#accountorkeyid) - account address `XXXX- XXXX-XXXX-XXXX-XXXX` or account ID
+- **key_id or account** - [_AccountOrKeyId_](#accountorkeyid) - account address
+  `XXXX- XXXX-XXXX-XXXX-XXXX` or account ID
 
 - **ecosystem_id** - _Number_ - Ecosystem ID [Omitempty](#omitempty) Default 1
 
-**Return Value**
-_Object_ - Get the balance object
+**Return Value** _Object_ - Get the balance object
 
 - **amount** - _String_ - the minimum unit of the contract account balance.
 
-- **total** - _String_ - the total balance of the minimum unit account (amount + utxo).
+- **total** - _String_ - the total balance of the minimum unit account (amount +
+  utxo).
 
 - **utxo** - _String_ - Minimum unit UTXO account balance.
 
@@ -516,7 +565,8 @@ _Object_ - Get the balance object
 
 ### **ibax.getBlocksTxInfo** {#ibax-getblockstxinfo}
 
-Returns a list containing additional information about the transactions in each block.
+Returns a list containing additional information about the transactions in each
+block.
 
 **Parameters**
 
@@ -524,23 +574,26 @@ Returns a list containing additional information about the transactions in each 
 
 - **count** - _Number_ - number of blocks, default is 25, maximum request is 100
 
-**Return Value**
-_Object_ - Get the block information object.
+**Return Value** _Object_ - Get the block information object.
 
 - **block_id** - _String_ - block height
-- List of transactions in the block and additional information for each transaction:
+- List of transactions in the block and additional information for each
+  transaction:
 
   - **hash** - _[Hex](#hex) String_ - The transaction hash.
 
   - **contract_name** - _String_ - The name of the contract.
 
-  - **params** - _Object_ - contract parameters, contract fields can be queried via [ibax.getContractInfo](#ibax-getcontractinfo).
+  - **params** - _Object_ - contract parameters, contract fields can be queried
+    via [ibax.getContractInfo](#ibax-getcontractinfo).
 
   - **key_id** - _Number_ -
 
-    For the first block, it is the account address of the first block that signed the transaction.
+    For the first block, it is the account address of the first block that
+    signed the transaction.
 
-    For all other blocks, it is the address of the account that signed the transaction.
+    For all other blocks, it is the address of the account that signed the
+    transaction.
 
 **Example**
 
@@ -578,7 +631,8 @@ _Object_ - Get the block information object.
 
 ### **ibax.detailedBlocks** {#ibax-detailedblocks}
 
-Returns a list containing detailed additional information about the transactions in each block.
+Returns a list containing detailed additional information about the transactions
+in each block.
 
 **Parameters**
 
@@ -586,30 +640,38 @@ Returns a list containing detailed additional information about the transactions
 
 - **count** - _Number_ - number of blocks, default is 25, maximum request is 100
 
-**Return Value**
-_Object_ - Get the block details object.
+**Return Value** _Object_ - Get the block details object.
 
 - **block_id** - _String_ - block height
-  - **header** - _Object_ - block header The block header contains the following fields.
+  - **header** - _Object_ - block header The block header contains the following
+    fields.
     - **block_id** - _Number_ - the height of the block.
     - **time** - _Number_ - block generation timestamp.
     - **key_id** - _Number_ - the address of the account that signed the block.
-    - **node_position** - _Number_ - The position of the node that generated the block in the honor node list.
+    - **node_position** - _Number_ - The position of the node that generated the
+      block in the honor node list.
     - **version** - _Number_ - the block structure version.
   - **hash** - _[Hex](#hex) String_ - The block hash.
-  - **node_position** - _Number_ - The position of the node that generated the block in the honor node list.
+  - **node_position** - _Number_ - The position of the node that generated the
+    block in the honor node list.
   - **key_id** - _Number_ - the address of the account that signed the block.
   - **time** - _Number_ - block generation timestamp.
   - **tx_count** - _Number_ - the number of transactions within the block.
   - **size** - _String_ - the size of the block.
   - **rollback_hash** - _[Hex](#hex) String_ - The block rollback hash.
-  - **merkle_root** - _[Hex](#hex) String_ - The merkle tree for this block transaction.
-  - **bin_data** - _[Hex](#hex) String_ - Serialization of the block header, all transactions within the block, the previous block hash, and the private key of the node that generated the block.
-  - **transactions** - _Object_ - Transactions List of transactions in the block and additional information about each transaction:
+  - **merkle_root** - _[Hex](#hex) String_ - The merkle tree for this block
+    transaction.
+  - **bin_data** - _[Hex](#hex) String_ - Serialization of the block header, all
+    transactions within the block, the previous block hash, and the private key
+    of the node that generated the block.
+  - **transactions** - _Object_ - Transactions List of transactions in the block
+    and additional information about each transaction:
     - **hash** - _[Hex](#hex) String_ - The transaction hash.
     - **contract_name** - _String_ - The name of the contract.
-    - **params** - _Object_ - contract parameters, contract fields can be queried via [ibax.getContractInfo](#ibax-getcontractinfo).
-    - **key_id** - _Number_ - The address of the account that signed the transaction.
+    - **params** - _Object_ - contract parameters, contract fields can be
+      queried via [ibax.getContractInfo](#ibax-getcontractinfo).
+    - **key_id** - _Number_ - The address of the account that signed the
+      transaction.
     - **time** - _Number_ - transaction generation timestamp (unit: ms).
     - **type** - _Number_ - the type of the transaction.
     - **size** - _String_ - The transaction size.
@@ -694,14 +756,14 @@ _Object_ - Get the block details object.
 
 ### **ibax.getKeyInfo** {#ibax-getkeyinfo}
 
-Returns a list of ecosystems with roles that are registered to the specified address.
+Returns a list of ecosystems with roles that are registered to the specified
+address.
 
 **Parameters**
 
 - **account** - _String_ - Account Address
 
-**Return Value**
-_Object_ - Specify the address eco-list object
+**Return Value** _Object_ - Specify the address eco-list object
 
 - **account** - _String_ - Account Address
 - **ecosystems** - _Array_ - Eco-List
@@ -747,25 +809,29 @@ _Object_ - Specify the address eco-list object
 
 ### **ibax.detailedBlock** {#ibax-detailedblock}
 
-Returns a detailed list of additional information about the transactions in the block.
+Returns a detailed list of additional information about the transactions in the
+block.
 
 **Parameters**
 
 - **Block or Hash** - _[BlockOrHash](#blockorhash)_ - Block Height or Block Hash
 
-**Return Value**
-_Object_ - Get the block details object
+**Return Value** _Object_ - Get the block details object
 
-- **header** - _Object_ - block header The block header contains the following fields.
+- **header** - _Object_ - block header The block header contains the following
+  fields.
+
   - **block_id** - _Number_ - the height of the block.
   - **time** - _Number_ - block generation timestamp.
   - **key_id** - _Number_ - the address of the account that signed the block.
-  - **node_position** - _Number_ - The position of the node that generated the block in the honor node list.
+  - **node_position** - _Number_ - The position of the node that generated the
+    block in the honor node list.
   - **version** - _Number_ - the block structure version.
 
 - **hash** - _[Hex](#hex) String_ - The block hash.
 
-- **node_position** - _Number_ - The position of the node that generated the block in the honor node list.
+- **node_position** - _Number_ - The position of the node that generated the
+  block in the honor node list.
 
 - **key_id** - _Number_ - the address of the account that signed the block.
 
@@ -777,15 +843,21 @@ _Object_ - Get the block details object
 
 - **rollback_hash** - _[Hex](#hex) String_ - The block rollback hash.
 
-- **merkle_root** - _[Hex](#hex) String_ - The merkle tree for this block transaction.
+- **merkle_root** - _[Hex](#hex) String_ - The merkle tree for this block
+  transaction.
 
-- **bin_data** - _[Hex](#hex) String_ - Serialization of the block header, all transactions within the block, the previous block hash, and the private key of the node that generated the block.
+- **bin_data** - _[Hex](#hex) String_ - Serialization of the block header, all
+  transactions within the block, the previous block hash, and the private key of
+  the node that generated the block.
 
-- **transactions** - _Array_ - Transactions List of transactions in the block and additional information about each transaction:
+- **transactions** - _Array_ - Transactions List of transactions in the block
+  and additional information about each transaction:
   - **hash** - _[Hex](#hex) String_ - The transaction hash.
   - **contract_name** - _String_ - The name of the contract.
-  - **params** - _Object_ - contract parameters, contract fields can be queried via [ibax.getContractInfo](#ibax-getcontractinfo).
-  - **key_id** - _Number_ - The address of the account that signed the transaction.
+  - **params** - _Object_ - contract parameters, contract fields can be queried
+    via [ibax.getContractInfo](#ibax-getcontractinfo).
+  - **key_id** - _Number_ - The address of the account that signed the
+    transaction.
   - **time** - _Number_ - transaction generation timestamp (unit: ms).
   - **type** - _Number_ - the type of the transaction.
   - **size** - _String_ - The transaction size.
@@ -946,15 +1018,14 @@ Get the number of block transactions
 
 ### **ibax.getBlocksCountByNode** {#ibax-getblockscountbynode}
 
-Get the number of node location packing blocks
-**Parameters**
+Get the number of node location packing blocks **Parameters**
 
 - **nodePosition** - _Number_ - node subscript
 
-- **consensusMode** - _Number_ - Consensus Mode, parameters (1: Creator Management Mode 2: DAO Governance Mode)
+- **consensusMode** - _Number_ - Consensus Mode, parameters (1: Creator
+  Management Mode 2: DAO Governance Mode)
 
-**Return Value**
-_Object_ - Get the node subscript packing number object
+**Return Value** _Object_ - Get the node subscript packing number object
 
 - **total_count** - _Number_ - Total number of blocks
 
@@ -1044,13 +1115,19 @@ Access to ecosystem information
 - **digits** - _Number_ - Accuracy
 - **token_symbol** - _String_ - Token symbols
 - **token_name** - _String_ - the name of the token
-- **total_amount** - _String_ - the number of issues (first issue, or `"0"` if not issued)
-- **is_withdraw** - _Bool_ - destructible `true:destructible false:undestructible`
-- **withdraw** - _String_ - amount of destruction (`"0"` if not destructible, or not destroyed)
-- **is_emission** - _Bool_ - may be incremented `true:may be incremented false:may not be incremented`
-- **emission** - _String_ - increment (`"0"` if no increment is available, or if no increment is available)
+- **total_amount** - _String_ - the number of issues (first issue, or `"0"` if
+  not issued)
+- **is_withdraw** - _Bool_ - destructible
+  `true:destructible false:undestructible`
+- **withdraw** - _String_ - amount of destruction (`"0"` if not destructible, or
+  not destroyed)
+- **is_emission** - _Bool_ - may be incremented
+  `true:may be incremented false:may not be incremented`
+- **emission** - _String_ - increment (`"0"` if no increment is available, or if
+  no increment is available)
 - **introduction** - _String_ - Eco Introduction
-- **logo** - _Number_ - ecoLogo Id (corresponds to Binary table id), available through the RESTFUL API
+- **logo** - _Number_ - ecoLogo Id (corresponds to Binary table id), available
+  through the RESTFUL API
 - **creator** - _String_ - Eco-creator
 
 **Example**
@@ -1095,20 +1172,23 @@ Returns a list of application parameters in the current or specified ecosystem
 
   If unspecified or 0, the parameters of the current ecosystem will be returned.
 
-- **names** - _String_ - [Omitempty](#omitempty) - Filter the application parameter names.
+- **names** - _String_ - [Omitempty](#omitempty) - Filter the application
+  parameter names.
 
   A comma-separated list of names, e.g.: `name1,name2`.
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
 
-- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default 100, max 100.
+- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default
+  100, max 100.
 
 **Return Value**
 
 _Array_ - List of application parameters
 
 - **app_id** - _Number_ - Application ID
-- **list** - _Number_ - Each element of the array contains the following parameters
+- **list** - _Number_ - Each element of the array contains the following
+  parameters
   - **id** - _String_ - parameter ID, unique;
   - **name** - _String_ - the name of the parameter;
   - **value** - _String_ - the parameter value;
@@ -1156,19 +1236,23 @@ Get a list of ecosystem parameters
 
   If 0 or no such parameter, default: current ecid.
 
-- **names** - _String_ - [Omitempty](#omitempty) - The name of the filter parameter.
+- **names** - _String_ - [Omitempty](#omitempty) - The name of the filter
+  parameter.
 
   Comma-separated list of names, e.g.: `name1,name2`
 
-  The _offset_ and _limit_ parameters are invalid when there is a filter parameter.
+  The _offset_ and _limit_ parameters are invalid when there is a filter
+  parameter.
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
 
-- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default 100, max 100.
+- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default
+  100, max 100.
 
 **Return Value**
 
-- **list** - _Array_ - Each element of the array contains the following parameters:
+- **list** - _Array_ - Each element of the array contains the following
+  parameters:
   - **id** - _String_ - The id of the parameter, unique.
   - **name** - _String_ - The name of the parameter.
   - **value** - _String_ - The value of the parameter.
@@ -1215,13 +1299,16 @@ Offset and number of entries can be set
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
 
-- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default 100, max 100.
+- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default
+  100, max 100.
 
 **Return Value**
 
-- **count** - _Number_ - The total number of sheets of the current ecosystem data table.
+- **count** - _Number_ - The total number of sheets of the current ecosystem
+  data table.
 
-- **list** - _Array_ - Each element of the array contains the following parameters:
+- **list** - _Array_ - Each element of the array contains the following
+  parameters:
   - **name** - _String_ - The name of the data table without prefix.
   - **count** - _String_ - The number of entries in the data table.
 
@@ -1343,22 +1430,24 @@ You can set the offset and the number of entries.
 
 You can set the query criteria.
 
-Hex encoding of data tables of type _BYTEA_ (byte arrays, hashes, byte code arrays)
+Hex encoding of data tables of type _BYTEA_ (byte arrays, hashes, byte code
+arrays)
 
 [Authorization](#authorization)
 
-**Parameters**
-_Object_ - Get the data table object
+**Parameters** _Object_ - Get the data table object
 
 - **name** - _String_ - The name of the data table.
 
-- **limit** - _Number_ - [Omitempty](#omitempty) The number of entries, default 25.
+- **limit** - _Number_ - [Omitempty](#omitempty) The number of entries,
+  default 25.
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
 
 - **order** - _String_ - [Omitempty](#omitempty) Sort by, default id ASC.
 
-- **columns** - _String_ - [Omitempty](#omitempty) A comma-separated list of requested columns, if not specified, all columns will be returned.
+- **columns** - _String_ - [Omitempty](#omitempty) A comma-separated list of
+  requested columns, if not specified, all columns will be returned.
 
   The id column will be returned in all cases.
 
@@ -1375,7 +1464,8 @@ _Object_ - Get the data table object
 **Return Value**
 
 - **count** - _Number_ - the total number of entries.
-- **list** - _Array_ - Each element of the array contains the following parameters:
+- **list** - _Array_ - Each element of the array contains the following
+  parameters:
 
   - **id** - _String_ - The ID of the entry.
   - **...** - Other columns of the data table.
@@ -1416,29 +1506,36 @@ _Object_ - Get the data table object
 
 ### **ibax.getSections** {#ibax-getsections}
 
-Return to the tab of the current ecosystem list of table entries, you can set the offset and the number of entries.
+Return to the tab of the current ecosystem list of table entries, you can set
+the offset and the number of entries.
 
-If _role_access_ field contains a list of roles and does not include the current role, no record will be returned.
-The data in the _title_ field will be replaced by the _Accept-Language_ language resource in the request header.
+If _role_access_ field contains a list of roles and does not include the current
+role, no record will be returned. The data in the _title_ field will be replaced
+by the _Accept-Language_ language resource in the request header.
 
 [Authorization](#authorization)
 
 **Parameters**
 
 - _Object_ - Get the actions request object
-  - **limit** - _Number_ - [Omitempty](#omitempty) - The number of entries, default 25 entries.
+
+  - **limit** - _Number_ - [Omitempty](#omitempty) - The number of entries,
+    default 25 entries.
 
   - **offset** - _Number_ - [Omitempty](#omitempty) - The offset, default is 0.
 
   - **lang** - _String_ - [Omitempty](#omitempty) -
 
-    This field specifies the multilingual resource code or localization, e.g. _en, de_. If the specified multilingual resource is not found, e.g. _en-US_, then search in the Multilingual Resources group, **default**: **en**.
+    This field specifies the multilingual resource code or localization, e.g.
+    _en, de_. If the specified multilingual resource is not found, e.g. _en-US_,
+    then search in the Multilingual Resources group, **default**: **en**.
 
 **Return Value**
 
 - **count** - _Number_ - the total number of tab entries.
 
-- **list** - _Array_ - Each element of the array contains information about all columns in the sections table.
+- **list** - _Array_ - Each element of the array contains information about all
+  columns in the sections table.
 
 **Example**
 
@@ -1478,7 +1575,8 @@ The data in the _title_ field will be replaced by the _Accept-Language_ language
 
 ### **ibax.getRow** {#ibax-getrow}
 
-Returns the entries of the specified data table in the current ecosystem. You can specify the columns to be returned.
+Returns the entries of the specified data table in the current ecosystem. You
+can specify the columns to be returned.
 
 [Authorization](#authorization)
 
@@ -1490,13 +1588,15 @@ Returns the entries of the specified data table in the current ecosystem. You ca
 
 - **columns** - _String_ - [Omitempty](#omitempty)
 
-  A comma-separated list of requested columns, if not specified, all columns will be returned.
+  A comma-separated list of requested columns, if not specified, all columns
+  will be returned.
 
   If you do not filter, you can place a blank "".
 
   The id column will be returned in all cases.
 
-- **whereColumn** - _String_ - [Omitempty](#omitempty) - Find column name (only Number type columns can be found)
+- **whereColumn** - _String_ - [Omitempty](#omitempty) - Find column name (only
+  Number type columns can be found)
 
 **Return Value**
 
@@ -1535,17 +1635,20 @@ Returns the list of platform parameters.
 
 **Parameters**
 
-- **names** - _String_ [Omitempty](#omitempty) - A list of request parameters, separated by commas.
+- **names** - _String_ [Omitempty](#omitempty) - A list of request parameters,
+  separated by commas.
 
   For example `names="name1,name2"`.
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
 
-- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default 100, max 100.
+- **limit** - _Number_ [Omitempty](#omitempty) The number of entries, default
+  100, max 100.
 
 **Return Value**
 
-- **list** - _Array_ - Each element of the array contains the following parameters:
+- **list** - _Array_ - Each element of the array contains the following
+  parameters:
   - **id** - _String_ - Unique id
   - **name** - _String_ - The name of the parameter.
   - **value** - _String_ - The value of the parameter.
@@ -1582,7 +1685,8 @@ Returns the list of platform parameters.
 
 ### **ibax.history** {#ibax-history}
 
-Returns the changed records of the entries of the specified data table in the current ecosystem
+Returns the changed records of the entries of the specified data table in the
+current ecosystem
 
 [Authorization](#authorization)
 
@@ -1593,7 +1697,8 @@ Returns the changed records of the entries of the specified data table in the cu
 
 **Return Value**
 
-- **list** - _Array_ - Each element of the array contains change records for the requested entry.
+- **list** - _Array_ - Each element of the array contains change records for the
+  requested entry.
 
 **Example**
 
@@ -1834,7 +1939,7 @@ Get member information
         "result": {
             "id": 14,
             "member_name": "som",
-            "image_id": 5,           
+            "image_id": 5,
             "member_info": "{\"information\": \"Everything will be okay in the end. If it's not okay, it's not the end.\"}"
         }
     }
@@ -1842,29 +1947,37 @@ Get member information
 
 ### **ibax.getContracts** {#ibax-getcontracts}
 
-Get the list of contracts in the current ecosystem, you can set the offset and the number of entries.
+Get the list of contracts in the current ecosystem, you can set the offset and
+the number of entries.
 
 [Authorization](#authorization)
 
 **Parameters**
 
 - **offset** - _Number_ - [Omitempty](#omitempty) The offset, default is 0.
-- **limit** - _Number_ - [Omitempty](#omitempty) The number of entries, default 25.
+- **limit** - _Number_ - [Omitempty](#omitempty) The number of entries,
+  default 25.
 
 **Return Value**
 
 - **count** - _Number_ - the total number of entries.
 
-- **list** - _Array_ - Each element of the array contains the following parameters:
+- **list** - _Array_ - Each element of the array contains the following
+  parameters:
   - **id** - _String_ - Contract ID.
   - **name** - _String_ - The name of the contract.
   - **value** - _String_ - The content of the contract.
-  - **wallet_id** - _String_ - The address of the account to which the contract is bound.
-  - **address** - _String_ - the address of the contract-bound wallet `XXXX-... -XXXX`.
-  - **ecosystem_id** - _String_ - The ecosystem ID to which the contract belongs.
-  - **app_id** - _String_ - The ID of the application to which the contract belongs.
+  - **wallet_id** - _String_ - The address of the account to which the contract
+    is bound.
+  - **address** - _String_ - the address of the contract-bound wallet
+    `XXXX-... -XXXX`.
+  - **ecosystem_id** - _String_ - The ecosystem ID to which the contract
+    belongs.
+  - **app_id** - _String_ - The ID of the application to which the contract
+    belongs.
   - **conditions** - _String_ - Change the permissions of the contract.
-  - **token_id** - _String_ - The ID of the ecosystem where the pass is used as a payment for the contract.
+  - **token_id** - _String_ - The ID of the ecosystem where the pass is used as
+    a payment for the contract.
 
 **Example**
 
@@ -1903,21 +2016,30 @@ Returns information about the specified contract.
 
 **Parameters**
 
-- **contractName** - _String_ - The name of the contract. The format is `@ecosystem_id%%contractName%`, e.g. @1contractName (the specified eco1contract name contractName) or contractName (the current eco-contract name contractName).
+- **contractName** - _String_ - The name of the contract. The format is
+  `@ecosystem_id%%contractName%`, e.g. @1contractName (the specified
+  eco1contract name contractName) or contractName (the current eco-contract name
+  contractName).
 
 **Return Value**
 
 - **id** - _Number_ - the contract ID in the VM.
 - **name** - _String_ - Contract name with ecosystem ID `@1MainCondition`.
 - **state** - _Number_ - the ecosystem ID to which the contract belongs.
-- **walletid** - _String_ - the address of the account to which the contract is bound
-- **tokenid** - _String_ - the ecosystem ID of the pass that is used as the payment for the contract.
-- **address** - _String_ - the address of the contract-bound wallet `XXXX-... -XXXX`.
-- **tableid** - _String_ - ID of the entry in the _contracts_ table where the contract is located.
-- **fields** - _Array_ - array containing structural information for each parameter of the contract **data** section:
+- **walletid** - _String_ - the address of the account to which the contract is
+  bound
+- **tokenid** - _String_ - the ecosystem ID of the pass that is used as the
+  payment for the contract.
+- **address** - _String_ - the address of the contract-bound wallet
+  `XXXX-... -XXXX`.
+- **tableid** - _String_ - ID of the entry in the _contracts_ table where the
+  contract is located.
+- **fields** - _Array_ - array containing structural information for each
+  parameter of the contract **data** section:
   - **name** - _String_ - The name of the parameter.
   - **type** - _String_ - The type of the parameter.
-  - **optional** - _Bool_ - parameter options, `true` means optional parameters, `false` means mandatory parameters.
+  - **optional** - _Bool_ - parameter options, `true` means optional parameters,
+    `false` means mandatory parameters.
 
 **Example**
 
@@ -1970,14 +2092,18 @@ Returns information about the specified contract.
 
 ### **ibax.sendTx** {#ibax-sendtx}
 
-Receives the transactions in the parameters and adds them to the transaction queue, returning a transaction hash if the request is executed successfully. This hash yields the corresponding transaction within the block and is included in the error text message in case of an error response.
+Receives the transactions in the parameters and adds them to the transaction
+queue, returning a transaction hash if the request is executed successfully.
+This hash yields the corresponding transaction within the block and is included
+in the error text message in case of an error response.
 
 [Authorization](#authorization)
 
 **Parameters**
 
 - _Object_ - Transaction data object
-  - **tx_key** - _String_ - the content of the transaction, this parameter can specify any name and supports receiving multiple transactions.
+  - **tx_key** - _String_ - the content of the transaction, this parameter can
+    specify any name and supports receiving multiple transactions.
 
 **Return Value**
 
@@ -2006,7 +2132,9 @@ Receives the transactions in the parameters and adds them to the transaction que
 
 ### **ibax.txStatus** {#ibax-txstatus}
 
-Gets the block ID and error message of the specified transaction hash. If the return value of the block ID and error text message is null, then the transaction is not yet contained in the block.
+Gets the block ID and error message of the specified transaction hash. If the
+return value of the block ID and error text message is null, then the
+transaction is not yet contained in the block.
 
 [Authorization](#authorization)
 
@@ -2017,17 +2145,24 @@ Gets the block ID and error message of the specified transaction hash. If the re
 **Return Value**
 
 - **hash** - _Object_ - The transaction hash.
-  - **blockid** - _String_ - returns the block ID if the transaction was executed successfully;
 
-    If the transaction execution fails, _blockid_ will be `0`, and the corresponding block ID will be returned if the transaction execution error is penalized.
+  - **blockid** - _String_ - returns the block ID if the transaction was
+    executed successfully;
 
-  - **result** - _String_ - Returns the result of the transaction via the **$result** variable.
+    If the transaction execution fails, _blockid_ will be `0`, and the
+    corresponding block ID will be returned if the transaction execution error
+    is penalized.
 
-  - **errmsg** - _Object_ - [Omitempty](#omitempty) Returns an error text message if the execution of the transaction failed.
+  - **result** - _String_ - Returns the result of the transaction via the
+    **$result** variable.
+
+  - **errmsg** - _Object_ - [Omitempty](#omitempty) Returns an error text
+    message if the execution of the transaction failed.
     - **type** - _String_ - Error type
     - **error** - _String_ - error message
 
-  - **penalty** - _Number_ - if the transaction execution fails, (0: no penalty 1: penalty)
+  - **penalty** - _Number_ - if the transaction execution fails, (0: no penalty
+    1: penalty)
 
 **Example**
 
@@ -2060,23 +2195,29 @@ Gets the block ID and error message of the specified transaction hash. If the re
 
 ### **ibax.txInfo** {#ibax-txinfo}
 
-Returns information about the transaction for the specified hash, including the block ID and the number of confirmations. If optional parameters are specified, the contract name and its associated parameters can also be returned.
+Returns information about the transaction for the specified hash, including the
+block ID and the number of confirmations. If optional parameters are specified,
+the contract name and its associated parameters can also be returned.
 
 **Parameters**
 
 - **hash** - _String_ - The transaction hash.
 
-- **contractinfo** - _Bool_ [Omitempty](#omitempty) - Contract detail parameter identifier, get contract details related to this transaction, default is `false`
+- **contractinfo** - _Bool_ [Omitempty](#omitempty) - Contract detail parameter
+  identifier, get contract details related to this transaction, default is
+  `false`
 
 **Return Value**
 
-- **blockid** - _Number_ - The block ID containing the transaction.
-  If the value is `0`, no transactions are found for this hash.
-  If the transaction occurred on the current node, it can be obtained via [ibax.txStatus](#ibax-txstatus)
+- **blockid** - _Number_ - The block ID containing the transaction. If the value
+  is `0`, no transactions are found for this hash. If the transaction occurred
+  on the current node, it can be obtained via [ibax.txStatus](#ibax-txstatus)
 
-- **confirm** - _Number_ - the number of node confirmations for this block _blockid_.
+- **confirm** - _Number_ - the number of node confirmations for this block
+  _blockid_.
 
-- **data** - _Object_ - Returns contract details if `contentinfo=true` is specified. null if not specified
+- **data** - _Object_ - Returns contract details if `contentinfo=true` is
+  specified. null if not specified
   - **block_id** - _Number_ - block height
   - **block_hash** - _String_ - block_hash
   - **address** - _String_ - transaction creation address
@@ -2084,7 +2225,8 @@ Returns information about the transaction for the specified hash, including the 
   - **hash** - _String_ - transaction hash
   - **expedite** - _String_ - expedited fee, or "" if not available
   - **contract_name** - _String_ - Contract name
-  - **params** - _Object_ - contract parameters, contract fields can be queried via [ibax.getContractInfo](#ibax-getcontractinfo)
+  - **params** - _Object_ - contract parameters, contract fields can be queried
+    via [ibax.getContractInfo](#ibax-getcontractinfo)
   - **created_at** - _Number_ - when the transaction was created
   - **size** - _String_ - transaction size unit: B;KiB;MiB;GiB;TiB
   - **status** - _String_ - status (0:success 1:penalty)
@@ -2130,15 +2272,21 @@ Returns transaction-related information for the specified hash list.
 
 - **hashes** - _Array_ - A list of transaction hashes.
 
-- **contractinfo** - _Bool_ [Omitempty](#omitempty) - Contract detail parameter identifier, get contract details related to this transaction, default is `false`
+- **contractinfo** - _Bool_ [Omitempty](#omitempty) - Contract detail parameter
+  identifier, get contract details related to this transaction, default is
+  `false`
 
 **Return Value**
 
-- **results** - _Array_ - Data dictionary with transaction hash as key and transaction details as value.
+- **results** - _Array_ - Data dictionary with transaction hash as key and
+  transaction details as value.
   - **hash** - _String_ - The transaction hash.
-    - **blockid** - _Number_ - The block ID containing the transaction. if the value is `0`, then no transaction was found for that hash.
-    - **confirm** - _Number_ - the number of confirmations for this block _blockid_.
-    - **data** - _Object_ - If `contentinfo=true`is specified, the contract details are returned to this parameter. null when not specified
+    - **blockid** - _Number_ - The block ID containing the transaction. if the
+      value is `0`, then no transaction was found for that hash.
+    - **confirm** - _Number_ - the number of confirmations for this block
+      _blockid_.
+    - **data** - _Object_ - If `contentinfo=true`is specified, the contract
+      details are returned to this parameter. null when not specified
       - **block_id**- _Number_ - Block height
       - **block_hash** - _String_ - block_hash
       - **address** - _String_ - transaction creation address
@@ -2146,7 +2294,8 @@ Returns transaction-related information for the specified hash list.
       - **hash** - _String_ - transaction hash
       - **expedite** - _String_ - expedited fee, or "" if not available
       - **contract_name** - _String_ - Contract name
-      - **params** - _Object_ - contract parameters, contract fields can be queried via [ibax.getContractInfo](#ibax-getcontractinfo)
+      - **params** - _Object_ - contract parameters, contract fields can be
+        queried via [ibax.getContractInfo](#ibax-getcontractinfo)
       - **created_at** - _Number_ - when the transaction was created
       - **size** - _String_ - transaction size unit: B;KiB;MiB;GiB;TiB
       - **status** - _String_ - status (0:success 1:penalty)
@@ -2200,11 +2349,14 @@ Returns the number of nodes to be validated for the specified page.
 
 **Parameters**
 
-- **name**  -  _String_  -  page  name  in  the  format  `@ecosystem_id%%%page_name%`,  e.g. @1params_list (specifying ecosystem 1 page name params_list) or params_list (current ecosystem page name params_list)
+- **name** - _String_ - page name in the format `@ecosystem_id%%%page_name%`,
+  e.g. @1params_list (specifying ecosystem 1 page name params_list) or
+  params_list (current ecosystem page name params_list)
 
 **Return Value**
 
-- **validate_count** - _Number_ - Specifies the number of nodes to be validated by the page.
+- **validate_count** - _Number_ - Specifies the number of nodes to be validated
+  by the page.
 
 **Example**
 
@@ -2224,15 +2376,18 @@ Returns the number of nodes to be validated for the specified page.
 
 ### **ibax.getPage** {#ibax-getpage}
 
-Gets the tree of code JSON objects for the specified page name, which is the result of processing by the templating engine.
+Gets the tree of code JSON objects for the specified page name, which is the
+result of processing by the templating engine.
 
 [Authorization](#authorization)
 
 **Parameters**
 
-- **name** - _String_ - the name of the page with the ecosystem ID in the format `@ecosystem_id%%page_name%`, for example `@1main_page`.
+- **name** - _String_ - the name of the page with the ecosystem ID in the format
+  `@ecosystem_id%%page_name%`, for example `@1main_page`.
 
-  If you don't have an ecosystem ID, the default is to find the current ecosystem page, e.g. `main_page`
+  If you don't have an ecosystem ID, the default is to find the current
+  ecosystem page, e.g. `main_page`
 
 **Return Value**
 
@@ -2278,7 +2433,8 @@ Gets the tree of code JSON objects for the specified page name, which is the res
 
 ### **ibax.getMenu** {#ibax-getmenu}
 
-Gets the tree of code JSON objects for the specified menu name, which is the result of processing by the template engine.
+Gets the tree of code JSON objects for the specified menu name, which is the
+result of processing by the template engine.
 
 [Authorization](#authorization)
 
@@ -2286,9 +2442,7 @@ Gets the tree of code JSON objects for the specified menu name, which is the res
 
 - **name** - _String_ -
   > Menu name with ecosystem ID in the format `@ecosystem_id%%%menu_name%`, e.g.
-  > `@1main_menu`.
-  > \> If you don't bring the ecosystem ID, the menu of the current ecosystem will be found by default, for example
-  > `main_menu`
+  > `@1main_menu`. If you don't bring the ecosystem ID, the menu of the current> ecosystem will be found by default, for example `main_menu`
 
 **Return Value**
 
@@ -2325,15 +2479,19 @@ Gets the tree of code JSON objects for the specified menu name, which is the res
 
 ### **ibax.getSource** {#ibax-getsource}
 
-Returns a tree of coded JSON objects for the specified page name. Does not execute any functions or receive any data. The returned JSON object tree corresponds to the page template and can be used in the visual page designer. If the page is not found, a 404 error is returned.
+Returns a tree of coded JSON objects for the specified page name. Does not
+execute any functions or receive any data. The returned JSON object tree
+corresponds to the page template and can be used in the visual page designer. If
+the page is not found, a 404 error is returned.
 
 [Authorization](#authorization)
 
 **Parameters**
 
-- **name** - _String_ -
-  Page  name  with  ecosystem  ID  in  the  format  `@ecosystem_id%%%page_name%`,  for example `@1main_page`.
-  If you don't have an ecosystem ID, the default is to find the current ecosystem page e.g. `main_page`
+- **name** - _String_ - Page name with ecosystem ID in the format
+  `@ecosystem_id%%%page_name%`, for example `@1main_page`. If you don't have an
+  ecosystem ID, the default is to find the current ecosystem page e.g.
+  `main_page`
 
 **Return Value**
 
@@ -2425,13 +2583,19 @@ Returns a tree of coded JSON objects for the specified page name. Does not execu
 
 ### **ibax.getPageHash** {#ibax-getpagehash}
 
-Returns a SHA256 hash of the specified page name, or a 404 error if the page is not found.
+Returns a SHA256 hash of the specified page name, or a 404 error if the page is
+not found.
 
-To receive the correct hash when making requests to other nodes, you must also pass the _ecosystem,key_id,role_id_ parameter. To receive pages from other ecosystems, the ecosystem ID must be prefixed to the page name. For example: `@2mypage`.
+To receive the correct hash when making requests to other nodes, you must also
+pass the _ecosystem,key_id,role_id_ parameter. To receive pages from other
+ecosystems, the ecosystem ID must be prefixed to the page name. For example:
+`@2mypage`.
 
 **Parameters**
 
-- **name** - _String_ - The name of the page with the ecosystem ID. The format is `@ecosystem_id%%%page_name%`, e.g. `@1main_page`, you can specify the eco ID
+- **name** - _String_ - The name of the page with the ecosystem ID. The format
+  is `@ecosystem_id%%%page_name%`, e.g. `@1main_page`, you can specify the eco
+  ID
 
 - **ecosystem** - _Number_ - [Omitempty](#omitempty) Ecosystem ID.
 
@@ -2462,14 +2626,19 @@ To receive the correct hash when making requests to other nodes, you must also p
 
 ### **ibax.getContent** {#ibax-getcontent}
 
-Returns the number of JSON objects for the page code from the **template** parameter, if the optional parameter **source** Specified as `true`, this JSON object tree does not perform any functions and receive data. This JSON object tree can be used in the visual page designer.
+Returns the number of JSON objects for the page code from the **template**
+parameter, if the optional parameter **source** Specified as `true`, this JSON
+object tree does not perform any functions and receive data. This JSON object
+tree can be used in the visual page designer.
 
 **Parameters**
 
 - _Object_
+
   - **template** - _String_ - page code.
 
-  - **source** - _Bool_ - If specified as `true`, the JSON object tree does not perform any functions and receives data.
+  - **source** - _Bool_ - If specified as `true`, the JSON object tree does not
+    perform any functions and receives data.
 
 **Return Value**
 
@@ -2487,7 +2656,7 @@ Returns the number of JSON objects for the page code from the **template** param
         "id": 1,
         "result": {
             "tree": {
-                "type":"......", 
+                "type":"......",
                 "children": [
                     {...},
                     {...}
@@ -2495,7 +2664,7 @@ Returns the number of JSON objects for the page code from the **template** param
             }
         }
     }
-      
+
 ```
 
 ### **ibax.getBlockInfo** {#ibax-getblockinfo}
@@ -2518,9 +2687,11 @@ Returns information about the specified block ID.
 
 - **rollbacks_hash** - _String_ - The block rollback hash.
 
-- **node_position** - _Number_ - The position of the block in the honor node list.
+- **node_position** - _Number_ - The position of the block in the honor node
+  list.
 
-- **consensus_mode** _Number_ - Consensus mode, parameters (1: creator management mode 2: DAO governance mode)
+- **consensus_mode** _Number_ - Consensus mode, parameters (1: creator
+  management mode 2: DAO governance mode)
 
 **Example**
 
@@ -2556,7 +2727,8 @@ Get the host address and port of centrifugo
 
 **Return Value**
 
-- **centrifugo** - _String_ - [Omitempty](#omitempty) host address and port of centrifugo Result format `http://address:port`, e.g.: `http://127.0.0.1:8100`.
+- **centrifugo** - _String_ - [Omitempty](#omitempty) host address and port of
+  centrifugo Result format `http://address:port`, e.g.: `http://127.0.0.1:8100`.
 
 **Example**
 
@@ -2631,10 +2803,9 @@ Get the current node status
 
 **Return Value**
 
-- **status** - _String_ - Node Status
-  "node server status is running" - the node is running
-  "node server is updating" - node is being updated
-  "node server is stopped" - node suspended
+- **status** - _String_ - Node Status "node server status is running" - the node
+  is running "node server is updating" - node is being updated "node server is
+  stopped" - node suspended
 
 **Example**
 
@@ -2745,9 +2916,8 @@ Get node disable status
 
 - None
 
-**Return Value**
-**node_position** - _Number_ - node subscript
-**status** - _Bool_ - Disable status, `true` ban status, `false` not disabled
+**Return Value** **node_position** - _Number_ - node subscript **status** -
+_Bool_ - Disable status, `true` ban status, `false` not disabled
 
 **Example**
 

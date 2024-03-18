@@ -89,55 +89,96 @@
 
 ## Page construction {#page-construction}
 
-Weaver's Integrated Development Environment (IDE) is created using React, a JavaScript library. It has a page editor and a visual page designer. Pages are basic parts of an application, which are used to retrieve and display data from tables, create forms for receiving user input data, pass data to contracts, and navigate between application pages. Like contracts, pages are stored in the blockchain, which can ensure they are tamper-proof when loaded in the software client.
+Weaver's Integrated Development Environment (IDE) is created using React, a
+JavaScript library. It has a page editor and a visual page designer. Pages are
+basic parts of an application, which are used to retrieve and display data from
+tables, create forms for receiving user input data, pass data to contracts, and
+navigate between application pages. Like contracts, pages are stored in the
+blockchain, which can ensure they are tamper-proof when loaded in the software
+client.
 
 ### Template engine {#template-engine}
 
-Page elements (pages and menus) are formed by developers in the template engine of a verification node using the template language in Weaver's page editor. All pages are constructed using the Logicor language developed by IBAX's development team. Use content/... API commands to request pages from nodes on the network. What the template engine sent as a response to this type of request is not an HTML page, but a JSON code composed of HTML tags that form a tree in accordance with the template structure. If you want to test the template engine, you can refer to the [content](../reference/api2.md#content) API command.
+Page elements (pages and menus) are formed by developers in the template engine
+of a verification node using the template language in Weaver's page editor. All
+pages are constructed using the Logicor language developed by IBAX's development
+team. Use content/... API commands to request pages from nodes on the network.
+What the template engine sent as a response to this type of request is not an
+HTML page, but a JSON code composed of HTML tags that form a tree in accordance
+with the template structure. If you want to test the template engine, you can
+refer to the [content](../reference/api2.md#content) API command.
 
 ### Create pages {#create-pages}
 
-You can use the page editor to create and edit pages, which can be found in the Pages section of Weaver's management tool. The editor can be used to:
+You can use the page editor to create and edit pages, which can be found in the
+Pages section of Weaver's management tool. The editor can be used to:
 
 - Write the page code, highlight the keywords of the Logicor template language;
 - Select and display menus on pages;
 - Edit the menu page;
-- Configure the permission to change pages, by specifying the contract name with permission in the ContractConditions function, or by directly specifying the access permission in Change conditions;
+- Configure the permission to change pages, by specifying the contract name with
+  permission in the ContractConditions function, or by directly specifying the
+  access permission in Change conditions;
 - Start the visual page designer;
 - Preview pages.
 
 #### Visual page designer {#visual-page-designer}
 
-The visual page designer can be used to create page layouts without using interface codes in the Logicor language. With it, you can set the position of form elements and text on pages by dragging and dropping such elements, and configure the size of page blocks. It provides a set of ready-to-use blocks for presenting standard data models: with titles, forms and information panels. After creating a page in the visual page designer, you can write program logic for receiving data and conditional structure in the page editor. In the future, we plan to create a visual page designer with additional functions.
+The visual page designer can be used to create page layouts without using
+interface codes in the Logicor language. With it, you can set the position of
+form elements and text on pages by dragging and dropping such elements, and
+configure the size of page blocks. It provides a set of ready-to-use blocks for
+presenting standard data models: with titles, forms and information panels.
+After creating a page in the visual page designer, you can write program logic
+for receiving data and conditional structure in the page editor. In the future,
+we plan to create a visual page designer with additional functions.
 
 #### Applicable styles {#applicable-styles}
 
-By default, pages are presented with Angular's Bootstrap Angle style. Users can create their own styles according to needs. The style is stored in the style parameter stylesheet in the ecosystem parameter table.
+By default, pages are presented with Angular's Bootstrap Angle style. Users can
+create their own styles according to needs. The style is stored in the style
+parameter stylesheet in the ecosystem parameter table.
 
 #### Page module {#page-module}
 
-To use a code block in multiple pages, you can create a page module to hold and embed it into the page code. Page modules can be created and edited in Weaver's Module Blocks. Like pages, editing permissions can be defined.
+To use a code block in multiple pages, you can create a page module to hold and
+embed it into the page code. Page modules can be created and edited in Weaver's
+Module Blocks. Like pages, editing permissions can be defined.
 
 #### Language resource editor {#language-resource-editor}
 
-Weaver includes a mechanism for page localization using a function **LangRes** of the Logicor template language. It could replace language resource tags on the page with text lines corresponding to the language selected by the user in the software client or browser. You can use the short syntax **$lable$** instead of the **LangRes** function. The translation of messages in popups initiated by the contract is performed by Needle's **LangRes** function.
+Weaver includes a mechanism for page localization using a function **LangRes**
+of the Logicor template language. It could replace language resource tags on the
+page with text lines corresponding to the language selected by the user in the
+software client or browser. You can use the short syntax **$lable$** instead of
+the **LangRes** function. The translation of messages in popups initiated by the
+contract is performed by Needle's **LangRes** function.
 
-You can create and edit language resources in the Language resources section of Weaver. A language resource consists of label names and corresponding translation of such name in different languages, as well as the corresponding two-letter language identifier (EN, ZH, JP, etc.).
+You can create and edit language resources in the Language resources section of
+Weaver. A language resource consists of label names and corresponding
+translation of such name in different languages, as well as the corresponding
+two-letter language identifier (EN, ZH, JP, etc.).
 
-The permissions for adding and changing language resources can be defined in the same way as other tables.
+The permissions for adding and changing language resources can be defined in the
+same way as other tables.
 
 ## Logicor template language {#logicor-template-language}
 
 Logicor functions provide the following operations:
 
-- Retrieving values from the database: `DBFind`, showing data retrieved from the database as tables and charts;
-- Data operations for assigning and displaying variable values: `SetVar, GetVar, Data`;
+- Retrieving values from the database: `DBFind`, showing data retrieved from the
+  database as tables and charts;
+- Data operations for assigning and displaying variable values:
+  `SetVar, GetVar, Data`;
 - Displaying and comparing date/time values: `DateTime, Now, CmpTime`;
-- Use various user data input fields to build forms: `Form, ImageInput, Input, RadioGroup, Select`;
-- Verify the data in the form field by displaying error messages: `Validate, InputErr`;
+- Use various user data input fields to build forms:
+  `Form, ImageInput, Input, RadioGroup, Select`;
+- Verify the data in the form field by displaying error messages:
+  `Validate, InputErr`;
 - Displaying the navigation elements: `AddToolButton, LinkPage, Button`;
 - Calling contracts: `Button`;
-- Creating HTML page layout elements, including various tags, and choosing specific css classes: `Div, P, Span, etc`;
+- Creating HTML page layout elements, including various tags, and choosing
+  specific css classes: `Div, P, Span, etc`;
 - Embedding and unloading images onto pages: `Image, ImageInput`;
 - Displaying conditions of page layout fragment: `If, ElseIf, Else`;
 - Creating multi-level menus;
@@ -145,23 +186,43 @@ Logicor functions provide the following operations:
 
 ### Logicor overview {#logicor-overview}
 
-The Logicor page template language is a functional language that allows a function calling another function `FuncName(parameters)` and nesting functions into each other. You can specify parameters without quotes, and delete unnecessary parameters.
+The Logicor page template language is a functional language that allows a
+function calling another function `FuncName(parameters)` and nesting functions
+into each other. You can specify parameters without quotes, and delete
+unnecessary parameters.
 
-If the parameter contains a comma, it should be enclosed in quotes (backquotes or double quotes). If a function can only have one parameter, you can use a comma without quotes. In addition, if the parameter has an unpaired closing parenthesis, quotes should be used.
+If the parameter contains a comma, it should be enclosed in quotes (backquotes
+or double quotes). If a function can only have one parameter, you can use a
+comma without quotes. In addition, if the parameter has an unpaired closing
+parenthesis, quotes should be used.
 
-If you put a parameter in quotes, but the parameter itself contains quotes, you can use different types of quotes or multiple quotes in the text.
+If you put a parameter in quotes, but the parameter itself contains quotes, you
+can use different types of quotes or multiple quotes in the text.
 
-In the function definition, each parameter has a specific name. You can call the function and specify the parameters in the order of declaration, or any parameter set in any order of name: `Parameter_name: Parameter_value`. Using this method, you can safely add new function parameters without breaking compatibility with the current template:
+In the function definition, each parameter has a specific name. You can call the
+function and specify the parameters in the order of declaration, or any
+parameter set in any order of name: `Parameter_name: Parameter_value`. Using
+this method, you can safely add new function parameters without breaking
+compatibility with the current template:
 
-Functions can return texts, generate HTML elements (e.g. `Input`), or create HTML elements with nested HTML elements (`Div, P, Span`). In the latter case, a parameter with the predefined name Body is used to define the nested element. For example, nesting two divs in another div looks like this:
+Functions can return texts, generate HTML elements (e.g. `Input`), or create
+HTML elements with nested HTML elements (`Div, P, Span`). In the latter case, a
+parameter with the predefined name Body is used to define the nested element.
+For example, nesting two divs in another div looks like this:
 
-To define the nested elements described in the Body parameter, the following notation can be used: `FuncName(...){...}`. Nested elements should be specified with braces:
+To define the nested elements described in the Body parameter, the following
+notation can be used: `FuncName(...){...}`. Nested elements should be specified
+with braces:
 
-If you need to specify the same function multiple times in succession, you can use the dot `.` instead of writing its name every time. For example, the following are the same:
+If you need to specify the same function multiple times in succession, you can
+use the dot `.` instead of writing its name every time. For example, the
+following are the same:
 
-With this language, you can assign a variable with the SetVar function and refer its value with `#name#`.
+With this language, you can assign a variable with the SetVar function and refer
+its value with `#name#`.
 
-To refer to the language resources of the ecosystem, you can use `$langres$`, where langres is the language name.
+To refer to the language resources of the ecosystem, you can use `$langres$`,
+where langres is the language name.
 
 The following variables are predefined:
 
@@ -172,18 +233,33 @@ The following variables are predefined:
 
 #### Use PageParams to pass parameters to pages {#use-pageparams-to-pass-parameters-to-pages}
 
-Many functions support the PageParams parameter, which is used to pass parameters when redirecting to a new page. For example: PageParams: `"param1=value1,param2=value2"`. The parameter value can be a simple string or a variable with a reference value. When passing parameters to pages, a variable with the parameter name is created, e.g. `#param1#` and `#param2#`.
+Many functions support the PageParams parameter, which is used to pass
+parameters when redirecting to a new page. For example: PageParams:
+`"param1=value1,param2=value2"`. The parameter value can be a simple string or a
+variable with a reference value. When passing parameters to pages, a variable
+with the parameter name is created, e.g. `#param1#` and `#param2#`.
 
-- `PageParams: "hello=world"` - The new page receives the hello parameter with world as the value;
-- `PageParams: "hello=#world#"` - The new page receives the hello parameter with the value of the world variable.
+- `PageParams: "hello=world"` - The new page receives the hello parameter with
+  world as the value;
+- `PageParams: "hello=#world#"` - The new page receives the hello parameter with
+  the value of the world variable.
 
-In addition, the Val function can get data from forms, which is specified in the redirection.
+In addition, the Val function can get data from forms, which is specified in the
+redirection.
 
-- `PageParams: "hello=Val(world)"` - The new page receives the hello parameter with the value of the world form element.
+- `PageParams: "hello=Val(world)"` - The new page receives the hello parameter
+  with the value of the world form element.
 
 #### Calling contracts {#calling-contracts}
 
-Logicor implements contract calls by clicking the Button function in a form. Once an event is triggered, the data entered by the user in a form field on the page will be passed to the contract. If the form field name corresponds to the variable name in the data section of the contract called, the data will be automatically transferred. The Button function allows to open a modal window for the user to verify the contract execution, and initiate the redirection to the specified page when the contract is successfully executed, and pass certain parameters to the page.
+Logicor implements contract calls by clicking the Button function in a form.
+Once an event is triggered, the data entered by the user in a form field on the
+page will be passed to the contract. If the form field name corresponds to the
+variable name in the data section of the contract called, the data will be
+automatically transferred. The Button function allows to open a modal window for
+the user to verify the contract execution, and initiate the redirection to the
+specified page when the contract is successfully executed, and pass certain
+parameters to the page.
 
 ## Logicor function classification {#logicor-function-classification}
 
@@ -252,7 +328,9 @@ Logicor implements contract calls by clicking the Button function in a form. Onc
 
 ### Address {#address}
 
-This function returns the wallet address `xxxx-xxxx-...-xxxx` of a specific account address; if no address is specified, the account address of the current user will be used as the parameter.
+This function returns the wallet address `xxxx-xxxx-...-xxxx` of a specific
+account address; if no address is specified, the account address of the current
+user will be used as the parameter.
 
 **Syntax**
 
@@ -331,10 +409,10 @@ The modal window pops up.
 - `Header`
 
   Title of the window.
+
 - `Width`
 
-  Percentage of window width.
-  Its range is 1 to 100.
+  Percentage of window width. Its range is 1 to 100.
 
 **Example**
 
@@ -344,7 +422,11 @@ AddToolButton(Title: $@1broadcast$, Page: @1notifications_broadcast, Icon: icon-
 
 ### And {#and}
 
-It returns the result of an and logical operation. All parameters listed in parentheses are separated by commas. If one of the parameters is an empty string, zero or `false`, the parameter value is `false`, otherwise the parameter value is `true`. If the parameter value is `true`, the function returns `1`, otherwise it returns `0`.
+It returns the result of an and logical operation. All parameters listed in
+parentheses are separated by commas. If one of the parameters is an empty
+string, zero or `false`, the parameter value is `false`, otherwise the parameter
+value is `true`. If the parameter value is `true`, the function returns `1`,
+otherwise it returns `0`.
 
 **Syntax**
 
@@ -360,7 +442,9 @@ If(And(#myval1#,#myval2#), Span(OK))
 
 ### AppParam {#appparam}
 
-Output the application parameter value, which is taken from the app_params table of the current ecosystem. If there is a language resource with the specified name, its value will be automatically replaced.
+Output the application parameter value, which is taken from the app_params table
+of the current ecosystem. If there is a language resource with the specified
+name, its value will be automatically replaced.
 
 **Syntax**
 
@@ -383,14 +467,16 @@ AppParam(App, Name, Index, Source)
 
   It can be used when the parameter value is a comma-separated list.
 
-  The parameter elements index, starting from 1. For example, if `type = full,light`, then `AppParam(1, type, 2)` returns `light`.
-  It cannot be used in conjunction with the Source parameter.
+  The parameter elements index, starting from 1. For example, if
+  `type = full,light`, then `AppParam(1, type, 2)` returns `light`. It cannot be
+  used in conjunction with the Source parameter.
 
 - `Source`
 
-  It can be used when the parameter value is a comma-separated list.
-  Create a data object whose elements are the values of specific parameters. This object can be used as a data source for the [Table](#table) and [Select](#select) functions.
-  It cannot be used in conjunction with the Index parameter.
+  It can be used when the parameter value is a comma-separated list. Create a
+  data object whose elements are the values of specific parameters. This object
+  can be used as a data source for the [Table](#table) and [Select](#select)
+  functions. It cannot be used in conjunction with the Index parameter.
 
 **Example**
 
@@ -400,7 +486,9 @@ AppParam(1, type, Source: mytype)
 
 ### ArrayToSource {#arraytosource}
 
-Create an arraytosource element and fill it with the key-value pairs of a JSON array. The data obtained is put into the Source element, which can be used later in the source input function (e.g. Table).
+Create an arraytosource element and fill it with the key-value pairs of a JSON
+array. The data obtained is put into the Source element, which can be used later
+in the source input function (e.g. Table).
 
 **Syntax**
 
@@ -414,6 +502,7 @@ ArrayToSource(Source, Data)
 - `Source`
 
   Data source name.
+
 - `Data`
 
   A JSON array or a variable name containing a JSON array (`#name#`).
@@ -440,18 +529,23 @@ Binary(Name, AppID, MemberID)[.ById(ID)][.Ecosystem(ecosystem)]
 - `Name`
 
   File name.
+
 - `AppID`
 
   Application ID.
+
 - `MemberID`
 
   Account address, 0 by default.
+
 - `ID`
 
   Static file ID.
+
 - `Ecosystem`
 
-  Ecosystem ID. If it is not specified, the binary file is requested from the current ecosystem.
+  Ecosystem ID. If it is not specified, the binary file is requested from the
+  current ecosystem.
 
 **Example**
 
@@ -463,7 +557,8 @@ Image(Src: Binary().ById(#id#).Ecosystem(#eco#))
 
 ### Button {#button}
 
-Create a button HTML element which will create a button to call a contract or open a page.
+Create a button HTML element which will create a button to call a contract or
+open a page.
 
 **Syntax**
 
@@ -496,63 +591,90 @@ Button(Body, Page, Class, Contract, Params, PageParams)
 
 - `Params`
 
-  The list of values passed to the contract. Normally, the value of the contract parameter (the data section) is obtained from an HTML element (such as an input field) of id with a similar name. If the element id is different from the name of the contract parameter, then the value should be assigned in the format of contractField1=idname1, contractField2=idname2. This parameter is returned to attr as the object `{contractField1: idname1, contractField2: idname2}`.
+  The list of values passed to the contract. Normally, the value of the contract
+  parameter (the data section) is obtained from an HTML element (such as an
+  input field) of id with a similar name. If the element id is different from
+  the name of the contract parameter, then the value should be assigned in the
+  format of contractField1=idname1, contractField2=idname2. This parameter is
+  returned to attr as the object
+  `{contractField1: idname1, contractField2: idname2}`.
 
 - `PageParams`
 
-  The format of parameters passed to the redirect page is pageField1=idname1, pageField2=idname2. Variables with target page parameter names #pageField1 and #pageField2 are created on the target page and assigned the specified values.See more parameter passing specifications [passing parameters to the page using PageParams](#pageparams)
+  The format of parameters passed to the redirect page is pageField1=idname1,
+  pageField2=idname2. Variables with target page parameter names #pageField1 and
+  \#pageField2 are created on the target page and assigned the specified
+  values.See more parameter passing specifications
+  [passing parameters to the page using PageParams](#pageparams)
 
 > CompositeContract
 
-Used to add additional contracts to the button. CompositeContract can be used multiple times.
+Used to add additional contracts to the button. CompositeContract can be used
+multiple times.
 
 - `Name`
 
   Name of the contract.
+
 - `Data`
 
+  ```
   The contract parameters are JSON arrays.
+  ```
 
-> Alert
+  > Alert
 
 Display the message.
 
 - `Text`
 
   Text of the message.
+
 - `ConfirmButton`
 
   Title of the Confirm button.
+
 - `CancelButton`
 
   Title of the Cancel button.
+
 - `Icon`
 
+  ```
   Button icon.
+  ```
 
-> Popup
+  > Popup
 
 Output modal window.
 
 - `Header`
 
   Window title.
+
 - `Width`
 
+  ```
   Percentage of window width.
   Its range is 1 to 100.
+  ```
 
-> Style
+  > Style
 
 The CSS style specified.
 
 - `Style`
 
+  ```
   CSS style.
+  ```
 
-> ErrorRedirect
+  > ErrorRedirect
 
-Specify and redirect to a page when the :ref:contractfundef-Throw function generates an error during contract execution. There can be several ErrorRedirect calls. Therefore, when returning the _errredirect_ attribute, the attribute key is ErrorID and the value is the parameters list.
+Specify and redirect to a page when the :ref:contractfundef-Throw function
+generates an error during contract execution. There can be several ErrorRedirect
+calls. Therefore, when returning the _errredirect_ attribute, the attribute key
+is ErrorID and the value is the parameters list.
 
 - `ErrorID`
 
@@ -575,7 +697,8 @@ Button(Contract: MyContract, Body:My Contract, Class: myclass, Params:"Name=myid
 
 ### Calculate {#calculate}
 
-It returns the result of the arithmetic expression passed in the Exp parameter. The following operations are applicable: +, -, \*, / and brackets ().
+It returns the result of the arithmetic expression passed in the Exp parameter.
+The following operations are applicable: +, -, \*, / and brackets ().
 
 **Syntax**
 
@@ -588,9 +711,12 @@ Calculate(Exp, Type, Prec)
 - `Exp`
 
   An arithmetic expression, containing numbers and the #name# variable.
+
 - `Type`
 
-  Result data type: int, float, money. If not specified, it is float if there is a number with a decimal point, otherwise it is int.
+  Result data type: int, float, money. If not specified, it is float if there is
+  a number with a decimal point, otherwise it is int.
+
 - `Prec`
 
   float and money data, with two significant digits after the decimal point.
@@ -618,15 +744,19 @@ Chart(Type, Source, FieldLabel, FieldValue, Colors)
 - `Type`
 
   Chart type.
+
 - `Source`
 
   Name of the data source, e.g., obtained from the [DBFind](#dbfind) function.
+
 - `FieldLabel`
 
   Name of the header field.
+
 - `FieldValue`
 
   Name of the value field.
+
 - `Colors`
 
   List of colors.
@@ -644,8 +774,8 @@ Chart(Type: "bar", Source: mysrc, FieldLabel: "name", FieldValue: "count", Color
 
 ### CmpTime {#cmptime}
 
-It compares two time values in the same format.
-It supports unixtime, `YYYY-MM-DD HH:MM:SS` and any time format, such as `YYYYMMDD`.
+It compares two time values in the same format. It supports unixtime,
+`YYYY-MM-DD HH:MM:SS` and any time format, such as `YYYYMMDD`.
 
 **Syntax**
 
@@ -692,8 +822,8 @@ Code( P(This is the first line.
 
 ### CodeAsIs {#codeasis}
 
-Create a code element to display the specified code.
-It does not replace a variable with its value. For example, `#name#` will be displayed as is.
+Create a code element to display the specified code. It does not replace a
+variable with its value. For example, `#name#` will be displayed as is.
 
 **Syntax**
 
@@ -717,7 +847,10 @@ CodeAsIs( P(This is the #test1#.
 
 ### Data {#data}
 
-Create a data element, fill it with the specified data and put it in Source. Then, you can receive Source as a data input in [Table](#table) and other functions. The sequence of column names corresponds to the sequence of data entry values.
+Create a data element, fill it with the specified data and put it in Source.
+Then, you can receive Source as a data input in [Table](#table) and other
+functions. The sequence of column names corresponds to the sequence of data
+entry values.
 
 **Syntax**
 
@@ -730,7 +863,8 @@ Data(Source,Columns,Data)
 
 - `Source`
 
-  Name of the data source. You can specify any name that will be passed to other functions later as a data source.
+  Name of the data source. You can specify any name that will be passed to other
+  functions later as a data source.
 
 - `Columns`
 
@@ -740,9 +874,12 @@ Data(Source,Columns,Data)
 
   Data set.
 
-  One record per line. Column values must be separated by commas. Data and Columns should be set in the same order.
+  One record per line. Column values must be separated by commas. Data and
+  Columns should be set in the same order.
 
-  Values with commas should be enclosed in double quotes (`"example1, example2", 1, 2`). Quoted values should be put in two double quotes (`"""example", "example2""", 1, 2`).
+  Values with commas should be enclosed in double quotes
+  (`"example1, example2", 1, 2`). Quoted values should be put in two double
+  quotes (`"""example", "example2""", 1, 2`).
 
 ### Custom {#custom}
 
@@ -757,7 +894,8 @@ Use multiple Custom functions if you want to assign multiple calculated columns.
 
 - `Body`
 
-  Code block. You can use `#columnname#` to get values from other columns in the entry, and then use those values in code blocks.
+  Code block. You can use `#columnname#` to get values from other columns in the
+  entry, and then use those values in code blocks.
 
 **Example**
 
@@ -784,10 +922,13 @@ DateTime(DateTime, Format)
 - `DateTime`
 
   Time and date expressed in unixtime or standard format `2006-01-02T15:04:05`.
+
 - `Format`
 
-  Format template: year in 2-digit format `YY`, 4-digit format `YYYY`, month in `MM`, day in `DD`, hour in `HH`, minute in `MM`, second in `SS`, e.g.: `YY/MM/DD HH:MM`.
-  If it is not specified or missing, `YYYY-MM-DD HH:MI:SS` will be used.
+  Format template: year in 2-digit format `YY`, 4-digit format `YYYY`, month in
+  `MM`, day in `DD`, hour in `HH`, minute in `MM`, second in `SS`, e.g.:
+  `YY/MM/DD HH:MM`. If it is not specified or missing, `YYYY-MM-DD HH:MI:SS`
+  will be used.
 
 **Example**
 
@@ -798,7 +939,9 @@ DateTime(#mytime#,HH:MI DD.MM.YYYY)
 
 ### DBFind {#dbfind}
 
-Create a dbfind element, fill it with the data of the table table and put it in the Source structure, which can later be used for the input data of [Table](#table) and other functions Source.
+Create a dbfind element, fill it with the data of the table table and put it in
+the Source structure, which can later be used for the input data of
+[Table](#table) and other functions Source.
 
 **Syntax**
 
@@ -822,6 +965,7 @@ DBFind(table, Source)
 - `table`
 
   Table name.
+
 - `Source`
 
   Data source name.
@@ -830,25 +974,26 @@ DBFind(table, Source)
 
 - `columns`
 
-  If not specified, a list of all fields will be returned. If there is a JSON type field, you can use the following syntax to process the record field: `columnname->fieldname`. In this case, the field name generated is `columnname.fieldname`.
+  If not specified, a list of all fields will be returned. If there is a JSON
+  type field, you can use the following syntax to process the record field:
+  `columnname->fieldname`. In this case, the field name generated is
+  `columnname.fieldname`.
 
 > Where
 
 - `conditions`
 
-Data query conditions. See DBFind.
-If there is a JSON type field, you can use the following syntax to process the record field:      `columnname->fieldname`.
+Data query conditions. See DBFind. If there is a JSON type field, you can use
+the following syntax to process the record field: `columnname->fieldname`.
 
-> WhereId
-> Query by ID, e.g. `.WhereId(1)`.
+> WhereId Query by ID, e.g. `.WhereId(1)`.
 
 - `Id`
 
 Entry ID.
 
-> Order
-> Sort by field.
-> For more information about the sorting syntax, see [DBFind](#dbfind).
+> Order Sort by field. For more information about the sorting syntax, see
+> [DBFind](#dbfind).
 
 - `name`
 
@@ -870,9 +1015,11 @@ Field Name
 
 Specify the total number of rows of the Where condition.
 
-In addition to storing it in a variable, the total count is returned in the count parameter of the dbfind element.
+In addition to storing it in a variable, the total count is returned in the
+count parameter of the dbfind element.
 
-If Where and WhereID are not specified, the total count of rows in the table will be returned.
+If Where and WhereID are not specified, the total count of rows in the table
+will be returned.
 
 - `countvar`
 
@@ -882,7 +1029,8 @@ If Where and WhereID are not specified, the total count of rows in the table wil
 
 - `Id`
 
-Ecosystem ID. By default, the data comes from the specified table in the current ecosystem.
+Ecosystem ID. By default, the data comes from the specified table in the current
+ecosystem.
 
 > Cutoff
 
@@ -892,12 +1040,18 @@ Used to cut and display large amounts of text data.
 
 A comma-separated list of fields that must be processed by the Cutoff function.
 
-The field value will be replaced by a JSON object that has two fields: link link and title title. If the field value contains more than 32 characters, link pointing to the first 32 characters of the full text is returned. If the field value contains 32 characters or less, link is set to void and title contains the complete field value.
+The field value will be replaced by a JSON object that has two fields: link link
+and title title. If the field value contains more than 32 characters, link
+pointing to the first 32 characters of the full text is returned. If the field
+value contains 32 characters or less, link is set to void and title contains the
+complete field value.
 
 > Custom
 
-You can assign calculated columns to Data. For example, you can specify field templates for buttons and other page layout elements. These field templates are usually assigned to [Table](#table) and other functions to receive data.
-If you want to assign multiple calculated columns, use multiple Custom functions.
+You can assign calculated columns to Data. For example, you can specify field
+templates for buttons and other page layout elements. These field templates are
+usually assigned to [Table](#table) and other functions to receive data. If you
+want to assign multiple calculated columns, use multiple Custom functions.
 
 - `Column`
 
@@ -905,15 +1059,21 @@ Column name, which is unique and compulsory.
 
 - `Body`
 
-Code block. You can use `#columnname#` to get values from other columns in the entry, and then use those values in code blocks.
+Code block. You can use `#columnname#` to get values from other columns in the
+entry, and then use those values in code blocks.
 
 > Vars
 
-The first row obtained by the query will generate a set of variables with values. When it is specified, the Limit parameter automatically becomes 1, and only one (1) record is returned.
+The first row obtained by the query will generate a set of variables with
+values. When it is specified, the Limit parameter automatically becomes 1, and
+only one (1) record is returned.
 
 - `Prefix`
 
-The prefix added to the variable name. Its format is `#prefix_columnname#`, where the column name immediately follows the underscore symbol. If there is a column containing a JSON field, the variable generated will be in the following format: `#prefix_columnname_field#`.
+The prefix added to the variable name. Its format is `#prefix_columnname#`,
+where the column name immediately follows the underscore symbol. If there is a
+column containing a JSON field, the variable generated will be in the following
+format: `#prefix_columnname_field#`.
 
 **Example**
 
@@ -943,11 +1103,14 @@ Div(Class, Body)
 - `Class`
 
   Class name of the div.
+
 - `Body`
 
+  ```
   Child element.
+  ```
 
-> Style
+  > Style
 
 The CSS style specified.
 
@@ -969,7 +1132,10 @@ Define the conditions for hiding Div.
 
 - `Condition`
 
-The expression format is `InputName=Value`, when all expressions are true, _Condition_ is true, and when the value of `InputName` is equal to `Value`, _Condition_ is true. If multiple _Show_ or _Hide_ are called, there must be at least one _Condition_ parameter is true.
+The expression format is `InputName=Value`, when all expressions are true,
+_Condition_ is true, and when the value of `InputName` is equal to `Value`,
+_Condition_ is true. If multiple _Show_ or _Hide_ are called, there must be at
+least one _Condition_ parameter is true.
 
 **Example**
 
@@ -989,7 +1155,9 @@ Form(){
 
 ### EcosysParam {#ecosysparam}
 
-This function obtains parameter values from the ecosystem parameter table of the current ecosystem. If the returned result name contains the language resources, it will be translated accordingly.
+This function obtains parameter values from the ecosystem parameter table of the
+current ecosystem. If the returned result name contains the language resources,
+it will be translated accordingly.
 
 **Syntax**
 
@@ -1005,15 +1173,19 @@ EcosysParam(Name, Index, Source)
 
 - `Index`
 
-  If the requested parameter is a list of comma-separated elements, you can specify an index starting from 1. For example, if `gender = male,female`, then `gender = male,female` returns `female`.
+  If the requested parameter is a list of comma-separated elements, you can
+  specify an index starting from 1. For example, if `gender = male,female`, then
+  `gender = male,female` returns `female`.
 
   It cannot be used in conjunction with the Source parameter.
 
 - `Source`
 
-  It can be used when the parameter value is a comma-separated list.
-  Create a data object whose elements are the values of the specified parameters. This object can be used as a data source for the [Table](#table) and [Select](#select) functions.
-  It cannot be used in conjunction with the Index parameter.
+  It can be used when the parameter value is a comma-separated list. Create a
+  data object whose elements are the values of the specified parameters. This
+  object can be used as a data source for the [Table](#table) and
+  [Select](#select) functions. It cannot be used in conjunction with the Index
+  parameter.
 
 ```
 Address(EcosysParam(founder_account))
@@ -1038,6 +1210,7 @@ Em(Body, Class)
 - `Body`
 
   Child text or element.
+
 - `Class`
 
   The em class name.
@@ -1050,7 +1223,8 @@ This is an Em(important news).
 
 ### ForList {#forlist}
 
-Display the list of elements in the Source data source in the template format set in Body and create a **forlist** element.
+Display the list of elements in the Source data source in the template format
+set in Body and create a **forlist** element.
 
 **Syntax**
 
@@ -1066,8 +1240,9 @@ ForList(Source, Index){Body}
 
 - `Index`
 
-  The variable of the iteration counter, starting from 1.
-  An optional parameter. If not specified, the iteration count value will be written to the [Source] _index variable.
+  The variable of the iteration counter, starting from 1. An optional parameter.
+  If not specified, the iteration count value will be written to the [Source]
+  _index variable.
 
 - `Body`
 
@@ -1092,12 +1267,14 @@ Form(Class, Body) [.Style(Style)]
 - `Body`
 
   Child text or element.
+
 - `Class`
 
+  ```
   Class name of the form.
+  ```
 
-> Style
-> The CSS style specified.
+  > Style The CSS style specified.
 
 - `Style`
 
@@ -1113,7 +1290,8 @@ Form(class1 class2, Input(myid))
 
 Returns the field data type of a specific table.
 
-Types returned include: `text, varchar, number, money, double, bytes, json, datetime, double`.
+Types returned include:
+`text, varchar, number, money, double, bytes, json, datetime, double`.
 **Syntax**
 
 ```
@@ -1125,6 +1303,7 @@ GetColumnType(Table, Column)
 - `Table`
 
   Table name.
+
 - `Column`
 
   Field name.
@@ -1137,10 +1316,14 @@ SetVar(coltype,GetColumnType(members, member_name))Div(){#coltype#}
 
 ### GetHistory {#gethistory}
 
-Create a gethistory element and fill it with the history change records of the entries in the specified table. The data generated will be placed in the Source element, which can be used later in the source input function (for example, [Table](#table)).
+Create a gethistory element and fill it with the history change records of the
+entries in the specified table. The data generated will be placed in the Source
+element, which can be used later in the source input function (for example,
+[Table](#table)).
 
-The array is sorted in order from the last modified.
-The id field in the array points to the id of the rollback_tx table. block_id represents the block ID, block_time represents the block generation timestamp.
+The array is sorted in order from the last modified. The id field in the array
+points to the id of the rollback_tx table. block_id represents the block ID,
+block_time represents the block generation timestamp.
 
 **Syntax**
 
@@ -1153,15 +1336,19 @@ GetHistory(Source, Name, Id, RollbackId)
 - `Source`
 
   Data source name.
+
 - `Name`
 
   Table name.
+
 - `Id`
 
   Entry ID.
+
 - `RollbackId`
 
-  An optional parameter. If specified, only one record with the specified ID will be returned from the rollback_tx table.
+  An optional parameter. If specified, only one record with the specified ID
+  will be returned from the rollback_tx table.
 
 **Example**
 
@@ -1171,9 +1358,13 @@ GetHistory(blocks, BlockHistory, 1)
 
 ### GetVar {#getvar}
 
-It returns the value of the specified variable that already exists, or an empty string if it does not exist.
+It returns the value of the specified variable that already exists, or an empty
+string if it does not exist.
 
-The getvar element is only created when an editable tree is requested. The difference between `GetVar(varname)` and `#varname` is that if varname does not exist, GetVar will return an empty string, while #varname# will be interpreted as a string value.
+The getvar element is only created when an editable tree is requested. The
+difference between `GetVar(varname)` and `#varname` is that if varname does not
+exist, GetVar will return an empty string, while #varname# will be interpreted
+as a string value.
 
 **Syntax**
 
@@ -1208,9 +1399,11 @@ Hint(Icon,Title,Text)
 - `Icon`
 
   Icon name.
+
 - `Title`
 
   Hint title.
+
 - `Text`
 
   Hint text.
@@ -1223,8 +1416,8 @@ Hint(Icon: "icon-wrench",Title:$@1pa_settings$,Text: This is a hint text)
 
 ### If {#if}
 
-Condition statement.
-Returns the first If or ElseIf child element that satisfies Condition. Otherwise, return the Else child element.
+Condition statement. Returns the first If or ElseIf child element that satisfies
+Condition. Otherwise, return the Else child element.
 
 **Syntax**
 
@@ -1238,7 +1431,9 @@ If(Condition){ Body}
 
 - `Condition`
 
-  If the condition is equal to an empty string, 0 or false, it is considered that the condition is not met. In all other cases, this condition is considered to be satisfied.
+  If the condition is equal to an empty string, 0 or false, it is considered
+  that the condition is not met. In all other cases, this condition is
+  considered to be satisfied.
 
 - `Body`
 
@@ -1271,9 +1466,11 @@ Image(Src, Alt, Class)
 - `Src`
 
   Image source, file or `data:...`
+
 - `Alt`
 
   Alternative text when the image cannot be displayed.
+
 - `Сlass`
 
   Image class name.
@@ -1299,12 +1496,15 @@ ImageInput(Name, Width, Ratio, Format)
 - `Name`
 
   Element name.
+
 - `Width`
 
   Width of the cropped image.
+
 - `Ratio`
 
   Aspect ratio or image height.
+
 - `Format`
 
   The format of the uploaded image.
@@ -1354,23 +1554,30 @@ Input(Name, Class, Placeholder, Type, Value, Disabled)
 - `Name`
 
   Element name.
+
 - `Class`
 
   Class name.
+
 - `Placeholder`
 
   Prompt for the expected value of the input field.
+
 - `Type`
 
   input type.
+
 - `Value`
 
   Element value.
+
 - `Disabled`
 
+  ```
   Disable the input element.
+  ```
 
-> Validate
+  > Validate
 
 Validate the parameter.
 
@@ -1404,6 +1611,7 @@ InputErr(Name,validation errors)]
 - `Name`
 
   Corresponds to the name of the [Input](#input) element.
+
 - `validation errors`
 
   Validation error message for one or more parameters.
@@ -1431,10 +1639,15 @@ InputMap(Name, Type, MapType, Value)
 - `Name`
 
   Element name.
+
 - `Value`
 
-  Default value.
-  The value is an object in string format. For example, `{"coords":[{"lat":number,"lng":number},]}` or `{"zoom":int, "center":{"lat":number,"lng": number}}`. When the InputMap is created with the predefined Value, the address field can be used to save the address value, so the it is not void.
+  Default value. The value is an object in string format. For example,
+  `{"coords":[{"lat":number,"lng":number},]}` or
+  `{"zoom":int, "center":{"lat":number,"lng": number}}`. When the InputMap is
+  created with the predefined Value, the address field can be used to save the
+  address value, so the it is not void.
+
 - `Type`
 
   Type of map spot mapping:
@@ -1442,10 +1655,10 @@ InputMap(Name, Type, MapType, Value)
   - `polygon` - indicates the area of a multi-spot closed loop;
   - `Line` - means a polyline with multiple points without closed loop;
   - `Point` - indicates a single point coordinate.
+
 - `MapType`
 
-  Map type.
-  It has the following values: `hybrid, roadmap, satellite, terrain`.
+  Map type. It has the following values: `hybrid, roadmap, satellite, terrain`.
 
 **Example**
 
@@ -1455,7 +1668,9 @@ InputMap(Name: Coords,Type: polygon, MapType: hybrid, Value: `{"zoom":8, "center
 
 ### JsonToSource {#jsontosource}
 
-Create a jsontosource element and fill it with the key-value pairs of a JSON array. The data obtained is put into the Source element, which can be used later in the source input function (e.g. [Table](#table)).
+Create a jsontosource element and fill it with the key-value pairs of a JSON
+array. The data obtained is put into the Source element, which can be used later
+in the source input function (e.g. [Table](#table)).
 
 The records in the result data are sorted alphabetically by JSON key.
 
@@ -1470,6 +1685,7 @@ JsonToSource(Source, Data)
 - `Source`
 
   Data source name.
+
 - `Data`
 
   A JSON object or a variable name containing a JSON object (`#name#`).
@@ -1497,14 +1713,18 @@ Label(Body, Class, For)
 - `Body`
 
   Child text or element.
+
 - `Class`
 
   Class name.
+
 - `For`
 
+  ```
   Bind to a form element.
+  ```
 
-> `StyleThe`:CSS style specified.
+  > `StyleThe`:CSS style specified.
 
 - `Style`
 
@@ -1518,7 +1738,8 @@ Label(The first item).
 
 ### LangRes {#langres}
 
-Returns a specific language resource. If requested to edit the tree, the langres element is returned, and you may use the short format symbol $langres$.
+Returns a specific language resource. If requested to edit the tree, the langres
+element is returned, and you may use the short format symbol $langres$.
 **Syntax**
 
 ```
@@ -1540,8 +1761,7 @@ LangRes(myres)
 
 ### LinkPage {#linkpage}
 
-Create a linkpage element, linking to the page.
-**Syntax**
+Create a linkpage element, linking to the page. **Syntax**
 
 ```
 LinkPage(Body, Page, Class, PageParams)
@@ -1553,17 +1773,22 @@ LinkPage(Body, Page, Class, PageParams)
 - `Body`
 
   Child text or element.
+
 - `Page`
 
   Name of the redirect page.
+
 - `Class`
 
   Button class name.
+
 - `PageParams`
 
+  ```
   Redirect page parameters.
+  ```
 
-> Style
+  > Style
 
 The CSS style specified.
 
@@ -1591,16 +1816,19 @@ Map(Hmap, MapType, Value)
 
 - `Hmap`
 
-  Height of an HTML element on the page.
-  The default value is 100.
+  Height of an HTML element on the page. The default value is 100.
+
 - `Value`
 
-  Map value, an object in string format.
-  For example, `{"coords":[{"lat":number,"lng":number},]}` or `{"zoom":int, "center":{"lat":number,"lng": number}}`. If `center` is not specified, the map window will automatically adjust according to the specified coordinates.
+  Map value, an object in string format. For example,
+  `{"coords":[{"lat":number,"lng":number},]}` or
+  `{"zoom":int, "center":{"lat":number,"lng": number}}`. If `center` is not
+  specified, the map window will automatically adjust according to the specified
+  coordinates.
+
 - `MapType`
 
-  Map type.
-  It has the following values: `hybrid, roadmap, satellite, terrain`.
+  Map type. It has the following values: `hybrid, roadmap, satellite, terrain`.
 
 **Example**
 
@@ -1610,7 +1838,9 @@ Map(MapType:hybrid, Hmap:400, Value:{"coords":[{"lat":55.58774531752405,"lng":36
 
 ### MenuGroup {#menugroup}
 
-Create a nested submenu in the menu and return the menugroup element. Before replacing it with the language resource, the name parameter will return the value of Title.
+Create a nested submenu in the menu and return the menugroup element. Before
+replacing it with the language resource, the name parameter will return the
+value of Title.
 
 **Syntax**
 
@@ -1693,7 +1923,9 @@ Money(Exp, Digit)
 
 - `Digit`
 
-  The exponent of 10 in the expression `Exp/10^digit`. The value can be positive or negative, and a positive value determines the number of digits after the decimal point.
+  The exponent of 10 in the expression `Exp/10^digit`. The value can be positive
+  or negative, and a positive value determines the number of digits after the
+  decimal point.
 
 **Example**
 
@@ -1703,7 +1935,11 @@ Money(Exp, Digit)
 
 ### Or {#or}
 
-It returns the result of an if logical operation. All parameters listed in parentheses are separated by commas. If having one parameter that is value is not an empty string, zero or `false`, the parameter value is `true`, otherwise the parameter value is `false`. If the parameter value is `true`, the function returns `1`, otherwise it returns `0`.
+It returns the result of an if logical operation. All parameters listed in
+parentheses are separated by commas. If having one parameter that is value is
+not an empty string, zero or `false`, the parameter value is `true`, otherwise
+the parameter value is `false`. If the parameter value is `true`, the function
+returns `1`, otherwise it returns `0`.
 
 **Syntax**
 
@@ -1803,8 +2039,8 @@ RadioGroup(Name, Source, NameColumn, ValueColumn, Value, Class)
 
 - `ValueColumn`
 
-  Value name of the data source.
-  Fields created with Custom cannot be used in this parameter.
+  Value name of the data source. Fields created with Custom cannot be used in
+  this parameter.
 
 - `Value`
 
@@ -1834,7 +2070,10 @@ RadioGroup(Name: type_decision, Source: numbers_type_decisions, NameColumn: name
 
 ### Range {#range}
 
-Create a range element, use step size Step from From to To (not including To) to fill integer elements. The data generated will be put into Source and can be used later in the function of the source input (e.g. [Table](#table)). If an invalid parameter is specified, an empty Source is returned.
+Create a range element, use step size Step from From to To (not including To) to
+fill integer elements. The data generated will be put into Source and can be
+used later in the function of the source input (e.g. [Table](#table)). If an
+invalid parameter is specified, an empty Source is returned.
 
 **Syntax**
 
@@ -1896,8 +2135,8 @@ Select(Name, Source, NameColumn, ValueColumn, Value, Class)
 
 - `ValueColumn`
 
-  Value name of the data source.
-  Fields created with [Custom](#custom) cannot be used in this parameter.
+  Value name of the data source. Fields created with [Custom](#custom) cannot be
+  used in this parameter.
 
 - `Value`
 
@@ -2038,7 +2277,8 @@ This is Strong(the first item, myclass1).
 
 ### SysParam {#sysparam}
 
-Get the value of a specific parameter in the platform parameter table system_parameters.
+Get the value of a specific parameter in the platform parameter table
+system_parameters.
 
 **Syntax**
 
@@ -2096,7 +2336,8 @@ Table(mysrc,"ID=id,Name=name")
 
 ### TransactionInfo {#transactioninfo}
 
-It queries transactions by specified hash and returns information about the executed contracts and their parameters.
+It queries transactions by specified hash and returns information about the
+executed contracts and their parameters.
 
 **Syntax**
 
@@ -2132,7 +2373,8 @@ P(TransactionInfo(#hash#))
 
 ### VarAsIs {#varasis}
 
-Assigns the value Value to a specific variable Name, which is the name of a specific variable instead of its value.
+Assigns the value Value to a specific variable Name, which is the name of a
+specific variable instead of its value.
 
 For versions with variable substitution, see [SetVar](#setvar).
 
@@ -2150,7 +2392,9 @@ VarAsIs(Name, Value)
 
 - `Value`
 
-  A variable value. Variable name in the value will not be substituted. For example, if Value is example #varname#, then the variable value is also example #varname#.
+  A variable value. Variable name in the value will not be substituted. For
+  example, if Value is example #varname#, then the variable value is also
+  example #varname#.
 
 **Example**
 
