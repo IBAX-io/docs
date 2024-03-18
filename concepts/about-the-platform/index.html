@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">IBAX Overview | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/concepts/about-the-platform"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="IBAX Overview | IBAX"><meta data-rh="true" name="description" content="- Features"><meta data-rh="true" property="og:description" content="- Features"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/concepts/about-the-platform"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/about-the-platform" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/about-the-platform" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.a753cf54.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.4496ee6b.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -47,35 +47,74 @@
 </ul>
 <!-- -->
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="features">Features<a href="#features" class="hash-link" aria-label="Direct link to Features" title="Direct link to Features">​</a></h2>
-<p>The IBAX Network (IBAX) has an integrated application development environment (IDE). It is a multi-level access control system for data, user pages and smart contracts.</p>
-<p>In terms of its structure and functions, IBAX is quite different from most existing blockchain platforms:</p>
+<p>The IBAX Network (IBAX) has an integrated application development environment
+(IDE). It is a multi-level access control system for data, user pages and smart
+contracts.</p>
+<p>In terms of its structure and functions, IBAX is quite different from most
+existing blockchain platforms:</p>
 <ul>
 <li>
-<p>The development and use of IBAX applications are in an autonomous software environment called <strong>ecosystem</strong>. Each ecosystem has its own membership rules that are initially established by the creator;</p>
+<p>The development and use of IBAX applications are in an autonomous software
+environment called <strong>ecosystem</strong>. Each ecosystem has its own membership rules
+that are initially established by the creator;</p>
 </li>
 <li>
-<p>Ecosystem activities, such as the data involved in <span style="border-radius:2px;color:red;padding:0.2rem">database table</span> records or updates, are based on <strong>registers</strong> created with <strong>smart contracts</strong>. In most other blockchain platforms, activities are based on transaction exchange between accounts;</p>
+<p>Ecosystem activities, such as the data involved in <span style="border-radius:2px;color:red;padding:0.2rem"> <!-- -->database
+table<!-- --> </span> records or updates, are based on <strong>registers</strong> created with
+<strong>smart contracts</strong>. In most other blockchain platforms, activities are based
+on transaction exchange between accounts;</p>
 </li>
 <li>
-<p>The access to <strong>registers</strong> and the control of relationships between ecosystem members are managed by a set of rules called <strong>smart laws</strong>.</p>
+<p>The access to <strong>registers</strong> and the control of relationships between ecosystem
+members are managed by a set of rules called <strong>smart laws</strong>.</p>
 </li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="architecture">Architecture<a href="#architecture" class="hash-link" aria-label="Direct link to Architecture" title="Direct link to Architecture">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="network">Network<a href="#network" class="hash-link" aria-label="Direct link to Network" title="Direct link to Network">​</a></h3>
-<p>IBAX  is built on a peer-to-peer (P2P) network.</p>
-<p>Guardian nodes in the network store the latest version of the blockchain database, which records the latest status of  IBAX&#x27;s blockchain.</p>
-<p>Network users can receive data by sending requests from the guardian node database via <strong>Weaver</strong> or REST API commands. After signing by users, new requests are sent to the network as transactions in binary format. Essentially, these transactions are commands to modify relevant database records. Transactions are aggregated in blocks, and such blocks are sent to the blockchains of all network nodes. Each guardian node will process the transactions in the block, thereby updating the corresponding data in the database.</p>
+<p>IBAX is built on a peer-to-peer (P2P) network.</p>
+<p>Guardian nodes in the network store the latest version of the blockchain
+database, which records the latest status of IBAX&#x27;s blockchain.</p>
+<p>Network users can receive data by sending requests from the guardian node
+database via <strong>Weaver</strong> or REST API commands. After signing by users, new
+requests are sent to the network as transactions in binary format. Essentially,
+these transactions are commands to modify relevant database records.
+Transactions are aggregated in blocks, and such blocks are sent to the
+blockchains of all network nodes. Each guardian node will process the
+transactions in the block, thereby updating the corresponding data in the
+database.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node">Honor Node<a href="#honor-node" class="hash-link" aria-label="Direct link to Honor Node" title="Direct link to Honor Node">​</a></h3>
-<p>A guardian node which is privileged to generate new blocks in the network is called a honor node. The maximum number of honor nodes is defined by <a href="/docs/reference/platform-parameters#number-of-nodes">number_of_nodes</a> in the platform parameters table, showing that the number of honor nodes is limited.</p>
-<p>An Honor Node is one of the key components of IBAX Public Network. It executes and validates transactions, collects transaction information from other nodes, adds transactions to the queue, and verifies the correctness and validity of new blocks using the confirmation mechanism. Generally, it has two states: packaging and non-packaging.</p>
-<p>An Honor Node in the packaging state delivers the highest performance. It obtains transaction requests to be executed from the transaction queue and verifies the ignature validity and correctness of transactions, e.g. transfer amount, permission for transaction operations, and accurate execution of transactions.</p>
-<p>All ransactional operations, correct or wrong (wrong transactions will be rolled back), will be written into the block.</p>
-<p>Wrong transactions will incur a punitive gas fee. Executed transactions are notified to other Honor Nodes along with the block through broadcasting.</p>
-<p>An Honor Node in the non-packaging state is mainly responsible for block verification to ensure in-block transactions generated by a packaging node are executed orrectly. In case of an anomaly, it will trigger the exception handling mechanism and IBAX Network will roll back and re-verify the block.</p>
-<p>In order to ensure transaction execution efficiency, Honor Nodes collect transaction information constantly.</p>
+<p>A guardian node which is privileged to generate new blocks in the network is
+called a honor node. The maximum number of honor nodes is defined by
+<a href="/docs/reference/platform-parameters#number-of-nodes">number_of_nodes</a> in the
+platform parameters table, showing that the number of honor nodes is limited.</p>
+<p>An Honor Node is one of the key components of IBAX Public Network. It executes
+and validates transactions, collects transaction information from other nodes,
+adds transactions to the queue, and verifies the correctness and validity of new
+blocks using the confirmation mechanism. Generally, it has two states: packaging
+and non-packaging.</p>
+<p>An Honor Node in the packaging state delivers the highest performance. It
+obtains transaction requests to be executed from the transaction queue and
+verifies the ignature validity and correctness of transactions, e.g. transfer
+amount, permission for transaction operations, and accurate execution of
+transactions.</p>
+<p>All ransactional operations, correct or wrong (wrong transactions will be rolled
+back), will be written into the block.</p>
+<p>Wrong transactions will incur a punitive gas fee. Executed transactions are
+notified to other Honor Nodes along with the block through broadcasting.</p>
+<p>An Honor Node in the non-packaging state is mainly responsible for block
+verification to ensure in-block transactions generated by a packaging node are
+executed orrectly. In case of an anomaly, it will trigger the exception handling
+mechanism and IBAX Network will roll back and re-verify the block.</p>
+<p>In order to ensure transaction execution efficiency, Honor Nodes collect
+transaction information constantly.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="transactions">Transactions<a href="#transactions" class="hash-link" aria-label="Direct link to Transactions" title="Direct link to Transactions">​</a></h3>
-<p>Transactions, including data used to implement <strong>smart contracts</strong>, are generated by Weaver.</p>
-<p>Transactions are signed by users with a private key. The private key and Weaver&#x27;s signature function can be stored in browsers, software clients, SIM cards or dedicated physical devices. In the current implementation, the private key is encrypted with the ECDSA algorithm and stored at the Weaver side. All transactions are signed with the ECDSA algorithm.</p>
+<p>Transactions, including data used to implement <strong>smart contracts</strong>, are
+generated by Weaver.</p>
+<p>Transactions are signed by users with a private key. The private key and
+Weaver&#x27;s signature function can be stored in browsers, software clients, SIM
+cards or dedicated physical devices. In the current implementation, the private
+key is encrypted with the ECDSA algorithm and stored at the Weaver side. All
+transactions are signed with the ECDSA algorithm.</p>
 <p>The structure of a transaction complies with the following format:</p>
 <blockquote>
 <ul>
@@ -85,72 +124,133 @@
 <li>PublicKey - public key of the honor node;</li>
 <li>Time - timestamp generated by the transaction;</li>
 <li>EcosystemID - ID of the ecosystem where the transaction is made;</li>
-<li>ТokenEcosystem - ID of the ecosystem, 1 by default, and tokens within it are used to cover the transaction costs.</li>
+<li>ТokenEcosystem - ID of the ecosystem, 1 by default, and tokens within it are
+used to cover the transaction costs.</li>
 </ul>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="network-protocol">Network protocol<a href="#network-protocol" class="hash-link" aria-label="Direct link to Network protocol" title="Direct link to Network protocol">​</a></h3>
-<p>Transactions will be sent to honor nodes by users, where they are subject to basic verification to ensure the formats are correct and then are added to the queue.Transactions are also sent to other honor nodes on the network and added to the respective queue.</p>
-<p>A honor node is privileged to generate new blocks within a specific time period which is determined by the platform parameter <strong>full_nodes</strong> and a special algorithm. Honor nodes retrieve transactions from queues and send them to the block generator.</p>
-<p>When generating a new block, transactions in such block will also be processed: each transaction is sent to a virtual machine, where the contract corresponding to the transaction parameters is implemented, thereby updating records in the database.</p>
-<p>New blocks should be verified to ensure there are no errors before sending to other honor nodes on other networks.</p>
-<p>A new block will be added to the block queue when received by other honor node and, after verification, to the blockchain of the honor node where it is located to process transactions in the block, and thereby updating records in the database.</p>
+<p>Transactions will be sent to honor nodes by users, where they are subject to
+basic verification to ensure the formats are correct and then are added to the
+queue.Transactions are also sent to other honor nodes on the network and added
+to the respective queue.</p>
+<p>A honor node is privileged to generate new blocks within a specific time period
+which is determined by the platform parameter <strong>full_nodes</strong> and a special
+algorithm. Honor nodes retrieve transactions from queues and send them to the
+block generator.</p>
+<p>When generating a new block, transactions in such block will also be processed:
+each transaction is sent to a virtual machine, where the contract corresponding
+to the transaction parameters is implemented, thereby updating records in the
+database.</p>
+<p>New blocks should be verified to ensure there are no errors before sending to
+other honor nodes on other networks.</p>
+<p>A new block will be added to the block queue when received by other honor node
+and, after verification, to the blockchain of the honor node where it is located
+to process transactions in the block, and thereby updating records in the
+database.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-and-transaction-verification">Block and transaction verification<a href="#block-and-transaction-verification" class="hash-link" aria-label="Direct link to Block and transaction verification" title="Direct link to Block and transaction verification">​</a></h3>
-<p>After generating or receiving a new block, it will be verified on all other honor nodes, which cover the following:</p>
+<p>After generating or receiving a new block, it will be verified on all other
+honor nodes, which cover the following:</p>
 <blockquote>
 <ul>
 <li>
-<p>The first byte of the data received should be 0. If not, the data received will not be considered as a block;</p>
+<p>The first byte of the data received should be 0. If not, the data received
+will not be considered as a block;</p>
 </li>
 <li>
-<p>The received block generation timestamp should be before the current timestamp;</p>
+<p>The received block generation timestamp should be before the current
+timestamp;</p>
 </li>
 <li>
-<p>The block generation timestamp should correspond to the time interval at which the honor node having privilege to generate new blocks;</p>
+<p>The block generation timestamp should correspond to the time interval at
+which the honor node having privilege to generate new blocks;</p>
 </li>
 <li>
-<p>The height of a new block should be greater than the height of the largest block on the existing blockchain;</p>
+<p>The height of a new block should be greater than the height of the largest
+block on the existing blockchain;</p>
 </li>
 <li>
-<p>It cannot exceed the maximum expenses allowed for all transactions in the block;</p>
+<p>It cannot exceed the maximum expenses allowed for all transactions in the
+block;</p>
 </li>
 <li>
-<p>The block must be properly signed with the secret key of the node which it is located. The signature data should contain:</p>
+<p>The block must be properly signed with the secret key of the node which it
+is located. The signature data should contain:</p>
 <blockquote>
 <ul>
-<li>The height of the block, the hash of the previous block, the timestamp of the block, the ID of the ecosystem where the block is located, and the account address of the honor node of the block;</li>
-<li>The position of the honor node in the platform parameter full_nodes array, the Merkel Root (MrklRoot) of all transactions in the block, and the revert hash of the previous block.</li>
+<li>The height of the block, the hash of the previous block, the timestamp
+of the block, the ID of the ecosystem where the block is located, and
+the account address of the honor node of the block;</li>
+<li>The position of the honor node in the platform parameter full_nodes
+array, the Merkel Root (MrklRoot) of all transactions in the block, and
+the revert hash of the previous block.</li>
 </ul>
 </blockquote>
 </li>
 </ul>
 </blockquote>
-<p>To check the correctness of each transaction in the block with the following methods:</p>
+<p>To check the correctness of each transaction in the block with the following
+methods:</p>
 <blockquote>
 <ul>
 <li>The hash of each transaction must be unique;</li>
-<li>A key-signed transaction cannot exceed the limit (<a href="/docs/reference/platform-parameters#max-tx-block-per-user">max_tx_block_per_user</a>);</li>
-<li>It cannot exceed the limit of the maximum transaction size (<a href="/docs/reference/platform-parameters#max-tx-size">max_tx_size</a>);</li>
-<li>The transaction time can neither be greater than the block generation time nor be greater than the block generation time plus 600 seconds, and it can be no less than the block generation time minus 86400 seconds;</li>
+<li>A key-signed transaction cannot exceed the limit
+(<a href="/docs/reference/platform-parameters#max-tx-block-per-user">max_tx_block_per_user</a>);</li>
+<li>It cannot exceed the limit of the maximum transaction size
+(<a href="/docs/reference/platform-parameters#max-tx-size">max_tx_size</a>);</li>
+<li>The transaction time can neither be greater than the block generation time
+nor be greater than the block generation time plus 600 seconds, and it can
+be no less than the block generation time minus 86400 seconds;</li>
 <li>The transaction must be signed properly;</li>
-<li>The user who implements the contract must have sufficient tokens in his account to pay for the transaction cost.</li>
+<li>The user who implements the contract must have sufficient tokens in his
+account to pay for the transaction cost.</li>
 </ul>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="database">Database<a href="#database" class="hash-link" aria-label="Direct link to Database" title="Direct link to Database">​</a></h3>
-<p>The underlying data storage layer of IBAX Network is a <code>PGSQL</code> database completely open to the public. Based on the permission design of the IBAX Operating System Platform, users do not need to worry about data security. With an object-oriented design philosophy, IBAX Network pre-compiles data through a relational PGSQL database and improves the data processing efficiency.</p>
-<p>You may be interested in the following if you are a technical specialist, or just skip it if you are not.
-① All tables without a number prefix in their name belong to permission tables of IBAX Network Basic;
-② All tables with a number prefix in their name belong to permission tables of ecoLibs.</p>
+<p>The underlying data storage layer of IBAX Network is a <code>PGSQL</code> database
+completely open to the public. Based on the permission design of the IBAX
+Operating System Platform, users do not need to worry about data security. With
+an object-oriented design philosophy, IBAX Network pre-compiles data through a
+relational PGSQL database and improves the data processing efficiency.</p>
+<p>You may be interested in the following if you are a technical specialist, or
+just skip it if you are not. ① All tables without a number prefix in their name
+belong to permission tables of IBAX Network Basic; ② All tables with a number
+prefix in their name belong to permission tables of ecoLibs.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ecolib">ECOLIB<a href="#ecolib" class="hash-link" aria-label="Direct link to ECOLIB" title="Direct link to ECOLIB">​</a></h2>
-<p>It is quite easy for users, even common users, to create an ecoLib of their own on the IBAX Network System Platform. We have integrated and developed an application where ecoLib creation takes just one click.</p>
-<p>When creating an ecoLib, you can configure the ecosystem parameters and rules, and set the administrator account and charging model. Most importantly, to apply the DPoA consensus within ecoLibs better, creators can set it up by writing or importing their own contracts.</p>
+<p>It is quite easy for users, even common users, to create an ecoLib of their own
+on the IBAX Network System Platform. We have integrated and developed an
+application where ecoLib creation takes just one click.</p>
+<p>When creating an ecoLib, you can configure the ecosystem parameters and rules,
+and set the administrator account and charging model. Most importantly, to apply
+the DPoA consensus within ecoLibs better, creators can set it up by writing or
+importing their own contracts.</p>
 <p>We support quick emission of ecoLib tokens by importing contract templates.</p>
-<p>Due to the differences in consensus and management permissions, ecoLibs fall into decentralized and centralized ones. They have no specific advantage or disadvantage by type. You should choose the appropriate one against your service needs. What to do if it is OK for now but not for the future? You can change ecoLib parameters, even the consensus mechanism, token, and governance method, on the IBAX Network System Platform.  You can leave it all to the self-governance mechanism maintained by the ecoLib administrator or members (depending on the ecoLib type).</p>
-<p>On the IBAX Network System Platform, an ecoLib has complete data control permissions and permissions to design and access independent database tables and fields. In the data control permission design, we support triggering when a field satisfies a logical expression. This feature allows for imagination space in special services like monitoring, logic satisfaction, and triggering by time and specific conditions.</p>
-<p>There may be multiple DApps in an ecoLib, and each of them can have independent parameters. An ecoLib is like a platform where you can implement anything you want.</p>
-<p>In order to better support ecosystem developers, we provide the editing, management, and development tool Weaver. It will reduce the ecosystem development, maintenance, and management costs greatly.</p>
+<p>Due to the differences in consensus and management permissions, ecoLibs fall
+into decentralized and centralized ones. They have no specific advantage or
+disadvantage by type. You should choose the appropriate one against your service
+needs. What to do if it is OK for now but not for the future? You can change
+ecoLib parameters, even the consensus mechanism, token, and governance method,
+on the IBAX Network System Platform. You can leave it all to the self-governance
+mechanism maintained by the ecoLib administrator or members (depending on the
+ecoLib type).</p>
+<p>On the IBAX Network System Platform, an ecoLib has complete data control
+permissions and permissions to design and access independent database tables and
+fields. In the data control permission design, we support triggering when a
+field satisfies a logical expression. This feature allows for imagination space
+in special services like monitoring, logic satisfaction, and triggering by time
+and specific conditions.</p>
+<p>There may be multiple DApps in an ecoLib, and each of them can have independent
+parameters. An ecoLib is like a platform where you can implement anything you
+want.</p>
+<p>In order to better support ecosystem developers, we provide the editing,
+management, and development tool Weaver. It will reduce the ecosystem
+development, maintenance, and management costs greatly.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="ide">IDE<a href="#ide" class="hash-link" aria-label="Direct link to IDE" title="Direct link to IDE">​</a></h3>
-<p>Weaver has a complete integrated development environment (IDE) for creating blockchain applications, which does not require software developers to have a deep understanding of the blockchain technology.</p>
-<p>Weaver provides a table management tool, contract editor, page editor and other functions needed to create applications in the ecosystem, without the support of any software module.</p>
+<p>Weaver has a complete integrated development environment (IDE) for creating
+blockchain applications, which does not require software developers to have a
+deep understanding of the blockchain technology.</p>
+<p>Weaver provides a table management tool, contract editor, page editor and other
+functions needed to create applications in the ecosystem, without the support of
+any software module.</p>
 <p>The IDE mainly includes the following parts:</p>
 <blockquote>
 <ul>
@@ -163,16 +263,30 @@
 </ul>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="applications">Applications<a href="#applications" class="hash-link" aria-label="Direct link to Applications" title="Direct link to Applications">​</a></h3>
-<p>An application is a collection of elements such as database tables, smart contracts, and user pages with access rights for configuration. The ecosystem to which the application element belongs is indicated by the prefix in the element name, such as <span style="border-radius:2px;color:red;padding:0.2rem">@1ElementName</span>, where the ecosystem ID is indicated by the number <span style="border-radius:2px;color:red;padding:0.2rem">1</span> after the <span style="border-radius:2px;color:red;padding:0.2rem">@</span> symbol. When using application elements in the current ecosystem, the prefix <span style="border-radius:2px;color:red;padding:0.2rem">@1</span> can be omitted. These applications can perform useful functions or implement various services.</p>
+<p>An application is a collection of elements such as database tables, smart
+contracts, and user pages with access rights for configuration. The ecosystem to
+which the application element belongs is indicated by the prefix in the element
+name, such as <span style="border-radius:2px;color:red;padding:0.2rem"> <!-- -->@1ElementName<!-- --> </span>, where the ecosystem ID is
+indicated by the number <span style="border-radius:2px;color:red;padding:0.2rem"> <!-- -->1<!-- --> </span> after the
+<span style="border-radius:2px;color:red;padding:0.2rem"> <!-- -->@<!-- --> </span> symbol. When using application elements in the current
+ecosystem, the prefix <span style="border-radius:2px;color:red;padding:0.2rem"> <!-- -->@1<!-- --> </span> can be omitted. These
+applications can perform useful functions or implement various services.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables">Tables<a href="#tables" class="hash-link" aria-label="Direct link to Tables" title="Direct link to Tables">​</a></h3>
-<p>In IBAX&#x27;s database, each ecosystem can create an unlimited number of tables. Tables of a specific ecosystem can be identified by a prefix containing the ecosystem ID, which will not be displayed in Weaver.</p>
-<p>A table is not bound in any way and belongs to a certain contract. It can be used by all applications within the scope of the table&#x27;s access rights.</p>
-<p>Each ecosystem can create a set of data tables for developing its applications or may, possibly, access data tables of other ecosystems by specifying the table name prefix.</p>
-<p>By configuring access rights through smart laws, data are logged into tables. Smart laws are used for rights management.</p>
+<p>In IBAX&#x27;s database, each ecosystem can create an unlimited number of tables.
+Tables of a specific ecosystem can be identified by a prefix containing the
+ecosystem ID, which will not be displayed in Weaver.</p>
+<p>A table is not bound in any way and belongs to a certain contract. It can be
+used by all applications within the scope of the table&#x27;s access rights.</p>
+<p>Each ecosystem can create a set of data tables for developing its applications
+or may, possibly, access data tables of other ecosystems by specifying the table
+name prefix.</p>
+<p>By configuring access rights through smart laws, data are logged into tables.
+Smart laws are used for rights management.</p>
 <blockquote>
 <p>Table management tool</p>
 </blockquote>
-<p>You can find the table management tool in Weaver <strong>menu Table</strong>, which cover the following functions:</p>
+<p>You can find the table management tool in Weaver <strong>menu Table</strong>, which cover the
+following functions:</p>
 <ul>
 <li>
 <p>View the list of tables and their entries;</p>
@@ -181,7 +295,9 @@
 <p>Create new tables;</p>
 </li>
 <li>
-<p>Add a table field and specify its data type, such as <code>Text</code> ， <code>Date/Time</code> ， <code>Varchar</code> , <code>Character</code> ， <code>JSON</code> ， <code>Number</code> ， <code>Money</code> ， <code>Double</code> ，<code>Binary</code>；</p>
+<p>Add a table field and specify its data type, such as <code>Text</code> ， <code>Date/Time</code> ，
+<code>Varchar</code> , <code>Character</code> ， <code>JSON</code> ， <code>Number</code> ， <code>Money</code> ， <code>Double</code>
+，<code>Binary</code>；</p>
 </li>
 <li>
 <p><code>Text</code> correspond <code>postgresql</code> <code>text</code></p>
@@ -217,22 +333,35 @@
 <blockquote>
 <p>Table data manipulation</p>
 </blockquote>
-<p>For better database manipulation, both Needle and Logicor have the <strong>DBFind</strong> function, which is used to retrieve values and data arrays from tables.</p>
-<p>The contract language <a href="/docs/topics/script#dbinsert">DBInsert</a> function is used to add entries to tables. The <a href="/docs/topics/script#dbupdate">DBUpdate</a> and<a href="/docs/topics/script#dbupdateext">DBUpdateExt</a> functions are used to update the value of an existing entry. During updating, the corresponding data in tables will be updated, and the blockchain will add new transactions while retaining all historical transactions. Data in tables can only be modified and cannot be deleted.</p>
-<p>In order to minimize the contract implementation time, the <a href="/docs/topics/script#dbfind">DBFind</a> function cannot query multiple tables simultaneously, and JOIN is not supported. Therefore, we recommend not to normalize application tables, but to store all available information in entries or repeat the information available in other tables. This is not mandatory but necessary for a blockchain application. In this case, data should be stored fully, which cannot be updated even if the same data in other tables is updated, though it is updated synchronously in a relational database.</p>
+<p>For better database manipulation, both Needle and Logicor have the <strong>DBFind</strong>
+function, which is used to retrieve values and data arrays from tables.</p>
+<p>The contract language <a href="/docs/topics/script#dbinsert">DBInsert</a> function is used
+to add entries to tables. The <a href="/docs/topics/script#dbupdate">DBUpdate</a>
+and<a href="/docs/topics/script#dbupdateext">DBUpdateExt</a> functions are used to update
+the value of an existing entry. During updating, the corresponding data in
+tables will be updated, and the blockchain will add new transactions while
+retaining all historical transactions. Data in tables can only be modified and
+cannot be deleted.</p>
+<p>In order to minimize the contract implementation time, the
+<a href="/docs/topics/script#dbfind">DBFind</a> function cannot query multiple tables
+simultaneously, and JOIN is not supported. Therefore, we recommend not to
+normalize application tables, but to store all available information in entries
+or repeat the information available in other tables. This is not mandatory but
+necessary for a blockchain application. In this case, data should be stored
+fully, which cannot be updated even if the same data in other tables is updated,
+though it is updated synchronously in a relational database.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="ecosystem-parameters">Ecosystem Parameters<a href="#ecosystem-parameters" class="hash-link" aria-label="Direct link to Ecosystem Parameters" title="Direct link to Ecosystem Parameters">​</a></h3>
-<p>You may view and edit the list of ecosystem parameters (<strong>1_parameters</strong>) in Weaver&#x27;s menu. Ecosystem parameters can be divided into the following groups:</p>
+<p>You may view and edit the list of ecosystem parameters (<strong>1_parameters</strong>) in
+Weaver&#x27;s menu. Ecosystem parameters can be divided into the following groups:</p>
 <blockquote>
 <ul>
 <li>
-<p>General parameters: the account of the ecosystem creator (founder_account) and other information;</p>
+<p>General parameters: the account of the ecosystem creator (founder_account)
+and other information;</p>
 </li>
 <li>
-<p>Access rights parameters: used to define access permissions for application elements</p>
-</li>
-</ul>
-</blockquote>
-<blockquote>
+<p>Access rights parameters: used to define access permissions for application
+elements</p>
 <blockquote>
 <ul>
 <li>change the table structure (changing_tables);</li>
@@ -242,45 +371,93 @@
 <li>change the multi-language resources (changing_language).</li>
 </ul>
 </blockquote>
-</blockquote>
-<blockquote>
-<ul>
-<li>Technical parameters: used to define the user styles (stylesheet);</li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li>User parameters: used to define constants or lists (separated by commas) required for application operation.</li>
+</li>
+<li>
+<p>Technical parameters: used to define the user styles (stylesheet);</p>
+</li>
+<li>
+<p>User parameters: used to define constants or lists (separated by commas)
+required for application operation.</p>
+</li>
 </ul>
 </blockquote>
 <p>You may specify the edit permission for parameters of each ecosystem.</p>
-<p>You may use the <a href="/docs/topics/script#ecosysparam">EcosysParam</a>  function to retrieve the value of an ecosystem parameter by passing the ecosystem parameter title as a parameter to it.</p>
+<p>You may use the <a href="/docs/topics/script#ecosysparam">EcosysParam</a> function to
+retrieve the value of an ecosystem parameter by passing the ecosystem parameter
+title as a parameter to it.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="access-rights-control-mechanism">Access rights control mechanism<a href="#access-rights-control-mechanism" class="hash-link" aria-label="Direct link to Access rights control mechanism" title="Direct link to Access rights control mechanism">​</a></h2>
-<p>IBAX has a multi-level access permission management system. By configuring access rights, you can create and change any application element, such as the contracts, tables, user pages, ecosystem parameters. You may also change the access rights through configuration.</p>
-<p>By default, all rights in the IBAX ecosystem are managed by its creator, which is defined in the MainCondition contract of each ecosystem. But after creating smart laws, access control can be transferred to all or a group of ecosystem members.
-Access rights control</p>
+<p>IBAX has a multi-level access permission management system. By configuring
+access rights, you can create and change any application element, such as the
+contracts, tables, user pages, ecosystem parameters. You may also change the
+access rights through configuration.</p>
+<p>By default, all rights in the IBAX ecosystem are managed by its creator, which
+is defined in the MainCondition contract of each ecosystem. But after creating
+smart laws, access control can be transferred to all or a group of ecosystem
+members. Access rights control</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="access-control-actions">Access Control Actions<a href="#access-control-actions" class="hash-link" aria-label="Direct link to Access Control Actions" title="Direct link to Access Control Actions">​</a></h3>
-<p>The access rights are defined in contract tables (<strong>1_contracts</strong> ), data tables (<strong>1_tables</strong> ), user page tables (<strong>1_pages</strong> ), menu tables (<strong>1_menu</strong> ), and code block tables (<strong>1_blocks</strong> ). You can find the corresponding menus in Weaver.</p>
+<p>The access rights are defined in contract tables (<strong>1_contracts</strong> ), data tables
+(<strong>1_tables</strong> ), user page tables (<strong>1_pages</strong> ), menu tables (<strong>1_menu</strong> ), and
+code block tables (<strong>1_blocks</strong> ). You can find the corresponding menus in
+Weaver.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="access-rights-management">Access rights management<a href="#access-rights-management" class="hash-link" aria-label="Direct link to Access rights management" title="Direct link to Access rights management">​</a></h3>
-<p>The rules of access rights are configured by filling in the corresponding contract expressions <strong>ContractConditions(“@1MainCondition”)</strong>, <strong>ContractAccess(“@1MainCondition”)</strong> or logical expressions in the permission field. If the result of the request expression passes (true ), then access is granted. Otherwise, access is denied and related operations are terminated.</p>
-<p>The easy way to define rights is to enter a logical expression in the right field. For example, <code>$key_id == 8919730491904441614</code>, where <strong>$keyid</strong> represents the ID of an ecosystem member.</p>
-<p>The most common and recommended way to define rights is to use the <code>ContractConditions(&quot;@1ContractsName1&quot;,&quot;@1ContractsName2&quot;)</code> function. The contract name <strong>ContractsName</strong> is passed to the function as a parameter, and the contract result must be the result of a logical expression (true or false).</p>
-<p>Another way to define rights is to use the <code>ContractAccess(&quot;@1ContractsName3&quot;,&quot;@1ContractsName4&quot;)</code> function. The contract <strong>ContractsName</strong> qualified to implement the corresponding operation can be passed to the function as a parameter. For example, if the right field of the amount column is configured as <code>ContractAccess(&quot;@1TokenTransfer&quot;)</code>, then you can only implement the contract <strong>@1TokenTransfer</strong> if you want to change the value in the amount column. The right to access the contract itself can be managed in the conditions section, which are quite complex and may contain many other contracts.</p>
+<p>The rules of access rights are configured by filling in the corresponding
+contract expressions <strong>ContractConditions(“@1MainCondition”)</strong>,
+<strong>ContractAccess(“@1MainCondition”)</strong> or logical expressions in the permission
+field. If the result of the request expression passes (true ), then access is
+granted. Otherwise, access is denied and related operations are terminated.</p>
+<p>The easy way to define rights is to enter a logical expression in the right
+field. For example, <code>$key_id == 8919730491904441614</code>, where <strong>$keyid</strong>
+represents the ID of an ecosystem member.</p>
+<p>The most common and recommended way to define rights is to use the
+<code>ContractConditions(&quot;@1ContractsName1&quot;,&quot;@1ContractsName2&quot;)</code> function. The
+contract name <strong>ContractsName</strong> is passed to the function as a parameter, and
+the contract result must be the result of a logical expression (true or false).</p>
+<p>Another way to define rights is to use the
+<code>ContractAccess(&quot;@1ContractsName3&quot;,&quot;@1ContractsName4&quot;)</code> function. The contract
+<strong>ContractsName</strong> qualified to implement the corresponding operation can be
+passed to the function as a parameter. For example, if the right field of the
+amount column is configured as <code>ContractAccess(&quot;@1TokenTransfer&quot;)</code>, then you can
+only implement the contract <strong>@1TokenTransfer</strong> if you want to change the value
+in the amount column. The right to access the contract itself can be managed in
+the conditions section, which are quite complex and may contain many other
+contracts.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="exclusive-rights">Exclusive rights<a href="#exclusive-rights" class="hash-link" aria-label="Direct link to Exclusive rights" title="Direct link to Exclusive rights">​</a></h3>
-<p>In case of emergencies or situations that are critical to the operation of an ecosystem, there are many special parameters in the list of ecosystem parameters (<strong>1_parameters</strong>) (such as <strong>changing_contracts</strong>、<strong>changing_pages</strong>), etc., which defines rights to access all contracts, data tables, and pages of the current ecosystem. These rights are configured by key contracts.</p>
+<p>In case of emergencies or situations that are critical to the operation of an
+ecosystem, there are many special parameters in the list of ecosystem parameters
+(<strong>1_parameters</strong>) (such as <strong>changing_contracts</strong>、<strong>changing_pages</strong>), etc.,
+which defines rights to access all contracts, data tables, and pages of the
+current ecosystem. These rights are configured by key contracts.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="virtual-private-ecosystem">Virtual private ecosystem<a href="#virtual-private-ecosystem" class="hash-link" aria-label="Direct link to Virtual private ecosystem" title="Direct link to Virtual private ecosystem">​</a></h2>
-<p>In IBAX, you can create a virtual private ecosystem - <strong>Cross Ledgers Base (CLB)</strong>. A CLB has the full functionality of the standard ecosystem, but operates outside the blockchain. In CLB, you can use and create contracts and template languages, tables, and use Weaver to create applications. You may call contracts on the blockchain ecosystem via API.</p>
+<p>In IBAX, you can create a virtual private ecosystem - <strong>Cross Ledgers Base
+(CLB)</strong>. A CLB has the full functionality of the standard ecosystem, but
+operates outside the blockchain. In CLB, you can use and create contracts and
+template languages, tables, and use Weaver to create applications. You may call
+contracts on the blockchain ecosystem via API.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="requests-to-web-resources">Requests to web resources<a href="#requests-to-web-resources" class="hash-link" aria-label="Direct link to Requests to web resources" title="Direct link to Requests to web resources">​</a></h3>
 <p>CLB</p>
 <blockquote>
-<p>The main difference between a CLB and a standard ecosystem is that you can use contract functions <a href="/docs/topics/script#httprequest">HTTPRequest</a> and <a href="/docs/topics/script#httppostjson">HTTPPostJSON</a> to request any web resource within the contract via <strong>HTTP / HTTPS</strong> requests.
-Parameters passed to this function include: URLs, request methods (GET or POST), request headers and request parameters.</p>
+<p>The main difference between a CLB and a standard ecosystem is that you can use
+contract functions <a href="/docs/topics/script#httprequest">HTTPRequest</a> and
+<a href="/docs/topics/script#httppostjson">HTTPPostJSON</a> to request any web resource
+within the contract via <strong>HTTP / HTTPS</strong> requests. Parameters passed to this
+function include: URLs, request methods (GET or POST), request headers and
+request parameters.</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="rights-to-read-data">Rights to read data<a href="#rights-to-read-data" class="hash-link" aria-label="Direct link to Rights to read data" title="Direct link to Rights to read data">​</a></h3>
-<p>Though it is readable, data in CLB is not saved within the blockchain. You can choose to grant the read permission to database tables. You can set rights to read for individual columns, or for any row using a special contract.</p>
+<p>Though it is readable, data in CLB is not saved within the blockchain. You can
+choose to grant the read permission to database tables. You can set rights to
+read for individual columns, or for any row using a special contract.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="clb-creation">CLB creation<a href="#clb-creation" class="hash-link" aria-label="Direct link to CLB creation" title="Direct link to CLB creation">​</a></h3>
-<p>You may create a CLB node on the network. As predefined, the CLB node administrator is privileged to use the ecosystem list with the CLB functionality, and designate a user with ecosystem creator privileges to install applications, receive new members and configure the resources access permissions.</p>
+<p>You may create a CLB node on the network. As predefined, the CLB node
+administrator is privileged to use the ecosystem list with the CLB
+functionality, and designate a user with ecosystem creator privileges to install
+applications, receive new members and configure the resources access
+permissions.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="clb-usage">CLB usage<a href="#clb-usage" class="hash-link" aria-label="Direct link to CLB usage" title="Direct link to CLB usage">​</a></h3>
-<p>You may use a CLB to create registration forms, send verification information to users via email or phone, and store publicly accessible data. You can write and test applications, and then import them into the blockchain ecosystem. In a CLB, you may use scheduling contract tasks, create oracle machines to receive data from web resources and send such data to the blockchain ecosystem.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/concepts/about-the-platform.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/concepts/blockchain-layers"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">The IBAX Network</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#features" class="table-of-contents__link toc-highlight">Features</a></li><li><a href="#architecture" class="table-of-contents__link toc-highlight">Architecture</a><ul><li><a href="#network" class="table-of-contents__link toc-highlight">Network</a></li><li><a href="#honor-node" class="table-of-contents__link toc-highlight">Honor Node</a></li><li><a href="#transactions" class="table-of-contents__link toc-highlight">Transactions</a></li><li><a href="#network-protocol" class="table-of-contents__link toc-highlight">Network protocol</a></li><li><a href="#block-and-transaction-verification" class="table-of-contents__link toc-highlight">Block and transaction verification</a></li><li><a href="#database" class="table-of-contents__link toc-highlight">Database</a></li></ul></li><li><a href="#ecolib" class="table-of-contents__link toc-highlight">ECOLIB</a><ul><li><a href="#ide" class="table-of-contents__link toc-highlight">IDE</a></li><li><a href="#applications" class="table-of-contents__link toc-highlight">Applications</a></li><li><a href="#tables" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#ecosystem-parameters" class="table-of-contents__link toc-highlight">Ecosystem Parameters</a></li></ul></li><li><a href="#access-rights-control-mechanism" class="table-of-contents__link toc-highlight">Access rights control mechanism</a><ul><li><a href="#access-control-actions" class="table-of-contents__link toc-highlight">Access Control Actions</a></li><li><a href="#access-rights-management" class="table-of-contents__link toc-highlight">Access rights management</a></li><li><a href="#exclusive-rights" class="table-of-contents__link toc-highlight">Exclusive rights</a></li></ul></li><li><a href="#virtual-private-ecosystem" class="table-of-contents__link toc-highlight">Virtual private ecosystem</a><ul><li><a href="#requests-to-web-resources" class="table-of-contents__link toc-highlight">Requests to web resources</a></li><li><a href="#rights-to-read-data" class="table-of-contents__link toc-highlight">Rights to read data</a></li><li><a href="#clb-creation" class="table-of-contents__link toc-highlight">CLB creation</a></li><li><a href="#clb-usage" class="table-of-contents__link toc-highlight">CLB usage</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+<p>You may use a CLB to create registration forms, send verification information to
+users via email or phone, and store publicly accessible data. You can write and
+test applications, and then import them into the blockchain ecosystem. In a CLB,
+you may use scheduling contract tasks, create oracle machines to receive data
+from web resources and send such data to the blockchain ecosystem.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/concepts/about-the-platform.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/concepts/blockchain-layers"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">The IBAX Network</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#features" class="table-of-contents__link toc-highlight">Features</a></li><li><a href="#architecture" class="table-of-contents__link toc-highlight">Architecture</a><ul><li><a href="#network" class="table-of-contents__link toc-highlight">Network</a></li><li><a href="#honor-node" class="table-of-contents__link toc-highlight">Honor Node</a></li><li><a href="#transactions" class="table-of-contents__link toc-highlight">Transactions</a></li><li><a href="#network-protocol" class="table-of-contents__link toc-highlight">Network protocol</a></li><li><a href="#block-and-transaction-verification" class="table-of-contents__link toc-highlight">Block and transaction verification</a></li><li><a href="#database" class="table-of-contents__link toc-highlight">Database</a></li></ul></li><li><a href="#ecolib" class="table-of-contents__link toc-highlight">ECOLIB</a><ul><li><a href="#ide" class="table-of-contents__link toc-highlight">IDE</a></li><li><a href="#applications" class="table-of-contents__link toc-highlight">Applications</a></li><li><a href="#tables" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#ecosystem-parameters" class="table-of-contents__link toc-highlight">Ecosystem Parameters</a></li></ul></li><li><a href="#access-rights-control-mechanism" class="table-of-contents__link toc-highlight">Access rights control mechanism</a><ul><li><a href="#access-control-actions" class="table-of-contents__link toc-highlight">Access Control Actions</a></li><li><a href="#access-rights-management" class="table-of-contents__link toc-highlight">Access rights management</a></li><li><a href="#exclusive-rights" class="table-of-contents__link toc-highlight">Exclusive rights</a></li></ul></li><li><a href="#virtual-private-ecosystem" class="table-of-contents__link toc-highlight">Virtual private ecosystem</a><ul><li><a href="#requests-to-web-resources" class="table-of-contents__link toc-highlight">Requests to web resources</a></li><li><a href="#rights-to-read-data" class="table-of-contents__link toc-highlight">Rights to read data</a></li><li><a href="#clb-creation" class="table-of-contents__link toc-highlight">CLB creation</a></li><li><a href="#clb-usage" class="table-of-contents__link toc-highlight">CLB usage</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>

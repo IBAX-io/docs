@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">The IBAX Network | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/concepts/blockchain-layers"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="The IBAX Network | IBAX"><meta data-rh="true" name="description" content="the-ibax-network}"><meta data-rh="true" property="og:description" content="the-ibax-network}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/concepts/blockchain-layers"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/blockchain-layers" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/blockchain-layers" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.a753cf54.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.4496ee6b.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -21,26 +21,50 @@
 </ul>
 </li>
 </ul>
-<p>If you are interested in the development, use or management of applications in IBAX, then you may not need to understand it at all.</p>
-<p>In IBAX, the blockchain and the blockchain network are hidden from ECOLIB members, administrators, and application developers. IBAX offers <a href="/docs/reference/api2">RESTful API</a> for all user groups, which provide a tamper-proof and distributed access to the <strong>global state</strong> of the blockchain.</p>
+<p>If you are interested in the development, use or management of applications in
+IBAX, then you may not need to understand it at all.</p>
+<p>In IBAX, the blockchain and the blockchain network are hidden from ECOLIB
+members, administrators, and application developers. IBAX offers
+<a href="/docs/reference/api2">RESTful API</a> for all user groups, which provide a
+tamper-proof and distributed access to the <strong>global state</strong> of the blockchain.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="application-developers">Application developers<a href="#application-developers" class="hash-link" aria-label="Direct link to Application developers" title="Direct link to Application developers">​</a></h2>
-<p>In technical terms, the <strong>global state</strong> is a set of data, which is implemented via IBAX&#x27;s database. From the perspective of application developers, an application interacts with the database by querying, inserting and updating tables.</p>
-<p>In IBAX, transactions are written into the blockchain by implementing various contracts. These transactions will call contract codes implemented by blockchain network nodes, which will update the global state (database) accordingly.</p>
-<p>For application developers, a contract is a function that data will be written to the database when it is implemented. Pages are like scripts and the page code is a set of page <a href="/docs/topics/templates2">template</a> functions, some of these functions display page elements, while other data comes from the database. Application developers do not need to understand what are transactions, block generation and consensus algorithms, just use it.</p>
+<p>In technical terms, the <strong>global state</strong> is a set of data, which is implemented
+via IBAX&#x27;s database. From the perspective of application developers, an
+application interacts with the database by querying, inserting and updating
+tables.</p>
+<p>In IBAX, transactions are written into the blockchain by implementing various
+contracts. These transactions will call contract codes implemented by blockchain
+network nodes, which will update the global state (database) accordingly.</p>
+<p>For application developers, a contract is a function that data will be written
+to the database when it is implemented. Pages are like scripts and the page code
+is a set of page <a href="/docs/topics/templates2">template</a> functions, some of these
+functions display page elements, while other data comes from the database.
+Application developers do not need to understand what are transactions, block
+generation and consensus algorithms, just use it.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ecolib-members">ECOLIB members<a href="#ecolib-members" class="hash-link" aria-label="Direct link to ECOLIB members" title="Direct link to ECOLIB members">​</a></h2>
-<p>Applications written by developers run in an environment called <a href="/docs/concepts/thesaurus#ecolib">ECOLIB</a>. An application usually serves a specific purpose and complete various tasks together with several other applications.</p>
-<p>A user must become a member of an ECOLIB if wants to access applications in it, and it can be a member of multiple different ECOLIBs at the same time.</p>
-<p>ECOLIB members can view and modify the database from application pages, just like filling out forms, clicking buttons and navigating pages in a common web application.</p>
+<p>Applications written by developers run in an environment called
+<a href="/docs/concepts/thesaurus#ecolib">ECOLIB</a>. An application usually serves a specific purpose
+and complete various tasks together with several other applications.</p>
+<p>A user must become a member of an ECOLIB if wants to access applications in it,
+and it can be a member of multiple different ECOLIBs at the same time.</p>
+<p>ECOLIB members can view and modify the database from application pages, just
+like filling out forms, clicking buttons and navigating pages in a common web
+application.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="ecolib-applications-and-platform-applications">ECOLIB applications and platform applications<a href="#ecolib-applications-and-platform-applications" class="hash-link" aria-label="Direct link to ECOLIB applications and platform applications" title="Direct link to ECOLIB applications and platform applications">​</a></h2>
-<p>Applications may fall into <strong>ECOLIB applications</strong> and <strong>platform applications</strong>.</p>
+<p>Applications may fall into <strong>ECOLIB applications</strong> and <strong>platform
+applications</strong>.</p>
 <blockquote>
 <p>ECOLIB applications</p>
 </blockquote>
-<p>An ECOLIB application implements certain unique functions or business processes of an ECOLIB, but it is only available in that ECOLIB.</p>
+<p>An ECOLIB application implements certain unique functions or business processes
+of an ECOLIB, but it is only available in that ECOLIB.</p>
 <blockquote>
 <p>Platform applications</p>
 </blockquote>
-<p>A platform application is applicable to all ECOLIBs. Any application could be developed as a platform application. IBAX developers would provide platform applications that support the core functions for ECOLIB governance, such as voting, notification, and ECOLIB member role management.</p>
+<p>A platform application is applicable to all ECOLIBs. Any application could be
+developed as a platform application. IBAX developers would provide platform
+applications that support the core functions for ECOLIB governance, such as
+voting, notification, and ECOLIB member role management.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="underlying-model">Underlying model<a href="#underlying-model" class="hash-link" aria-label="Direct link to Underlying model" title="Direct link to Underlying model">​</a></h2>
 <blockquote>
 <p>Definition of layers</p>
@@ -53,25 +77,36 @@
 </li>
 <li>
 <p>Application layer</p>
-<p>Application developers interact with the global state (data tables) through contract codes and page codes.</p>
+<p>Application developers interact with the global state (data tables) through
+contract codes and page codes.</p>
 </li>
 <li>
 <p>Global state layer</p>
-<p>Update and synchronize the global state (database) based on operations written to the distributed ledger (blockchain)</p>
+<p>Update and synchronize the global state (database) based on operations written
+to the distributed ledger (blockchain)</p>
 </li>
 <li>
 <p>Blockchain layer</p>
-<p>Update the distributed ledger with new blocks. Operations (transactions) saved in new blocks must be performed on the global state.</p>
+<p>Update the distributed ledger with new blocks. Operations (transactions) saved
+in new blocks must be performed on the global state.</p>
 </li>
 <li>
 <p>Node network layer</p>
-<p>It implemented the IBAX Network protocol, which distributes, verifies transactions and generates new blocks on the node network. Similarly, new blocks are distributed and verified by the node network.</p>
-<p>The distributed ledger of all nodes is kept in sync. If having conflicts in a node, the node will identify which blockchains are considered valid and invalid blockchains will be rolled back accordingly.</p>
+<p>It implemented the IBAX Network protocol, which distributes, verifies
+transactions and generates new blocks on the node network. Similarly, new
+blocks are distributed and verified by the node network.</p>
+<p>The distributed ledger of all nodes is kept in sync. If having conflicts in a
+node, the node will identify which blockchains are considered valid and
+invalid blockchains will be rolled back accordingly.</p>
 </li>
 <li>
 <p>Transaction layer</p>
-<p>Transactions are the basis for generating blocks and blockchain protocols, and transactions themselves are the results of operations performed at the user interaction layer. Transactions are generated by Weaver.</p>
-<p>When a user or developer performs an operation such as clicking a button on a page or implement a contract from the code editor, Weaver will convert this operation into a transaction and send it to the network node connected to it.</p>
+<p>Transactions are the basis for generating blocks and blockchain protocols, and
+transactions themselves are the results of operations performed at the user
+interaction layer. Transactions are generated by Weaver.</p>
+<p>When a user or developer performs an operation such as clicking a button on a
+page or implement a contract from the code editor, Weaver will convert this
+operation into a transaction and send it to the network node connected to it.</p>
 </li>
 </ul>
 <p>Therefore, the flow of transactions is as follows:</p>
@@ -79,11 +114,14 @@
 <li>A user operation in a user page will become a transaction;</li>
 <li>The transaction is contained in a block;</li>
 <li>The block is included in the blockchain;</li>
-<li>The change of operation will cause the global state of the blockchain to change, and such operation will be applied to the database;</li>
+<li>The change of operation will cause the global state of the blockchain to
+change, and such operation will be applied to the database;</li>
 <li>Any database change will be reflected in the application.</li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="implementation">Implementation<a href="#implementation" class="hash-link" aria-label="Direct link to Implementation" title="Direct link to Implementation">​</a></h2>
-<p>IBAX has two major components, i.e. server <a href="https://github.com/IBAX-io/go-ibax" target="_blank" rel="noopener noreferrer">go-ibax</a> and Weaver <a href="https://github.com/IBAX-io/weaver" target="_blank" rel="noopener noreferrer">Source code</a>.</p>
+<p>IBAX has two major components, i.e. server
+<a href="https://github.com/IBAX-io/go-ibax" target="_blank" rel="noopener noreferrer">go-ibax</a> and Weaver
+<a href="https://github.com/IBAX-io/weaver" target="_blank" rel="noopener noreferrer">Source code</a>.</p>
 <p>Weaver:</p>
 <ul>
 <li>
@@ -96,19 +134,24 @@
 <p>Storing public keys of user accounts and perform authorization;</p>
 </li>
 <li>
-<p>Requesting database data from application pages and display application pages to users;</p>
+<p>Requesting database data from application pages and display application pages
+to users;</p>
 </li>
 <li>
 <p>Sending transactions to the server through <a href="/docs/reference/api2">REST APIs</a>;</p>
-<p>In order to automatically create transactions against user operations, Weaver will convert such operations into transactions when application developers implement a contract from the IDE.</p>
+<p>In order to automatically create transactions against user operations, Weaver
+will convert such operations into transactions when application developers
+implement a contract from the IDE.</p>
 </li>
 </ul>
 <p>Server:</p>
 <ul>
 <li>Keeping the global state (database) of the node;</li>
 <li>Implementation of the blockchain protocol;</li>
-<li>Implementation of contract codes in the IBAX <a href="/docs/topics/vm">Virtual Machine</a>;</li>
-<li>Implementation of page codes in the <a href="/docs/topics/templates2">Template Engine</a>;</li>
+<li>Implementation of contract codes in the IBAX
+<a href="/docs/topics/vm">Virtual Machine</a>;</li>
+<li>Implementation of page codes in the
+<a href="/docs/topics/templates2">Template Engine</a>;</li>
 <li>Implementation of <a href="/docs/reference/api2">RESTful API</a>.</li>
 </ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/concepts/blockchain-layers.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/concepts/about-the-platform"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">IBAX Overview</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/concepts/consensus"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Decentralized Proof-of-Authority Consensus</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#application-developers" class="table-of-contents__link toc-highlight">Application developers</a></li><li><a href="#ecolib-members" class="table-of-contents__link toc-highlight">ECOLIB members</a></li><li><a href="#ecolib-applications-and-platform-applications" class="table-of-contents__link toc-highlight">ECOLIB applications and platform applications</a></li><li><a href="#underlying-model" class="table-of-contents__link toc-highlight">Underlying model</a></li><li><a href="#implementation" class="table-of-contents__link toc-highlight">Implementation</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>

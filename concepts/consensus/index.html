@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">Decentralized Proof-of-Authority Consensus | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/concepts/consensus"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Decentralized Proof-of-Authority Consensus | IBAX"><meta data-rh="true" name="description" content="decentralized-proof-of-authority-consensus}"><meta data-rh="true" property="og:description" content="decentralized-proof-of-authority-consensus}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/concepts/consensus"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/consensus" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/concepts/consensus" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.a753cf54.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.4496ee6b.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -23,7 +23,8 @@
 <p>Implementation of DPoA consensus in IBAX</p>
 </li>
 </ul>
-<p>In this section, we will describe the Decentralized Proof-of-Authority consensus and its implementation in IBAX.</p>
+<p>In this section, we will describe the Decentralized Proof-of-Authority consensus
+and its implementation in IBAX.</p>
 <ul>
 <li><a href="#what-is-decentralized-proof-of-authority-consensus">What is Decentralized Proof-of-Authority consensus</a></li>
 <li><a href="#advantages-of-dpoa-consensus">Advantages of DPoA consensus</a></li>
@@ -43,47 +44,92 @@
 </li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="what-is-decentralized-proof-of-authority-consensus">What is Decentralized Proof-of-Authority consensus<a href="#what-is-decentralized-proof-of-authority-consensus" class="hash-link" aria-label="Direct link to What is Decentralized Proof-of-Authority consensus" title="Direct link to What is Decentralized Proof-of-Authority consensus">​</a></h2>
-<p>Considering commercial application scenarios and real-world environments, IBAX Network has built a new consensus mechanism, DPoA (Decentralized Proof of Authority).</p>
-<p>Decentralization has always been our firm belief. It refers not only to IBAX’s infrastructure network environment. Instead, we will let decentralization take root in each ecoLib created in IBAX Network and use technical solutions to achieve a high degree of self-governance in each of them. For the purpose of highly distributed self-governance, we have made many changes in the overall architecture and technical implementation. However, in practice, we cannot avoid the centralized management concept. In order to find a balance between centralization and decentralization, in addition to the DPoA consensus mechanism, we have also formulated certain reward and incentive programs.</p>
-<p>IBAX Network has created a new consensus mechanism that combines distribution, weak centralization, and a certification authority. We call it DPoA (Decentralized Proof of Authority). To ensure continuity for the entire IBAX Network, the consensus covers not only IBAX Public Network, but also ecoLibs created by each user and user group. This creates a truly self-governed, decentralized, fair, transparent, and fraud-proof Decentralized Autonomous Organization (DAO).</p>
-<p>DPoA has a prevention mechanism against network attacks and allows creation of Mint Nodes that guard the network and mint new IBXC coins. IBAXCoin holders can stake a part of their IBXC liquidity balance in Mint Nodes for Mint &amp; Stake Emission Rewards. Minting and staking serve to increase the cost and difficulty of attacks and increase the total value of IBXC coins proportionally. With this mechanism, the probability and harm of any attack are infinitely close to zero.</p>
+<p>Considering commercial application scenarios and real-world environments, IBAX
+Network has built a new consensus mechanism, DPoA (Decentralized Proof of
+Authority).</p>
+<p>Decentralization has always been our firm belief. It refers not only to IBAX’s
+infrastructure network environment. Instead, we will let decentralization take
+root in each ecoLib created in IBAX Network and use technical solutions to
+achieve a high degree of self-governance in each of them. For the purpose of
+highly distributed self-governance, we have made many changes in the overall
+architecture and technical implementation. However, in practice, we cannot avoid
+the centralized management concept. In order to find a balance between
+centralization and decentralization, in addition to the DPoA consensus
+mechanism, we have also formulated certain reward and incentive programs.</p>
+<p>IBAX Network has created a new consensus mechanism that combines distribution,
+weak centralization, and a certification authority. We call it DPoA
+(Decentralized Proof of Authority). To ensure continuity for the entire IBAX
+Network, the consensus covers not only IBAX Public Network, but also ecoLibs
+created by each user and user group. This creates a truly self-governed,
+decentralized, fair, transparent, and fraud-proof Decentralized Autonomous
+Organization (DAO).</p>
+<p>DPoA has a prevention mechanism against network attacks and allows creation of
+Mint Nodes that guard the network and mint new IBXC coins. IBAXCoin holders can
+stake a part of their IBXC liquidity balance in Mint Nodes for Mint &amp; Stake
+Emission Rewards. Minting and staking serve to increase the cost and difficulty
+of attacks and increase the total value of IBXC coins proportionally. With this
+mechanism, the probability and harm of any attack are infinitely close to zero.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="advantages-of-dpoa-consensus">Advantages of DPoA consensus<a href="#advantages-of-dpoa-consensus" class="hash-link" aria-label="Direct link to Advantages of DPoA consensus" title="Direct link to Advantages of DPoA consensus">​</a></h2>
-<p>Compared to Proof-of-Work (PoW) or Proof-of-Stake (PoS) consensus, DPoA consensus has the following advantages:</p>
+<p>Compared to Proof-of-Work (PoW) or Proof-of-Stake (PoS) consensus, DPoA
+consensus has the following advantages:</p>
 <ul>
 <li>
-<p>No need of high-performance hardware. Compared to PoW consensus, nodes implementing the DPoA consensus does not spend computational resources for solving complex mathematical logic tasks;</p>
+<p>No need of high-performance hardware. Compared to PoW consensus, nodes
+implementing the DPoA consensus does not spend computational resources for
+solving complex mathematical logic tasks;</p>
 </li>
 <li>
-<p>The interval of time to generate new blocks is predictable, but that for  PoW and PoS consensuses are different;</p>
+<p>The interval of time to generate new blocks is predictable, but that for PoW
+and PoS consensuses are different;</p>
 </li>
 <li>
-<p>High transaction rate. Blocks are generated in a sequence at specified time interval by authorized network nodes, which increases the speed of transaction verification.</p>
+<p>High transaction rate. Blocks are generated in a sequence at specified time
+interval by authorized network nodes, which increases the speed of transaction
+verification.</p>
 </li>
 <li>
-<p>Tolerance to compromised and malicious nodes, as long as 51% of nodes are not compromised. IBAX implements a mechanism of banning nodes and revoking block generation rights.</p>
+<p>Tolerance to compromised and malicious nodes, as long as 51% of nodes are not
+compromised. IBAX implements a mechanism of banning nodes and revoking block
+generation rights.</p>
 </li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="dpoa-consensus-and-common-means-of-attack">DPoA consensus and common means of attack<a href="#dpoa-consensus-and-common-means-of-attack" class="hash-link" aria-label="Direct link to DPoA consensus and common means of attack" title="Direct link to DPoA consensus and common means of attack">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="dos">DoS<a href="#dos" class="hash-link" aria-label="Direct link to DoS" title="Direct link to DoS">​</a></h3>
-<p>An attacker may send large amount of transactions and blocks to a targeted node in the network, making an attempt to disrupt its operation and make its services unavailable.</p>
+<p>An attacker may send large amount of transactions and blocks to a targeted node
+in the network, making an attempt to disrupt its operation and make its services
+unavailable.</p>
 <p>The DPoA mechanism is possible to defend against DoS attacks:</p>
 <ul>
 <li>
-<p>Because network nodes are pre-authenticated, block generation rights can be granted only to nodes that can withstand DoS attacks.</p>
+<p>Because network nodes are pre-authenticated, block generation rights can be
+granted only to nodes that can withstand DoS attacks.</p>
 </li>
 <li>
-<p>If a honor node is unavailable for a certain period, it can be excluded from the list of honor nodes.</p>
+<p>If a honor node is unavailable for a certain period, it can be excluded from
+the list of honor nodes.</p>
 </li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="percent-attack-51">51% attack<a href="#percent-attack-51" class="hash-link" aria-label="Direct link to 51% attack" title="Direct link to 51% attack">​</a></h3>
-<p>As to the scenario with the DPoA consensus, the 51% attack requires an attacker to obtain control over 51% of network nodes. But the scenario for the PoW consensus is different, which an attacker needs to obtain 51% of network computational power. Obtaining the control over nodes in a permissioned blockchain network is much harder than obtaining the computational power.</p>
-<p>For example, in a network implementing the PoW consensus, an attacker can increase computation power (performance) of the controlled network segment thus increasing the percentage of controlled nodes. This makes no sense for DPoA consensus, because the computational power of the node has no impact on the blockchain network decisions.</p>
+<p>As to the scenario with the DPoA consensus, the 51% attack requires an attacker
+to obtain control over 51% of network nodes. But the scenario for the PoW
+consensus is different, which an attacker needs to obtain 51% of network
+computational power. Obtaining the control over nodes in a permissioned
+blockchain network is much harder than obtaining the computational power.</p>
+<p>For example, in a network implementing the PoW consensus, an attacker can
+increase computation power (performance) of the controlled network segment thus
+increasing the percentage of controlled nodes. This makes no sense for DPoA
+consensus, because the computational power of the node has no impact on the
+blockchain network decisions.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="implementation-of-dpoa-consensus-in-ibax">Implementation of DPoA consensus in IBAX<a href="#implementation-of-dpoa-consensus-in-ibax" class="hash-link" aria-label="Direct link to Implementation of DPoA consensus in IBAX" title="Direct link to Implementation of DPoA consensus in IBAX">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node">Honor node<a href="#honor-node" class="hash-link" aria-label="Direct link to Honor node" title="Direct link to Honor node">​</a></h3>
-<p>In IBAX, only honor nodes can generate new blocks, which maintain the blockchain network and the distributed ledger.</p>
-<p>The list of honor nodes is kept in the blockchain registry. The order of nodes determines the sequence in which nodes generate new blocks.</p>
+<p>In IBAX, only honor nodes can generate new blocks, which maintain the blockchain
+network and the distributed ledger.</p>
+<p>The list of honor nodes is kept in the blockchain registry. The order of nodes
+determines the sequence in which nodes generate new blocks.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="leader-node">Leader node<a href="#leader-node" class="hash-link" aria-label="Direct link to Leader node" title="Direct link to Leader node">​</a></h3>
-<p>The leader node is the honor node that generates a new block at the current time. The following formula determines the leader node in the current honor node list:</p>
+<p>The leader node is the honor node that generates a new block at the current
+time. The following formula determines the leader node in the current honor node
+list:</p>
 <div class="language-text codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">leader = ((time - first) / step) % nodes</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
 <p>leader</p>
@@ -106,7 +152,9 @@
 </blockquote>
 <p>Total number of honor nodes.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="generation-of-new-blocks">Generation of new blocks<a href="#generation-of-new-blocks" class="hash-link" aria-label="Direct link to Generation of new blocks" title="Direct link to Generation of new blocks">​</a></h4>
-<p>New blocks are generated by a <a href="#leader-node">leader node</a> of the current time interval. At each time interval, the leader role is passed to the next honor node from the list of honor nodes.</p>
+<p>New blocks are generated by a <a href="#leader-node">leader node</a> of the current time
+interval. At each time interval, the leader role is passed to the next honor
+node from the list of honor nodes.</p>
 <p><img decoding="async" loading="lazy" alt="avatar" src="/docs/assets/images/block-generation-f84d379840f41fb9e2eae76a0793ec48.png" width="702" height="474" class="img_ev3q"></p>
 <p>a) Steps for Generation of new blocks</p>
 <p>Main steps for generating a new block are as follows:</p>
@@ -115,13 +163,17 @@
 <p>Collects all new transactions from the transaction queue of the node;</p>
 </li>
 <li>
-<p>Executes transactions one by one. Invalid or inexecutable transactions are rejected;</p>
+<p>Executes transactions one by one. Invalid or inexecutable transactions are
+rejected;</p>
 </li>
 <li>
-<p>Checks if the <a href="/docs/reference/platform-parameters#configure-the-generation-of-blocks">block generation limits</a> is in compliance;</p>
+<p>Checks if the
+<a href="/docs/reference/platform-parameters#configure-the-generation-of-blocks">block generation limits</a>
+is in compliance;</p>
 </li>
 <li>
-<p>Generates a block with valid transactions and signs it with the private key of the honor node through the ECDSA algorithm;</p>
+<p>Generates a block with valid transactions and signs it with the private key
+of the honor node through the ECDSA algorithm;</p>
 </li>
 <li>
 <p>Sends this block to other honor nodes.</p>
@@ -129,25 +181,42 @@
 </ol>
 <p>b) Verification of new blocks</p>
 <p>Steps for verifying new blocks on other honor nodes:</p>
-<p>1.Receive a new block and verify:</p>
-<p>– whether the new block was generated by the leader node of a current interval;</p>
-<p>– whether there are no other blocks generated by the leader node of a current interval;</p>
-<p>– whether the new block is properly signed.</p>
-<ol start="2">
+<ol>
 <li>
-<p>Execute transactions from the block one by one. Check whether the transactions are executed successfully and within the <a href="/docs/reference/platform-parameters#configure-the-generation-of-blocks">block generation limits</a> .</p>
+<p>Receive a new block and verify:</p>
+<p>– whether the new block was generated by the leader node of a current
+interval;</p>
+<p>– whether there are no other blocks generated by the leader node of a current
+interval;</p>
+<p>– whether the new block is properly signed.</p>
+</li>
+<li>
+<p>Execute transactions from the block one by one. Check whether the
+transactions are executed successfully and within the
+<a href="/docs/reference/platform-parameters#configure-the-generation-of-blocks">block generation limits</a>
+.</p>
 </li>
 <li>
 <p>Add or reject the block, depending on the previous step:</p>
-<p>– If block validation is successful, add the new block to the blockchain of the current node;</p>
-<p>– If block validation failed, reject the block and send a <strong>bad block</strong> transaction;</p>
-<p>– If the honor node that created this invalid block continues to generate bad blocks, it can be banned or excluded from the list of honor nodes.</p>
+<p>– If block validation is successful, add the new block to the blockchain of
+the current node;</p>
+<p>– If block validation failed, reject the block and send a <strong>bad block</strong>
+transaction;</p>
+<p>– If the honor node that created this invalid block continues to generate bad
+blocks, it can be banned or excluded from the list of honor nodes.</p>
 </li>
 </ol>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="forks">Forks<a href="#forks" class="hash-link" aria-label="Direct link to Forks" title="Direct link to Forks">​</a></h3>
-<p>A <strong>fork</strong> is an alternative version of the blockchain, which contains one or more blocks that were generated independently from the rest of the blockchain.</p>
-<p>Forks usually occur when a part of the network becomes desynchronized. Factors that are probably result in forks are high network latency, intentional or unintentional time limits violation, time desynchronization at nodes. If network nodes have a significant geographic distribution, block generation interval must be increased.</p>
-<p>Forks are resolved by following the longest blockchain rule. When two blockchain versions are detected, honor nodes rollback the shorter one and accept the longer one.</p>
+<p>A <strong>fork</strong> is an alternative version of the blockchain, which contains one or
+more blocks that were generated independently from the rest of the blockchain.</p>
+<p>Forks usually occur when a part of the network becomes desynchronized. Factors
+that are probably result in forks are high network latency, intentional or
+unintentional time limits violation, time desynchronization at nodes. If network
+nodes have a significant geographic distribution, block generation interval must
+be increased.</p>
+<p>Forks are resolved by following the longest blockchain rule. When two blockchain
+versions are detected, honor nodes rollback the shorter one and accept the
+longer one.</p>
 <p><img decoding="async" loading="lazy" alt="avatar" src="/docs/assets/images/block-fork-resolution-d40720a492dfcfcaf9ce4af44a5893fe.png" width="441" height="363" class="img_ev3q"></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://github.com/IBAX-io/docs/edit/main/docs/concepts/consensus.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/concepts/blockchain-layers"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">The IBAX Network</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/docs/concepts/faq"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">FAQ</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#what-is-decentralized-proof-of-authority-consensus" class="table-of-contents__link toc-highlight">What is Decentralized Proof-of-Authority consensus</a></li><li><a href="#advantages-of-dpoa-consensus" class="table-of-contents__link toc-highlight">Advantages of DPoA consensus</a></li><li><a href="#dpoa-consensus-and-common-means-of-attack" class="table-of-contents__link toc-highlight">DPoA consensus and common means of attack</a><ul><li><a href="#dos" class="table-of-contents__link toc-highlight">DoS</a></li><li><a href="#percent-attack-51" class="table-of-contents__link toc-highlight">51% attack</a></li></ul></li><li><a href="#implementation-of-dpoa-consensus-in-ibax" class="table-of-contents__link toc-highlight">Implementation of DPoA consensus in IBAX</a><ul><li><a href="#honor-node" class="table-of-contents__link toc-highlight">Honor node</a></li><li><a href="#leader-node" class="table-of-contents__link toc-highlight">Leader node</a></li><li><a href="#forks" class="table-of-contents__link toc-highlight">Forks</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>

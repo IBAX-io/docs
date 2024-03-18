@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">Specification | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/needle/spec"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Specification | IBAX"><meta data-rh="true" name="description" content="needle-specification}"><meta data-rh="true" property="og:description" content="needle-specification}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/needle/spec"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/needle/spec" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/needle/spec" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.a753cf54.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.4496ee6b.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -34,8 +34,7 @@ the received form parameters. The <code>optional</code> indicates that the param
 optional and not required.</p>
 <blockquote>
 <p><code>DataStmt</code> = <code>&quot;data&quot;</code> <code>&quot;{&quot;</code> <!-- -->ParamSign<!-- --> <code>&quot;}&quot;</code> .</p>
-<p><code>ParamSign</code> = <a href="#spec-identifier">Identifier</a> <a href="#spec-typename">Typename</a> [
-<code>Tag</code> ] .</p>
+<p><code>ParamSign</code> = <a href="#spec-identifier">Identifier</a> <a href="#spec-typename">Typename</a> [ <code>Tag</code> ] .</p>
 <p><code>Tag</code> = <code>&quot;optional&quot;</code> .</p>
 </blockquote>
 <p>use the symbol <code>$</code> to get the corresponding variable value, it must be used in
@@ -43,13 +42,15 @@ the <a href="#spec-function">Function</a> within the contract, it is equivalent 
 global variable of the contract. You can use it directly or reassign it.</p>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">contract Name </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  data </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Param1 </span><span class="token builtin">string</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;optional&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">func</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">name</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    $Param1 </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token function" style="color:#d73a49">Println</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">$Param1</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-settings">Settings<a href="#spec-settings" class="hash-link" aria-label="Direct link to Settings" title="Direct link to Settings">​</a></h3>
-<p>Use the <code>settings</code> keyword to declare constants, the type of constant value can be <code>int</code>,
-<code>float</code>, <code>string</code>, <code>bool</code>, it must be within the <code>contract</code>.</p>
-<p>constants value only can be assigned once, and cannot be changed during the execution of the contract.</p>
+<p>Use the <code>settings</code> keyword to declare constants, the type of constant value can
+be <code>int</code>, <code>float</code>, <code>string</code>, <code>bool</code>, it must be within the <code>contract</code>.</p>
+<p>constants value only can be assigned once, and cannot be changed during the
+execution of the contract.</p>
 <blockquote>
 <p><code>SettingsStmt</code> = <code>&quot;settings&quot;</code> <code>SettingsScope</code> .</p>
-<p><code>SettingsScope</code> = <code>&quot;{&quot;</code> <a href="#spec-identifier">Identifier</a> <code>&quot;=&quot;</code>
-( <a href="#spec-number">Number Literal</a> | <a href="#spec-string">String Literal</a> | <a href="#spec-boolean">Boolean Literal</a> ) <code>&quot;}&quot;</code> .</p>
+<p><code>SettingsScope</code> = <code>&quot;{&quot;</code> <a href="#spec-identifier">Identifier</a> <code>&quot;=&quot;</code> (
+<a href="#spec-number">Number Literal</a> | <a href="#spec-string">String Literal</a> |
+<a href="#spec-boolean">Boolean Literal</a> ) <code>&quot;}&quot;</code> .</p>
 </blockquote>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">contract Name </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    settings </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      i </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      f </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1.2</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      b </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token boolean" style="color:#36acaa">true</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">      s </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;this is a string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-function">Function<a href="#spec-function" class="hash-link" aria-label="Direct link to Function" title="Direct link to Function">​</a></h3>
@@ -66,7 +67,8 @@ function body.</p>
 <p><code>FuncBody</code> = <a href="#spec-codeblock">CodeBlockStmt</a> .</p>
 <p><code>FuncSign</code> = [ <code>FuncParams</code> ] [ <code>FuncTail</code> ] [ <code>FuncResult</code> ] .</p>
 <p><code>FuncParams</code> = <code>&quot;(&quot;</code> [ <code>FuncParamList</code> ] <code>&quot;)&quot;</code> .</p>
-<p><code>FuncParamList</code> = <code>FuncParam</code> <code>{</code> <code>FuncParamSeq</code> <code>}</code> [ ( <code>&quot;,&quot;</code> | <code>&quot; &quot;</code> ) <a href="#spec-identifier">IdentifierList</a> <code>&quot;...&quot;</code> ] .</p>
+<p><code>FuncParamList</code> = <code>FuncParam</code> <code>{</code> <code>FuncParamSeq</code> <code>}</code> [ ( <code>&quot;,&quot;</code> | <code>&quot; &quot;</code> )
+<a href="#spec-identifier">IdentifierList</a> <code>&quot;...&quot;</code> ] .</p>
 <p><code>FuncParam</code> = <a href="#spec-identifier">IdentifierList</a> <a href="#spec-typename">Typename</a> .</p>
 <p><code>FuncParamSeq</code> = ( <code>&quot;,&quot;</code> | <code>&quot; &quot;</code> ) <code>FuncParam</code> .</p>
 <p><code>FuncResult</code> = <a href="#spec-typename">TypeList</a> .</p>
@@ -147,7 +149,8 @@ multiple expressions or statements.</p>
 <p>Delimiter are used to separate identifiers, such as variable names, function
 names, type names, etc.</p>
 <blockquote>
-<p><code>Delimiter</code> = <code>&quot;(&quot;</code> | <code>&quot;)&quot;</code> | <code>&quot;{&quot;</code> | <code>&quot;}&quot;</code> | <code>&quot;[&quot;</code> | <code>&quot;]&quot;</code> | <code>&quot;.&quot;</code> | <code>&quot;,&quot; </code>| <code>&quot;=&quot;</code> | <code>&quot;:&quot;</code> .</p>
+<p><code>Delimiter</code> = <code>&quot;(&quot;</code> | <code>&quot;)&quot;</code> | <code>&quot;{&quot;</code> | <code>&quot;}&quot;</code> | <code>&quot;[&quot;</code> | <code>&quot;]&quot;</code> | <code>&quot;.&quot;</code> | <code>&quot;,&quot; </code>|
+<code>&quot;=&quot;</code> | <code>&quot;:&quot;</code> .</p>
 </blockquote>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-expression">Expression<a href="#spec-expression" class="hash-link" aria-label="Direct link to Expression" title="Direct link to Expression">​</a></h3>
 <p>Expression refers to a statement that calculates a value. An expression consists
@@ -193,11 +196,13 @@ digit&quot;.</p>
 <p>Multiple identifiers can be combined into an identifier list, separated by
 commas or spaces.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-keyword">Keyword<a href="#spec-keyword" class="hash-link" aria-label="Direct link to Keyword" title="Direct link to Keyword">​</a></h3>
-<p>The following keywords are reserved and cannot be used as <a href="#spec-identifier">identifiers</a>.</p>
+<p>The following keywords are reserved and cannot be used as
+<a href="#spec-identifier">identifiers</a>.</p>
 <table><thead><tr><th></th><th></th><th></th><th></th><th></th></tr></thead><tbody><tr><td>contract</td><td>func</td><td>data</td><td>action</td><td>conditions</td></tr><tr><td>return</td><td>if</td><td>elif</td><td>else</td><td>while</td></tr><tr><td>var</td><td>nil</td><td>break</td><td>continue</td><td>settings</td></tr><tr><td>true</td><td>false</td><td>info</td><td>warning</td><td>error</td></tr><tr><td>...</td><td></td><td></td><td></td><td></td></tr></tbody></table>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-number">Number<a href="#spec-number" class="hash-link" aria-label="Direct link to Number" title="Direct link to Number">​</a></h3>
-<p>Number literal values include: <code>decimal</code> integer, <code>binary</code> integer, <code>octal</code> integer,
-<code>hexadecimal</code> integer, and floating-point number and scientific notation.</p>
+<p>Number literal values include: <code>decimal</code> integer, <code>binary</code> integer, <code>octal</code>
+integer, <code>hexadecimal</code> integer, and floating-point number and scientific
+notation.</p>
 <p>There are two basic types: <code>int</code> and <code>float</code>. If the number contains a decimal
 point or <code>eE</code>, it is a <strong>float</strong> type, which conforms to the standard IEEE-754
 64-bit floating-point number, otherwise it is an <strong>int</strong> type. int is equivalent
@@ -237,7 +242,8 @@ carriage return. The string in backticks is not escaped.</p>
 </blockquote>
 <div class="language-go codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-go codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">var</span><span class="token plain"> str </span><span class="token builtin">string</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">str </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">&quot;This is \n a string&quot;</span><span class="token plain"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">str </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token string" style="color:#e3116c">`This is \n \t \r a other string`</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="spec-boolean">Boolean<a href="#spec-boolean" class="hash-link" aria-label="Direct link to Boolean" title="Direct link to Boolean">​</a></h3>
-<p>A boolean type has two values: <code>true</code> and <code>false</code>. It is used to represent the truth value of an expression.</p>
+<p>A boolean type has two values: <code>true</code> and <code>false</code>. It is used to represent the
+truth value of an expression.</p>
 <blockquote>
 <p><code>Boolean</code> = &quot;true&quot; | &quot;false&quot; .</p>
 </blockquote>
@@ -391,8 +397,8 @@ last index of the array.</p>
 including return statements, if statements, while statements, break statements,
 and continue statements.</p>
 <blockquote>
-<p><code>ControlStmt</code> = <a href="#return-statement">ReturnStmt</a> | <a href="#if-statement">IfStmt</a>
-| <a href="#while-statement">WhileStmt</a> | <a href="#break-statement">BreakStmt</a> |
+<p><code>ControlStmt</code> = <a href="#return-statement">ReturnStmt</a> | <a href="#if-statement">IfStmt</a> |
+<a href="#while-statement">WhileStmt</a> | <a href="#break-statement">BreakStmt</a> |
 <a href="#continue-statement">ContinueStmt</a> .</p>
 </blockquote>
 <p>In if statements, the conversion from non-boolean types to boolean types is

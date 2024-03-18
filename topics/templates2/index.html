@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.1.1">
 <title data-rh="true">Template Language | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/topics/templates2"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Template Language | IBAX"><meta data-rh="true" name="description" content="template-language}"><meta data-rh="true" property="og:description" content="template-language}"><link data-rh="true" rel="icon" href="/docs/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/topics/templates2"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/templates2" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/templates2" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/opensearch.xml"><link rel="stylesheet" href="/docs/assets/css/styles.e4ae71ca.css">
-<script src="/docs/assets/js/runtime~main.a753cf54.js" defer="defer"></script>
+<script src="/docs/assets/js/runtime~main.4496ee6b.js" defer="defer"></script>
 <script src="/docs/assets/js/main.599ed462.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -122,55 +122,116 @@
 </li>
 </ul>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="page-construction">Page construction<a href="#page-construction" class="hash-link" aria-label="Direct link to Page construction" title="Direct link to Page construction">​</a></h2>
-<p>Weaver&#x27;s Integrated Development Environment (IDE) is created using React, a JavaScript library. It has a page editor and a visual page designer. Pages are basic parts of an application, which are used to retrieve and display data from tables, create forms for receiving user input data, pass data to contracts, and navigate between application pages. Like contracts, pages are stored in the blockchain, which can ensure they are tamper-proof when loaded in the software client.</p>
+<p>Weaver&#x27;s Integrated Development Environment (IDE) is created using React, a
+JavaScript library. It has a page editor and a visual page designer. Pages are
+basic parts of an application, which are used to retrieve and display data from
+tables, create forms for receiving user input data, pass data to contracts, and
+navigate between application pages. Like contracts, pages are stored in the
+blockchain, which can ensure they are tamper-proof when loaded in the software
+client.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="template-engine">Template engine<a href="#template-engine" class="hash-link" aria-label="Direct link to Template engine" title="Direct link to Template engine">​</a></h3>
-<p>Page elements (pages and menus) are formed by developers in the template engine of a verification node using the template language in Weaver&#x27;s page editor. All pages are constructed using the Logicor language developed by IBAX&#x27;s development team. Use content/... API commands to request pages from nodes on the network. What the template engine sent as a response to this type of request is not an HTML page, but a JSON code composed of HTML tags that form a tree in accordance with the template structure. If you want to test the template engine, you can refer to the <a href="/docs/reference/api2#content">content</a> API command.</p>
+<p>Page elements (pages and menus) are formed by developers in the template engine
+of a verification node using the template language in Weaver&#x27;s page editor. All
+pages are constructed using the Logicor language developed by IBAX&#x27;s development
+team. Use content/... API commands to request pages from nodes on the network.
+What the template engine sent as a response to this type of request is not an
+HTML page, but a JSON code composed of HTML tags that form a tree in accordance
+with the template structure. If you want to test the template engine, you can
+refer to the <a href="/docs/reference/api2#content">content</a> API command.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="create-pages">Create pages<a href="#create-pages" class="hash-link" aria-label="Direct link to Create pages" title="Direct link to Create pages">​</a></h3>
-<p>You can use the page editor to create and edit pages, which can be found in the Pages section of Weaver&#x27;s management tool. The editor can be used to:</p>
+<p>You can use the page editor to create and edit pages, which can be found in the
+Pages section of Weaver&#x27;s management tool. The editor can be used to:</p>
 <ul>
 <li>Write the page code, highlight the keywords of the Logicor template language;</li>
 <li>Select and display menus on pages;</li>
 <li>Edit the menu page;</li>
-<li>Configure the permission to change pages, by specifying the contract name with permission in the ContractConditions function, or by directly specifying the access permission in Change conditions;</li>
+<li>Configure the permission to change pages, by specifying the contract name with
+permission in the ContractConditions function, or by directly specifying the
+access permission in Change conditions;</li>
 <li>Start the visual page designer;</li>
 <li>Preview pages.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="visual-page-designer">Visual page designer<a href="#visual-page-designer" class="hash-link" aria-label="Direct link to Visual page designer" title="Direct link to Visual page designer">​</a></h4>
-<p>The visual page designer can be used to create page layouts without using interface codes in the Logicor language. With it, you can set the position of form elements and text on pages by dragging and dropping such elements, and configure the size of page blocks. It provides a set of ready-to-use blocks for presenting standard data models: with titles, forms and information panels. After creating a page in the visual page designer, you can write program logic for receiving data and conditional structure in the page editor. In the future, we plan to create a visual page designer with additional functions.</p>
+<p>The visual page designer can be used to create page layouts without using
+interface codes in the Logicor language. With it, you can set the position of
+form elements and text on pages by dragging and dropping such elements, and
+configure the size of page blocks. It provides a set of ready-to-use blocks for
+presenting standard data models: with titles, forms and information panels.
+After creating a page in the visual page designer, you can write program logic
+for receiving data and conditional structure in the page editor. In the future,
+we plan to create a visual page designer with additional functions.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="applicable-styles">Applicable styles<a href="#applicable-styles" class="hash-link" aria-label="Direct link to Applicable styles" title="Direct link to Applicable styles">​</a></h4>
-<p>By default, pages are presented with Angular&#x27;s Bootstrap Angle style. Users can create their own styles according to needs. The style is stored in the style parameter stylesheet in the ecosystem parameter table.</p>
+<p>By default, pages are presented with Angular&#x27;s Bootstrap Angle style. Users can
+create their own styles according to needs. The style is stored in the style
+parameter stylesheet in the ecosystem parameter table.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="page-module">Page module<a href="#page-module" class="hash-link" aria-label="Direct link to Page module" title="Direct link to Page module">​</a></h4>
-<p>To use a code block in multiple pages, you can create a page module to hold and embed it into the page code. Page modules can be created and edited in Weaver&#x27;s Module Blocks. Like pages, editing permissions can be defined.</p>
+<p>To use a code block in multiple pages, you can create a page module to hold and
+embed it into the page code. Page modules can be created and edited in Weaver&#x27;s
+Module Blocks. Like pages, editing permissions can be defined.</p>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="language-resource-editor">Language resource editor<a href="#language-resource-editor" class="hash-link" aria-label="Direct link to Language resource editor" title="Direct link to Language resource editor">​</a></h4>
-<p>Weaver includes a mechanism for page localization using a function <strong>LangRes</strong> of the Logicor template language. It could replace language resource tags on the page with text lines corresponding to the language selected by the user in the software client or browser. You can use the short syntax <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">lable</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">ab</span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">e</span></span></span></span></strong> instead of the <strong>LangRes</strong> function. The translation of messages in popups initiated by the contract is performed by Needle&#x27;s <strong>LangRes</strong> function.</p>
-<p>You can create and edit language resources in the Language resources section of Weaver. A language resource consists of label names and corresponding translation of such name in different languages, as well as the corresponding two-letter language identifier (EN, ZH, JP, etc.).</p>
-<p>The permissions for adding and changing language resources can be defined in the same way as other tables.</p>
+<p>Weaver includes a mechanism for page localization using a function <strong>LangRes</strong>
+of the Logicor template language. It could replace language resource tags on the
+page with text lines corresponding to the language selected by the user in the
+software client or browser. You can use the short syntax <strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>a</mi><mi>b</mi><mi>l</mi><mi>e</mi></mrow><annotation encoding="application/x-tex">lable</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em"></span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">ab</span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">e</span></span></span></span></strong> instead of
+the <strong>LangRes</strong> function. The translation of messages in popups initiated by the
+contract is performed by Needle&#x27;s <strong>LangRes</strong> function.</p>
+<p>You can create and edit language resources in the Language resources section of
+Weaver. A language resource consists of label names and corresponding
+translation of such name in different languages, as well as the corresponding
+two-letter language identifier (EN, ZH, JP, etc.).</p>
+<p>The permissions for adding and changing language resources can be defined in the
+same way as other tables.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="logicor-template-language">Logicor template language<a href="#logicor-template-language" class="hash-link" aria-label="Direct link to Logicor template language" title="Direct link to Logicor template language">​</a></h2>
 <p>Logicor functions provide the following operations:</p>
 <ul>
-<li>Retrieving values from the database: <code>DBFind</code>, showing data retrieved from the database as tables and charts;</li>
-<li>Data operations for assigning and displaying variable values: <code>SetVar, GetVar, Data</code>;</li>
+<li>Retrieving values from the database: <code>DBFind</code>, showing data retrieved from the
+database as tables and charts;</li>
+<li>Data operations for assigning and displaying variable values:
+<code>SetVar, GetVar, Data</code>;</li>
 <li>Displaying and comparing date/time values: <code>DateTime, Now, CmpTime</code>;</li>
-<li>Use various user data input fields to build forms: <code>Form, ImageInput, Input, RadioGroup, Select</code>;</li>
-<li>Verify the data in the form field by displaying error messages: <code>Validate, InputErr</code>;</li>
+<li>Use various user data input fields to build forms:
+<code>Form, ImageInput, Input, RadioGroup, Select</code>;</li>
+<li>Verify the data in the form field by displaying error messages:
+<code>Validate, InputErr</code>;</li>
 <li>Displaying the navigation elements: <code>AddToolButton, LinkPage, Button</code>;</li>
 <li>Calling contracts: <code>Button</code>;</li>
-<li>Creating HTML page layout elements, including various tags, and choosing specific css classes: <code>Div, P, Span, etc</code>;</li>
+<li>Creating HTML page layout elements, including various tags, and choosing
+specific css classes: <code>Div, P, Span, etc</code>;</li>
 <li>Embedding and unloading images onto pages: <code>Image, ImageInput</code>;</li>
 <li>Displaying conditions of page layout fragment: <code>If, ElseIf, Else</code>;</li>
 <li>Creating multi-level menus;</li>
 <li>Page localization.</li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="logicor-overview">Logicor overview<a href="#logicor-overview" class="hash-link" aria-label="Direct link to Logicor overview" title="Direct link to Logicor overview">​</a></h3>
-<p>The Logicor page template language is a functional language that allows a function calling another function <code>FuncName(parameters)</code> and nesting functions into each other. You can specify parameters without quotes, and delete unnecessary parameters.</p>
-<p>If the parameter contains a comma, it should be enclosed in quotes (backquotes or double quotes). If a function can only have one parameter, you can use a comma without quotes. In addition, if the parameter has an unpaired closing parenthesis, quotes should be used.</p>
-<p>If you put a parameter in quotes, but the parameter itself contains quotes, you can use different types of quotes or multiple quotes in the text.</p>
-<p>In the function definition, each parameter has a specific name. You can call the function and specify the parameters in the order of declaration, or any parameter set in any order of name: <code>Parameter_name: Parameter_value</code>. Using this method, you can safely add new function parameters without breaking compatibility with the current template:</p>
-<p>Functions can return texts, generate HTML elements (e.g. <code>Input</code>), or create HTML elements with nested HTML elements (<code>Div, P, Span</code>). In the latter case, a parameter with the predefined name Body is used to define the nested element. For example, nesting two divs in another div looks like this:</p>
-<p>To define the nested elements described in the Body parameter, the following notation can be used: <code>FuncName(...){...}</code>. Nested elements should be specified with braces:</p>
-<p>If you need to specify the same function multiple times in succession, you can use the dot <code>.</code> instead of writing its name every time. For example, the following are the same:</p>
-<p>With this language, you can assign a variable with the SetVar function and refer its value with <code>#name#</code>.</p>
-<p>To refer to the language resources of the ecosystem, you can use <code>$langres$</code>, where langres is the language name.</p>
+<p>The Logicor page template language is a functional language that allows a
+function calling another function <code>FuncName(parameters)</code> and nesting functions
+into each other. You can specify parameters without quotes, and delete
+unnecessary parameters.</p>
+<p>If the parameter contains a comma, it should be enclosed in quotes (backquotes
+or double quotes). If a function can only have one parameter, you can use a
+comma without quotes. In addition, if the parameter has an unpaired closing
+parenthesis, quotes should be used.</p>
+<p>If you put a parameter in quotes, but the parameter itself contains quotes, you
+can use different types of quotes or multiple quotes in the text.</p>
+<p>In the function definition, each parameter has a specific name. You can call the
+function and specify the parameters in the order of declaration, or any
+parameter set in any order of name: <code>Parameter_name: Parameter_value</code>. Using
+this method, you can safely add new function parameters without breaking
+compatibility with the current template:</p>
+<p>Functions can return texts, generate HTML elements (e.g. <code>Input</code>), or create
+HTML elements with nested HTML elements (<code>Div, P, Span</code>). In the latter case, a
+parameter with the predefined name Body is used to define the nested element.
+For example, nesting two divs in another div looks like this:</p>
+<p>To define the nested elements described in the Body parameter, the following
+notation can be used: <code>FuncName(...){...}</code>. Nested elements should be specified
+with braces:</p>
+<p>If you need to specify the same function multiple times in succession, you can
+use the dot <code>.</code> instead of writing its name every time. For example, the
+following are the same:</p>
+<p>With this language, you can assign a variable with the SetVar function and refer
+its value with <code>#name#</code>.</p>
+<p>To refer to the language resources of the ecosystem, you can use <code>$langres$</code>,
+where langres is the language name.</p>
 <p>The following variables are predefined:</p>
 <ul>
 <li><code>#key_id#</code> - Account address of the current user;</li>
@@ -179,17 +240,32 @@
 <li><code>#isMobile#</code> - 1, if Weaver runs on a mobile device.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="use-pageparams-to-pass-parameters-to-pages">Use PageParams to pass parameters to pages<a href="#use-pageparams-to-pass-parameters-to-pages" class="hash-link" aria-label="Direct link to Use PageParams to pass parameters to pages" title="Direct link to Use PageParams to pass parameters to pages">​</a></h4>
-<p>Many functions support the PageParams parameter, which is used to pass parameters when redirecting to a new page. For example: PageParams: <code>&quot;param1=value1,param2=value2&quot;</code>. The parameter value can be a simple string or a variable with a reference value. When passing parameters to pages, a variable with the parameter name is created, e.g. <code>#param1#</code> and <code>#param2#</code>.</p>
+<p>Many functions support the PageParams parameter, which is used to pass
+parameters when redirecting to a new page. For example: PageParams:
+<code>&quot;param1=value1,param2=value2&quot;</code>. The parameter value can be a simple string or a
+variable with a reference value. When passing parameters to pages, a variable
+with the parameter name is created, e.g. <code>#param1#</code> and <code>#param2#</code>.</p>
 <ul>
-<li><code>PageParams: &quot;hello=world&quot;</code> - The new page receives the hello parameter with world as the value;</li>
-<li><code>PageParams: &quot;hello=#world#&quot;</code> - The new page receives the hello parameter with the value of the world variable.</li>
+<li><code>PageParams: &quot;hello=world&quot;</code> - The new page receives the hello parameter with
+world as the value;</li>
+<li><code>PageParams: &quot;hello=#world#&quot;</code> - The new page receives the hello parameter with
+the value of the world variable.</li>
 </ul>
-<p>In addition, the Val function can get data from forms, which is specified in the redirection.</p>
+<p>In addition, the Val function can get data from forms, which is specified in the
+redirection.</p>
 <ul>
-<li><code>PageParams: &quot;hello=Val(world)&quot;</code> - The new page receives the hello parameter with the value of the world form element.</li>
+<li><code>PageParams: &quot;hello=Val(world)&quot;</code> - The new page receives the hello parameter
+with the value of the world form element.</li>
 </ul>
 <h4 class="anchor anchorWithStickyNavbar_LWe7" id="calling-contracts">Calling contracts<a href="#calling-contracts" class="hash-link" aria-label="Direct link to Calling contracts" title="Direct link to Calling contracts">​</a></h4>
-<p>Logicor implements contract calls by clicking the Button function in a form. Once an event is triggered, the data entered by the user in a form field on the page will be passed to the contract. If the form field name corresponds to the variable name in the data section of the contract called, the data will be automatically transferred. The Button function allows to open a modal window for the user to verify the contract execution, and initiate the redirection to the specified page when the contract is successfully executed, and pass certain parameters to the page.</p>
+<p>Logicor implements contract calls by clicking the Button function in a form.
+Once an event is triggered, the data entered by the user in a form field on the
+page will be passed to the contract. If the form field name corresponds to the
+variable name in the data section of the contract called, the data will be
+automatically transferred. The Button function allows to open a modal window for
+the user to verify the contract execution, and initiate the redirection to the
+specified page when the contract is successfully executed, and pass certain
+parameters to the page.</p>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="logicor-function-classification">Logicor function classification<a href="#logicor-function-classification" class="hash-link" aria-label="Direct link to Logicor function classification" title="Direct link to Logicor function classification">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="operations-on-variables">Operations on variables:<a href="#operations-on-variables" class="hash-link" aria-label="Direct link to Operations on variables:" title="Direct link to Operations on variables:">​</a></h3>
 <table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><a href="#getvar">GetVar</a></td><td><a href="#setvar">SetVar</a></td><td><a href="#varasis">VarAsIs</a></td></tr></tbody></table>
@@ -209,7 +285,9 @@
 <table><thead><tr><th></th><th></th><th></th></tr></thead><tbody><tr><td><a href="#if">If</a></td><td><a href="#or">Or</a></td><td><a href="#include">Include</a></td></tr><tr><td><a href="#and">And</a></td><td></td><td></td></tr></tbody></table>
 <h2 class="anchor anchorWithStickyNavbar_LWe7" id="logicor-function-references">Logicor function references<a href="#logicor-function-references" class="hash-link" aria-label="Direct link to Logicor function references" title="Direct link to Logicor function references">​</a></h2>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="address">Address<a href="#address" class="hash-link" aria-label="Direct link to Address" title="Direct link to Address">​</a></h3>
-<p>This function returns the wallet address <code>xxxx-xxxx-...-xxxx</code> of a specific account address; if no address is specified, the account address of the current user will be used as the parameter.</p>
+<p>This function returns the wallet address <code>xxxx-xxxx-...-xxxx</code> of a specific
+account address; if no address is specified, the account address of the current
+user will be used as the parameter.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Address(account)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -274,20 +352,25 @@
 </li>
 <li>
 <p><code>Width</code></p>
-<p>Percentage of window width.
-Its range is 1 to 100.</p>
+<p>Percentage of window width. Its range is 1 to 100.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">AddToolButton(Title: $@1broadcast$, Page: @1notifications_broadcast, Icon: icon-plus).Popup(Header: $@1notifications_broadcast$, Width: &quot;50&quot;)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="and">And<a href="#and" class="hash-link" aria-label="Direct link to And" title="Direct link to And">​</a></h3>
-<p>It returns the result of an and logical operation. All parameters listed in parentheses are separated by commas. If one of the parameters is an empty string, zero or <code>false</code>, the parameter value is <code>false</code>, otherwise the parameter value is <code>true</code>. If the parameter value is <code>true</code>, the function returns <code>1</code>, otherwise it returns <code>0</code>.</p>
+<p>It returns the result of an and logical operation. All parameters listed in
+parentheses are separated by commas. If one of the parameters is an empty
+string, zero or <code>false</code>, the parameter value is <code>false</code>, otherwise the parameter
+value is <code>true</code>. If the parameter value is <code>true</code>, the function returns <code>1</code>,
+otherwise it returns <code>0</code>.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">And(parameters)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">If(And(#myval1#,#myval2#), Span(OK))</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="appparam">AppParam<a href="#appparam" class="hash-link" aria-label="Direct link to AppParam" title="Direct link to AppParam">​</a></h3>
-<p>Output the application parameter value, which is taken from the app_params table of the current ecosystem. If there is a language resource with the specified name, its value will be automatically replaced.</p>
+<p>Output the application parameter value, which is taken from the app_params table
+of the current ecosystem. If there is a language resource with the specified
+name, its value will be automatically replaced.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">AppParam(App, Name, Index, Source)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -305,20 +388,24 @@ Its range is 1 to 100.</p>
 <li>
 <p><code>Index</code></p>
 <p>It can be used when the parameter value is a comma-separated list.</p>
-<p>The parameter elements index, starting from 1. For example, if <code>type = full,light</code>, then <code>AppParam(1, type, 2)</code> returns <code>light</code>.
-It cannot be used in conjunction with the Source parameter.</p>
+<p>The parameter elements index, starting from 1. For example, if
+<code>type = full,light</code>, then <code>AppParam(1, type, 2)</code> returns <code>light</code>. It cannot be
+used in conjunction with the Source parameter.</p>
 </li>
 <li>
 <p><code>Source</code></p>
-<p>It can be used when the parameter value is a comma-separated list.
-Create a data object whose elements are the values of specific parameters. This object can be used as a data source for the <a href="#table">Table</a> and <a href="#select">Select</a> functions.
-It cannot be used in conjunction with the Index parameter.</p>
+<p>It can be used when the parameter value is a comma-separated list. Create a
+data object whose elements are the values of specific parameters. This object
+can be used as a data source for the <a href="#table">Table</a> and <a href="#select">Select</a>
+functions. It cannot be used in conjunction with the Index parameter.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">AppParam(1, type, Source: mytype)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="arraytosource">ArrayToSource<a href="#arraytosource" class="hash-link" aria-label="Direct link to ArrayToSource" title="Direct link to ArrayToSource">​</a></h3>
-<p>Create an arraytosource element and fill it with the key-value pairs of a JSON array. The data obtained is put into the Source element, which can be used later in the source input function (e.g. Table).</p>
+<p>Create an arraytosource element and fill it with the key-value pairs of a JSON
+array. The data obtained is put into the Source element, which can be used later
+in the source input function (e.g. Table).</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ArrayToSource(Source, Data)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -362,13 +449,15 @@ It cannot be used in conjunction with the Index parameter.</p>
 </li>
 <li>
 <p><code>Ecosystem</code></p>
-<p>Ecosystem ID. If it is not specified, the binary file is requested from the current ecosystem.</p>
+<p>Ecosystem ID. If it is not specified, the binary file is requested from the
+current ecosystem.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Image(Src: Binary(&quot;my_image&quot;, 1))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Image(Src: Binary().ById(2))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Image(Src: Binary().ById(#id#).Ecosystem(#eco#))</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="button">Button<a href="#button" class="hash-link" aria-label="Direct link to Button" title="Direct link to Button">​</a></h3>
-<p>Create a button HTML element which will create a button to call a contract or open a page.</p>
+<p>Create a button HTML element which will create a button to call a contract or
+open a page.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Button(Body, Page, Class, Contract, Params, PageParams)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.CompositeContract(Contract, Data)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Alert(Text, ConfirmButton, CancelButton, Icon)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Popup(Width, Header)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Style(Style)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.ErrorRedirect(ErrorID,PageName,PageParams)]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -393,17 +482,28 @@ It cannot be used in conjunction with the Index parameter.</p>
 </li>
 <li>
 <p><code>Params</code></p>
-<p>The list of values passed to the contract. Normally, the value of the contract parameter (the data section) is obtained from an HTML element (such as an input field) of id with a similar name. If the element id is different from the name of the contract parameter, then the value should be assigned in the format of contractField1=idname1, contractField2=idname2. This parameter is returned to attr as the object <code>{contractField1: idname1, contractField2: idname2}</code>.</p>
+<p>The list of values passed to the contract. Normally, the value of the contract
+parameter (the data section) is obtained from an HTML element (such as an
+input field) of id with a similar name. If the element id is different from
+the name of the contract parameter, then the value should be assigned in the
+format of contractField1=idname1, contractField2=idname2. This parameter is
+returned to attr as the object
+<code>{contractField1: idname1, contractField2: idname2}</code>.</p>
 </li>
 <li>
 <p><code>PageParams</code></p>
-<p>The format of parameters passed to the redirect page is pageField1=idname1, pageField2=idname2. Variables with target page parameter names #pageField1 and #pageField2 are created on the target page and assigned the specified values.See more parameter passing specifications <a href="#pageparams">passing parameters to the page using PageParams</a></p>
+<p>The format of parameters passed to the redirect page is pageField1=idname1,
+pageField2=idname2. Variables with target page parameter names #pageField1 and
+#pageField2 are created on the target page and assigned the specified
+values.See more parameter passing specifications
+<a href="#pageparams">passing parameters to the page using PageParams</a></p>
 </li>
 </ul>
 <blockquote>
 <p>CompositeContract</p>
 </blockquote>
-<p>Used to add additional contracts to the button. CompositeContract can be used multiple times.</p>
+<p>Used to add additional contracts to the button. CompositeContract can be used
+multiple times.</p>
 <ul>
 <li>
 <p><code>Name</code></p>
@@ -412,11 +512,11 @@ It cannot be used in conjunction with the Index parameter.</p>
 <li>
 <p><code>Data</code></p>
 <p>The contract parameters are JSON arrays.</p>
-</li>
-</ul>
 <blockquote>
 <p>Alert</p>
 </blockquote>
+</li>
+</ul>
 <p>Display the message.</p>
 <ul>
 <li>
@@ -434,11 +534,11 @@ It cannot be used in conjunction with the Index parameter.</p>
 <li>
 <p><code>Icon</code></p>
 <p>Button icon.</p>
-</li>
-</ul>
 <blockquote>
 <p>Popup</p>
 </blockquote>
+</li>
+</ul>
 <p>Output modal window.</p>
 <ul>
 <li>
@@ -449,22 +549,25 @@ It cannot be used in conjunction with the Index parameter.</p>
 <p><code>Width</code></p>
 <p>Percentage of window width.
 Its range is 1 to 100.</p>
-</li>
-</ul>
 <blockquote>
 <p>Style</p>
 </blockquote>
+</li>
+</ul>
 <p>The CSS style specified.</p>
 <ul>
 <li>
 <p><code>Style</code></p>
 <p>CSS style.</p>
-</li>
-</ul>
 <blockquote>
 <p>ErrorRedirect</p>
 </blockquote>
-<p>Specify and redirect to a page when the :ref<!-- -->:contractfundef-Throw<!-- --> function generates an error during contract execution. There can be several ErrorRedirect calls. Therefore, when returning the <em>errredirect</em> attribute, the attribute key is ErrorID and the value is the parameters list.</p>
+</li>
+</ul>
+<p>Specify and redirect to a page when the :ref<!-- -->:contractfundef-Throw<!-- --> function
+generates an error during contract execution. There can be several ErrorRedirect
+calls. Therefore, when returning the <em>errredirect</em> attribute, the attribute key
+is ErrorID and the value is the parameters list.</p>
 <ul>
 <li>
 <p><code>ErrorID</code></p>
@@ -482,7 +585,8 @@ Its range is 1 to 100.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Button(Submit, default_page, mybtn_class).Alert(Alert message)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Button(Contract: MyContract, Body:My Contract, Class: myclass, Params:&quot;Name=myid,Id=i10,Value&quot;)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="calculate">Calculate<a href="#calculate" class="hash-link" aria-label="Direct link to Calculate" title="Direct link to Calculate">​</a></h3>
-<p>It returns the result of the arithmetic expression passed in the Exp parameter. The following operations are applicable: +, -, *, / and brackets ().</p>
+<p>It returns the result of the arithmetic expression passed in the Exp parameter.
+The following operations are applicable: +, -, *, / and brackets ().</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Calculate(Exp, Type, Prec)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -495,7 +599,8 @@ Its range is 1 to 100.</p>
 </li>
 <li>
 <p><code>Type</code></p>
-<p>Result data type: int, float, money. If not specified, it is float if there is a number with a decimal point, otherwise it is int.</p>
+<p>Result data type: int, float, money. If not specified, it is float if there is
+a number with a decimal point, otherwise it is int.</p>
 </li>
 <li>
 <p><code>Prec</code></p>
@@ -536,8 +641,8 @@ Its range is 1 to 100.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Data(mysrc,&quot;name,count&quot;){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    John Silver,10</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    &quot;Mark, Smith&quot;,20</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    &quot;Unknown &quot;&quot;Person&quot;&quot;&quot;,30</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Chart(Type: &quot;bar&quot;, Source: mysrc, FieldLabel: &quot;name&quot;, FieldValue: &quot;count&quot;, Colors: &quot;red, green&quot;)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="cmptime">CmpTime<a href="#cmptime" class="hash-link" aria-label="Direct link to CmpTime" title="Direct link to CmpTime">​</a></h3>
-<p>It compares two time values in the same format.
-It supports unixtime, <code>YYYY-MM-DD HH:MM:SS</code> and any time format, such as <code>YYYYMMDD</code>.</p>
+<p>It compares two time values in the same format. It supports unixtime,
+<code>YYYY-MM-DD HH:MM:SS</code> and any time format, such as <code>YYYYMMDD</code>.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">CmpTime(Time1, Time2)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p>Return value</p>
@@ -565,8 +670,8 @@ It supports unixtime, <code>YYYY-MM-DD HH:MM:SS</code> and any time format, such
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Code( P(This is the first line.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Span(This is the second line.))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="codeasis">CodeAsIs<a href="#codeasis" class="hash-link" aria-label="Direct link to CodeAsIs" title="Direct link to CodeAsIs">​</a></h3>
-<p>Create a code element to display the specified code.
-It does not replace a variable with its value. For example, <code>#name#</code> will be displayed as is.</p>
+<p>Create a code element to display the specified code. It does not replace a
+variable with its value. For example, <code>#name#</code> will be displayed as is.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">CodeAsIs(Text)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -581,7 +686,10 @@ It does not replace a variable with its value. For example, <code>#name#</code> 
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">CodeAsIs( P(This is the #test1#.</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Span(This is the #test2#.))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="data">Data<a href="#data" class="hash-link" aria-label="Direct link to Data" title="Direct link to Data">​</a></h3>
-<p>Create a data element, fill it with the specified data and put it in Source. Then, you can receive Source as a data input in <a href="#table">Table</a> and other functions. The sequence of column names corresponds to the sequence of data entry values.</p>
+<p>Create a data element, fill it with the specified data and put it in Source.
+Then, you can receive Source as a data input in <a href="#table">Table</a> and other
+functions. The sequence of column names corresponds to the sequence of data
+entry values.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Data(Source,Columns,Data)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Custom(Column){Body}]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -590,7 +698,8 @@ It does not replace a variable with its value. For example, <code>#name#</code> 
 <ul>
 <li>
 <p><code>Source</code></p>
-<p>Name of the data source. You can specify any name that will be passed to other functions later as a data source.</p>
+<p>Name of the data source. You can specify any name that will be passed to other
+functions later as a data source.</p>
 </li>
 <li>
 <p><code>Columns</code></p>
@@ -599,8 +708,11 @@ It does not replace a variable with its value. For example, <code>#name#</code> 
 <li>
 <p><code>Data</code></p>
 <p>Data set.</p>
-<p>One record per line. Column values must be separated by commas. Data and Columns should be set in the same order.</p>
-<p>Values with commas should be enclosed in double quotes (<code>&quot;example1, example2&quot;, 1, 2</code>). Quoted values should be put in two double quotes (<code>&quot;&quot;&quot;example&quot;, &quot;example2&quot;&quot;&quot;, 1, 2</code>).</p>
+<p>One record per line. Column values must be separated by commas. Data and
+Columns should be set in the same order.</p>
+<p>Values with commas should be enclosed in double quotes
+(<code>&quot;example1, example2&quot;, 1, 2</code>). Quoted values should be put in two double
+quotes (<code>&quot;&quot;&quot;example&quot;, &quot;example2&quot;&quot;&quot;, 1, 2</code>).</p>
 </li>
 </ul>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="custom">Custom<a href="#custom" class="hash-link" aria-label="Direct link to Custom" title="Direct link to Custom">​</a></h3>
@@ -613,7 +725,8 @@ Use multiple Custom functions if you want to assign multiple calculated columns.
 </li>
 <li>
 <p><code>Body</code></p>
-<p>Code block. You can use <code>#columnname#</code> to get values from other columns in the entry, and then use those values in code blocks.</p>
+<p>Code block. You can use <code>#columnname#</code> to get values from other columns in the
+entry, and then use those values in code blocks.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
@@ -632,14 +745,18 @@ Use multiple Custom functions if you want to assign multiple calculated columns.
 </li>
 <li>
 <p><code>Format</code></p>
-<p>Format template: year in 2-digit format <code>YY</code>, 4-digit format <code>YYYY</code>, month in <code>MM</code>, day in <code>DD</code>, hour in <code>HH</code>, minute in <code>MM</code>, second in <code>SS</code>, e.g.: <code>YY/MM/DD HH:MM</code>.
-If it is not specified or missing, <code>YYYY-MM-DD HH:MI:SS</code> will be used.</p>
+<p>Format template: year in 2-digit format <code>YY</code>, 4-digit format <code>YYYY</code>, month in
+<code>MM</code>, day in <code>DD</code>, hour in <code>HH</code>, minute in <code>MM</code>, second in <code>SS</code>, e.g.:
+<code>YY/MM/DD HH:MM</code>. If it is not specified or missing, <code>YYYY-MM-DD HH:MI:SS</code>
+will be used.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">DateTime(2017-11-07T17:51:08)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">DateTime(#mytime#,HH:MI DD.MM.YYYY)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="dbfind">DBFind<a href="#dbfind" class="hash-link" aria-label="Direct link to DBFind" title="Direct link to DBFind">​</a></h3>
-<p>Create a dbfind element, fill it with the data of the table table and put it in the Source structure, which can later be used for the input data of <a href="#table">Table</a> and other functions Source.</p>
+<p>Create a dbfind element, fill it with the data of the table table and put it in
+the Source structure, which can later be used for the input data of
+<a href="#table">Table</a> and other functions Source.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">DBFind(table, Source)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Columns(columns)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Where(conditions)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.WhereId(id)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Order(name)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Limit(limit)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Offset(offset)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Count(countvar)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Ecosystem(id)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Cutoff(columns)]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Custom(Column){Body}]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    [.Vars(Prefix)]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -661,7 +778,10 @@ If it is not specified or missing, <code>YYYY-MM-DD HH:MI:SS</code> will be used
 <ul>
 <li>
 <p><code>columns</code></p>
-<p>If not specified, a list of all fields will be returned. If there is a JSON type field, you can use the following syntax to process the record field: <code>columnname-&gt;fieldname</code>. In this case, the field name generated is <code>columnname.fieldname</code>.</p>
+<p>If not specified, a list of all fields will be returned. If there is a JSON
+type field, you can use the following syntax to process the record field:
+<code>columnname-&gt;fieldname</code>. In this case, the field name generated is
+<code>columnname.fieldname</code>.</p>
 </li>
 </ul>
 <blockquote>
@@ -670,20 +790,18 @@ If it is not specified or missing, <code>YYYY-MM-DD HH:MI:SS</code> will be used
 <ul>
 <li><code>conditions</code></li>
 </ul>
-<p>Data query conditions. See DBFind.
-If there is a JSON type field, you can use the following syntax to process the record field:      <code>columnname-&gt;fieldname</code>.</p>
+<p>Data query conditions. See DBFind. If there is a JSON type field, you can use
+the following syntax to process the record field: <code>columnname-&gt;fieldname</code>.</p>
 <blockquote>
-<p>WhereId
-Query by ID, e.g. <code>.WhereId(1)</code>.</p>
+<p>WhereId Query by ID, e.g. <code>.WhereId(1)</code>.</p>
 </blockquote>
 <ul>
 <li><code>Id</code></li>
 </ul>
 <p>Entry ID.</p>
 <blockquote>
-<p>Order
-Sort by field.
-For more information about the sorting syntax, see <a href="#dbfind">DBFind</a>.</p>
+<p>Order Sort by field. For more information about the sorting syntax, see
+<a href="#dbfind">DBFind</a>.</p>
 </blockquote>
 <ul>
 <li><code>name</code></li>
@@ -711,8 +829,10 @@ For more information about the sorting syntax, see <a href="#dbfind">DBFind</a>.
 <p>Count</p>
 </blockquote>
 <p>Specify the total number of rows of the Where condition.</p>
-<p>In addition to storing it in a variable, the total count is returned in the count parameter of the dbfind element.</p>
-<p>If Where and WhereID are not specified, the total count of rows in the table will be returned.</p>
+<p>In addition to storing it in a variable, the total count is returned in the
+count parameter of the dbfind element.</p>
+<p>If Where and WhereID are not specified, the total count of rows in the table
+will be returned.</p>
 <ul>
 <li>
 <p><code>countvar</code></p>
@@ -725,7 +845,8 @@ For more information about the sorting syntax, see <a href="#dbfind">DBFind</a>.
 <ul>
 <li><code>Id</code></li>
 </ul>
-<p>Ecosystem ID. By default, the data comes from the specified table in the current ecosystem.</p>
+<p>Ecosystem ID. By default, the data comes from the specified table in the current
+ecosystem.</p>
 <blockquote>
 <p>Cutoff</p>
 </blockquote>
@@ -734,12 +855,18 @@ For more information about the sorting syntax, see <a href="#dbfind">DBFind</a>.
 <li><code>columns</code></li>
 </ul>
 <p>A comma-separated list of fields that must be processed by the Cutoff function.</p>
-<p>The field value will be replaced by a JSON object that has two fields: link link and title title. If the field value contains more than 32 characters, link pointing to the first 32 characters of the full text is returned. If the field value contains 32 characters or less, link is set to void and title contains the complete field value.</p>
+<p>The field value will be replaced by a JSON object that has two fields: link link
+and title title. If the field value contains more than 32 characters, link
+pointing to the first 32 characters of the full text is returned. If the field
+value contains 32 characters or less, link is set to void and title contains the
+complete field value.</p>
 <blockquote>
 <p>Custom</p>
 </blockquote>
-<p>You can assign calculated columns to Data. For example, you can specify field templates for buttons and other page layout elements. These field templates are usually assigned to <a href="#table">Table</a> and other functions to receive data.
-If you want to assign multiple calculated columns, use multiple Custom functions.</p>
+<p>You can assign calculated columns to Data. For example, you can specify field
+templates for buttons and other page layout elements. These field templates are
+usually assigned to <a href="#table">Table</a> and other functions to receive data. If you
+want to assign multiple calculated columns, use multiple Custom functions.</p>
 <ul>
 <li><code>Column</code></li>
 </ul>
@@ -747,15 +874,21 @@ If you want to assign multiple calculated columns, use multiple Custom functions
 <ul>
 <li><code>Body</code></li>
 </ul>
-<p>Code block. You can use <code>#columnname#</code> to get values from other columns in the entry, and then use those values in code blocks.</p>
+<p>Code block. You can use <code>#columnname#</code> to get values from other columns in the
+entry, and then use those values in code blocks.</p>
 <blockquote>
 <p>Vars</p>
 </blockquote>
-<p>The first row obtained by the query will generate a set of variables with values. When it is specified, the Limit parameter automatically becomes 1, and only one (1) record is returned.</p>
+<p>The first row obtained by the query will generate a set of variables with
+values. When it is specified, the Limit parameter automatically becomes 1, and
+only one (1) record is returned.</p>
 <ul>
 <li><code>Prefix</code></li>
 </ul>
-<p>The prefix added to the variable name. Its format is <code>#prefix_columnname#</code>, where the column name immediately follows the underscore symbol. If there is a column containing a JSON field, the variable generated will be in the following format: <code>#prefix_columnname_field#</code>.</p>
+<p>The prefix added to the variable name. Its format is <code>#prefix_columnname#</code>,
+where the column name immediately follows the underscore symbol. If there is a
+column containing a JSON field, the variable generated will be in the following
+format: <code>#prefix_columnname_field#</code>.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">DBFind(parameters,myparam)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">DBFind(parameters,myparam).Columns(name,value).Where({name:&quot;money&quot;})</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">DBFind(parameters,myparam).Custom(myid){Strong(#id#)}.Custom(myname){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">   Strong(Em(#name#))Div(myclass, #company#)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="div">Div<a href="#div" class="hash-link" aria-label="Direct link to Div" title="Direct link to Div">​</a></h3>
@@ -773,11 +906,11 @@ If you want to assign multiple calculated columns, use multiple Custom functions
 <li>
 <p><code>Body</code></p>
 <p>Child element.</p>
-</li>
-</ul>
 <blockquote>
 <p>Style</p>
 </blockquote>
+</li>
+</ul>
 <p>The CSS style specified.</p>
 <ul>
 <li><code>Style</code></li>
@@ -798,11 +931,16 @@ If you want to assign multiple calculated columns, use multiple Custom functions
 <ul>
 <li><code>Condition</code></li>
 </ul>
-<p>The expression format is <code>InputName=Value</code>, when all expressions are true, <em>Condition</em> is true, and when the value of <code>InputName</code> is equal to <code>Value</code>, <em>Condition</em> is true. If multiple <em>Show</em> or <em>Hide</em> are called, there must be at least one <em>Condition</em> parameter is true.</p>
+<p>The expression format is <code>InputName=Value</code>, when all expressions are true,
+<em>Condition</em> is true, and when the value of <code>InputName</code> is equal to <code>Value</code>,
+<em>Condition</em> is true. If multiple <em>Show</em> or <em>Hide</em> are called, there must be at
+least one <em>Condition</em> parameter is true.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Form(){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Div(text-left){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        Input(Name: &quot;broadcast&quot;, Type: &quot;checkbox&quot;, Value: &quot;false&quot;)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    }</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Div(text-left){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        hello</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    }.Show(&quot;broadcast=false&quot;)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    Div(text-left){</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">        world</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">    }.Hide(&quot;broadcast=false&quot;)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="ecosysparam">EcosysParam<a href="#ecosysparam" class="hash-link" aria-label="Direct link to EcosysParam" title="Direct link to EcosysParam">​</a></h3>
-<p>This function obtains parameter values from the ecosystem parameter table of the current ecosystem. If the returned result name contains the language resources, it will be translated accordingly.</p>
+<p>This function obtains parameter values from the ecosystem parameter table of the
+current ecosystem. If the returned result name contains the language resources,
+it will be translated accordingly.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">EcosysParam(Name, Index, Source)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -815,14 +953,18 @@ If you want to assign multiple calculated columns, use multiple Custom functions
 </li>
 <li>
 <p><code>Index</code></p>
-<p>If the requested parameter is a list of comma-separated elements, you can specify an index starting from 1. For example, if <code>gender = male,female</code>, then <code>gender = male,female</code> returns <code>female</code>.</p>
+<p>If the requested parameter is a list of comma-separated elements, you can
+specify an index starting from 1. For example, if <code>gender = male,female</code>, then
+<code>gender = male,female</code> returns <code>female</code>.</p>
 <p>It cannot be used in conjunction with the Source parameter.</p>
 </li>
 <li>
 <p><code>Source</code></p>
-<p>It can be used when the parameter value is a comma-separated list.
-Create a data object whose elements are the values of the specified parameters. This object can be used as a data source for the <a href="#table">Table</a> and <a href="#select">Select</a> functions.
-It cannot be used in conjunction with the Index parameter.</p>
+<p>It can be used when the parameter value is a comma-separated list. Create a
+data object whose elements are the values of the specified parameters. This
+object can be used as a data source for the <a href="#table">Table</a> and
+<a href="#select">Select</a> functions. It cannot be used in conjunction with the Index
+parameter.</p>
 </li>
 </ul>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Address(EcosysParam(founder_account))</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EcosysParam(gender, Source: mygender)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block"></span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">EcosysParam(Name: gender_list, Source: src_gender)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Select(Name: gender, Source: src_gender, NameColumn: name, ValueColumn: id)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -846,7 +988,8 @@ It cannot be used in conjunction with the Index parameter.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">This is an Em(important news).</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="forlist">ForList<a href="#forlist" class="hash-link" aria-label="Direct link to ForList" title="Direct link to ForList">​</a></h3>
-<p>Display the list of elements in the Source data source in the template format set in Body and create a <strong>forlist</strong> element.</p>
+<p>Display the list of elements in the Source data source in the template format
+set in Body and create a <strong>forlist</strong> element.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">ForList(Source, Index){Body}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -859,8 +1002,9 @@ It cannot be used in conjunction with the Index parameter.</p>
 </li>
 <li>
 <p><code>Index</code></p>
-<p>The variable of the iteration counter, starting from 1.
-An optional parameter. If not specified, the iteration count value will be written to the [Source] _index variable.</p>
+<p>The variable of the iteration counter, starting from 1. An optional parameter.
+If not specified, the iteration count value will be written to the [Source]
+_index variable.</p>
 </li>
 <li>
 <p><code>Body</code></p>
@@ -883,21 +1027,21 @@ An optional parameter. If not specified, the iteration count value will be writt
 <li>
 <p><code>Class</code></p>
 <p>Class name of the form.</p>
-</li>
-</ul>
 <blockquote>
-<p>Style
-The CSS style specified.</p>
+<p>Style The CSS style specified.</p>
 </blockquote>
-<ul>
-<li><code>Style</code></li>
+</li>
+<li>
+<p><code>Style</code></p>
+</li>
 </ul>
 <p>CSS style.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Form(class1 class2, Input(myid))</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="getcolumntype">GetColumnType<a href="#getcolumntype" class="hash-link" aria-label="Direct link to GetColumnType" title="Direct link to GetColumnType">​</a></h3>
 <p>Returns the field data type of a specific table.</p>
-<p>Types returned include: <code>text, varchar, number, money, double, bytes, json, datetime, double</code>.
+<p>Types returned include:
+<code>text, varchar, number, money, double, bytes, json, datetime, double</code>.
 <strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">GetColumnType(Table, Column)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -916,9 +1060,13 @@ The CSS style specified.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">SetVar(coltype,GetColumnType(members, member_name))Div(){#coltype#}</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="gethistory">GetHistory<a href="#gethistory" class="hash-link" aria-label="Direct link to GetHistory" title="Direct link to GetHistory">​</a></h3>
-<p>Create a gethistory element and fill it with the history change records of the entries in the specified table. The data generated will be placed in the Source element, which can be used later in the source input function (for example, <a href="#table">Table</a>).</p>
-<p>The array is sorted in order from the last modified.
-The id field in the array points to the id of the rollback_tx table. block_id represents the block ID, block_time represents the block generation timestamp.</p>
+<p>Create a gethistory element and fill it with the history change records of the
+entries in the specified table. The data generated will be placed in the Source
+element, which can be used later in the source input function (for example,
+<a href="#table">Table</a>).</p>
+<p>The array is sorted in order from the last modified. The id field in the array
+points to the id of the rollback_tx table. block_id represents the block ID,
+block_time represents the block generation timestamp.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">GetHistory(Source, Name, Id, RollbackId)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -939,14 +1087,19 @@ The id field in the array points to the id of the rollback_tx table. block_id re
 </li>
 <li>
 <p><code>RollbackId</code></p>
-<p>An optional parameter. If specified, only one record with the specified ID will be returned from the rollback_tx table.</p>
+<p>An optional parameter. If specified, only one record with the specified ID
+will be returned from the rollback_tx table.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">GetHistory(blocks, BlockHistory, 1)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="getvar">GetVar<a href="#getvar" class="hash-link" aria-label="Direct link to GetVar" title="Direct link to GetVar">​</a></h3>
-<p>It returns the value of the specified variable that already exists, or an empty string if it does not exist.</p>
-<p>The getvar element is only created when an editable tree is requested. The difference between <code>GetVar(varname)</code> and <code>#varname</code> is that if varname does not exist, GetVar will return an empty string, while #varname# will be interpreted as a string value.</p>
+<p>It returns the value of the specified variable that already exists, or an empty
+string if it does not exist.</p>
+<p>The getvar element is only created when an editable tree is requested. The
+difference between <code>GetVar(varname)</code> and <code>#varname</code> is that if varname does not
+exist, GetVar will return an empty string, while #varname# will be interpreted
+as a string value.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">GetVar(Name)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -984,8 +1137,8 @@ The id field in the array points to the id of the rollback_tx table. block_id re
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Hint(Icon: &quot;icon-wrench&quot;,Title:$@1pa_settings$,Text: This is a hint text)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="if">If<a href="#if" class="hash-link" aria-label="Direct link to If" title="Direct link to If">​</a></h3>
-<p>Condition statement.
-Returns the first If or ElseIf child element that satisfies Condition. Otherwise, return the Else child element.</p>
+<p>Condition statement. Returns the first If or ElseIf child element that satisfies
+Condition. Otherwise, return the Else child element.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">If(Condition){ Body}</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.ElseIf(Condition){ Body }]</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Else{ Body }]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -994,7 +1147,9 @@ Returns the first If or ElseIf child element that satisfies Condition. Otherwise
 <ul>
 <li>
 <p><code>Condition</code></p>
-<p>If the condition is equal to an empty string, 0 or false, it is considered that the condition is not met. In all other cases, this condition is considered to be satisfied.</p>
+<p>If the condition is equal to an empty string, 0 or false, it is considered
+that the condition is not met. In all other cases, this condition is
+considered to be satisfied.</p>
 </li>
 <li>
 <p><code>Body</code></p>
@@ -1099,11 +1254,11 @@ Returns the first If or ElseIf child element that satisfies Condition. Otherwise
 <li>
 <p><code>Disabled</code></p>
 <p>Disable the input element.</p>
-</li>
-</ul>
 <blockquote>
 <p>Validate</p>
 </blockquote>
+</li>
+</ul>
 <p>Validate the parameter.</p>
 <blockquote>
 <p>Style</p>
@@ -1150,8 +1305,11 @@ Returns the first If or ElseIf child element that satisfies Condition. Otherwise
 </li>
 <li>
 <p><code>Value</code></p>
-<p>Default value.
-The value is an object in string format. For example, <code>{&quot;coords&quot;:[{&quot;lat&quot;:number,&quot;lng&quot;:number},]}</code> or <code>{&quot;zoom&quot;:int, &quot;center&quot;:{&quot;lat&quot;:number,&quot;lng&quot;: number}}</code>. When the InputMap is created with the predefined Value, the address field can be used to save the address value, so the it is not void.</p>
+<p>Default value. The value is an object in string format. For example,
+<code>{&quot;coords&quot;:[{&quot;lat&quot;:number,&quot;lng&quot;:number},]}</code> or
+<code>{&quot;zoom&quot;:int, &quot;center&quot;:{&quot;lat&quot;:number,&quot;lng&quot;: number}}</code>. When the InputMap is
+created with the predefined Value, the address field can be used to save the
+address value, so the it is not void.</p>
 </li>
 <li>
 <p><code>Type</code></p>
@@ -1164,14 +1322,15 @@ The value is an object in string format. For example, <code>{&quot;coords&quot;:
 </li>
 <li>
 <p><code>MapType</code></p>
-<p>Map type.
-It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</p>
+<p>Map type. It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">InputMap(Name: Coords,Type: polygon, MapType: hybrid, Value: `{&quot;zoom&quot;:8, &quot;center&quot;:{&quot;lat&quot;:55.749942860682545,&quot;lng&quot;:37.6207172870636}}`)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="jsontosource">JsonToSource<a href="#jsontosource" class="hash-link" aria-label="Direct link to JsonToSource" title="Direct link to JsonToSource">​</a></h3>
-<p>Create a jsontosource element and fill it with the key-value pairs of a JSON array. The data obtained is put into the Source element, which can be used later in the source input function (e.g. <a href="#table">Table</a>).</p>
+<p>Create a jsontosource element and fill it with the key-value pairs of a JSON
+array. The data obtained is put into the Source element, which can be used later
+in the source input function (e.g. <a href="#table">Table</a>).</p>
 <p>The records in the result data are sorted alphabetically by JSON key.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">JsonToSource(Source, Data)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -1209,12 +1368,10 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 <li>
 <p><code>For</code></p>
 <p>Bind to a form element.</p>
-</li>
-</ul>
 <blockquote>
 <p><code>StyleThe</code>:CSS<!-- --> style specified.</p>
 </blockquote>
-<ul>
+</li>
 <li>
 <p><code>Style</code></p>
 <p>CSS style.</p>
@@ -1223,7 +1380,8 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Label(The first item).</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="langres">LangRes<a href="#langres" class="hash-link" aria-label="Direct link to LangRes" title="Direct link to LangRes">​</a></h3>
-<p>Returns a specific language resource. If requested to edit the tree, the langres element is returned, and you may use the short format symbol <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>a</mi><mi>n</mi><mi>g</mi><mi>r</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">langres</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">an</span><span class="mord mathnormal" style="margin-right:0.03588em">g</span><span class="mord mathnormal">res</span></span></span></span>.
+<p>Returns a specific language resource. If requested to edit the tree, the langres
+element is returned, and you may use the short format symbol <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>l</mi><mi>a</mi><mi>n</mi><mi>g</mi><mi>r</mi><mi>e</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">langres</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8889em;vertical-align:-0.1944em"></span><span class="mord mathnormal" style="margin-right:0.01968em">l</span><span class="mord mathnormal">an</span><span class="mord mathnormal" style="margin-right:0.03588em">g</span><span class="mord mathnormal">res</span></span></span></span>.
 <strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">LangRes(Name)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -1238,8 +1396,7 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">LangRes(name)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">LangRes(myres)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="linkpage">LinkPage<a href="#linkpage" class="hash-link" aria-label="Direct link to LinkPage" title="Direct link to LinkPage">​</a></h3>
-<p>Create a linkpage element, linking to the page.
-<strong>Syntax</strong></p>
+<p>Create a linkpage element, linking to the page. <strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">LinkPage(Body, Page, Class, PageParams)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain"> [.Style(Style)]</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
 <p>LinkPage</p>
@@ -1260,11 +1417,11 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 <li>
 <p><code>PageParams</code></p>
 <p>Redirect page parameters.</p>
-</li>
-</ul>
 <blockquote>
 <p>Style</p>
 </blockquote>
+</li>
+</ul>
 <p>The CSS style specified.</p>
 <ul>
 <li><code>Style</code></li>
@@ -1282,24 +1439,27 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 <ul>
 <li>
 <p><code>Hmap</code></p>
-<p>Height of an HTML element on the page.
-The default value is 100.</p>
+<p>Height of an HTML element on the page. The default value is 100.</p>
 </li>
 <li>
 <p><code>Value</code></p>
-<p>Map value, an object in string format.
-For example, <code>{&quot;coords&quot;:[{&quot;lat&quot;:number,&quot;lng&quot;:number},]}</code> or <code>{&quot;zoom&quot;:int, &quot;center&quot;:{&quot;lat&quot;:number,&quot;lng&quot;: number}}</code>. If <code>center</code> is not specified, the map window will automatically adjust according to the specified coordinates.</p>
+<p>Map value, an object in string format. For example,
+<code>{&quot;coords&quot;:[{&quot;lat&quot;:number,&quot;lng&quot;:number},]}</code> or
+<code>{&quot;zoom&quot;:int, &quot;center&quot;:{&quot;lat&quot;:number,&quot;lng&quot;: number}}</code>. If <code>center</code> is not
+specified, the map window will automatically adjust according to the specified
+coordinates.</p>
 </li>
 <li>
 <p><code>MapType</code></p>
-<p>Map type.
-It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</p>
+<p>Map type. It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Map(MapType:hybrid, Hmap:400, Value:{&quot;coords&quot;:[{&quot;lat&quot;:55.58774531752405,&quot;lng&quot;:36.97260184619233},{&quot;lat&quot;:55.58396161622043,&quot;lng&quot;:36.973803475831005},{&quot;lat&quot;:55.585222890513975,&quot;lng&quot;:36.979811624024364},{&quot;lat&quot;:55.58803635636347,&quot;lng&quot;:36.978781655762646}],&quot;area&quot;:146846.65783403456,&quot;address&quot;:&quot;Unnamed Road, Moscow, Russia, 143041&quot;})</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="menugroup">MenuGroup<a href="#menugroup" class="hash-link" aria-label="Direct link to MenuGroup" title="Direct link to MenuGroup">​</a></h3>
-<p>Create a nested submenu in the menu and return the menugroup element. Before replacing it with the language resource, the name parameter will return the value of Title.</p>
+<p>Create a nested submenu in the menu and return the menugroup element. Before
+replacing it with the language resource, the name parameter will return the
+value of Title.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">MenuGroup(Title, Body, Icon)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -1362,13 +1522,19 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 </li>
 <li>
 <p><code>Digit</code></p>
-<p>The exponent of 10 in the expression <code>Exp/10^digit</code>. The value can be positive or negative, and a positive value determines the number of digits after the decimal point.</p>
+<p>The exponent of 10 in the expression <code>Exp/10^digit</code>. The value can be positive
+or negative, and a positive value determines the number of digits after the
+decimal point.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Money(Exp, Digit)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="or">Or<a href="#or" class="hash-link" aria-label="Direct link to Or" title="Direct link to Or">​</a></h3>
-<p>It returns the result of an if logical operation. All parameters listed in parentheses are separated by commas. If having one parameter that is value is not an empty string, zero or <code>false</code>, the parameter value is <code>true</code>, otherwise the parameter value is <code>false</code>. If the parameter value is <code>true</code>, the function returns <code>1</code>, otherwise it returns <code>0</code>.</p>
+<p>It returns the result of an if logical operation. All parameters listed in
+parentheses are separated by commas. If having one parameter that is value is
+not an empty string, zero or <code>false</code>, the parameter value is <code>true</code>, otherwise
+the parameter value is <code>false</code>. If the parameter value is <code>true</code>, the function
+returns <code>1</code>, otherwise it returns <code>0</code>.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Or(parameters)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <p><strong>Example</strong></p>
@@ -1439,8 +1605,8 @@ It has the following values: <code>hybrid, roadmap, satellite, terrain</code>.</
 </li>
 <li>
 <p><code>ValueColumn</code></p>
-<p>Value name of the data source.
-Fields created with Custom cannot be used in this parameter.</p>
+<p>Value name of the data source. Fields created with Custom cannot be used in
+this parameter.</p>
 </li>
 <li>
 <p><code>Value</code></p>
@@ -1468,7 +1634,10 @@ Fields created with Custom cannot be used in this parameter.</p>
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">RadioGroup(Name: type_decision, Source: numbers_type_decisions, NameColumn: name, ValueColumn: value)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="range">Range<a href="#range" class="hash-link" aria-label="Direct link to Range" title="Direct link to Range">​</a></h3>
-<p>Create a range element, use step size Step from From to To (not including To) to fill integer elements. The data generated will be put into Source and can be used later in the function of the source input (e.g. <a href="#table">Table</a>). If an invalid parameter is specified, an empty Source is returned.</p>
+<p>Create a range element, use step size Step from From to To (not including To) to
+fill integer elements. The data generated will be put into Source and can be
+used later in the function of the source input (e.g. <a href="#table">Table</a>). If an
+invalid parameter is specified, an empty Source is returned.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">Range(Source,From,To,Step)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -1516,8 +1685,8 @@ Fields created with Custom cannot be used in this parameter.</p>
 </li>
 <li>
 <p><code>ValueColumn</code></p>
-<p>Value name of the data source.
-Fields created with <a href="#custom">Custom</a> cannot be used in this parameter.</p>
+<p>Value name of the data source. Fields created with <a href="#custom">Custom</a> cannot be
+used in this parameter.</p>
 </li>
 <li>
 <p><code>Value</code></p>
@@ -1627,7 +1796,8 @@ Fields created with <a href="#custom">Custom</a> cannot be used in this paramete
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">This is Strong(the first item, myclass1).</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="sysparam">SysParam<a href="#sysparam" class="hash-link" aria-label="Direct link to SysParam" title="Direct link to SysParam">​</a></h3>
-<p>Get the value of a specific parameter in the platform parameter table system_parameters.</p>
+<p>Get the value of a specific parameter in the platform parameter table
+system_parameters.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">SysParam(Name)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -1671,7 +1841,8 @@ Fields created with <a href="#custom">Custom</a> cannot be used in this paramete
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">DBFind(mytable, mysrc)</span><br></span><span class="token-line" style="color:#393A34"><span class="token plain">Table(mysrc,&quot;ID=id,Name=name&quot;)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="transactioninfo">TransactionInfo<a href="#transactioninfo" class="hash-link" aria-label="Direct link to TransactionInfo" title="Direct link to TransactionInfo">​</a></h3>
-<p>It queries transactions by specified hash and returns information about the executed contracts and their parameters.</p>
+<p>It queries transactions by specified hash and returns information about the
+executed contracts and their parameters.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">TransactionInfo(Hash)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <blockquote>
@@ -1697,7 +1868,8 @@ Fields created with <a href="#custom">Custom</a> cannot be used in this paramete
 <p><strong>Example</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">P(TransactionInfo(#hash#))</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="varasis">VarAsIs<a href="#varasis" class="hash-link" aria-label="Direct link to VarAsIs" title="Direct link to VarAsIs">​</a></h3>
-<p>Assigns the value Value to a specific variable Name, which is the name of a specific variable instead of its value.</p>
+<p>Assigns the value Value to a specific variable Name, which is the name of a
+specific variable instead of its value.</p>
 <p>For versions with variable substitution, see <a href="#setvar">SetVar</a>.</p>
 <p><strong>Syntax</strong></p>
 <div class="codeBlockContainer_Ckt0 theme-code-block" style="--prism-color:#393A34;--prism-background-color:#f6f8fa"><div class="codeBlockContent_biex"><pre tabindex="0" class="prism-code language-text codeBlock_bY9V thin-scrollbar" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_e6Vv"><span class="token-line" style="color:#393A34"><span class="token plain">VarAsIs(Name, Value)</span><br></span></code></pre><div class="buttonGroup__atx"><button type="button" aria-label="Copy code to clipboard" title="Copy" class="clean-btn"><span class="copyButtonIcons_eSgA" aria-hidden="true"><svg viewBox="0 0 24 24" class="copyButtonIcon_y97N"><path fill="currentColor" d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z"></path></svg><svg viewBox="0 0 24 24" class="copyButtonSuccessIcon_LjdS"><path fill="currentColor" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z"></path></svg></span></button></div></div></div>
@@ -1711,7 +1883,9 @@ Fields created with <a href="#custom">Custom</a> cannot be used in this paramete
 </li>
 <li>
 <p><code>Value</code></p>
-<p>A variable value. Variable name in the value will not be substituted. For example, if Value is example #varname#, then the variable value is also example #varname#.</p>
+<p>A variable value. Variable name in the value will not be substituted. For
+example, if Value is example #varname#, then the variable value is also
+example #varname#.</p>
 </li>
 </ul>
 <p><strong>Example</strong></p>
