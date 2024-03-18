@@ -64,6 +64,42 @@ const config: Config = {
           position: "right",
         },
         {
+          type: 'docSidebar',
+          sidebarId: 'conceptsSidebar',
+          position: 'right',
+          label: 'Concept',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorialsSidebar',
+          position: 'right',
+          label: 'Tutorial',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'topicsSidebar',
+          position: 'right',
+          label: 'Guide',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'referenceSidebar',
+          position: 'right',
+          label: 'Reference',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'howtosSidebar',
+          position: 'right',
+          label: 'Deployment',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'needleSidebar',
+          position: 'right',
+          label: 'Needle',
+        },
+        {
           type: "localeDropdown",
           position: "right",
           dropdownItemsAfter: [
