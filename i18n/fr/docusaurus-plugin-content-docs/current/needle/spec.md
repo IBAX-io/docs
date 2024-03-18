@@ -47,8 +47,7 @@ optional and not required.
 
 > `DataStmt` = `"data"` `"{"` { `ParamSign` } `"}"` .
 >
-> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [
-> `Tag` ] .
+> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [ `Tag` ] .
 >
 > `Tag` = `"optional"` .
 
@@ -70,15 +69,17 @@ contract Name {
 
 ### Settings {#spec-settings}
 
-Use the `settings` keyword to declare constants, the type of constant value can be `int`,
-`float`, `string`, `bool`, it must be within the `contract`.
+Use the `settings` keyword to declare constants, the type of constant value can
+be `int`, `float`, `string`, `bool`, it must be within the `contract`.
 
-constants value only can be assigned once, and cannot be changed during the execution of the contract.
+constants value only can be assigned once, and cannot be changed during the
+execution of the contract.
 
 > `SettingsStmt` = `"settings"` `SettingsScope` .
 >
-> `SettingsScope` = `"{"` [Identifier](#spec-identifier) `"="`
-> ( [Number Literal](#spec-number) | [String Literal](#spec-string) | [Boolean Literal](#spec-boolean) ) `"}"` .
+> `SettingsScope` = `"{"` [Identifier](#spec-identifier) `"="` (
+> [Number Literal](#spec-number) | [String Literal](#spec-string) |
+> [Boolean Literal](#spec-boolean) ) `"}"` .
 
 ```go
 contract Name {
@@ -113,7 +114,8 @@ function body.
 >
 > `FuncParams` = `"("` [ `FuncParamList` ] `")"` .
 >
-> `FuncParamList` = `FuncParam` `{` `FuncParamSeq` `}` [ ( `","` | `" "` ) [IdentifierList](#spec-identifier) `"..."` ] .
+> `FuncParamList` = `FuncParam` `{` `FuncParamSeq` `}` [ ( `","` | `" "` )
+> [IdentifierList](#spec-identifier) `"..."` ] .
 >
 > `FuncParam` = [IdentifierList](#spec-identifier) [Typename](#spec-typename) .
 >
@@ -307,7 +309,8 @@ var a int; as = 1
 Delimiter are used to separate identifiers, such as variable names, function
 names, type names, etc.
 
-> `Delimiter` = `"("` | `")"` | `"{"` | `"}"` | `"["` | `"]"` | `"."` | `"," `| `"="` | `":"` .
+> `Delimiter` = `"("` | `")"` | `"{"` | `"}"` | `"["` | `"]"` | `"."` | `"," `|
+> `"="` | `":"` .
 
 ### Expression {#spec-expression}
 
@@ -368,7 +371,8 @@ commas or spaces.
 
 ### Keyword {#spec-keyword}
 
-The following keywords are reserved and cannot be used as [identifiers](#spec-identifier).
+The following keywords are reserved and cannot be used as
+[identifiers](#spec-identifier).
 
 |          |       |       |          |            |
 | -------- | ----- | ----- | -------- | ---------- |
@@ -380,8 +384,9 @@ The following keywords are reserved and cannot be used as [identifiers](#spec-id
 
 ### Number {#spec-number}
 
-Number literal values include: `decimal` integer, `binary` integer, `octal` integer,
-`hexadecimal` integer, and floating-point number and scientific notation.
+Number literal values include: `decimal` integer, `binary` integer, `octal`
+integer, `hexadecimal` integer, and floating-point number and scientific
+notation.
 
 There are two basic types: `int` and `float`. If the number contains a decimal
 point or `eE`, it is a **float** type, which conforms to the standard IEEE-754
@@ -458,7 +463,8 @@ str = `This is \n \t \r a other string`
 
 ### Boolean {#spec-boolean}
 
-A boolean type has two values: `true` and `false`. It is used to represent the truth value of an expression.
+A boolean type has two values: `true` and `false`. It is used to represent the
+truth value of an expression.
 
 > `Boolean` = "true" | "false" .
 
@@ -752,8 +758,8 @@ Control statements are used to control the execution flow of the program,
 including return statements, if statements, while statements, break statements,
 and continue statements.
 
-> `ControlStmt` = [ReturnStmt](#return-statement) | [IfStmt](#if-statement)
-> \| [WhileStmt](#while-statement) | [BreakStmt](#break-statement) |
+> `ControlStmt` = [ReturnStmt](#return-statement) | [IfStmt](#if-statement) |
+> [WhileStmt](#while-statement) | [BreakStmt](#break-statement) |
 > [ContinueStmt](#continue-statement) .
 
 In if statements, the conversion from non-boolean types to boolean types is
