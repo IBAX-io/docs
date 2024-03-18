@@ -385,7 +385,7 @@ POST
 
 **Response Example**
 
-```text
+```json
 200 (OK)
 Content-Type: application/json
 {
@@ -520,34 +520,20 @@ GET
 
 **Response**
 
-- `Block height`
-
-  > List of transactions in the block and additional information for each
-  > transaction.
-  >
-  > > - `hash`
-  > >
-  > > > Trading Hash.
-  > >
-  > > - `contract_name`
-  > >
-  > > > Contract name.
-  > >
-  > > - `params`
-  > >
-  > > > Array of contract parameters.
-  > >
-  > > - `key_id`
-  > >
-  > > > For the first block, it is the account address of the first block that
-  > > > signed the transaction.
-  > >
-  > > > For all other blocks, is the address of the account that signed the
-  > > > transaction.
+- `Block height`: List of transactions in the block and additional information
+  for each transaction.
+  - `hash`: Trading Hash.
+  - `contract_name`: Contract name.
+  - `params`: Array of contract parameters.
+  - `key_id`:
+    - For the first block, it is the account address of the first block that
+      signed the transaction.
+    - For all other blocks, is the address of the account that signed the
+      transaction.
 
 **Response Example**
 
-```text
+```json
 200 (OK)
 Content-Type: application/json
 { "1":
@@ -1788,7 +1774,7 @@ GET
 
 **Response Example**
 
-```text
+```json
 200 (OK)
 Content-Type: application/json
 {
