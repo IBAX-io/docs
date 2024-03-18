@@ -701,14 +701,18 @@ Operations with date and time in SQL format:
 | ----------------------- | --------------------- | ----------------------------- |
 | [BlockTime](#blocktime) | [DateTime](#datetime) | [UnixDateTime](#unixdatetime) |
 
-Operations with platform parameters: | | | | | --------- | -------- |
-\------------ | | [SysParamString](#sysparamstring) | [SysParamInt](#sysparamint)
-\| [DBUpdateSysParam](#dbupdatesysparam) | |
-[UpdateNotifications](#updatenotifications) |
-[UpdateRolesNotifications](#updaterolesnotifications) | |
+Operations with platform parameters:
 
-CLB mode function operation: | | | | | ----------- | ------------ | ---- | |
-[HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) | |
+|                                             |                                                       |                                       |
+| ------------------------------------------- | ----------------------------------------------------- | ------------------------------------- |
+| [SysParamString](#sysparamstring)           | [SysParamInt](#sysparamint)                           | [DBUpdateSysParam](#dbupdatesysparam) |
+| [UpdateNotifications](#updatenotifications) | [UpdateRolesNotifications](#updaterolesnotifications) |                                       |
+
+CLB mode function operation:
+
+|                             |                               |   |
+| --------------------------- | ----------------------------- | - |
+| [HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) |   |
 
 Functions for master CLB nodes:
 
