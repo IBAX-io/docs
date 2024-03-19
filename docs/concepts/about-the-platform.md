@@ -23,16 +23,7 @@
   - [CLB creation](#clb-creation)
   - [CLB usage](#clb-usage)
 
-export const Highlight = ({children}) => (
-  <span
-    style={{
-      borderRadius: '2px',
-      color: 'red',
-      padding: '0.2rem',
-    }}>
-    {children}
-  </span>
-);
+import Highlight from '@site/src/components/Highlight';
 
 ## Features {#features}
 
@@ -47,10 +38,11 @@ existing blockchain platforms:
   environment called **ecosystem**. Each ecosystem has its own membership rules
   that are initially established by the creator;
 
-- Ecosystem activities, such as the data involved in <Highlight>database
-  table</Highlight> records or updates, are based on **registers** created with
-  **smart contracts**. In most other blockchain platforms, activities are based
-  on transaction exchange between accounts;
+- Ecosystem activities, such as the data involved in
+  <Highlight color="red">database table</Highlight> records or updates, are
+  based on **registers** created with **smart contracts**. In most other
+  blockchain platforms, activities are based on transaction exchange between
+  accounts;
 
 - The access to **registers** and the control of relationships between ecosystem
   members are managed by a set of rules called **smart laws**.
@@ -266,11 +258,12 @@ The IDE mainly includes the following parts:
 An application is a collection of elements such as database tables, smart
 contracts, and user pages with access rights for configuration. The ecosystem to
 which the application element belongs is indicated by the prefix in the element
-name, such as <Highlight>@1ElementName</Highlight>, where the ecosystem ID is
-indicated by the number <Highlight>1</Highlight> after the
-<Highlight>@</Highlight> symbol. When using application elements in the current
-ecosystem, the prefix <Highlight>@1</Highlight> can be omitted. These
-applications can perform useful functions or implement various services.
+name, such as <Highlight color="red">@1ElementName</Highlight>, where the
+ecosystem ID is indicated by the number <Highlight color="red">1</Highlight>
+after the <Highlight color="red">@</Highlight> symbol. When using application
+elements in the current ecosystem, the prefix
+<Highlight color="red">@1</Highlight> can be omitted. These applications can
+perform useful functions or implement various services.
 
 ### Tables {#tables}
 
