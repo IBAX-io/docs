@@ -23,11 +23,16 @@
   - [CLB creation](#clb-creation)
   - [CLB usage](#clb-usage)
 
-export const Highlight = ({children}) => ( <span style={{
+export const Highlight = ({children}) => (
+  <span
+    style={{
       borderRadius: '2px',
       color: 'red',
       padding: '0.2rem',
-    }}> {children} </span> );
+    }}>
+    {children}
+  </span>
+);
 
 ## Features {#features}
 
