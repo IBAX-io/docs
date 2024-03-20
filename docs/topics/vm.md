@@ -70,7 +70,7 @@ virtual machine.
 
 A virtual machine is organized in memory as a structure like below.
 
-```
+```go
 type VM struct {
    Block
    ExtCost func(string) int64
@@ -107,7 +107,7 @@ For example, the following code would create a block with functions. This block
 also contains another block with an if statement, which contains a block with a
 while statement.
 
-```
+```go
 func my() {
    if true {
       while false {
@@ -119,7 +119,7 @@ func my() {
 
 The block is organized in the memory as a structure like below.
 
-```
+```go
 type Block struct {
    Objects map[string]*ObjInfo
    Type int
@@ -269,7 +269,7 @@ The FuncName structure has the following elements:
 Pointing to the ObjExtFunc type, and the Value field contains a ExtFuncInfo
 structure. It is used to describe golang functions.
 
-```
+```go
 type ExtFuncInfo struct {
    Name string
    Params []reflect.Type
@@ -293,7 +293,7 @@ The ExtFuncInfo structure has the following elements:
 Pointing to the **ObjVar** type, and the **Value** field contains a **VarInfo**
 structure.
 
-```
+```go
 type VarInfo struct {
    Obj *ObjInfo
    Owner *Block
@@ -316,7 +316,7 @@ containing the name of the variable or function.
 
 A bytecode is a sequence of **ByteCode** type structures.
 
-```
+```go
 type ByteCode struct {
    Cmd uint16
    Value interface{}
@@ -431,7 +431,7 @@ allows various functions and contracts to run simultaneously in a single virtual
 machine. The Runtime structure is used to run functions and contracts, as well
 as any expressions and bytecode.
 
-```
+```go
 type RunTime struct {
    stack []interface{}
    blocks []*blockStack
@@ -457,7 +457,7 @@ type RunTime struct {
 
 The blockStack structure is used in the Runtime structure.
 
-```
+```go
 type blockStack struct {
    Block *Block
    Offset int
@@ -476,14 +476,14 @@ processing a bytecode, the data required must be initialized.
 
 New blocks are added to other blocks.
 
-```
+```go
 rt.blocks = append(rt.blocks, &blockStack{block, len(rt.vars)})
 ```
 
 Next, get the information of relevant parameters of the tail function. These
 parameters are contained in the last element of the stack.
 
-```
+```go
 var namemap map[string][]interface{}
 if block.Type == ObjFunc && block.Info.(*FuncInfo).Names != nil {
    if rt.stack[len(rt.stack)-1] != nil {
@@ -496,7 +496,7 @@ if block.Type == ObjFunc && block.Info.(*FuncInfo).Names != nil {
 Then, all variables defined in the current block must be initialized with their
 initial values.
 
-```
+```go
 start := len(rt.stack)
 varoff := len(rt.vars)
 for vkey, vpar := range block.Vars {
@@ -508,7 +508,7 @@ Since variables in the function are also variables, we need to retrieve them
 from the last element of the stack in the order described by the function
 itself.
 
-```
+```go
    if block.Type == ObjFunc && vkey <len(block.Info.(*FuncInfo).Params) {
       value = rt.stack[start-len(block.Info.(*FuncInfo).Params)+vkey]
    } else {
@@ -516,7 +516,7 @@ itself.
 
 Initialize local variables with their initial values.
 
-```
+```go
       value = reflect.New(vpar).Elem().Interface()
 
       if vpar == reflect.TypeOf(map[string]interface{}{}) {
@@ -532,7 +532,7 @@ Initialize local variables with their initial values.
 
 Next, update the values of variable parameters passed in the tail function.
 
-```
+```go
 if namemap != nil {
    for key, item := range namemap {
       params := (*block.Info.(*FuncInfo).Names)[key]
@@ -543,7 +543,7 @@ if namemap != nil {
 If variable parameters passed belongs to a variable number of parameters, then
 these parameters will be combined into an array of variables.
 
-```
+```go
             off := varoff + params.Offset[len(params.Params)-1]
             rt.vars[off] = append(rt.vars[off].([]interface{}), value)
          } else {
@@ -558,7 +558,7 @@ After that, all we have to do is delete values passed from the top of the stack
 as function parameters, thereby moving the stack. We have copied their values
 into a variable array.
 
-```
+```go
 if block.Type == ObjFunc {
    start -= len(block.Info.(*FuncInfo).Params)
 }
@@ -566,13 +566,13 @@ if block.Type == ObjFunc {
 
 When a bytecode command loop finished, we must clear the stack correctly.
 
-```
+```go
 last := rt.blocks[len(rt.blocks)-1]
 ```
 
 Delete the current block from the stack of blocks.
 
-```
+```go
 rt.blocks = rt.blocks[:len(rt.blocks)-1]
 if status == statusReturn {
 ```
@@ -580,7 +580,7 @@ if status == statusReturn {
 If successfully exited from a function already executed, we will add the return
 value to the end of the previous stack.
 
-```
+```go
    if last.Block.Type == ObjFunc {
       for count := len(last.Block.Info.(*FuncInfo).Results); count > 0; count-- {
          rt.stack[start] = rt.stack[len(rt.stack)-count]
@@ -595,7 +595,7 @@ stack status and exit the function as is. The reason is that loops and
 conditional structures that have been executed in the function are also bytecode
 blocks.
 
-```
+```go
    return
 
    }
@@ -611,14 +611,14 @@ machine will be added with four functions, such as **ExecContract**,
 **MemoryUsage**, **CallContract**, and **Settings**, through the **Extend**
 function.
 
-```
+```go
 for key, item := range ext.Objects {
    fobj := reflect.ValueOf(item).Type()
 ```
 
 We traverse all the objects passed and only look at the functions.
 
-```
+```go
    switch fobj.Kind() {
    case reflect.Func:
 ```
@@ -627,7 +627,7 @@ We fill the **ExtFuncInfo** structure according to the information received
 about the function, and add its structure to the top level map **Objects** by
 name.
 
-```
+```go
    data := ExtFuncInfo{key, make([]reflect.Type, fobj.NumIn()), make([]reflect.Type, fobj.NumOut()),
    make([]string, fobj.NumIn()), fobj.IsVariadic(), item}
    for i := 0; i <fobj.NumIn(); i++ {
@@ -635,12 +635,12 @@ name.
 
 The **ExtFuncInfo** structure has an **Auto** parameter array. Usually the first
 parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from
-theNeedle language, because they are necessary for us to execute some golang
+the Needle language, because they are necessary for us to execute some golang
 functions. Therefore, we specify that these variables will be used automatically
 when these functions are called. In this case, the first parameter of the above
 four functions is `rt *Runtime`.
 
-```
+```go
    if isauto, ok := ext.AutoPars[fobj.In(i).String()]; ok {
       data.Auto[i] = isauto
    }
@@ -648,14 +648,14 @@ four functions is `rt *Runtime`.
 
 Information about assigning the parameters.
 
-```
+```go
       data.Params[i] = fobj.In(i)
    }
 ```
 
 And the types of return values.
 
-```
+```go
 for i := 0; i <fobj.NumOut(); i++ {
    data.Results[i] = fobj.Out(i)
 }
@@ -667,7 +667,6 @@ when using the contract.
 ```
       vm.Objects[key] = &ObjInfo{ObjExtFunc, data}
    }
-
 }
 ```
 
@@ -702,14 +701,14 @@ function:
   function;
 - **setIndex** - variables in the work process will be set to true when we
   assign map or array elements. For example, `a["my"] = 10`. In this case, we
-  need to use the specified **cmdSetIndex** command.
+  need to use the specified **CmdSetIndex** command.
 
 We get a token in a loop and process it accordingly. For example, expression
 paring will be stopped if braces are found. When moving the string, we check
 whether the previous statement is an operation and whether it is inside the
 parentheses, otherwise it will exit the expression is parsed.
 
-```
+```go
 case isRCurly, isLCurly:
    i--
    if prevLex == isComma || prevLex == lexOper {
@@ -721,12 +720,11 @@ case lexNewLine:
       continue main
    }
    for k := len(buffer) - 1; k >= 0; k-- {
-   if buffer[k].Cmd == cmdSys {
+   if buffer[k].Cmd == CmdSys {
       continue main
    }
 }
 break main
-
 ```
 
 In general, the algorithm itself corresponds to an algorithm for converting to
@@ -765,7 +763,7 @@ to the stack along with the number of function parameters. In each subsequent
 detection of parameters, we only need to increase this number by one unit at the
 last element of the stack.
 
-```
+```go
 count := 0
 if (*lexems)[i+2].Type != isRPar {
    count++
@@ -777,7 +775,7 @@ case of the contract is called. If the contract is called without parameters, we
 must add two empty parameters to call **ExecContract** to get at least two
 parameters.
 
-```
+```go
 if isContract {
    name := StateName((*block)[0].Info.(uint32), lexem.Value.(string))
    for j := len(*block) - 1; j >= 0; j-- {
@@ -802,7 +800,7 @@ if isContract {
 If we see that there is a square bracket next, then we add the **cmdIndex**
 command to get the value by the index.
 
-```
+```go
 if (*lexems)[i+1].Type == isLBrack {
    if objInfo == nil || objInfo.Type != ObjVar {
       return fmt.Errorf(`unknown variable %s`, lexem.Value.(string))
@@ -828,7 +826,7 @@ _stateContract_ and start parsing the structure. If we encounter the **func**
 keyword, then we change the state to _stateFunc_. If other tokens are received,
 the function generating error will be called.
 
-```
+```go
 {// stateRoot
    lexNewLine: {stateRoot, 0},
    lexKeyword | (keyContract << 8): {stateContract | statePush, 0},
@@ -845,7 +843,7 @@ will generate corresponding errors. If we get the function name in the token
 identifier, then we go to the _stateFParams_ state, where we can get the
 parameters of the function.
 
-```
+```go
 {// stateFunc
    lexNewLine: {stateFunc, 0},
    lexIdent: {stateFParams, cfNameBlock},
@@ -864,7 +862,7 @@ name. Similarly, we create corresponding functions for all states and variables.
 These functions are usually very small and perform some duties when constructing
 the virtual machine tree.
 
-```
+```go
 func fNameBlock(buf *[]*Block, state int, lexem *Lexem) error {
    var itype int
    prev := (*buf)[len(*buf)-2]
@@ -983,7 +981,7 @@ In the first loop:
 
 We form an alphabet of valid symbols.
 
-```
+```go
 for ind, ch := range alphabet {
    i := byte(ind)
 ```
@@ -991,7 +989,7 @@ for ind, ch := range alphabet {
 In addition, in **state2int**, we provide each state with its own sequence
 identifier.
 
-```
+```go
    state2int := map[string]uint{`main`: 0}
    if err := json.Unmarshal([]byte(states), &data); err == nil {
    for key := range data {
@@ -1025,9 +1023,9 @@ The **lexParser** function directly generates lexical analysis and returns an
 array of received tags based on incoming strings. Let us analyze the structure
 of tokens.
 
-```
+```go
 type Lexem struct {
-   Type  uint32 // Type of the lexem
+   Type  Token // Type of the lexem
    Value interface{} // Value of lexem
    Line  uint32 // Line of the lexem
    Column uint32 // Position inside the line
@@ -1123,7 +1121,7 @@ The following lexical types are processed:
 
 ### Types {#types}
 
-Corresponding golang types are specified next to theNeedle types.
+Corresponding golang types are specified next to the Needle types.
 
 - **bool** - bool, **false** by default;
 - **bytes** - []byte{}, an empty byte array by default;
@@ -1160,7 +1158,7 @@ Priority of operations from high to low:
 - **Multiplication and Division** - arithmetic multiplication `*` and division
   `/`;
 - **Addition and Subtraction** - arithmetic addition `+` and subtraction `-`;
-- **Logical comparison** - `>=>> >=`;
+- **Logical comparison** - `<= <  > >=`;
 - **Logical equality and inequality** - `== !=`;
 - **Logical AND** - `&&`;
 - **Logical OR** - `||`.
@@ -1183,9 +1181,9 @@ the **int** value must be specified as the index. For the **map** type, a
 variable or **string** value must be specified. If you assign a value to an
 **array** element whose index is greater than the current maximum index, an
 empty element will be added to the array. The initial value of these elements is
-**nil**. For example: .. code:
+**nil**. For example:
 
-```
+```go
 var my array
 my[5] = 0
 var mymap map
@@ -1196,7 +1194,7 @@ In expressions of conditional logical values (such as `if, while, &&, ||, !`),
 the type is automatically converted to a logical value. If the type is not the
 default value, it is true.
 
-```
+```go
 var mymap map
 var val string
 if mymap && val {
@@ -1211,8 +1209,7 @@ scope of a variable extends to its own blocks and all nested blocks. In a block,
 you can define a new variable using the name of an existing variable. However,
 in this case, external variables with the same name become unavailable.
 
-```
-
+```go
 var a int
 a = 3
 {
@@ -1240,252 +1237,252 @@ execution of contracts. Since a separate stack and structure for saving variable
 values are created when a contract is executed, the golang garbage collection
 mechanism will automatically delete these data when a contract is executed.
 
-### Backus–Naur Form (BNF) {#backus-naur-form-bnf}
+## Backus–Naur Form (BNF) {#backus-naur-form-bnf}
 
 In computer science, BNF is a notation technique for context-free syntax and is
 usually used to describe the syntax of the language used in computing.
 
-- &lt;decimal digit&gt;
+- `<decimal digit>`
 
 ```
 '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 ```
 
-- &lt;decimal number&gt;
+- `<decimal number>`
 
 ```
 <decimal digit> {<decimal digit>}
 ```
 
-- &lt;symbol code&gt;
+- `<symbol code>`
 
 ```
 '''<any symbol>'''
 ```
 
-- &lt;real number&gt;
+- `<real number>`
 
 ```
 ['-'] <decimal number'.'[<decimal number>]
 ```
 
-- &lt;integer number&gt;
+- `<integer number>`
 
 ```
 ['-'] <decimal number> | <symbol code>
 ```
 
-- &lt;number&gt;
+- `<number>`
 
 ```
 '<integer number> | <real number>'
 ```
 
-- &lt;letter&gt;
+- `<letter>`
 
 ```
 'A' |'B' | ... |'Z' |'a' |'b' | ... |'z' | 0x80 | 0x81 | ... | 0xFF
 ```
 
-- &lt;space&gt;
+- `<space>`
 
 ```
 '0x20'
 ```
 
-- &lt;tabulation&gt;
+- `<tabulation>`
 
 ```
 '0x09'
 ```
 
-- &lt;newline&gt;
+- `<newline>`
 
 ```
 '0x0D 0x0A'
 ```
 
-- &lt;special symbol&gt;
+- `<special symbol>`
 
 ```
 '!' |'"' |'$' |''' |'(' |')' |'\*' |'+' |',' |'-' |'.' |'/ '|'<' |'=' |'>' |'[' |'\\' |']' |'_' |'|' |'}' | '{' | <tabulation> | <space> | <newline>
 ```
 
-- &lt;symbol&gt;
+- `<symbol>`
 
 ```
 <decimal digit> | <letter> | <special symbol>
 ```
 
-- &lt;name&gt;
+- `<name>`
 
 ```
 (<letter> |'_') {<letter> |'_' | <decimal digit>}
 ```
 
-- &lt;function name&gt;
+- `<function name>`
 
 ```
 <name>
 ```
 
-- &lt;variable name&gt;
+- `<variable name>`
 
 ```
 <name>
 ```
 
-- &lt;type name&gt;
+- `<type name>`
 
 ```
 <name>
 ```
 
-- &lt;string symbol&gt;
+- `<string symbol>`
 
 ```
 <tabulation> | <space> |'!' |'#' | ... |'[' |']' | ...
 ```
 
-- &lt;string element&gt;
+- `<string element>`
 
 ```
 {<string symbol> |'\"' |'\n' |'\r'}
 ```
 
-- &lt;string&gt;
+- `<string>`
 
 ```
 '"' {<string element>}'"' |'\`' {<string element>}'\`'
 ```
 
-- &lt;assignment operator&gt;
+- `<assignment operator>`
 
 ```
 '='
 ```
 
-- &lt;unary operator&gt;
+- `<unary operator>`
 
 ```
 '-'
 ```
 
-- &lt;binary operator&gt;
+- `<binary operator>`
 
 ```
 '==' |'!=' |'>' |'<' |'<=' |'>=' |'&&' |'||' |'\*' |'/' |'+ '|'-'
 ```
 
-- &lt;operator&gt;
+- `<operator>`
 
 ```
 <assignment operator> | <unary operator> | <binary operator>
 ```
 
-- &lt;parameters&gt;
+- `<parameters>`
 
 ```
 <expression> {','<expression>}
 ```
 
-- &lt;contract call&gt;
+- `<contract call>`
 
 ```
 <contract name>'(' [<parameters>]')'
 ```
 
-- &lt;function call&gt;
+- `<function call>`
 
 ```
 <contract call> [{'.' <name>'(' [<parameters>]')'}]
 ```
 
-- &lt;block contents&gt;
+- `<block contents>`
 
 ```
 <block command> {<newline><block command>}
 ```
 
-- &lt;block&gt;
+- `<block>`
 
 ```
 '{'<block contents>'}'
 ```
 
-- &lt;block command&gt;
+- `<block command>`
 
 ```
 (<block> | <expression> | <variables definition> | <if> | <while> | break | continue | return)
 ```
 
-- &lt;if&gt;
+- `<if>`
 
 ```
 'if <expression><block> [else <block>]'
 ```
 
-- &lt;while&gt;
+- `<while>`
 
 ```
 'while <expression><block>'
 ```
 
-- &lt;contract&gt;
+- `<contract>`
 
 ```
 'contract <name> '{'[<data section>] {<function>} [<conditions>] [<action>]'}''
 ```
 
-- &lt;data section&gt;
+- `<data section>`
 
 ```
 'data '{' {<data parameter><newline>} '}''
 ```
 
-- &lt;data parameter&gt;
+- `<data parameter>`
 
 ```
 <variable name> <type name>'"'{<tag>}'"'
 ```
 
-- &lt;tag&gt;
+- `<tag>`
 
 ```
 'optional | image | file | hidden | text | polymap | map | address | signature:<name>'
 ```
 
-- &lt;conditions&gt;
+- `<conditions>`
 
 ```
 'conditions <block>'
 ```
 
-- &lt;action&gt;
+- `<action>`
 
 ```
 'action <block>'
 ```
 
-- &lt;function&gt;
+- `<function>`
 
 ```
 'func <function name>'('[<variable description>{','<variable description>}]')'[{<tail>}] [<type name>] <block>'
 ```
 
-- &lt;variable description&gt;
+- `<variable description>`
 
 ```
 <variable name> {',' <variable name>} <type name>
 ```
 
-- &lt;tail&gt;
+- `<tail>`
 
 ```
 '.'<function name>'('[<variable description>{','<variable description>}]')'
 ```
 
-- &lt;variables definition&gt;
+- `<variables definition>`
 
 ```
 'var <variable description>{','<variable description>}'
