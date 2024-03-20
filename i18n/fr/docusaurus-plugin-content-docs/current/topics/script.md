@@ -156,7 +156,7 @@ of three sections:
 3. **action** - [action section](#action-section), where defines the data
    manipulations.
 
-```
+```go
 contract MyContract {
   data {
     FromId int
@@ -184,16 +184,14 @@ The structure of each line by sequence:
   variable;
 - optional - an optional parameter that do not need to fill in the form element.
 
-```
+```go
 contract my {
   data {
-  Name string
-  RequestId int
-  Photo file "optional"
-  Amount money
-  Private bytes
+    Name string
+    RequestId int
+    Photo file "optional"
+    Amount money
   }
-  ...
 }
 ```
 
@@ -206,7 +204,7 @@ warning errors `warning`, suggestive errors `info`. These three commands will
 generate an error that terminates the execution of contracts, and each error
 will print a different type of error log information. For example:
 
-```
+```go
 if fuel == 0 {
     error "fuel cannot be zero!"
 }
@@ -223,10 +221,10 @@ if idexist > 0 {
 The `action` section describes the main code of the contract, which retrieves
 other data and records the result values in tables. For example:
 
-```
+```go
 action {
-DBUpdate("keys", $key_id, {"-amount": $amount})
-DBUpdate("keys", $recipient, {"+amount": $amount, "pub": $Pub})
+    DBUpdate("keys", $key_id, {"-amount": $amount})
+    DBUpdate("keys", $recipient, {"+amount": $amount})
 }
 ```
 
@@ -273,7 +271,7 @@ block information are always equal to zero, such as `$time`, `$block`, etc.
 A predefined variable `$result` is assigned with the return result of the
 contract.
 
-```
+```go
 contract my {
  data {
      Name string
