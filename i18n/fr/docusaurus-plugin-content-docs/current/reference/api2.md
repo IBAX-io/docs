@@ -967,7 +967,6 @@ ecosystem. You can specify columns to be returned.
 - `columns` [Omitempty](#omitempty)
 
   > The list of request columns is separated by commas. If it is not specified,> all columns will be returned. In all cases, the `id` column will be
-  > > returned.
 
 - `where` [Omitempty](#omitempty)
 
@@ -1049,7 +1048,6 @@ processing
 - `columns` [Omitempty](#omitempty)
 
   > The list of request columns is separated by commas. If it is not specified,> all columns will be returned. In all cases, the `id` column will be
-  > > returned.
 
 - `where` [Omitempty](#omitempty)
 
@@ -2267,7 +2265,6 @@ POST
   > > - `blockid`
   > >
   > >   > If the transaction is executed successfully, the block ID will be> > > returned. If the transaction fails, the _blockid_ will be
-  > >   > > > > `[0]{.title-ref}`.
   > >
   > > - `result`
   > >
@@ -2449,7 +2446,6 @@ Returns the number of nodes to be validated for the specified page.
 - `name`
 
   > Page name with ecosystem ID in the format `@ecosystem_id%%page_name%`, for> example `@1main_page`. If you don't have an ecosystem ID, then search in the
-  > > first ecosystem page by default
 
 ```text
 GET

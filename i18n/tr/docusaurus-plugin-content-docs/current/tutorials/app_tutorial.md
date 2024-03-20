@@ -390,7 +390,6 @@ code to allow the page to display data from `apptable`.
 
    > In the following example, this function call is used to fetch data from
    > `apptable`. The data will be put it in the source `src_table` and sorted by> the timestamp field. `src_table` will be later used as the data source for
-   > > the page in table view.
    >
    > ```js
    > DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp)
