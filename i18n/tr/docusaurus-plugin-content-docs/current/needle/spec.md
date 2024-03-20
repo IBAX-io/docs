@@ -319,8 +319,6 @@ of constants, variables, operators, and functions. A definite value can be
 obtained after calculation. The expression does not change the value, it just
 calculates a value.
 
-> `Expression` = `CodeBlockStmt`
-
 Some examples of expressions, not limited to:
 
 - Literals, including string literals, numeric literals, such as: `100`, `3.14`,
@@ -342,8 +340,8 @@ flow.
 ### Identifier {#spec-identifier}
 
 Identifiers are used to identify variables, functions, constants, and other
-program names. Identifiers are composed of one or more letters, numbers, and
-underscores, and must begin with a letter. Identifiers cannot contain spaces and
+program names. Identifiers are composed of one or more letters `A|a` to `Z|z`, numbers `0` to `9`, and
+underscores `_`, and must begin with a letter. Identifiers cannot contain spaces and
 special characters. Identifiers are case-sensitive and cannot use
 [keywords](#spec-keyword) as identifiers.
 
@@ -811,13 +809,6 @@ if a > b {
     Println("b is greater than a")
 }
 ```
-
-:::tip
-
-You should note that the boolean expression in the `if` statement does not
-require parentheses `()`.
-
-:::
 
 #### while statement {#while-statement}
 
