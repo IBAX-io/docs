@@ -63,7 +63,6 @@
 > > 2. distributed storage of blockchain copies in peer-to-peer networks;
 > > 3. synchronization of blockchains on all nodes using a consensus mechanism;
 > > 4. ensuring data reliability when performing data operations using the> > network with algorithms that store data transmissions and process
-> >    > > contracts in the blockchain.
 
 ### Peer-to-peer network {#peer-to-peer-network}
 

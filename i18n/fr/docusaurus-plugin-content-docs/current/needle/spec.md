@@ -691,7 +691,7 @@ types:
 |                                   | decimal | int     | decimal | y to decimal                        |
 |                                   | decimal | float   | decimal | y to decimal                        |
 |                                   | decimal | decimal | decimal |                                     |
-| `&&`,`\\|\\|`                     |         |         | bool    | x to bool, y to bool                |
+| `&&`,\`\\                         |         |         | bool    | x to bool, y to bool                |
 | `==` ,`!=` ,`<`,`<=`,`>`,`>=`     | nil     | nil     | bool    | only(`==` ,`!=`) |
 |                                   | bool    | bool    | bool    | only(`==` ,`!=`) |
 |                                   | string  | string  | bool    |                                     |
