@@ -1,34 +1,8 @@
 # FAQ {#faq}
 
-- [1. Please briefly describe IBAX?](#question-1)
-- [2. Is IBAX applicable for Bitcoin, Ethereum or other blockchains?](#question-2)
-- [3. What are the main differences between IBAX and other public blockchain platforms with built-in mechanisms for executing smart contracts?](#question-3)
-- [4. Do you have your own cryptocurrency?](#question-4)
-- [5. What is a honor node and who can maintain it?](#question-5)
-- [6. What is a platform ecosystem?](#question-6)
-- [7. Who can create an ecosystem?](#question-7)
-- [8. How do users become members of the ecosystem?](#question-8)
-- [9. Can one user create multiple ecosystems?](#question-9)
-- [10. What is a platform application?](#question-10)
-- [11. What programming language is used to create the application?](#question-11)
-- [12. What software is used to create applications and interact with users?](#question-12)
-- [13. Can platform contracts use third-party APIs to access data?](#question-13)
-- [14. Can the contract stored in the blockchain be changed?](#question-14)
-- [15. What is smart law?](#question-15)
-- [16. Can the contract call and execute other contracts?](#question-16)
-- [17. Does the application run with a master contract?](#question-17)
-- [18. Can the application be localized for different languages?](#question-18)
-- [19. Can I create a page without using a template language?](#question-19)
-- [20. Are the pages stored in the blockchain?](#question-20)
-- [21. What types of databases can be used for contract operations?](#question-21)
-- [22. How to manage access to the data in the database table?](#question-22)
-- [23. Can an application in an ecosystem exchange data with other applications from another ecosystem?](#question-23)
-- [24. Should all applications in a new ecosystem be written from scratch?](#question-24)
-- [25. Are there any fees for the operation of applications?](#question-25)
-- [26. Who pays for the operation of applications?](#question-26)
-- [27. How to protect the applications in the ecosystem from attacks due to vulnerabilities?](#question-27)
-- [28. What new features will be implemented in future plans?](#question-28)
-- [29. How to prove its operability?](#question-29)
+import TOCInline from '@theme/TOCInline';
+
+<TOCInline toc={toc} />
 
 ## 1. Please briefly describe IBAX? {#question-1}
 
