@@ -1,8 +1,8 @@
 # Foire aux questions {#faq}
 
 - [1. Veuillez décrire brièvement IBAX?](#question-1)
-- [2. IBax s'applique-t-il au Bitcoin, à l'Ethereum ou à d'autres blockchains ?](#question-2)
-- [3. Quelles sont les principales différences entre IBax et les autres plateformes de blockchain publique avec des mécanismes intégrés pour l'exécution de contrats intelligents ?](#question-3)
+- [2. IBAX s'applique-t-il au Bitcoin, à l'Ethereum ou à d'autres blockchains ?](#question-2)
+- [3. Quelles sont les principales différences entre IBAX et les autres plateformes de blockchain publique avec des mécanismes intégrés pour l'exécution de contrats intelligents ?](#question-3)
 - [4. Avez-vous votre propre cryptomonnaie ?](#question-4)
 - [5. Qu'est-ce qu'un nœud d'honneur et qui peut en assurer la maintenance ?](#question-5)
 - [6. Qu'est-ce qu'un écosystème de plateforme ?](#question-6)
@@ -34,13 +34,13 @@
 
 - Il s'agit d'une plateforme blockchain qui vise à construire un écosystème numérique basé sur un environnement de développement d'applications intégré qui dispose d'un système de permission à plusieurs niveaux pour gérer les droits d'accès aux données, aux interfaces et aux contrats intelligents.
 
-## 2. IBax est-il applicable à Bitcoin, Ethereum ou d'autres blockchains ? {#question-2}
+## 2. IBAX est-il applicable à Bitcoin, Ethereum ou d'autres blockchains ? {#question-2}
 
-- Non applicable. IBax est construit sur la base de sa propre blockchain originale.
+- Non applicable. IBAX est construit sur la base de sa propre blockchain originale.
 
-## 3. Quelles sont les principales différences entre IBax et d'autres plateformes blockchain publiques avec des mécanismes intégrés pour l'exécution de contrats intelligents ? {#question-3}
+## 3. Quelles sont les principales différences entre IBAX et d'autres plateformes blockchain publiques avec des mécanismes intégrés pour l'exécution de contrats intelligents ? {#question-3}
 
-- IBax possède des fonctionnalités uniques qui ne se trouvent pas dans les blockchains mentionnées ci-dessus :
+- IBAX possède des fonctionnalités uniques qui ne se trouvent pas dans les blockchains mentionnées ci-dessus :
   - dispose d'un environnement de développement d'applications intégré dans un logiciel client unique ;
   - le langage de modèle spécial Logicor pour la conception de pages et le langage de contrat intelligent Needle se coordonnent entre eux ;
   - possède un système de permission à plusieurs niveaux pour gérer les droits d'accès aux données, aux interfaces et aux contrats intelligents, dans lequel les permissions peuvent être accordées aux membres, aux rôles et aux contrats intelligents ;
@@ -49,12 +49,12 @@
 
 ## 4. Avez-vous votre propre cryptomonnaie? {#question-4}
 
-- Oui, IBax utilise son propre jeton, IBXC.
+- Oui, IBAX utilise son propre jeton, IBXC.
 
 ## 5. Qu'est-ce qu'un nœud d'honneur et qui peut le maintenir? {#question-5}
 
 - Le nœud d'honneur est le nœud du réseau qui a l'autorité de vérifier les transactions et de générer de nouveaux blocs.
-- Tout nœud du réseau avec une puissance de traitement suffisante et une tolérance aux pannes peut devenir un nœud d'honneur. IBax utilise un mécanisme de consensus appelé Preuve d'Autorité (PoA).
+- Tout nœud du réseau avec une puissance de traitement suffisante et une tolérance aux pannes peut devenir un nœud d'honneur. IBAX utilise un mécanisme de consensus appelé Preuve d'Autorité (PoA).
   Les nœuds peuvent devenir des nœuds de vérification en fonction des votes de l'écosystème, mais seuls les écosystèmes prouvés par le propriétaire du jeton de la plateforme comme ayant des capacités opérationnelles normales peuvent participer à de tels votes. En utilisant cet algorithme d'autorisation, le nœud maître est géré par les principaux écosystèmes car il est dans leur intérêt de maintenir le fonctionnement du réseau.
 
 ## 6. Qu'est-ce qu'un écosystème de plateforme? {#question-6}
@@ -180,4 +180,4 @@ Portefeuille exclusif de l'écosystème > Créateur de l'écosystème > Partie l
 
 ## 29. Comment prouver son fonctionnement? {#question-29}
 
-- Un certain nombre de projets et de cas de preuve de concept ont été mis en œuvre sur le réseau IBax : un système de collecte de taxes socialisées et de génération et de circulation de factures électroniques, un système de supervision des appareils médicaux et des instruments, un système de prévention de la contrefaçon et de traçabilité, un système de financement et de supervision, un système de vote/sondage, d'enregistrement des entreprises, d'outils de financement du commerce, de gestion des contrats d'enregistrement des actifs, etc.
+- Un certain nombre de projets et de cas de preuve de concept ont été mis en œuvre sur le réseau IBAX : un système de collecte de taxes socialisées et de génération et de circulation de factures électroniques, un système de supervision des appareils médicaux et des instruments, un système de prévention de la contrefaçon et de traçabilité, un système de financement et de supervision, un système de vote/sondage, d'enregistrement des entreprises, d'outils de financement du commerce, de gestion des contrats d'enregistrement des actifs, etc.
