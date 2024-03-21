@@ -1,34 +1,8 @@
 # Foire aux questions {#faq}
 
-- [1. Veuillez décrire brièvement IBAX?](#question-1)
-- [2. IBAX s'applique-t-il au Bitcoin, à l'Ethereum ou à d'autres blockchains ?](#question-2)
-- [3. Quelles sont les principales différences entre IBAX et les autres plateformes de blockchain publique avec des mécanismes intégrés pour l'exécution de contrats intelligents ?](#question-3)
-- [4. Avez-vous votre propre cryptomonnaie ?](#question-4)
-- [5. Qu'est-ce qu'un nœud d'honneur et qui peut en assurer la maintenance ?](#question-5)
-- [6. Qu'est-ce qu'un écosystème de plateforme ?](#question-6)
-- [7. Qui peut créer un écosystème ?](#question-7)
-- [8. Comment les utilisateurs deviennent-ils membres de l'écosystème ?](#question-8)
-- [9. Un utilisateur peut-il créer plusieurs écosystèmes ?](#question-9)
-- [10. Qu'est-ce qu'une application de plateforme ?](#question-10)
-- [11. Quel langage de programmation est utilisé pour créer l'application ?](#question-11)
-- [12. Quel logiciel est utilisé pour créer des applications et interagir avec les utilisateurs ?](#question-12)
-- [13. Les contrats intelligents de la plateforme peuvent-ils utiliser des API tierces pour accéder aux données ?](#question-13)
-- [14. Le contrat intelligent stocké dans la blockchain peut-il être modifié ?](#question-14)
-- [15. Qu'est-ce que le droit intelligent (smart law) ?](#question-15)
-- [16. Le contrat intelligent peut-il appeler et exécuter d'autres contrats intelligents ?](#question-16)
-- [17. L'application fonctionne-t-elle avec un contrat intelligent maître ?](#question-17)
-- [18. L'application peut-elle être localisée pour différentes langues ?](#question-18)
-- [19. Puis-je créer une page sans utiliser de langage de modèle ?](#question-19)
-- [20. Les pages sont-elles stockées dans la blockchain ?](#question-20)
-- [21. Quels types de bases de données peuvent être utilisés pour les opérations de contrat intelligent ?](#question-21)
-- [22. Comment gérer l'accès aux données dans la table de base de données ?](#question-22)
-- [23. Une application dans un écosystème peut-elle échanger des données avec d'autres applications provenant d'un autre écosystème ?](#question-23)
-- [24. Toutes les applications dans un nouvel écosystème doivent-elles être écrites à partir de zéro ?](#question-24)
-- [25. Y a-t-il des frais pour le fonctionnement des applications ?](#question-25)
-- [26. Qui paie pour le fonctionnement des applications ?](#question-26)
-- [27. Comment protéger les applications de l'écosystème contre les attaques dues à des vulnérabilités ?](#question-27)
-- [28. Quelles nouvelles fonctionnalités seront mises en œuvre dans les plans futurs ?](#question-28)
-- [29. Comment prouver son opérabilité ?](#question-29)
+import TOCInline from '@theme/TOCInline';
+
+<TOCInline toc={toc} />
 
 ## 1. Veuillez décrire brièvement IBAX? {#question-1}
 
