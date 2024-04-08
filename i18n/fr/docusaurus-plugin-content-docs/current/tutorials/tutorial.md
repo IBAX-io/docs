@@ -236,7 +236,7 @@ Dans ce tutoriel, vous apprendrez comment :
 - 3. [Créer une table](#step-3-create-table)
 - 4. [Créer des paramètres d'application](#step-4-create-application-parameters)
 - 5. [Créer et déployer un contrat](#step-5-create-contract-deploy-contract)
-- 6. [Créer des paramètres écologiques](#step-6-create-ecological-parameters)
+- 6. [Créer des paramètres écologiques](#step-6-create-ecosystem-parameters)
 - 7. [Ajouter la localisation](#step-7-add-localization)
 - 8. [Modifier le contrat](#step-8-modify-the-contract)
 - 9. [Modifier les autorisations de la table de données](#step-9-modify-data-table-permissions)

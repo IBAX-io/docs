@@ -179,7 +179,7 @@ Diğer onur düğümlerinde yeni blokları doğrulama adımları:
     – yeni bloğun uygun şekilde imzalanıp imzalanmadığı.
 
 2. Bloktan işlemleri tek tek gerçekleştirin. İşlemlerin başarılı bir şekilde ve
-   [blok oluşturma sınırları](../reference/platform-parameters.md#configure-the-generasyon-of-blocks)
+   [blok oluşturma sınırları](../reference/platform-parameters.md#configure-the-generation-of-blocks)
    dahilinde yürütülüp yürütülmediğini kontrol edin.
 
 3. Önceki adıma bağlı olarak bloğu ekleyin veya reddedin:

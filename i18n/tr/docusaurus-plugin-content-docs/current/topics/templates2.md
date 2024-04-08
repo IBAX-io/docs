@@ -876,7 +876,7 @@ Data(Source,Columns,Data)
 
 ### Custom {#custom}
 
-    Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları genellikle [Tablo](#tablo)'ya ve veri almak için diğer işlevlere atanır.
+    Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları genellikle [Tablo](#table)'ya ve veri almak için diğer işlevlere atanır.
      Birden çok hesaplanmış sütun atamak istiyorsanız, birden çok Özel işlev kullanın.
 
 - `Column`
@@ -1038,7 +1038,7 @@ alan değerini içerir.
 
 Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa
 düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları
-genellikle [Tablo](#tablo)'ya ve veri almak için diğer işlevlere atanır. Birden
+genellikle [Tablo](#table)'ya ve veri almak için diğer işlevlere atanır. Birden
 çok hesaplanmış sütun atamak istiyorsanız, birden çok Özel işlev kullanın.
 
 - `Column`
@@ -1167,7 +1167,7 @@ EcosysParam(Name, Index, Source)
 
   Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir. Öğeleri
   belirtilen parametrelerin değerleri olan bir veri nesnesi oluşturun. Bu nesne,
-  [Tablo](#tablo) ve [Seç](#seç) işlevleri için bir veri kaynağı olarak
+  [Tablo](#table) ve [Seç](#select) işlevleri için bir veri kaynağı olarak
   kullanılabilir. Index parametresi ile birlikte kullanılamaz.
 
 ```
@@ -1299,7 +1299,7 @@ SetVar(coltype,GetColumnType(members, member_name))Div(){#coltype#}
 Bir gethistory öğesi oluşturun ve bunu belirtilen tablodaki girişlerin geçmiş
 değişiklik kayıtlarıyla doldurun. Oluşturulan veriler, daha sonra kaynak giriş
 işlevinde kullanılabilecek olan Kaynak öğesine yerleştirilecektir (örneğin,
-[Tablo](#tablo)). Dizi, son değiştirilenden itibaren sıralanır. Dizideki kimlik
+[Tablo](#table)). Dizi, son değiştirilenden itibaren sıralanır. Dizideki kimlik
 alanı, rollback_tx tablosunun kimliğini gösterir. block_id, blok kimliğini
 temsil eder, blok_zamanı, blok oluşturma zaman damgasını temsil eder.
 
@@ -1644,7 +1644,7 @@ InputMap(Name: Coords,Type: polygon, MapType: hybrid, Value: `{"zoom":8, "center
 
 Bir jsontosource öğesi oluşturun ve onu bir JSON dizisinin anahtar/değer
 çiftleriyle doldurun. Elde edilen veriler, daha sonra kaynak giriş işlevinde
-kullanılabilecek olan Kaynak öğesine yerleştirilir (ör. [Tablo](#tablo)). Sonuç
+kullanılabilecek olan Kaynak öğesine yerleştirilir (ör. [Tablo](#table)). Sonuç
 verilerindeki kayıtlar JSON anahtarına göre alfabetik olarak sıralanır.
 
 **Syntax**
@@ -2037,7 +2037,7 @@ RadioGroup(Name: type_decision, Source: numbers_type_decisions, NameColumn: name
 
 Bir aralık öğesi oluşturun, tamsayı öğelerini doldurmak için Adımdan Şuna (Kime
 dahil değil) adım boyutunu kullanın. Oluşturulan veriler Kaynağa konulacak ve
-daha sonra kaynak girişinin işlevinde kullanılabilir (ör. [Tablo](#tablo)).
+daha sonra kaynak girişinin işlevinde kullanılabilir (ör. [Tablo](#table)).
 Geçersiz bir parametre belirtilirse, boş bir Kaynak döndürülür.
 
 **Syntax**

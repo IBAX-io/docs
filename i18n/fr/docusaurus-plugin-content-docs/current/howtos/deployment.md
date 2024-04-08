@@ -1,4 +1,4 @@
-# Déploiement d'un réseau IBAX {#deployment-of-a-ibax-network}
+# Déploiement d'un réseau IBAX
 
 Dans cette section, nous vous montrerons comment déployer votre propre réseau
 blockchain.
@@ -48,38 +48,37 @@ tableau suivant :
 
 Votre propre réseau blockchain doit être déployé en plusieurs étapes:
 
-- [Déploiement d'un réseau IBAX](#deployment-of-a-ibax-network)
-  - [Exemple de déploiement](#an-deployment-example)
-  - [Phase de déploiement](#deploy-phase)
-  - [Déploiement du serveur](#server-deployment)
-    - [Déploiement du premier nœud](#deploy-the-first-node)
-    - [Dépendances et paramètres d'environnement](#dependencies-and-environment-settings)
-      - [sudo](#sudo)
-    - [Golang](#golang)
-    - [PostgreSQL](#postgresql)
-    - [Centrifugo](#centrifugo)
-    - [Structure des répertoires](#directory-structure)
-    - [Créer une base de données](#create-a-database)
-    - [Configurer Centrifugo](#configure-centrifugo)
-    - [Installer go-ibax](#install-go-ibax)
-    - [Configurer le premier nœud](#configure-the-first-node)
-    - [Initialiser le serveur du premier nœud](#initiate-the-first-node-server)
-  - [Déploiement des autres nœuds](#deploy-other-nodes)
-    - [Nœud 2](#node-2)
-    - [Nœud 3](#node-3)
-  - [Déploiement de l'interface utilisateur](#front-end-deployment)
-    - [Prérequis logiciels](#software-prerequisites)
-    - [Construire une application Weaver](#build-a-weaver-application)
-    - [Ajouter le fichier de configuration pour le réseau blockchain](#add-the-configuration-file-for-the-blockchain-network)
-    - [Construire l'application Weaver Web](#build-weaver-web-application)
-  - [Configurer le réseau blockchain](#configure-the-blockchain-network)
-    - [Créer le compte créateur](#create-the-creator-account)
-    - [Importer les applications, les rôles et les modèles](#import-applications-roles-and-templates)
-    - [Ajouter le premier nœud à la liste des nœuds](#add-the-first-node-to-the-node-list)
-  - [Ajouter d'autres nœuds d'honneur](#add-other-honor-nodes)
-    - [Ajouter des membres au groupe de rôles du consensus](#add-members-into-the-consensus-role-group)
-    - [Créer le compte propriétaire pour les autres nœuds](#create-the-owner-account-for-other-nodes)
-    - [Assigner au propriétaire du nœud le rôle de validateur](#assign-the-node-owner-with-the-validators-role)
+- [Exemple de déploiement](#an-deployment-example)
+- [Phase de déploiement](#deploy-phase)
+- [Déploiement du serveur](#server-deployment)
+   - [Déploiement du premier nœud](#deploy-the-first-node)
+   - [Dépendances et paramètres d'environnement](#dependencies-and-environment-settings)
+   - [sudo](#sudo)
+   - [Golang](#golang)
+   - [PostgreSQL](#postgresql)
+   - [Centrifugo](#centrifugo)
+   - [Structure des répertoires](#directory-structure)
+   - [Créer une base de données](#create-a-database)
+   - [Configurer Centrifugo](#configure-centrifugo)
+   - [Installer go-ibax](#install-go-ibax)
+   - [Configurer le premier nœud](#configure-the-first-node)
+   - [Initialiser le serveur du premier nœud](#initiate-the-first-node-server)
+- [Déploiement des autres nœuds](#deploy-other-nodes)
+   - [Nœud 2](#node-2)
+   - [Nœud 3](#node-3)
+- [Déploiement de l'interface utilisateur](#front-end-deployment)
+   - [Prérequis logiciels](#software-prerequisites)
+   - [Construire une application Weaver](#build-a-weaver-application)
+   - [Ajouter le fichier de configuration pour le réseau blockchain](#add-the-configuration-file-for-the-blockchain-network)
+   - [Construire l'application Weaver Web](#build-weaver-web-application)
+- [Configurer le réseau blockchain](#configure-the-blockchain-network)
+   - [Créer le compte créateur](#create-the-creator-account)
+   - [Importer les applications, les rôles et les modèles](#import-applications-roles-and-templates)
+   - [Ajouter le premier nœud à la liste des nœuds](#add-the-first-node-to-the-node-list)
+- [Ajouter d'autres nœuds d'honneur](#add-other-honor-nodes)
+   - [Ajouter des membres au groupe de rôles du consensus](#add-members-into-the-consensus-role-group)
+   - [Créer le compte propriétaire pour les autres nœuds](#create-the-owner-account-for-other-nodes)
+   - [Assigner au propriétaire du nœud le rôle de validateur](#assign-the-node-owner-with-the-validators-role)
 
 ## Déploiement du serveur {#server-deployment}
 
@@ -306,7 +305,7 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
  --config=/opt/backenddir/node1/config.toml
 ```
 
-###Initialiser le premier serveur de nœuds {#initiate-the-first-node-server}
+### Initialiser le premier serveur de nœuds {#initiate-the-first-node-server}
 
 Pour démarrer le premier serveur de nœuds, vous devez démarrer les deux services
 suivants :

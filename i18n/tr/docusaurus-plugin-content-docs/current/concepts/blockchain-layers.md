@@ -1,13 +1,12 @@
-# The IBAX Network {#the-ibax-network}
+# The IBAX Network
 
 Bu bölümde size IBAX'ın nasıl kullanılacağını anlatacağız.
 
-- [The IBAX Network](#the-ibax-network)
-  - [Uygulama geliştiricileri](#application-developers)
-  - [ECOLIB üyeleri](#ecolib-members)
-  - [ECOLIB uygulamalar ve platform uygulamaları](#ecolib-applications-and-platform-applications)
-  - [Temel model](#underlying-model)
-  - [Uygulama](#implementation)
+- [Uygulama geliştiricileri](#application-developers)
+- [ECOLIB üyeleri](#ecolib-members)
+- [ECOLIB uygulamalar ve platform uygulamaları](#ecolib-applications-and-platform-applications)
+- [Temel model](#underlying-model)
+- [Uygulama](#implementation)
 
 IBAX'teki uygulamaların geliştirilmesi, kullanımı veya yönetimi ile
 ilgileniyorsanız, bunu hiç anlamanız gerekmeyebilir.

@@ -1363,7 +1363,7 @@ GET/ Ekosistem parametrelerinin listesini döndürür.
 
 ### `ecosystemparam/{name}` {#ecosystemparam-name}
 
-GET/ Geçerli veya belirtilen ekosistemdeki {name} parametresiyle ilgili
+GET/ Geçerli veya belirtilen ekosistemdeki `{name}` parametresiyle ilgili
 bilgileri döndürür.
 
 **İstek**

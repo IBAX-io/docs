@@ -869,7 +869,7 @@ CodeAsIs( P(This is the #test1#.
 
 Créez un élément de données, remplissez-le avec les données spécifiées et
 placez-le dans Source. Ensuite, vous pouvez recevoir Source en tant qu'entrée de
-données dans [Tableau](#tableau) et d'autres fonctions. La séquence des noms de
+données dans [Tableau](#table) et d'autres fonctions. La séquence des noms de
 colonnes correspond à la séquence des valeurs de saisie des données.
 
 **Syntaxe**
@@ -1698,7 +1698,7 @@ InputMap(Name: Coords,Type: polygon, MapType: hybrid, Value: `{"zoom":8, "center
 Créez un élément jsontosource et remplissez-le avec les paires clé-valeur d'un
 tableau JSON. Les données obtenues sont placées dans l'élément Source, qui peut
 être utilisé ultérieurement dans la fonction d'entrée source (par exemple,
-[Tableau](#tableau)).
+[Tableau](#table)).
 
 Les enregistrements dans les données résultantes sont triés alphabétiquement par
 clé JSON.
@@ -2106,7 +2106,7 @@ RadioGroup(Name: type_decision, Source: numbers_type_decisions, NameColumn: name
 Créez un élément de plage, utilisez une taille de pas Step de De à À (sans
 inclure À) pour remplir les éléments entiers. Les données générées seront
 placées dans Source et pourront être utilisées ultérieurement dans la fonction
-de l'entrée source (par exemple, [Tableau](#tableau)). Si un paramètre invalide
+de l'entrée source (par exemple, [Tableau](#table)). Si un paramètre invalide
 est spécifié, une Source vide est renvoyée.
 
 **Syntaxe**

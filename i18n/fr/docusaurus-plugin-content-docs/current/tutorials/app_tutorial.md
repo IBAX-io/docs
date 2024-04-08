@@ -163,7 +163,7 @@ Créez une table de données :
 #### Code de contrat {#contract-code}
 
 Chaque contrat se compose de trois parties. Pour plus de détails, veuillez
-consulter : [Structure du contrat](../topics/script.md#structure-du-contrat).
+consulter : [Structure du contrat](../topics/script.md#contract-structure).
 
 #### Créer un contrat {#create-a-contract}
 

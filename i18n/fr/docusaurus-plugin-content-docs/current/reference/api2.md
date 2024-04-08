@@ -1282,7 +1282,7 @@ _E_ECOSYSTEM_
 
 [Authorization](#authorization)
 
-**GET**/ Renvoie des informations sur le paramètre **{name}** de l'application
+**GET**/ Renvoie des informations sur le paramètre **`{name}`** de l'application
 **`{appid}`** dans l'écosystème actuel ou spécifié.
 
 **Demande**
@@ -1411,7 +1411,7 @@ _E_ECOSYSTEM_
 
 [Authorization](#authorization)
 
-**GET**/ Renvoie des informations sur le paramètre **{name}** dans l'écosystème
+**GET**/ Renvoie des informations sur le paramètre **`{name}`** dans l'écosystème
 actuel ou spécifié.
 
 **Demande**

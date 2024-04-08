@@ -1,13 +1,12 @@
-# Le réseau IBAX {#the-ibax-network}
+# Le réseau IBAX
 
 Dans cette section, nous vous expliquerons comment utiliser IBAX.
 
-- [Le réseau IBAX](#the-ibax-network)
-  - [Développeurs d'applications](#application-developers)
-  - [Membres d'ECOLIB](#ecolib-members)
-  - [Applications ECOLIB et applications de plateforme](#ecolib-applications-and-platform-applications)
-  - [Modèle sous-jacent](#underlying-model)
-  - [Mise en œuvre](#implementation)
+- [Développeurs d'applications](#application-developers)
+- [Membres d'ECOLIB](#ecolib-members)
+- [Applications ECOLIB et applications de plateforme](#ecolib-applications-and-platform-applications)
+- [Modèle sous-jacent](#underlying-model)
+- [Mise en œuvre](#implementation)
 
 Si vous êtes intéressé par le développement, l'utilisation ou la gestion des
 applications dans IBAX, vous n'avez peut-être pas besoin de le comprendre du

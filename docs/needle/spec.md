@@ -26,7 +26,7 @@ In Needle language, the main code block structure includes
 Use the `contract` keyword to declare a smart contract, followed by the name of
 the smart contract, and its content must be enclosed in curly braces.
 
-> ContractStmt = "contract" [Identifier](#spec-identifier) >
+> `ContractStmt` = "contract" [Identifier](#spec-identifier)
 > [CodeBlockStmt](#spec-codeblock).
 
 Smart contract structure has three main parts: [Data](#spec-data),
@@ -587,17 +587,17 @@ variables.
 The following type names are reserved and cannot be used as identifiers,
 equivalent to the corresponding types in the Golang language.
 
-- **int** - int64, zero value is `0`.
-- **string** - string, zero value is `""`.
-- **float** - float64, zero value is `0.0`.
-- **bool** - bool, zero value is `false`.
-- **bytes** - []byte, zero value is `[]byte`.
-- **array** - []interface{}, zero value is `[]`.
-- **map** - map[string]interface{}, zero value is `map[]`.
-- **address** - int64, zero value is `0`.
+- **int** - `int64`, zero value is `0`.
+- **string** - `string`, zero value is `""`.
+- **float** - `float64`, zero value is `0.0`.
+- **bool** - `bool`, zero value is `false`.
+- **bytes** - `[]byte`, zero value is `[]byte`.
+- **array** - `[]interface{}`, zero value is `[]`.
+- **map** - `map[string]interface{}`, zero value is `map[]`.
+- **address** - `int64`, zero value is `0`.
 - **money** - [decimal.Decimal](https://github.com/shopspring/decimal), zero
   value is `0`.
-- **file** - map[string]interface{}, zero value is `map[]`.
+- **file** - `map[string]interface{}`, zero value is `map[]`.
 
 #### Object and array literals {#object-and-array-literals}
 

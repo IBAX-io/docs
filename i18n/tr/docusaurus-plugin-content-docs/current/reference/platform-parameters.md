@@ -1,4 +1,4 @@
-# Platform Parametreleri {#platform-parameters}
+# Platform Parametreleri
 
 Bunlar, IBAX'i yapılandırmak için kullanılan parametrelerdir. Blok zinciri ağına
 ve içindeki tüm ekosistemlere uygulanabilirler.
@@ -22,7 +22,7 @@ kullanabilirsiniz.
 
 Nodes:
 
-- [full nodes](#full-nodes)
+- [honor nodes](#honor-nodes)
 - [number of nodes](#number-of-nodes)
 
 Node bans:
@@ -108,87 +108,86 @@ Yeni elemanların fiyatı:
 
 <!-- TOC -->
 
-- [Platform Parameters](#platform-parameters)
-  - [Location to store platform parameters](#location-to-store-platform-parameters)
-  - [Change of platform parameters](#change-of-platform-parameters)
-  - [Configure platform parameters](#configure-platform-parameters)
-    - [Configure the blockchain network](#configure-the-blockchain-network)
-    - [Configure a new ecosystem](#configure-a-new-ecosystem)
-    - [Configure the database](#configure-the-database)
-    - [Configure the generation of blocks](#configure-the-generation-of-blocks)
-    - [Configure the fuel tokens](#configure-the-fuel-tokens)
-    - [Depreciated](#depreciated)
-  - [Details of platform parameters](#details-of-platform-parameters)
-    - [block reward](#block-reward)
-    - [blockchain url](#blockchain-url)
-    - [commission size](#commission-size)
-    - [commission wallet](#commission-wallet)
-    - [default ecosystem contract](#default-ecosystem-contract)
-    - [default ecosystem menu](#default-ecosystem-menu)
-    - [default ecosystem page](#default-ecosystem-page)
-    - [fuel rate](#fuel-rate)
-    - [price create rate](#price-create-rate)
-    - [full nodes](#full-nodes)
-    - [gap between blocks](#gap-between-blocks)
-    - [incorrect blocks per day](#incorrect-blocks-per-day)
-    - [max block generation time](#max-block-generation-time)
-    - [max block size](#max-block-size)
-    - [max columns](#max-columns)
-    - [max forsign size](#max-forsign-size)
-    - [max fuel block](#max-fuel-block)
-    - [max fuel tx](#max-fuel-tx)
-    - [max indexes](#max-indexes)
-    - [max tx block](#max-tx-block)
-    - [max tx block per user](#max-tx-block-per-user)
-    - [max tx size](#max-tx-size)
-    - [node ban time](#node-ban-time)
-    - [node ban time local](#node-ban-time-local)
-    - [number of nodes](#number-of-nodes)
-    - [price create ecosystem](#price-create-ecosystem)
-    - [price create application](#price-create-application)
-    - [price create table](#price-create-table)
-    - [price create column](#price-create-column)
-    - [price create contract](#price-create-contract)
-    - [price create menu](#price-create-menu)
-    - [price create page](#price-create-page)
-    - [price exec address to id](#price-exec-address-to-id)
-    - [price exec bind wallet](#price-exec-bind-wallet)
-    - [price exec column condition](#price-exec-column-condition)
-    - [price exec compile contract](#price-exec-compile-contract)
-    - [price exec contains](#price-exec-contains)
-    - [price exec contract by id](#price-exec-contract-by-id)
-    - [price exec contract by name](#price-exec-contract-by-name)
-    - [price exec contracts list](#price-exec-contracts-list)
-    - [price exec create column](#price-exec-create-column)
-    - [price exec create ecosystem](#price-exec-create-ecosystem)
-    - [price exec create table](#price-exec-create-table)
-    - [price exec ecosys param](#price-exec-ecosys-param)
-    - [price exec eval](#price-exec-eval)
-    - [price exec eval condition](#price-exec-eval-condition)
-    - [price exec flush contract](#price-exec-flush-contract)
-    - [price exec has prefix](#price-exec-has-prefix)
-    - [price exec id to address](#price-exec-id-to-address)
-    - [price exec is object](#price-exec-is-object)
-    - [price exec join](#price-exec-join)
-    - [price exec json to map](#price-exec-json-to-map)
-    - [price exec len](#price-exec-len)
-    - [price exec perm column](#price-exec-perm-column)
-    - [price exec perm table](#price-exec-perm-table)
-    - [price exec pub to id](#price-exec-pub-to-id)
-    - [price exec replace](#price-exec-replace)
-    - [price exec sha256](#price-exec-sha256)
-    - [price exec size](#price-exec-size)
-    - [price exec substr](#price-exec-substr)
-    - [price exec sys fuel](#price-exec-sys-fuel)
-    - [price exec sys param int](#price-exec-sys-param-int)
-    - [price exec sys param string](#price-exec-sys-param-string)
-    - [price exec table conditions](#price-exec-table-conditions)
-    - [price exec unbind wallet](#price-exec-unbind-wallet)
-    - [price exec update lang](#price-exec-update-lang)
-    - [price exec validate condition](#price-exec-validate-condition)
-    - [price tx data](#price-tx-data)
-    - [price tx size wallet](#price-tx-size-wallet)
-    - [rollback blocks](#rollback-blocks)
+- [Location to store platform parameters](#location-to-store-platform-parameters)
+- [Change of platform parameters](#change-of-platform-parameters)
+- [Configure platform parameters](#configure-platform-parameters)
+  - [Configure the blockchain network](#configure-the-blockchain-network)
+  - [Configure a new ecosystem](#configure-a-new-ecosystem)
+  - [Configure the database](#configure-the-database)
+  - [Configure the generation of blocks](#configure-the-generation-of-blocks)
+  - [Configure the fuel tokens](#configure-the-fuel-tokens)
+  - [Depreciated](#depreciated)
+- [Details of platform parameters](#details-of-platform-parameters)
+  - [block reward](#block-reward)
+  - [blockchain url](#blockchain-url)
+  - [commission size](#commission-size)
+  - [commission wallet](#commission-wallet)
+  - [default ecosystem contract](#default-ecosystem-contract)
+  - [default ecosystem menu](#default-ecosystem-menu)
+  - [default ecosystem page](#default-ecosystem-page)
+  - [fuel rate](#fuel-rate)
+  - [price create rate](#price-create-rate)
+  - [honor nodes](#honor-nodes)
+  - [gap between blocks](#gap-between-blocks)
+  - [incorrect blocks per day](#incorrect-blocks-per-day)
+  - [max block generation time](#max-block-generation-time)
+  - [max block size](#max-block-size)
+  - [max columns](#max-columns)
+  - [max forsign size](#max-forsign-size)
+  - [max fuel block](#max-fuel-block)
+  - [max fuel tx](#max-fuel-tx)
+  - [max indexes](#max-indexes)
+  - [max tx block](#max-tx-block)
+  - [max tx block per user](#max-tx-block-per-user)
+  - [max tx size](#max-tx-size)
+  - [node ban time](#node-ban-time)
+  - [node ban time local](#node-ban-time-local)
+  - [number of nodes](#number-of-nodes)
+  - [price create ecosystem](#price-create-ecosystem)
+  - [price create application](#price-create-application)
+  - [price create table](#price-create-table)
+  - [price create column](#price-create-column)
+  - [price create contract](#price-create-contract)
+  - [price create menu](#price-create-menu)
+  - [price create page](#price-create-page)
+  - [price exec address to id](#price-exec-address-to-id)
+  - [price exec bind wallet](#price-exec-bind-wallet)
+  - [price exec column condition](#price-exec-column-condition)
+  - [price exec compile contract](#price-exec-compile-contract)
+  - [price exec contains](#price-exec-contains)
+  - [price exec contract by id](#price-exec-contract-by-id)
+  - [price exec contract by name](#price-exec-contract-by-name)
+  - [price exec contracts list](#price-exec-contracts-list)
+  - [price exec create column](#price-exec-create-column)
+  - [price exec create ecosystem](#price-exec-create-ecosystem)
+  - [price exec create table](#price-exec-create-table)
+  - [price exec ecosys param](#price-exec-ecosys-param)
+  - [price exec eval](#price-exec-eval)
+  - [price exec eval condition](#price-exec-eval-condition)
+  - [price exec flush contract](#price-exec-flush-contract)
+  - [price exec has prefix](#price-exec-has-prefix)
+  - [price exec id to address](#price-exec-id-to-address)
+  - [price exec is object](#price-exec-is-object)
+  - [price exec join](#price-exec-join)
+  - [price exec json to map](#price-exec-json-to-map)
+  - [price exec len](#price-exec-len)
+  - [price exec perm column](#price-exec-perm-column)
+  - [price exec perm table](#price-exec-perm-table)
+  - [price exec pub to id](#price-exec-pub-to-id)
+  - [price exec replace](#price-exec-replace)
+  - [price exec sha256](#price-exec-sha256)
+  - [price exec size](#price-exec-size)
+  - [price exec substr](#price-exec-substr)
+  - [price exec sys fuel](#price-exec-sys-fuel)
+  - [price exec sys param int](#price-exec-sys-param-int)
+  - [price exec sys param string](#price-exec-sys-param-string)
+  - [price exec table conditions](#price-exec-table-conditions)
+  - [price exec unbind wallet](#price-exec-unbind-wallet)
+  - [price exec update lang](#price-exec-update-lang)
+  - [price exec validate condition](#price-exec-validate-condition)
+  - [price tx data](#price-tx-data)
+  - [price tx size wallet](#price-tx-size-wallet)
+  - [rollback blocks](#rollback-blocks)
 
 <!-- /TOC -->
 
@@ -204,7 +203,7 @@ Amortismana tabi tutulmuş parametreler:
 
 Bloğu oluşturan onur düğümüne verilen IBXC belirteçlerinin sayısı.
 
-Ödülü alan hesap, [full nodes](#full-nodes) parametresinde belirtilir.
+Ödülü alan hesap, [honor nodes](#honor-nodes) parametresinde belirtilir.
 
 ### blok zinciri url'i {#blockchain-url}
 
@@ -267,7 +266,7 @@ Ekosistem 2'nin bir jetonu 1.000 Fuel birimiyle değiştirilir.
 
 Yeni bir elemanın Fuel oranı.
 
-### tam nodelar {#full-nodes}
+### tam nodelar {#honor-nodes}
 
 Blockchain ağının honor nodelarının listesi.
 
@@ -370,7 +369,7 @@ gönderenin düğümünü yerel olarak yasaklar.
 
 ### düğüm sayısı {#number-of-nodes}
 
-[tam düğümler](#full-nodes) parametresindeki maksimum honor node sayısı.
+[tam düğümler](#honor-nodes) parametresindeki maksimum honor node sayısı.
 
 ### fiyat oluşturma ekosistemi {#price-create-ecosystem}
 
@@ -381,7 +380,7 @@ uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi i
 ücreti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
 Bu parametre fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
-dönüştürmek için [fuel oranı](#fuel-oranı) ve
+dönüştürmek için [fuel oranı](#fuel-rate) ve
 [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
 ### fiyat oluşturma uygulaması {#price-create-application}

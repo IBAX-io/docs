@@ -49,7 +49,7 @@ A virtual machine is organized in memory as a structure like below.
 
 ```go
 type VM struct {
-   *compile.CodeBlock
+   *compiler.CodeBlock
    ExtCost func(string) int64
    FuncCallsDB map[string]struct{}
    Extern bool
@@ -187,7 +187,7 @@ The **ContractInfo** structure has the following elements:
 #### FieldInfo structure {#fieldinfo-structure}
 
 The FieldInfo structure is used in the **ContractInfo** structure and describes
-elements in [data section](spec.md#spec-data) of a contract.
+elements in [data section](/needle/spec.md#spec-data) of a contract.
 
 ```go
 type FieldInfo struct {
@@ -401,7 +401,7 @@ Identifiers of the virtual machine commands are described in the
 :::tip
 
 In the current version, automatic type conversion is not fully applicable for
-these commands. see [Operator](../needle/spec.md#spec-operator).
+these commands. see [Operator](/needle/spec.md#spec-operator).
 
 :::
 
@@ -700,7 +700,7 @@ when using the contract.
 
 ## Compiler {#compiler}
 
-Functions in the compile.go file are responsible for compiling the array of
+Functions in the compiler.go file are responsible for compiling the array of
 tokens obtained from the lexical analyzer. Compilation can be divided into two
 levels conditionally. At the top level, we deal with functions, contracts, code
 blocks, conditional and loop statements, variable definitions, and so on. At the

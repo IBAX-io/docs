@@ -1,4 +1,4 @@
-# Bir IBAX Ağının Kurulması {#deployment-of-a-ibax-network}
+# Bir IBAX Ağının Kurulması
 
 Bu bölümde, size kendi blok zinciri ağınızı nasıl kuracağınızı göstereceğiz.
 
@@ -44,38 +44,37 @@ tabloda açıklanmıştır:
 
 Kendi blok zinciri ağınız birkaç aşamada devreye alınmalıdır:
 
-- [Bir IBAX Ağının Dağıtımı](#deployment-of-a-ibax-network)
-  - [Bir dağıtım örneği](#an-deployment-example)
-  - [Dağıtım aşaması](#deploy-phase)
-  - [Sunucu dağıtımı](#server-deployment)
-    - [İlk düğümü dağıtın](#deploy-the-first-node)
-    - [Bağımlılıklar ve ortam ayarları](#dependencies-and-environment-settings)
-      - [sudo](#sudo)
-    - [Golang](#golang)
-    - [PostgreSQL](#postgresql)
-    - [Centrifugo](#centrifugo)
-    - [Dizin yapısı](#directory-structure)
-    - [Veritabanı oluştur](#create-a-database)
-    - [Centrifugo'yu Yapılandır](#configure-centrifugo)
-    - [go-ibax'ı yükleyin](#install-go-ibax)
-    - [İlk düğümü yapılandırın](#configure-the-first-node)
-    - [İlk düğüm sunucusunu başlat](#initiate-the-first-node-server)
-  - [Diğer düğümleri dağıtın](#deploy-other-nodes)
-    - [Düğüm 2](#node-2)
-    - [Düğüm 3](#node-3)
-  - [Frontend dağıtım](#front-end-deployment)
-    - [Yazılım önkoşulları](#software-prerequisites)
-    - [Bir Weaver uygulaması oluşturun](#build-a-weaver-application)
-    - [Blockchain ağı için yapılandırma dosyasını ekleyin](#add-the-configuration-file-for-the-blockchain-network)
-    - [Weaver Web Uygulaması Oluşturun](#build-weaver-web-application)
-  - [Blockchain ağını yapılandırın](#configure-the-blockchain-network)
-    - [İçerik oluşturucu hesabını oluşturun](#create-the-creator-account)
-    - [Uygulamaları, rolleri ve şablonları içe aktarın](#import-applications-roles-and-templates)
-    - [İlk düğümü düğüm listesine ekleyin](#add-the-first-node-to-the-node-list)
-  - [Diğer onur düğümleri ekleyin](#add-other-honor-nodes)
-    - [Konsensüs rol grubuna üye ekleyin](#add-members-into-the-consensus-role-group)
-    - [Diğer düğümler için sahip hesabı oluşturun](#create-the-owner-account-for-other-nodes)
-    - [Düğüm sahibini Doğrulayıcı rolüyle atayın](#assign-the-node-owner-with-the-validators-role)
+- [Bir dağıtım örneği](#an-deployment-example)
+- [Dağıtım aşaması](#deploy-phase)
+- [Sunucu dağıtımı](#server-deployment)
+   - [İlk düğümü dağıtın](#deploy-the-first-node)
+   - [Bağımlılıklar ve ortam ayarları](#dependencies-and-environment-settings)
+   - [sudo](#sudo)
+   - [Golang](#golang)
+   - [PostgreSQL](#postgresql)
+   - [Centrifugo](#centrifugo)
+   - [Dizin yapısı](#directory-structure)
+   - [Veritabanı oluştur](#create-a-database)
+   - [Centrifugo'yu Yapılandır](#configure-centrifugo)
+   - [go-ibax'ı yükleyin](#install-go-ibax)
+   - [İlk düğümü yapılandırın](#configure-the-first-node)
+   - [İlk düğüm sunucusunu başlat](#initiate-the-first-node-server)
+- [Diğer düğümleri dağıtın](#deploy-other-nodes)
+   - [Düğüm 2](#node-2)
+   - [Düğüm 3](#node-3)
+- [Frontend dağıtım](#front-end-deployment)
+   - [Yazılım önkoşulları](#software-prerequisites)
+   - [Bir Weaver uygulaması oluşturun](#build-a-weaver-application)
+   - [Blockchain ağı için yapılandırma dosyasını ekleyin](#add-the-configuration-file-for-the-blockchain-network)
+   - [Weaver Web Uygulaması Oluşturun](#build-weaver-web-application)
+- [Blockchain ağını yapılandırın](#configure-the-blockchain-network)
+   - [İçerik oluşturucu hesabını oluşturun](#create-the-creator-account)
+   - [Uygulamaları, rolleri ve şablonları içe aktarın](#import-applications-roles-and-templates)
+   - [İlk düğümü düğüm listesine ekleyin](#add-the-first-node-to-the-node-list)
+- [Diğer onur düğümleri ekleyin](#add-other-honor-nodes)
+   - [Konsensüs rol grubuna üye ekleyin](#add-members-into-the-consensus-role-group)
+   - [Diğer düğümler için sahip hesabı oluşturun](#create-the-owner-account-for-other-nodes)
+   - [Düğüm sahibini Doğrulayıcı rolüyle atayın](#assign-the-node-owner-with-the-validators-role)
 
 ## Sunucu dağıtımı {#server-deployment}
 
@@ -342,7 +341,7 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
 
 1. [Bağımlılıklar ve ortam ayarları](#dependencies-and-environment-settings)
 2. [Veritabanı oluştur](#create-a-database)
-3. [Centrifugo](#Centrifugo)
+3. [Centrifugo](#centrifugo)
 4. [go-ibax'ı yükleyin](#install-go-ibax)
 5. Düğüm 2 için yapılandırma dosyasını oluşturun:
 
@@ -406,7 +405,7 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
 
 2. [Veritabanı oluştur](#create-a-database)
 
-3. [Centrifugo](#Centrifugo)
+3. [Centrifugo](#centrifugo)
 
 4. [go-ibax'ı yükleyin](#install-go-ibax)
 
