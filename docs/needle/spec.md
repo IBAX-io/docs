@@ -26,7 +26,7 @@ In Needle language, the main code block structure includes
 Use the `contract` keyword to declare a smart contract, followed by the name of
 the smart contract, and its content must be enclosed in curly braces.
 
-> ContractStmt = "contract" [Identifier](#spec-identifier)
+> ContractStmt = "contract" [Identifier](#spec-identifier) >
 > [CodeBlockStmt](#spec-codeblock).
 
 Smart contract structure has three main parts: [Data](#spec-data),
@@ -48,7 +48,8 @@ optional and not required.
 
 > `DataStmt` = `"data"` `"{"` { `ParamSign` } `"}"` .
 >
-> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [ `Tag` ] .
+> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [
+> `Tag` ] .
 >
 > `Tag` = `"optional"` .
 
@@ -341,10 +342,10 @@ flow.
 ### Identifier {#spec-identifier}
 
 Identifiers are used to identify variables, functions, constants, and other
-program names. Identifiers are composed of one or more letters `A|a` to `Z|z`, numbers `0` to `9`, and
-underscores `_`, and must begin with a letter. Identifiers cannot contain spaces and
-special characters. Identifiers are case-sensitive and cannot use
-[keywords](#spec-keyword) as identifiers.
+program names. Identifiers are composed of one or more letters `A|a` to `Z|z`,
+numbers `0` to `9`, and underscores `_`, and must begin with a letter.
+Identifiers cannot contain spaces and special characters. Identifiers are
+case-sensitive and cannot use [keywords](#spec-keyword) as identifiers.
 
 > `Identifier` = `unicode_letter` `{` `letter` | `unicode_digit` `}`
 >
@@ -478,7 +479,7 @@ during program execution.
 The keyword `var` is used to declare local variables, and the variable must be
 followed by a variable name and type.
 
-> `LocalVarDecl` = `"var"` [IdentifierList](#spec-identifier)
+> `LocalVarDecl` = `"var"` [IdentifierList](#spec-identifier) >
 > [Typename](#spec-typename) .
 
 When declaring a variable, its value is the default value. To declare one or
@@ -793,10 +794,10 @@ executed, otherwise the `else` code block is executed.
 `elif` is actually equivalent to `else if`, it must be defined before the `else`
 statement.
 
-> `IfStmt` = "if" [Expression](#spec-expression)
+> `IfStmt` = "if" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) { `ElIfStmtList` } [`ElseStmt`] .
 >
-> `ElIfStmtList` = "elif" [Expression](#spec-expression)
+> `ElIfStmtList` = "elif" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) .
 >
 > `ElseStmt` = "else" [CodeBlockStmt](#spec-codeblock) .
@@ -817,7 +818,7 @@ The `while` statement provides the ability to repeatedly execute a code block as
 long as the expression evaluates to `true`. The condition is evaluated before
 each iteration.
 
-> `WhileStmt` = "while" [Expression](#spec-expression)
+> `WhileStmt` = "while" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) .
 
 ```c

@@ -1,619 +1,472 @@
-# Platform Parameters
+# Platform Parametreleri {#platform-parameters}
+Bunlar, IBAX'i yapılandırmak için kullanılan parametrelerdir. Blok zinciri ağına ve içindeki tüm ekosistemlere uygulanabilirler.
 
-These are parameters to configure IBAX. They are applicable to the blockchain
-network and all ecosystems within it.
+## Platform parametrelerinin depolanacağı konum {#location-to-store-platform-parameters}
+Platform parametreleri `sistem parametreleri` tablosunda saklanır.
 
-## Location to store platform parameters {#location-to-store-platform-parameters}
+Bu tablo, blok zinciri ağında oluşturulan ilk (varsayılan) ekosistemde bulunur.
 
-Platform parameters are stored in the `system parameters` table.
+## Platform parametrelerinin değiştirilmesi {#change-of-platform-parameters}
+Platform parametrelerinin değiştirilmesi ancak oylama yoluyla yapılabilir. Platformun yasal sistemindeki tanımlarla yönetilen herhangi bir platform parametresini değiştirmek için yalnızca UpdateSysParam sözleşmesini kullanabilirsiniz.
 
-This table is located in the first (default) ecosystem created on the blockchain
-network.
-
-## Change of platform parameters {#change-of-platform-parameters}
-
-Change of platform parameters can only be made through voting. You can only use
-the UpdateSysParam contract to change any platform parameter, which is managed
-by definitions in the legal system of the platform.
-
-## Configure platform parameters {#configure-platform-parameters}
-
-### Configure the blockchain network {#configure-the-blockchain-network}
+## Platform parametrelerini yapılandırın {#configure-platform-parameters}
+### Blok zinciri ağını yapılandırın {#configure-the-blockchain-network}
 
 Nodes:
-
-- [honor_nodes](#honor-nodes)
-- [number of nodes](#number-of-nodes)
+* [full nodes](#full-nodes)
+* [number of nodes](#number-of-nodes)
 
 Node bans:
+* [incorrect blocks per day](#incorrect-blocks-per-day)
+* [node ban time](#node-ban-time)
+* [node ban time local](#node-ban-time-local)
 
-- [incorrect blocks per day](#incorrect-blocks-per-day)
-- [node ban time](#node-ban-time)
-- [node ban time local](#node-ban-time-local)
+### Yeni bir ekosistem yapılandırın {#configure-a-new-ecosystem}
 
-### Configure a new ecosystem {#configure-a-new-ecosystem}
+Varsayılan sayfa ve menü:
+* [default ecosystem page](#default-ecosystem-page)
+* [default ecosystem menu](#default-ecosystem-menu)
 
-Default page and menu:
+Varsayılan kontrat:
+* [default ecosystem contract](#default-ecosystem-contract)
 
-- [default ecosystem page](#default-ecosystem-page)
-- [default ecosystem menu](#default-ecosystem-menu)
+### Veritabanını yapılandır {#configure-the-database}
 
-Default contract:
+Tablo limitleri:
+* [max columns](#max-columns)
+* [max indexes](#max-indexes)
 
-- [default ecosystem contract](#default-ecosystem-contract)
+### Blokların oluşturulmasını yapılandırın {#configure-the-generation-of-blocks}
+Zaman limitleri:
+* [gap between blocks](#gap-between-blocks)
+* [max block generation time](#max-block-generation-time)
 
-### Configure the database {#configure-the-database}
+İşlem limitleri:
+* [max tx block](#max-tx-block)
+* [max tx block per user](#max-tx-block-per-user)
 
-Table limits:
+Boyut limitleri:
+* [max tx size](#max-tx-size)
+* [max block size](#max-block-size)
+* [max forsign size](#max-forsign-size)
 
-- [max columns](#max-columns)
-- [max indexes](#max-indexes)
+Fuel limitleri:
+* [max fuel block](#max-fuel-block)
+* [max fuel tx](#max-fuel-tx)
 
-### Configure the generation of blocks {#configure-the-generation-of-blocks}
+Blok rollback limitleri:
+* [rollback blocks](#rollback-blocks)
 
-Time limits:
+### Fuel tokenlarını yapılandırın {#configure-the-fuel-tokens}
+Ödüller ve komisyonlar:
+* [block reward](#block-reward)
+* [commission wallet](#commission-wallet)
+* [commission size](#commission-size)
 
-- [gap between blocks](#gap-between-blocks)
-- [max block generation time](#max-block-generation-time)
+Fuel oranı dönüşümü:
+* [fuel rate](#fuel-rate)
+* [price create rate](#price-create-rate)
 
-Transaction limits:
+İşlem boyutu ve veri fiyatı:
+* [price tx data](#price-tx-data)
+* [price tx size wallet](#price-tx-size-wallet)
 
-- [max tx block](#max-tx-block)
-- [max tx block per user](#max-tx-block-per-user)
+Yeni elemanların fiyatı:
+* [price create ecosystem](#price-create-ecosystem)
+* [price create table](#price-create-table)
+* [price create column](#price-create-column)
+* [price create contract](#price-create-contract)
+* [price create menu](#price-create-menu)
+* [price create page](#price-create-page)
+* [price create application](#price-create-application)
 
-Size limits:
-
-- [max tx size](#max-tx-size)
-- [max block size](#max-block-size)
-- [max forsign size](#max-forsign-size)
-
-Fuel limits:
-
-- [max fuel block](#max-fuel-block)
-- [max fuel tx](#max-fuel-tx)
-
-Block rollback limits:
-
-- [rollback blocks](#rollback-blocks)
-
-### Configure the fuel tokens {#configure-the-fuel-tokens}
-
-Rewards and commissions:
-
-- [block reward](#block-reward)
-- [commission wallet](#commission-wallet)
-- [commission size](#commission-size)
-
-Fuel rate conversion:
-
-- [fuel rate](#fuel-rate)
-- [price create rate](#price-create-rate)
-
-Transaction size and data price:
-
-- [price tx data](#price-tx-data)
-- [price tx size wallet](#price-tx-size-wallet)
-
-Price for new elements:
-
-- [price create ecosystem](#price-create-ecosystem)
-- [price create table](#price-create-table)
-- [price create column](#price-create-column)
-- [price create contract](#price-create-contract)
-- [price create menu](#price-create-menu)
-- [price create page](#price-create-page)
-- [price create application](#price-create-application)
-
-Price for operations:
-
+İşlemler için fiyat:
 <!-- TOC -->
 
-- [Location to store platform parameters](#location-to-store-platform-parameters)
-- [Change of platform parameters](#change-of-platform-parameters)
-- [Configure platform parameters](#configure-platform-parameters)
-  - [Configure the blockchain network](#configure-the-blockchain-network)
-  - [Configure a new ecosystem](#configure-a-new-ecosystem)
-  - [Configure the database](#configure-the-database)
-  - [Configure the generation of blocks](#configure-the-generation-of-blocks)
-  - [Configure the fuel tokens](#configure-the-fuel-tokens)
-  - [Depreciated](#depreciated)
-- [Details of platform parameters](#details-of-platform-parameters)
-  - [block reward](#block-reward)
-  - [blockchain url](#blockchain-url)
-  - [commission size](#commission-size)
-  - [commission wallet](#commission-wallet)
-  - [default ecosystem contract](#default-ecosystem-contract)
-  - [default ecosystem menu](#default-ecosystem-menu)
-  - [default ecosystem page](#default-ecosystem-page)
-  - [fuel rate](#fuel-rate)
-  - [price create rate](#price-create-rate)
-  - [honor nodes](#honor-nodes)
-  - [gap between blocks](#gap-between-blocks)
-  - [incorrect blocks per day](#incorrect-blocks-per-day)
-  - [max block generation time](#max-block-generation-time)
-  - [max block size](#max-block-size)
-  - [max columns](#max-columns)
-  - [max forsign size](#max-forsign-size)
-  - [max fuel block](#max-fuel-block)
-  - [max fuel tx](#max-fuel-tx)
-  - [max indexes](#max-indexes)
-  - [max tx block](#max-tx-block)
-  - [max tx block per user](#max-tx-block-per-user)
-  - [max tx size](#max-tx-size)
-  - [node ban time](#node-ban-time)
-  - [node ban time local](#node-ban-time-local)
-  - [number of nodes](#number-of-nodes)
-  - [price create ecosystem](#price-create-ecosystem)
-  - [price create application](#price-create-application)
-  - [price create table](#price-create-table)
-  - [price create column](#price-create-column)
-  - [price create contract](#price-create-contract)
-  - [price create menu](#price-create-menu)
-  - [price create page](#price-create-page)
-  - [price exec address to id](#price-exec-address-to-id)
-  - [price exec bind wallet](#price-exec-bind-wallet)
-  - [price exec column condition](#price-exec-column-condition)
-  - [price exec compile contract](#price-exec-compile-contract)
-  - [price exec contains](#price-exec-contains)
-  - [price exec contract by id](#price-exec-contract-by-id)
-  - [price exec contract by name](#price-exec-contract-by-name)
-  - [price exec contracts list](#price-exec-contracts-list)
-  - [price exec create column](#price-exec-create-column)
-  - [price exec create ecosystem](#price-exec-create-ecosystem)
-  - [price exec create table](#price-exec-create-table)
-  - [price exec ecosys param](#price-exec-ecosys-param)
-  - [price exec eval](#price-exec-eval)
-  - [price exec eval condition](#price-exec-eval-condition)
-  - [price exec flush contract](#price-exec-flush-contract)
-  - [price exec has prefix](#price-exec-has-prefix)
-  - [price exec id to address](#price-exec-id-to-address)
-  - [price exec is object](#price-exec-is-object)
-  - [price exec join](#price-exec-join)
-  - [price exec json to map](#price-exec-json-to-map)
-  - [price exec len](#price-exec-len)
-  - [price exec perm column](#price-exec-perm-column)
-  - [price exec perm table](#price-exec-perm-table)
-  - [price exec pub to id](#price-exec-pub-to-id)
-  - [price exec replace](#price-exec-replace)
-  - [price exec sha256](#price-exec-sha256)
-  - [price exec size](#price-exec-size)
-  - [price exec substr](#price-exec-substr)
-  - [price exec sys fuel](#price-exec-sys-fuel)
-  - [price exec sys param int](#price-exec-sys-param-int)
-  - [price exec sys param string](#price-exec-sys-param-string)
-  - [price exec table conditions](#price-exec-table-conditions)
-  - [price exec unbind wallet](#price-exec-unbind-wallet)
-  - [price exec update lang](#price-exec-update-lang)
-  - [price exec validate condition](#price-exec-validate-condition)
-  - [price tx data](#price-tx-data)
-  - [price tx size wallet](#price-tx-size-wallet)
-  - [rollback blocks](#rollback-blocks)
+- [Platform Parameters](#platform-parameters)
+  - [Location to store platform parameters](#location-to-store-platform-parameters)
+  - [Change of platform parameters](#change-of-platform-parameters)
+  - [Configure platform parameters](#configure-platform-parameters)
+    - [Configure the blockchain network](#configure-the-blockchain-network)
+    - [Configure a new ecosystem](#configure-a-new-ecosystem)
+    - [Configure the database](#configure-the-database)
+    - [Configure the generation of blocks](#configure-the-generation-of-blocks)
+    - [Configure the fuel tokens](#configure-the-fuel-tokens)
+    - [Depreciated](#depreciated)
+  - [Details of platform parameters](#details-of-platform-parameters)
+    - [block reward](#block-reward)
+    - [blockchain url](#blockchain-url)
+    - [commission size](#commission-size)
+    - [commission wallet](#commission-wallet)
+    - [default ecosystem contract](#default-ecosystem-contract)
+    - [default ecosystem menu](#default-ecosystem-menu)
+    - [default ecosystem page](#default-ecosystem-page)
+    - [fuel rate](#fuel-rate)
+    - [price create rate](#price-create-rate)
+    - [full nodes](#full-nodes)
+    - [gap between blocks](#gap-between-blocks)
+    - [incorrect blocks per day](#incorrect-blocks-per-day)
+    - [max block generation time](#max-block-generation-time)
+    - [max block size](#max-block-size)
+    - [max columns](#max-columns)
+    - [max forsign size](#max-forsign-size)
+    - [max fuel block](#max-fuel-block)
+    - [max fuel tx](#max-fuel-tx)
+    - [max indexes](#max-indexes)
+    - [max tx block](#max-tx-block)
+    - [max tx block per user](#max-tx-block-per-user)
+    - [max tx size](#max-tx-size)
+    - [node ban time](#node-ban-time)
+    - [node ban time local](#node-ban-time-local)
+    - [number of nodes](#number-of-nodes)
+    - [price create ecosystem](#price-create-ecosystem)
+    - [price create application](#price-create-application)
+    - [price create table](#price-create-table)
+    - [price create column](#price-create-column)
+    - [price create contract](#price-create-contract)
+    - [price create menu](#price-create-menu)
+    - [price create page](#price-create-page)
+    - [price exec address to id](#price-exec-address-to-id)
+    - [price exec bind wallet](#price-exec-bind-wallet)
+    - [price exec column condition](#price-exec-column-condition)
+    - [price exec compile contract](#price-exec-compile-contract)
+    - [price exec contains](#price-exec-contains)
+    - [price exec contract by id](#price-exec-contract-by-id)
+    - [price exec contract by name](#price-exec-contract-by-name)
+    - [price exec contracts list](#price-exec-contracts-list)
+    - [price exec create column](#price-exec-create-column)
+    - [price exec create ecosystem](#price-exec-create-ecosystem)
+    - [price exec create table](#price-exec-create-table)
+    - [price exec ecosys param](#price-exec-ecosys-param)
+    - [price exec eval](#price-exec-eval)
+    - [price exec eval condition](#price-exec-eval-condition)
+    - [price exec flush contract](#price-exec-flush-contract)
+    - [price exec has prefix](#price-exec-has-prefix)
+    - [price exec id to address](#price-exec-id-to-address)
+    - [price exec is object](#price-exec-is-object)
+    - [price exec join](#price-exec-join)
+    - [price exec json to map](#price-exec-json-to-map)
+    - [price exec len](#price-exec-len)
+    - [price exec perm column](#price-exec-perm-column)
+    - [price exec perm table](#price-exec-perm-table)
+    - [price exec pub to id](#price-exec-pub-to-id)
+    - [price exec replace](#price-exec-replace)
+    - [price exec sha256](#price-exec-sha256)
+    - [price exec size](#price-exec-size)
+    - [price exec substr](#price-exec-substr)
+    - [price exec sys fuel](#price-exec-sys-fuel)
+    - [price exec sys param int](#price-exec-sys-param-int)
+    - [price exec sys param string](#price-exec-sys-param-string)
+    - [price exec table conditions](#price-exec-table-conditions)
+    - [price exec unbind wallet](#price-exec-unbind-wallet)
+    - [price exec update lang](#price-exec-update-lang)
+    - [price exec validate condition](#price-exec-validate-condition)
+    - [price tx data](#price-tx-data)
+    - [price tx size wallet](#price-tx-size-wallet)
+    - [rollback blocks](#rollback-blocks)
 
 <!-- /TOC -->
 
-## Depreciated {#depreciated}
+## Amortismana tabi tutuldu {#depreciated}
+Amortismana tabi tutulmuş parametreler:
+* [blockchain url](#blockchain-url)
 
-Depreciated parameters:
+## Platform parametrelerinin ayrıntıları {#details-of-platform-parameters}
 
-- [blockchain url](#blockchain-url)
+### blok ödülü {#block-reward}
+Bloğu oluşturan onur düğümüne verilen IBXC belirteçlerinin sayısı.
 
-## Details of platform parameters {#details-of-platform-parameters}
+Ödülü alan hesap, [full nodes](#full-nodes) parametresinde belirtilir.
 
-### block reward {#block-reward}
+### blok zinciri url'i {#blockchain-url}
+amortismana tabi tutuldu.
 
-The number of IBXC tokens granted to the honor node that generates the block.
+### komisyon boyutu {#commission-size}
+Komisyonun yüzdesi.
 
-The account that receives the reward is specified in the
-[honor nodes](#honor-nodes) parameter.
+Komisyon tutarı, sözleşmenin uygulanmasının toplam maliyetinin bir yüzdesi olarak hesaplanır. Komisyon jetonunun birimi IBXC'dir.
 
-### blockchain url {#blockchain-url}
+Komisyon, komisyon_cüzdan parametresinde belirtilen hesap adresine aktarılacaktır.
 
-Depreciated.
+### komisyon cüzdanı {#commission-wallet}
+Komisyonun alınacağı hesap adresi.
 
-### commission size {#commission-size}
+Komisyon miktarı, komisyon_boyutu parametresi ile belirlenir.
 
-Percentage of the commission.
+### varsayılan ekosistem sözleşmesi {#default-ecosystem-contract}
+Yeni ekosistemdeki varsayılan sözleşmenin kaynak kodu.
 
-The amount of the commission is calculated as a percentage of the total cost of
-implement the contract. The unit of the commission token is IBXC.
+Bu sözleşme, ekosistem oluşturucuya erişim sağlar.
 
-The commission will be transferred to the account address specified in the
-commission_wallet parameter.
+### varsayılan ekosistem menüsü {#default-ecosystem-menu}
+Yeni ekosistemin varsayılan menüsünün kaynak kodu.
 
-### commission wallet {#commission-wallet}
+### varsayılan ekosistem sayfası {#default-ecosystem-page}
+Yeni ekosistemin varsayılan sayfasının kaynak kodu.
 
-The account address to receive the commission.
+### fuel oranı {#fuel-rate}
+Fuel birimine göre farklı ekosistem belirteçlerinin döviz kurları.
 
-The amount of commission is specified by the commission_size parameter.
-
-### default ecosystem contract {#default-ecosystem-contract}
-
-The source code of the default contract in the new ecosystem.
-
-This contract provides access to the ecosystem creator.
-
-### default ecosystem menu {#default-ecosystem-menu}
-
-The source code of the default menu of the new ecosystem.
-
-### default ecosystem page {#default-ecosystem-page}
-
-The source code of the default page of the new ecosystem.
-
-### fuel rate {#fuel-rate}
-
-The exchange rates of different ecosystem tokens by fuel unit.
-
-The format of this parameter:
+Bu parametrenin formatı:
 
 `[["ecosystem_id", "token_to_fuel_rate"], ["ecosystem_id2", "token_to_fuel_rate2"], ...]`
 
-- `ecosystem_id`
+* ``ecosystem_id``
 
-  Ecosystem ID.
+    Ekosistem ID.
+* `token_to_fuel_rate`
 
-- `token_to_fuel_rate`
+    Fuel birimine göre tokenın döviz kuru.
 
-  Exchange rate of the token by fuel unit.
-
-For example:
+Örnek:
 
 `[["1","1000000000000"], ["2", "1000"]]`
 
-One token of Ecosystem 1 is exchanged for 1,000,000,000,000 fuel units. One
-token of Ecosystem 2 is exchanged for 1,000 fuel units.
+Ekosistem 1'in bir jetonu 1.000.000.000.000 Fuel birimiyle değiştirilir. Ekosistem 2'nin bir jetonu 1.000 Fuel birimiyle değiştirilir.
 
-### price create rate {#price-create-rate}
+### fiyat oluşturma oranı {#price-create-rate}
+Yeni bir elemanın Fuel oranı.
 
-The fuel rate of a new element.
+### tam nodelar {#full-nodes}
+Blockchain ağının honor nodelarının listesi.
 
-## honor nodes {#honor-nodes}
+Bu parametrenin formatı:
 
-The list of honor nodes of the blockchain network.
+`
+[{"api_address":"https://apihost1:port1","public_key":"nodepub1","tcp_address":"tcphost1:port2"},{"api_address":"https://apihost2:port1","public_key":"nodepub2","tcp_address":"tcphost2:port2"}]
+`
 
-The format of this parameter:
+* `tcp_address`
 
-`[{"api_address":"https://apihost1:port1","public_key":"nodepub1","tcp_address":"tcphost1:port2"},{"api_address":"https://apihost2:port1","public_key":"nodepub2","tcp_address":"tcphost2:port2"}]`
+     Node ana bilgisayarının TCP adresi ve bağlantı noktası.
+     İşlemler ve yeni bloklar, ilk bloktan tam blok zinciri elde etmek için de kullanılabilen bu ana bilgisayar adresine gönderilecektir.
+* `api_address`
 
-- `tcp_address`
+    API adresi ve düğüm ana bilgisayarının bağlantı noktası.
+    API adresi aracılığıyla, Weaver kullanmadan platformun herhangi bir işlevine erişebilirsiniz. Ayrıntıları RESTful API'de görün.
+* `public_key`
 
-  TCP address and port of the node host. Transactions and new blocks will be
-  sent to this host address, which can also be used to obtain the complete
-  blockchain from the first block.
+    Blok imzasını doğrulamak için kullanılan düğümün genel anahtarı.
 
-- `api_address`
 
-  API address and port of the node host. Through the API address, you can access
-  any function of the platform without using Weaver. See details in RESTful API.
+### bloklar arasındaki boşluk {#gap-between-blocks}
+Bir düğümde iki blok oluşturmanın zaman aralığı (saniye cinsinden).
 
-- `public_key`
-
-  Public key of the node, which is used to verify the block signature.
-
-### gap between blocks {#gap-between-blocks}
-
-The time interval (in seconds) of generating two blocks on a node.
-
-All nodes in the network use it to determine when to generate a new block. If
-the current node does not generate a new block within this time period, the turn
-passes to the next node in the list of honor nodes.
+Ağdaki tüm düğümler, ne zaman yeni bir blok oluşturulacağını belirlemek için bunu kullanır. Mevcut düğüm bu süre içinde yeni bir blok oluşturmazsa, sıra, onur düğümleri listesindeki bir sonraki düğüme geçer.
 
 The minimum value of this parameter is `1` second.
 
-### incorrect blocks per day {#incorrect-blocks-per-day}
+### günlük yanlış bloklar {#incorrect-blocks-per-day}
+Bir düğümün yasaklanmadan önce bir günde oluşturmasına izin verilen hatalı blokların sayısı.
 
-The number of bad blocks that a node is allowed to generate per day before being
-banned.
+Ağdaki düğümlerin yarısından fazlası bir düğümden aynı sayıda hatalı blok aldığında, düğüm [node ban time](#node-ban-time) içinde belirtilen bir süre içinde ağdan yasaklanır.
 
-When more than half of the nodes in the network receive the same number of bad
-blocks from a node, the node will be banned from the network within a time
-period specified in [node ban time](#node-ban-time).
+### maksimum blok oluşturma süresi {#max-block-generation-time}
+Milisaniye cinsinden bir blok oluşturmak için maksimum süre. Bu süre içinde bir blok başarıyla oluşturulmazsa, bir zaman aşımı hatası rapor edilir.
 
-### max block generation time {#max-block-generation-time}
+### maksimum blok boyutu {#max-block-size}
+Bir bloğun bayt cinsinden maksimum boyutu.
 
-The maximum time for generating a block, in milliseconds. If a block is not
-successfully generated within this time period, a timeout error will be
-reported.
+### maksimum sütun {#max-columns}
+Tek bir tablodaki maksimum alan sayısı.
 
-### max block size {#max-block-size}
+Ancak, önceden tanımlanmış "id" sütununu içermez.
 
-The maximum size of a block, in bytes.
+### maksimum forsign boyutu {#max-forsign-size}
+Bayt cinsinden bir işlem imzasının maksimum boyutu.
 
-### max columns {#max-columns}
+### maksimum Fuel bloğu {#max-fuel-block}
+Tek bir bloğun maksimum toplam Fuel ücreti.
 
-The maximum number of fields in a single table.
+### maksimum Fuel tx {#max-fuel-tx}
+Tek bir işlemin maksimum toplam Fuel ücreti.
 
-However, it does not include the predefined `id` column.
+### maksimum dizin {#max-indexes}
+Tek bir tablodaki maksimum birincil anahtar alanı sayısı.
 
-### max forsign size {#max-forsign-size}
+### maksimum tx bloğu {#max-tx-block}
+Tek bir bloktaki maksimum işlem sayısı.
 
-The maximum size of a transaction signature in bytes.
+### kullanıcı başına maksimum tx bloğu {#max-tx-block-per-user}
+Bir bloktaki bir hesabın maksimum işlem sayısı.
 
-### max fuel block {#max-fuel-block}
+### maksimum tx boyutu {#max-tx-size}
+Bayt cinsinden bir işlemin maksimum boyutu.
 
-The maximum total fuel fee of a single block.
+### düğüm yasağı süresi {#node-ban-time}
+Milisaniye cinsinden düğümün genel yasaklama süresi.
 
-### max fuel tx {#max-fuel-tx}
+Ağdaki düğümlerin yarısından fazlası bir düğümden [günlük yanlış blok](#günlük yanlış blok) sayısına kadar hatalı bloklar aldığında, düğüm bu süre boyunca ağda yasaklanır .
 
-The maximum total fuel fee of a single transaction.
+### yerel düğüm yasağı zamanı {#node-ban-time-local}
+Düğümün milisaniye cinsinden yerel yasaklama süresi.
 
-### max indexes {#max-indexes}
+Bir düğüm başka bir düğümden yanlış bir blok aldığında, bu süre zarfında gönderenin düğümünü yerel olarak yasaklar.
 
-The maximum number of primary key fields in a single table.
+### düğüm sayısı {#number-of-nodes}
+[tam düğümler](#full-nodes) parametresindeki maksimum honor node sayısı.
 
-### max tx block {#max-tx-block}
+### fiyat oluşturma ekosistemi {#price-create-ecosystem}
+Yeni bir tek ekosistem oluşturmak için fuel ücreti.
 
-The maximum number of transactions in a single block.
+Bu parametre, `@1NewEcosystem` sözleşmesinin ek fuel ücretini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için fuel ücreti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-### max tx block per user {#max-tx-block-per-user}
+Bu parametre fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [fuel oranı](#fuel-oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-The maximum number of transactions of an account in a block.
+### fiyat oluşturma uygulaması {#price-create-application}
+Yeni bir tek uygulama oluşturmak için Fuel ücreti.
 
-### max tx size {#max-tx-size}
+Bu parametre, `@1NewApplication` sözleşmesinin ek Fuel ücretini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel ücreti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-The maximum size of a transaction in bytes.
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-### node ban time {#node-ban-time}
+### fiyat tablosu oluştur {#price-create-table}
+Yeni bir tek tablo oluşturmak için Fuel ücreti.
 
-The global ban period of the node, in milliseconds.
+Bu parametre, `@1NewTable` sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-When more than half of the nodes in the network receive bad blocks from a node
-up to the number of [incorrect blocks per day](#incorrect-blocks-per-day), the
-node will be banned in the network for this time period.
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-### node ban time local {#node-ban-time-local}
+### fiyat oluşturma sütunu {#price-create-column}
+Yeni bir tek tablo alanı oluşturmak için Fuel ücreti.
 
-The local ban period of the node, in milliseconds.
+Bu parametre, `@1NewColumn` sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-When a node receives an incorrect block from another node, it will locally ban
-the sender's node during this time period.
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-### number of nodes {#number-of-nodes}
+### fiyat sözleşme oluştur {#price-create-contract}
+Yeni bir tek sözleşme oluşturmak için Fuel ücreti.
 
-The maximum number of honor nodes in the [honor nodes](#honor-nodes) parameter.
+Bu parametre, `@1NewContract` sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-### price create ecosystem {#price-create-ecosystem}
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-The fuel fee to create a new single ecosystem.
+### fiyat oluşturma menüsü {#price-create-menu}
+Yeni tek menü oluşturmak için Fuel ücreti.
 
-This parameter defines the additional fuel fee of the `@1NewEcosystem` contract.
-When the contract is implemented, the fuel fee for executing various functions
-of this contract will also be calculated and included in the total cost.
+Bu parametre, `@1NewMenu` sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-### price create application {#price-create-application}
+### fiyat oluşturma sayfası {#price-create-page}
+Yeni bir tek sayfa oluşturmak için Fuel ücreti.
 
-The fuel fee to create a new single application.
+Bu parametre, `@1NewPage` sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.
 
-This parameter defines the additional fuel fee of the `@1NewApplication`
-contract. When the contract is implemented, the fuel fee for executing various
-functions of this contract will also be calculated and included in the total
-cost.
+Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına dönüştürmek için [Fuel oranı](#Fuel oranı) ve [fiyat oluşturma oranı](#price-create-rate) kullanın.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### kimliğe fiyat yürütme adresi {#price-exec-address-to-id}
+`AddressToId()` işlevini çağırmanın Fuel ücreti, Fuel birimi cinsinden hesaplanır.
 
-### price create table {#price-create-table}
+### fiyat yürütme bağlama cüzdanı {#price-exec-bind-wallet}
+Fuel birimlerinde hesaplanan, `Activate()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee to create a new single table.
+### fiyat yürütme sütun koşulu {#price-exec-column-condition}
+Fuel birimlerinde hesaplanan, `ColumnCondition()` işlevini çağırmanın Fuel ücreti. 
 
-This parameter defines the additional fuel cost of the `@1NewTable` contract.
-When the contract is implemented, the fuel cost for executing various functions
-of this contract will also be calculated and included in the total cost.
+### fiyat yürütme sözleşmesi derleme {#price-exec-compile-contract}
+Fuel birimlerinde hesaplanan, `CompileContract()` işlevini çağırmanın Fuel ücreti.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### fiyat yürütme şunları içerir {#price-exec-contains}
+Fuel birimlerinde hesaplanan, `İçerir()` işlevini çağırmanın Fuel ücreti.
 
-### price create column {#price-create-column}
+### kimliğe göre fiyat yürütme sözleşmesi {#price-exec-contract-by-id}
+Fuel birimlerinde hesaplanan, `GetContractById()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee to create a new single table field.
+### isme göre fiyat yürütme sözleşmesi {#price-exec-contract-by-name}
+Fuel birimlerinde hesaplanan `GetContractByName()` işlevini çağırmanın Fuel ücreti.
 
-This parameter defines the additional fuel cost of the `@1NewColumn` contract.
-When the contract is implemented, the fuel cost for executing various functions
-of this contract will also be calculated and included in the total cost.
+### fiyat yürütme sözleşmeleri listesi {#price-exec-contracts-list}
+`ContractsList()` işlevini çağırmanın Fuel birimi cinsinden hesaplanan Fuel ücreti.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### fiyat yürütme sütunu oluştur {#price-exec-create-column}
+Fuel birimlerinde hesaplanan, `CreateColumn()` işlevini çağırmanın Fuel ücreti.
 
-### price create contract {#price-create-contract}
+### fiyat yönetimi ekosistem oluştur {#price-exec-create-ecosystem}
+Fuel birimlerinde hesaplanan, `CreateEcosystem()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee to create a new single contract.
+### fiyat yürütme tablosu oluştur {#price-exec-create-table}
+Fuel birimlerinde hesaplanan, `CreateTable()` işlevini çağırmanın Fuel ücreti.
 
-This parameter defines the additional fuel cost of the `@1NewContract` contract.
-When the contract is implemented, the fuel cost for executing various functions
-of this contract will also be calculated and included in the total cost.
+### fiyat yürütme ecosys parametresi {#price-exec-ecosys-param}
+Fuel birimlerinde hesaplanan, `EcosysParam()` işlevini çağırmanın Fuel ücreti.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### fiyat yürütme değerlendirmesi {#price-exec-eval}
+Fuel birimlerinde hesaplanan, `Evaluation()` işlevini çağırmanın Fuel ücreti.
 
-### price create menu {#price-create-menu}
+### fiyat yürütme değerlendirme koşulu {#price-exec-eval-condition}
+Fuel birimlerinde hesaplanan, `EvalCondition()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee to create a new single menu.
+### fiyat yürütme gömme sözleşmesi {#price-exec-flush-contract}
+Fuel birimlerinde hesaplanan, `FlushContract()` işlevini çağırmanın Fuel ücreti.
 
-This parameter defines the additional fuel cost of the `@1NewMenu` contract.
-When the contract is implemented, the fuel cost for executing various functions
-of this contract will also be calculated and included in the total cost.
+### fiyat yürütme ön ekine sahip {#price-exec-has-prefix}
+Fuel birimlerinde hesaplanan, `HasPrefix()` işlevini çağırmanın Fuel ücreti.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### adrese fiyat yürütme kimliği {#price-exec-id-to-address}
+Fuel birimlerinde hesaplanan, `IdToAddress()` işlevini çağırmanın Fuel ücreti.
 
-### price create page {#price-create-page}
+### fiyat yürütme nesnedir {#price-exec-is-object}
+Fuel birimlerinde hesaplanan, `IsObject()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee to create a new single page.
+### fiyat yürütme katılımı {#price-exec-join}
+Fuel birimlerinde hesaplanan, `Join()` işlevini çağırmanın Fuel ücreti.
 
-This parameter defines the additional fuel cost of the `@1NewPage` contract.
-When the contract is implemented, the fuel cost for executing various functions
-of this contract will also be calculated and included in the total cost.
+### eşlemek için json fiyat yürütme {#price-exec-json-to-map}
+Fuel birimlerinde hesaplanan, `JSONToMap()` işlevini çağırmanın Fuel ücreti.
 
-This parameter is calculated in fuel units. Use [fuel rate](#fuel-rate) and
-[price create rate](#price-create-rate) to convert fuel units to IBXC tokens.
+### fiyat yönetimi {#price-exec-len}
+Fuel birimlerinde hesaplanan, `Len()` işlevini çağırmanın Fuel ücreti.
 
-### price exec address to id {#price-exec-address-to-id}
+### fiyat yürütme izni sütunu {#price-exec-perm-column}
+Fuel birimlerinde hesaplanan, `PermColumn()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `AddressToId()` function, calculated in fuel units.
+### fiyat yürütme izin tablosu {#price-exec-perm-table}
+Fuel birimlerinde hesaplanan, `PermTable()` işlevini çağırmanın Fuel ücreti.
 
-### price exec bind wallet {#price-exec-bind-wallet}
+### fiyat yürütme pub'ından kimliğe {#price-exec-pub-to-id}
+Fuel birimlerinde hesaplanan, `PubToID()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `Activate()` function, calculated in fuel units.
+### fiyat yürütme değiştir {#price-exec-replace}
+Fuel birimlerinde hesaplanan, `Değiştir()` işlevini çağırmanın Fuel ücreti.
 
-### price exec column condition {#price-exec-column-condition}
+### fiyat yöneticisi sha256 {#price-exec-sha256}
+Fuel birimlerinde hesaplanan, `Sha256()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `ColumnCondition()` function, calculated in fuel
-units.
+### fiyat yürütme boyutu {#price-exec-size}
+Fuel birimlerinde hesaplanan, `Size()` işlevini çağırmanın Fuel ücreti.
 
-### price exec compile contract {#price-exec-compile-contract}
+### fiyat yürütme altdizini {#price-exec-substr}
+Fuel birimlerinde hesaplanan, `Substr()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `CompileContract()` function, calculated in fuel
-units.
+### fiyat yürütme sistemi Fuelı {#price-exec-sys-fuel}
+Fuel birimlerinde hesaplanan, `SysFuel()` işlevini çağırmanın Fuel ücreti.
 
-### price exec contains {#price-exec-contains}
+### fiyat yürütme sistem parametresi int {#price-exec-sys-param-int}
+Fuel birimlerinde hesaplanan, `SysParamInt()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `Contains()` function, calculated in fuel units.
+### fiyat yürütme sys param dizesi {#price-exec-sys-param-string}
+`SysParamString()` işlevini çağırmanın Fuel ücreti, Fuel birimlerinde hesaplanır.
 
-### price exec contract by id {#price-exec-contract-by-id}
+### fiyat yürütme tablosu koşulları {#price-exec-table-conditions}
+Fuel birimlerinde hesaplanan, `TableConditions()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the `GetContractById()` function, calculated in fuel
-units.
+### fiyat yürütme cüzdanını çöz {#price-exec-unbind-wallet}
+Fuel birimlerinde hesaplanan, 'Deactivate()' işlevini çağırmanın Fuel ücreti.
 
-### price exec contract by name {#price-exec-contract-by-name}
+### fiyat yürütme güncelleme dili {#price-exec-update-lang}
+Fuel birimlerinde hesaplanan, `UpdateLang()` işlevini çağırmanın Fuel ücreti.
 
-The fuel fee of calling the GetContractByName() function, calculated in fuel
-units.
+### fiyat yürütme doğrulama koşulu {#price-exec-validate-condition}
+`ValidateCondition()` işlevini çağırmanın Fuel ücreti, Fuel birimi cinsinden hesaplanır.
 
-### price exec contracts list {#price-exec-contracts-list}
+### fiyat tx verileri {#price-tx-data}
+Bir işlemin her 1024 baytı için Fuel birimi cinsinden hesaplanan Fuel ücreti.
 
-The fuel fee of calling the `ContractsList()` function, calculated in fuel
-units.
+### fiyat tx boyutunda cüzdan {#price-tx-size-wallet}
+İşlem boyutuna göre ücret, birimi IBXC tokenidir.
 
-### price exec create column {#price-exec-create-column}
+Ekosistem 1 dışında, diğer ekosistemlerde bir sözleşme uygulanırken orantılı olarak bir blok alanı kullanım ücreti alınacaktır ve oranı megabayt başına *fiyat tx boyutlu cüzdan* IBXC belirteçleridir.
 
-The fuel fee of calling the `CreateColumn()` function, calculated in fuel units.
-
-### price exec create ecosystem {#price-exec-create-ecosystem}
-
-The fuel fee of calling the `CreateEcosystem()` function, calculated in fuel
-units.
-
-### price exec create table {#price-exec-create-table}
-
-The fuel fee of calling the `CreateTable()` function, calculated in fuel units.
-
-### price exec ecosys param {#price-exec-ecosys-param}
-
-The fuel fee of calling the `EcosysParam()` function, calculated in fuel units.
-
-### price exec eval {#price-exec-eval}
-
-The fuel fee of calling the `Eval()` function, calculated in fuel units.
-
-### price exec eval condition {#price-exec-eval-condition}
-
-The fuel fee of calling the `EvalCondition()` function, calculated in fuel
-units.
-
-### price exec flush contract {#price-exec-flush-contract}
-
-The fuel fee of calling the `FlushContract()` function, calculated in fuel
-units.
-
-### price exec has prefix {#price-exec-has-prefix}
-
-The fuel fee of calling the `HasPrefix()` function, calculated in fuel units.
-
-### price exec id to address {#price-exec-id-to-address}
-
-The fuel fee of calling the `IdToAddress()` function, calculated in fuel units.
-
-### price exec is object {#price-exec-is-object}
-
-The fuel fee of calling the `IsObject()` function, calculated in fuel units.
-
-### price exec join {#price-exec-join}
-
-The fuel fee of calling the `Join()` function, calculated in fuel units.
-
-### price exec json to map {#price-exec-json-to-map}
-
-The fuel fee of calling the `JSONToMap()` function, calculated in fuel units.
-
-### price exec len {#price-exec-len}
-
-The fuel fee of calling the `Len()` function, calculated in fuel units.
-
-### price exec perm column {#price-exec-perm-column}
-
-The fuel fee of calling the `PermColumn()` function, calculated in fuel units.
-
-### price exec perm table {#price-exec-perm-table}
-
-The fuel fee of calling the `PermTable()` function, calculated in fuel units.
-
-### price exec pub to id {#price-exec-pub-to-id}
-
-The fuel fee of calling the `PubToID()` function, calculated in fuel units.
-
-### price exec replace {#price-exec-replace}
-
-The fuel fee of calling the `Replace()` function, calculated in fuel units.
-
-### price exec sha256 {#price-exec-sha256}
-
-The fuel fee of calling the `Sha256()` function, calculated in fuel units.
-
-### price exec size {#price-exec-size}
-
-The fuel fee of calling the `Size()` function, calculated in fuel units.
-
-### price exec substr {#price-exec-substr}
-
-The fuel fee of calling `theSubstr()` function, calculated in fuel units.
-
-### price exec sys fuel {#price-exec-sys-fuel}
-
-The fuel fee of calling the `SysFuel()` function, calculated in fuel units.
-
-### price exec sys param int {#price-exec-sys-param-int}
-
-The fuel fee of calling the `SysParamInt()` function, calculated in fuel units.
-
-### price exec sys param string {#price-exec-sys-param-string}
-
-The fuel fee of calling the `SysParamString()` function, calculated in fuel
-units.
-
-### price exec table conditions {#price-exec-table-conditions}
-
-The fuel fee of calling the `TableConditions()` function, calculated in fuel
-units.
-
-### price exec unbind wallet {#price-exec-unbind-wallet}
-
-The fuel fee of calling the `Deactivate()` function, calculated in fuel units.
-
-### price exec update lang {#price-exec-update-lang}
-
-The fuel fee of calling the `UpdateLang()` function, calculated in fuel units.
-
-### price exec validate condition {#price-exec-validate-condition}
-
-The fuel fee of calling the `ValidateCondition()` function, calculated in fuel
-units.
-
-### price tx data {#price-tx-data}
-
-The fuel fee for every 1024 bytes of a transaction, calculated in fuel units.
-
-### price tx size wallet {#price-tx-size-wallet}
-
-The fee by transaction size, its unit is the IBXC token.
-
-Except the ecosystem 1, a block space usage fee will be incurred proportionally
-when implementing a contract in other ecosystems, and its rate is _price tx size
-wallet_ IBXC tokens per megabyte.
-
-### rollback blocks {#rollback-blocks}
-
-Maximum number of blocks that can be rolled back when detecting a fork in the
-blockchain.
+### geri alma blokları {#rollback-blocks}
+Blok zincirinde bir fork tespit edildiğinde geri alınabilecek maksimum blok sayısı.

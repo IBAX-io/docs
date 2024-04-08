@@ -1,318 +1,286 @@
-# Daemon {#daemon}
 
-In this section, we will describe how IBAX nodes interact with each other from a
-technical perspective.
+# Arka plan programı {#daemon}
 
-## About the server daemon {#about-the-server-daemon}
+Bu bölümde, IBax düğümlerinin teknik açıdan birbirleriyle nasıl etkileşime girdiğini anlatacağız.
 
-The server daemon needs to run on every network node, which executes various
-server functions and supports IBAX's blockchain protocol. In the blockchain
-network, the daemon distributes blocks and transactions, generates new blocks,
-and verifies blocks and transactions received, and it can avoid the fork issue.
+## Sunucu arka plan programı hakkında {#about-the-server-daemon}
+Sunucu arka plan programının, çeşitli sunucu işlevlerini yürüten ve IBax'ın blok zinciri protokolünü destekleyen her ağ düğümünde çalışması gerekir. Blok zinciri ağında, arka plan programı blokları ve işlemleri dağıtır, yeni bloklar oluşturur ve alınan blokları ve işlemleri doğrular ve fork sorununu önleyebilir.
+### Honor düğümü arka plan programı {#honor-node-daemon}
+Bir honor düğümü aşağıdaki sunucu arka plan programlarını çalıştırır:
+* [BlockGenerator arka plan programı](#blockgenerator-daemon)
 
-### Honor node daemon {#honor-node-daemon}
+    Yeni bloklar oluşturma.
 
-A honor node runs the following server daemons:
+* [BlockCollection arka plan programı](#blockcollection-daemon)
 
-- [BlockGenerator daemon](#blockgenerator-daemon)
+    Diğer düğümlerden yeni bloklar indiriliyor.
 
-  Generating new blocks.
+* [Onaylar arka plan programı](#confirmations-daemon)
 
-- [BlockCollection daemon](#blockcollection-daemon)
+    Düğümdeki blokların diğer düğümlerin çoğunda da bulunduğunun doğrulanması.
 
-  Downloading new blocks from other nodes.
+* [Disseminator arka plan programı](#disseminator-daemon)
 
-- [Confirmations daemon](#confirmations-daemon)
+    İşlemleri ve blokları diğer onur düğümlerine dağıtma.
 
-  Confirming that blocks on the node also exist on most other nodes.
+* QueueParserBlocks arka plan programı
 
-- [Disseminator daemon](#disseminator-daemon)
+    Diğer düğümlerden gelen blokları içeren kuyruktaki bloklar.
 
-  Distributing transactions and blocks to other honor nodes.
+    Blok işleme mantığı, [BlockCollection arka plan programı](#blockcollection-daemon) ile aynıdır.
 
-- QueueParserBlocks daemon
+* QueueParserTx arka plan programı
 
-  Blocks in the queue, which contains blocks from other nodes.
+    Kuyruktaki işlemlerin doğrulanması.
 
-  Block processing logic is the same as
-  [BlockCollection daemon](#blockcollection-daemon).
+* Zamanlayıcı arka plan programı
 
-- QueueParserTx daemon
+    Sözleşmeleri planlandığı gibi yürütmek.
 
-  Verifying the transactions in queue.
+### Koruyucu düğüm arka plan programı {#guardian-node-daemon}
 
-- Scheduler daemon
+Bir koruyucu düğüm aşağıdaki sunucu arka plan programlarını çalıştırır:
 
-  Running contracts as scheduled.
+* [BlockCollection daemon](#blockcollection-daemon)
+* [Confirmations daemon](#confirmations-daemon)
+* [Disseminator daemon](#disseminator-daemon)
+* QueueParserTx
+* Scheduler
 
-### Guardian node daemon {#guardian-node-daemon}
+## BlockCollection arka plan programı {#blockcollection-daemon}
 
-A guardian node runs the following server daemons:
+Bu arka plan programı blokları indirir ve blok zincirini diğer ağ düğümleriyle senkronize eder.
 
-- [BlockCollection daemon](#blockcollection-daemon)
-- [Confirmations daemon](#confirmations-daemon)
-- [Disseminator daemon](#disseminator-daemon)
-- QueueParserTx
-- Scheduler
+### Blok zinciri senkronizasyonu {#blockchain-synchronization}
 
-## BlockCollection daemon {#blockcollection-daemon}
+Bu arka plan programı, blok zinciri ağındaki maksimum blok yüksekliğini belirleyerek, yeni bloklar talep ederek ve blok zincirindeki fork sorununu çözerek blok zincirini senkronize eder.
 
-This daemon downloads blocks and synchronizes the blockchain with other network
-nodes.
+#### Blockchain güncellemelerini kontrol edin {#check-for-blockchain-updates}
 
-### Blockchain synchronization {#blockchain-synchronization}
+Bu arka plan programı, geçerli blok id'ye tüm honor düğümlerine istek gönderir.
 
-This daemon synchronizes the blockchain by determining the maximum block height
-in the blockchain network, requesting new blocks, and solving the fork issue in
-the blockchain.
+Daemon'u çalıştıran düğümün mevcut blok id, herhangi bir honor düğümünün mevcut blok id'sinden küçükse, blok zinciri ağ düğümü güncel değil olarak kabul edilir.
 
-#### Check for blockchain updates {#check-for-blockchain-updates}
+#### Yeni blokları indirin {#download-new-blocks}
 
-This daemon sends requests from the current block ID to all honor nodes.
-
-If the current block ID of the node running the daemon is less than the current
-block ID of any honor node, the blockchain network node is considered out of
-date.
-
-#### Download new blocks {#download-new-blocks}
-
-The node that returns the largest current block height is considered the latest
-node. The daemon downloads all unknown blocks.
+Mevcut en büyük blok yüksekliğini döndüren düğüm, en son düğüm olarak kabul edilir.
+Daemon tüm bilinmeyen blokları indirir.
 
 #### Solving the fork issue {#solving-the-fork-issue}
 
-If a fork is detected in the blockchain, the daemon moves the fork backward by
-downloading all blocks to a common parent block. When found the common parent
-block, a blockchain rollback is performed on the node running the daemon, and
-the correct block is added to the blockchain until the latest one is included.
+Blok zincirinde bir fork algılanırsa, arka plan programı tüm blokları ortak bir ana bloğa indirerek forku geriye doğru hareket ettirir.
+Ortak ana blok bulunduğunda, arka plan programını çalıştıran düğümde bir blok zinciri geri dönüşü gerçekleştirilir ve en sonuncusu dahil edilene kadar blok zincirine doğru blok eklenir..
 
-### Tables {#tables-1}
+### Tablolar {#tables-1}
 
-The BlocksCollection daemon uses the following tables:
+BlocksCollection arka plan programı aşağıdaki tabloları kullanır:
 
-- block_chain
-- transactions
-- transactions_status
-- info_block
+* block_chain
+* transactions
+* transactions_status
+* info_block
 
-### Request {#request-1}
+### İstek {#request-1}
 
-The BlockCollection daemon sends the following requests to other daemons:
+BlockCollection arka plan programı, diğer arka plan programlarına aşağıdaki istekleri gönderir:
 
-- [Type 10](#type-10) points to the largest block ID among all honor nodes.
-- [Type 7](#type-7) points to the data with the largest block ID.
+* [Type 10](#type-10), tüm honor düğümleri arasında en büyük blok ID'ye işaret eder.
+* [Tür 7](#type-7) en büyük blok ID'nin sahip verilere işaret eder.
 
-## BlockGenerator daemon {#blockgenerator-daemon}
+## BlockGenerator arka plan programı {#blockgenerator-daemon}
 
-The BlockGenerator daemon generates new blocks.
+BlockGenerator arka plan programı yeni bloklar oluşturur.
 
-### Pre-verification {#pre-verification}
+### Ön doğrulama {#pre-verification}
 
-The BlockGenerator daemon analyzes the latest blocks in the blockchain to make
-new block generation plans.
+BlockGenerator arka plan programı, yeni blok oluşturma planları yapmak için blok zincirindeki en son blokları analiz eder.
 
-If the following conditions are met, a new block can be generated:
+Aşağıdaki koşullar karşılanırsa, yeni bir blok oluşturulabilir:
 
-- The node that generated the latest block is in a node within the honor node
-  list and runs the daemon.
-- The shortest time since the latest unverified block was generated.
+* En son bloğu oluşturan düğüm, honor düğümü listesindeki bir düğümdedir ve arka plan programını çalıştırır.
+* En son doğrulanmamış bloğun oluşturulmasından bu yana geçen en kısa süre.
 
-### Block generation {#block-generation}
+### Blok oluşturma {#block-generation}
 
-A new block generated by the daemon contains all new transactions, which can be
-received from the [Disseminator daemon](#disseminator-daemon) of other nodes or
-generated by the node running the daemon. The block generated is stored in the
-node database.
+Daemon tarafından oluşturulan yeni bir blok, diğer düğümlerin [Disseminator arka plan programından](#disseminator-daemon) alınabilen veya arka plan programını çalıştıran düğüm tarafından oluşturulabilen tüm yeni işlemleri içerir. Oluşturulan blok, düğüm veritabanında saklanır.
 
-### Tables {#tables-2}
+### Tablolar {#tables-2}
 
-The BlockGenerator daemon uses the following tables:
+BlockGenerator arka plan programı aşağıdaki tabloları kullanır:
 
-- block_chain (saves new blocks)
-- transactions
-- transactions_status
-- info_block
+* block_chain (saves new blocks)
+* transactions
+* transactions_status
+* info_block
 
-### Request {#request-2}
+### İstek {#request-2}
 
-The BlockGenerator daemon does not make any request to other daemons.
+BlockGenerator arka plan programı, diğer arka plan programlarına herhangi bir istekte bulunmaz.
 
-## Disseminator daemon {#disseminator-daemon}
+## Disseminator arka plan programı {#disseminator-daemon}
 
-The Disseminator daemon sends transactions and blocks to all honor nodes.
+Disseminator arka plan programı, tüm onur düğümlerine işlemler ve bloklar gönderir.
 
-### Guardian node {#guardian-node}
+### Koruyucu düğüm {#guardian-node}
 
-When working on a guardian node, the daemon sends transactions generated by its
-node to all honor nodes.
+Bir koruyucu düğüm üzerinde çalışırken arka plan programı, düğümü tarafından oluşturulan işlemleri tüm honor düğümlerine gönderir.
 
-### Honor node {#honor-node}
+### Honor düğüm {#honor-node}
 
-When working on a honor node, the daemon sends blocks generated and transaction
-hashes to all honor nodes.
+Bir honor düğümü üzerinde çalışırken, arka plan programı oluşturulan blokları ve işlem hashlerini tüm honor düğümlerine gönderir.
 
-Then, the honor node responds to transaction requests unknown to it. The daemon
-sends the complete transaction data as a response.
+Ardından, honor düğümü, bilmediği işlem isteklerine yanıt verir. Daemon, tam işlem verilerini yanıt olarak gönderir.
 
-### Tables {#tables-3}
+### Tablolar {#tables-3}
 
-The Disseminator daemon uses the following tables:
+Disseminator arka plan programı aşağıdaki tabloları kullanır:
 
-- transactions
+* transactions
 
-### Request {#request-3}
+### İstek {#request-3}
 
-The Disseminator daemon sends the following requests to other daemons:
+Disseminator arka plan programı, diğer arka plan programlarına aşağıdaki istekleri gönderir:
 
-- [Type 1](#type-1) Send transactions and block hashes to the honor node.
-- [Type 2](#type-2) Receive transaction data from the honor node.
+* [Tür 1](#type-1) Honor düğümüne işlemleri gönderin ve hashleri bloklayın.
+* [Type 2](#type-2) Honor düğümünden işlem verilerini alın.
 
-## Confirmations daemon {#confirmations-daemon}
+## Onaylar arka plan programı {#confirmations-daemon}
 
-The Confirmations daemon checks whether all the blocks in its node exist on most
-other nodes.
+Onaylar arka plan programı, düğümündeki tüm blokların diğer düğümlerin çoğunda bulunup bulunmadığını kontrol eder.
 
-### Block confirmation {#block-confirmation}
+### Blok onayı {#block-confirmation}
 
-A block confirmed by multiple node in the network is considered as a confirmed
-block.
+Ağdaki birden fazla düğüm tarafından onaylanan bir blok, onaylanmış bir blok olarak kabul edilir.
 
-The daemon confirms all blocks one by one starting from the first that is
-currently not confirmed in the database.
+Daemon, veri tabanında henüz onaylanmayan ilk bloktan başlayarak tüm blokları tek tek onaylar.
 
-Each block is confirmed in the way as follows:
+Her blok aşağıdaki şekilde onaylanır:
 
-- Sending a request containing the ID of the block being confirmed to all honor
-  nodes.
-- All honor nodes respond to the block hash.
-- If the hash responded matches the hash of the block on the daemon node, the
-  confirmation counter value is increased. If not, the cancellation counter
-  value is increased.
+* Tüm honor düğümlerine onaylanan bloğun kimliğini içeren bir istek göndermek.
+* Tüm honor düğümleri blok karmasına yanıt verir.
+* Yanıtlanan hash, arka plan programı düğümündeki bloğun hash değeriyle eşleşirse, onay sayacı değeri artar. Değilse, iptal sayaç değeri artırılır.
 
-### Tables {#tables-4}
+### Tablolar {#tables-4}
 
-The Confirmations daemon uses the following tables:
+Onaylar arka plan programı aşağıdaki tabloları kullanır:
 
-- confirmation
-- info_block
+* confirmation
+* info_block
 
-### Request {#request-4}
+### İstek {#request-4}
 
-The Confirmations daemon sends the following requests to other daemons:
+Onaylar arka plan programı, diğer arka plan programlarına aşağıdaki istekleri gönderir:
 
-- [Type 4](#type-4) Request block hashes from the honor node.
+* [Type 4](#type-4) Onur düğümünden blok hashlerini isteyin.
 
-## TCP service protocol {#tcp-service-protocol}
+## TCP hizmet protokolü {#tcp-service-protocol}
 
-The TCP service protocol works on honor nodes and guardian nodes, which uses the
-binary protocol on TCP to requests from the BlocksCollection, Disseminator, and
-Confirmation daemons.
+TCP hizmet protokolü, BlocksCollection, Dağıtıcı ve Onay arka plan programlarından gelen istekler için TCP'deki ikili protokolü kullanan onur düğümleri ve koruyucu düğümler üzerinde çalışır.
 
-## Request type {#request-type}
+## İstek Türü {#request-type}
 
-Each request has a type defined by the first two bytes of the request.
+Her isteğin, isteğin ilk iki baytı tarafından tanımlanan bir türü vardır.
 
-### Type 1 {#type-1}
+## Tip 1 {#type-1}
 
-#### Request sender {#request-sender-1}
+#### İstek gönderen {#request-sender-1}
 
-This request is sent by the [Disseminator daemon](#disseminator-daemon).
+Bu istek [Disseminator arka plan programı](#disseminator-daemon) tarafından gönderilir.
 
-#### Request data {#request-data-1}
+#### Veri iste {#request-data-1}
 
-Hashes of the transaction and block.
+İşlemin ve bloğun hashi.
 
-#### Request processing {#request-processing-1}
+#### Talep işleme {#request-processing-1}
 
-The block hash is added to the block queue.
+Blok hash, blok kuyruğuna eklenir.
 
-Analyzes and verifies the transaction hashes, and select transactions that have
-not yet appeared on the node.
+İşlem hash analiz eder ve doğrular ve henüz düğümde görünmeyen işlemleri seçer.
 
-#### Response {#response-1}
+#### Cevap {#response-1}
 
-No. After processing the request, a [Type 2](#type-2) request is issued.
+Hayır. İsteği işledikten sonra bir [Type 2](#type-2) isteği verilir.
 
-### Type 2 {#type-2}
+## Tip 2 {#type-2}
 
-#### Request sender {#request-sender-2}
+#### İstek gönderen {#request-sender-2}
 
-This request is sent by the [Disseminator daemon](#disseminator-daemon).
+Bu istek [Disseminator arka plan programı](#disseminator-daemon) tarafından gönderilir.
 
-#### Request data {#request-data-2}
+#### Veri iste {#request-data-2}
 
-The transaction data, including the data size:
+Veri boyutu da dahil olmak üzere işlem verileri:
 
-- data_size (4 bytes)
+* data_size (4 bytes)
 
-- Size of the transaction data, in bytes.
+* Size of the transaction data, in bytes.
 
-- data (data_size bytes)
+* data (data_size bytes)
 
-The transaction data.
+İşlem verileri.
 
-#### Request processing {#request-processing-2}
+#### Talep işleme {#request-processing-2}
 
-Verifies the transaction and add it to the transaction queue.
+İşlemi doğrular ve işlem kuyruğuna ekler.
 
-#### Response {#response-2}
+#### Cevap {#response-2}
 
-No.
+Hayır.
 
-### Type 4 {#type-4}
+## Tip 4 {#type-4}
 
-#### Request sender {#request-sender-3}
+#### İstek gönderen {#request-sender-3}
 
-This request is sent by the [Confirmations daemon](#confirmations-daemon).
+Bu istek [Onaylar arka plan programı](#confirmations-daemon) tarafından gönderilir.
 
-#### Request data {#request-data-3}
+#### Veri iste {#request-data-3}
 
 Block ID.
 
-#### Response {#response-3}
+#### Cevap {#response-3}
 
 Block hash.
 
-Returns `0` if not having a block with this ID.
+Bu ID'ye sahip bir blok yoksa "0" döndürür.
 
-### Type 7 {#type-7}
+## Tip 7 {#type-7}
 
-#### Request sender {#request-sender-4}
+#### İstek gönderen {#request-sender-4}
 
-This request is sent by the [BlockCollection daemon](#blockcollection-daemon).
+Bu istek [BlockCollection arka plan programı](#blockcollection-daemon) tarafından gönderilir.
 
-#### Request data {#request-data-4}
-
-Block ID.
-
-- block_id (4 bytes)
-
-#### Response {#response-4}
-
-The block data, including data size.
-
-- data_size (4 bytes)
-
-- Size of the block data, in bytes.
-
-- data (data_size bytes)
-
-The block data.
-
-The connection is closed if not having a block with this ID.
-
-### Type 10 {#type-10}
-
-#### Request sender {#request-sender-5}
-
-This request is sent by the [BlockCollection daemon](#blockcollection-daemon).
-
-#### Request data {#request-data-5}
-
-No.
-
-#### Response {#response-5}
+#### Veri iste {#request-data-4}
 
 Block ID.
 
-- block_id (4 bytes)
+* block_id (4 bytes)
+
+#### Cevap {#response-4}
+
+Veri boyutu dahil blok verileri.
+
+* data_size (4 bytes)
+
+* Size of the block data, in bytes.
+
+* data (data_size bytes)
+
+Blok verileri.
+
+Bu kimliğe sahip bir blok yoksa bağlantı kapatılır.
+
+## Tip 10 {#type-10}
+
+#### İstek gönderen {#request-sender-5}
+
+Bu istek [BlockCollection arka plan programı](#blockcollection-daemon) tarafından gönderilir.
+
+#### Veri iste {#request-data-5}
+
+Hayır.
+
+#### Cevap {#response-5}
+
+Block ID.
+
+* block_id (4 bytes)

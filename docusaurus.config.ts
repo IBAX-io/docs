@@ -20,7 +20,7 @@ const config: Config = {
   onBrokenMarkdownLinks: 'warn',
   i18n: {
     defaultLocale: "en",
-    locales: ["en", "fr"],
+    locales: ["en", "fr", "tr"],
   },
   presets: [
     [
@@ -160,6 +160,10 @@ const config: Config = {
             {
               label: "GitHub",
               href: "https://github.com/IBAX-io/docs",
+            },
+            {
+              label: "Needle",
+              href: "https://github.com/IBAX-io/needle",
             },
           ],
         },

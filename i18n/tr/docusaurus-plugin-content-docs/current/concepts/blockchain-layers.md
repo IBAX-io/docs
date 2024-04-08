@@ -1,152 +1,110 @@
-# The IBAX Network
+# The IBAX Network {#the-ibax-network}
 
-In this section, we will brief you how to use IBAX.
+Bu bölümde size IBAX'ın nasıl kullanılacağını anlatacağız.
 
-- [Application developers](#application-developers)
-- [ECOLIB members](#ecolib-members)
-- [ECOLIB applications and platform applications](#ecolib-applications-and-platform-applications)
-- [Underlying model](#underlying-model)
-- [Implementation](#implementation)
+- [The IBAX Network](#the-ibax-network)
+  - [Uygulama geliştiricileri](#application-developers)
+  - [ECOLIB üyeleri](#ecolib-members)
+  - [ECOLIB uygulamalar ve platform uygulamaları](#ecolib-applications-and-platform-applications)
+  - [Temel model](#underlying-model)
+  - [Uygulama](#implementation)
 
-If you are interested in the development, use or management of applications in
-IBAX, then you may not need to understand it at all.
 
-In IBAX, the blockchain and the blockchain network are hidden from ECOLIB
-members, administrators, and application developers. IBAX offers
-[RESTful API](../reference/api2.md) for all user groups, which provide a
-tamper-proof and distributed access to the **global state** of the blockchain.
 
-## Application developers {#application-developers}
 
-In technical terms, the **global state** is a set of data, which is implemented
-via IBAX's database. From the perspective of application developers, an
-application interacts with the database by querying, inserting and updating
-tables.
 
-In IBAX, transactions are written into the blockchain by implementing various
-contracts. These transactions will call contract codes implemented by blockchain
-network nodes, which will update the global state (database) accordingly.
 
-For application developers, a contract is a function that data will be written
-to the database when it is implemented. Pages are like scripts and the page code
-is a set of page [template](../topics/templates2.md) functions, some of these
-functions display page elements, while other data comes from the database.
-Application developers do not need to understand what are transactions, block
-generation and consensus algorithms, just use it.
+IBAX'teki uygulamaların geliştirilmesi, kullanımı veya yönetimi ile ilgileniyorsanız, bunu hiç anlamanız gerekmeyebilir.
 
-## ECOLIB members {#ecolib-members}
+IBAX'te blok zinciri ve blok zinciri ağı, ECOLIB üyelerinden, yöneticilerinden ve uygulama geliştiricilerinden gizlenmiştir. IBAX, tüm kullanıcı grupları için blok zincirinin **küresel durumuna** kurcalanmaya karşı korumalı ve dağıtılmış erişim sağlayan [RESTful API](../reference/api2.md) sunar.
 
-Applications written by developers run in an environment called
-[ECOLIB](thesaurus.md#ecolib). An application usually serves a specific purpose
-and complete various tasks together with several other applications.
+## Uygulama geliştiricileri {#application-developers}
 
-A user must become a member of an ECOLIB if wants to access applications in it,
-and it can be a member of multiple different ECOLIBs at the same time.
+Teknik terimlerle, **küresel durum**, IBAX'ın veri tabanı aracılığıyla uygulanan bir dizi veridir. Uygulama geliştiricilerin bakış açısından, bir uygulama tabloları sorgulayarak, ekleyerek ve güncelleyerek veritabanı ile etkileşime girer.
 
-ECOLIB members can view and modify the database from application pages, just
-like filling out forms, clicking buttons and navigating pages in a common web
-application.
+IBAX'te işlemler, çeşitli sözleşmeler uygulanarak blok zincirine yazılır. Bu işlemler, küresel durumu (veritabanı) buna göre güncelleyecek olan blok zinciri ağ düğümleri tarafından uygulanan sözleşme kodlarını arayacaktır.
 
-## ECOLIB applications and platform applications {#ecolib-applications-and-platform-applications}
+Uygulama geliştiricileri için sözleşme, uygulandığında verilerin veritabanına yazılacağı bir işlevdir. Sayfalar komut dosyaları gibidir ve sayfa kodu bir dizi sayfa [şablon](../topics/templates2.md) işlevidir, bu işlevlerden bazıları sayfa öğelerini görüntülerken, diğer veriler veritabanından gelir. Uygulama geliştiricilerin işlemlerin, blok oluşturma ve konsensüs algoritmalarının ne olduğunu anlamalarına gerek yok, sadece kullanın.
 
-Applications may fall into **ECOLIB applications** and **platform
-applications**.
+## ECOLIB üyeleri {#ecolib-members}
 
-> ECOLIB applications
+Geliştiriciler tarafından yazılan uygulamalar, [ECOLIB](thesaurus.md#ecolib) adlı bir ortamda çalışır. Bir uygulama genellikle belirli bir amaca hizmet eder ve diğer birkaç uygulamayla birlikte çeşitli görevleri tamamlar.
 
-An ECOLIB application implements certain unique functions or business processes
-of an ECOLIB, but it is only available in that ECOLIB.
+Bir kullanıcı, içindeki uygulamalara erişmek istiyorsa bir ECOLIB'ye üye olmalıdır ve aynı anda birden fazla farklı ECOLIB'ye üye olabilir.
 
-> Platform applications
+ECOLIB üyeleri, ortak bir web uygulamasındaki formları doldurmak, düğmelere tıklamak ve sayfalarda gezinmek gibi, uygulama sayfalarından veri tabanını görüntüleyebilir ve değiştirebilir.
 
-A platform application is applicable to all ECOLIBs. Any application could be
-developed as a platform application. IBAX developers would provide platform
-applications that support the core functions for ECOLIB governance, such as
-voting, notification, and ECOLIB member role management.
+## ECOLIB uygulamaları ve platform uygulamaları {#ecolib-applications-and-platform-applications}
 
-## Underlying model {#underlying-model}
+Başvurular **ECOLIB uygulamaları** ve **platform uygulamaları** olarak ayrılabilir.
 
-> Definition of layers
+ECOLIB uygulamaları
 
-IBAX consists of several layers:
+Bir ECOLIB uygulaması, bir ECOLIB'nin belirli benzersiz işlevlerini veya iş süreçlerini uygular, ancak yalnızca o ECOLIB'de mevcuttur.
+Platform uygulamaları
 
-- User interaction layer
+Tüm ECOLIB'ler için bir platform uygulaması geçerlidir. Herhangi bir uygulama bir platform uygulaması olarak geliştirilebilir. IBAX geliştiricileri, oylama, bildirim ve ECOLIB üye rol yönetimi gibi ECOLIB yönetişimi için temel işlevleri destekleyen platform uygulamaları sağlayacaktır.
 
-  ECOLIB members interact with the application through pages and page elements.
+## Temel model {#underlying-model}
 
-- Application layer
+katmanların tanımı
 
-  Application developers interact with the global state (data tables) through
-  contract codes and page codes.
+IBAX birkaç katmandan oluşur:
 
-- Global state layer
+* Kullanıcı etkileşimi katmanı
 
-  Update and synchronize the global state (database) based on operations written
-  to the distributed ledger (blockchain)
+    ECOLIB üyeleri, sayfalar ve sayfa öğeleri aracılığıyla uygulama ile etkileşime girer.
 
-- Blockchain layer
+* Uygulama katmanı
 
-  Update the distributed ledger with new blocks. Operations (transactions) saved
-  in new blocks must be performed on the global state.
+    Uygulama geliştiricileri, sözleşme kodları ve sayfa kodları aracılığıyla küresel durumla (veri tabloları) etkileşime girer.
 
-- Node network layer
+* Küresel durum katmanı
 
-  It implemented the IBAX Network protocol, which distributes, verifies
-  transactions and generates new blocks on the node network. Similarly, new
-  blocks are distributed and verified by the node network.
+    Dağıtılmış deftere (blockchain) yazılan işlemlere dayalı olarak küresel durumu (veritabanı) güncelleyin ve senkronize edin
+* Blok zinciri katmanı
 
-  The distributed ledger of all nodes is kept in sync. If having conflicts in a
-  node, the node will identify which blockchains are considered valid and
-  invalid blockchains will be rolled back accordingly.
+    Dağıtılmış defteri yeni bloklarla güncelleyin. Yeni bloklarda kaydedilen işlemler (işlemler) global durumda gerçekleştirilmelidir.
 
-- Transaction layer
+* Düğüm ağ katmanı
 
-  Transactions are the basis for generating blocks and blockchain protocols, and
-  transactions themselves are the results of operations performed at the user
-  interaction layer. Transactions are generated by Weaver.
+    Düğüm ağında işlemleri dağıtan, doğrulayan ve yeni bloklar oluşturan IBAX Ağı protokolünü uyguladı. Benzer şekilde, yeni bloklar düğüm ağı tarafından dağıtılır ve doğrulanır.
 
-  When a user or developer performs an operation such as clicking a button on a
-  page or implement a contract from the code editor, Weaver will convert this
-  operation into a transaction and send it to the network node connected to it.
+    Tüm düğümlerin dağıtılmış defteri senkronize tutulur. Bir düğümde çakışmalar varsa, düğüm hangi blok zincirlerinin geçerli kabul edildiğini belirleyecek ve geçersiz blok zincirleri buna göre geri alınacaktır.
 
-Therefore, the flow of transactions is as follows:
+* İşlem katmanı
 
-- A user operation in a user page will become a transaction;
-- The transaction is contained in a block;
-- The block is included in the blockchain;
-- The change of operation will cause the global state of the blockchain to
-  change, and such operation will be applied to the database;
-- Any database change will be reflected in the application.
+    İşlemler, blokların ve blok zinciri protokollerinin oluşturulmasının temelidir ve işlemlerin kendisi, kullanıcı etkileşimi katmanında gerçekleştirilen işlemlerin sonuçlarıdır. İşlemler Weaver tarafından oluşturulur.
 
-## Implementation {#implementation}
+    Bir kullanıcı veya geliştirici, bir sayfadaki bir düğmeyi tıklamak veya kod düzenleyiciden bir sözleşme uygulamak gibi bir işlem gerçekleştirdiğinde, Weaver bu işlemi bir işleme dönüştürecek ve kendisine bağlı ağ düğümüne gönderecektir.
 
-IBAX has two major components, i.e. server
-[go-ibax](https://github.com/IBAX-io/go-ibax) and Weaver
-[Source code](https://github.com/IBAX-io/weaver).
+Bu nedenle, işlem akışı aşağıdaki gibidir:
 
-Weaver:
+  * Bir kullanıcı sayfasındaki bir kullanıcı işlemi, bir işleme dönüşecektir;
+  * İşlem bir blokta bulunur;
 
-- Providing the user pages;
+  * Blok, blok zincirine dahildir;
 
-- Providing the IDE for application development;
+  * İşlem değişikliği, blok zincirinin küresel durumunun değişmesine neden olacak ve bu işlem veritabanına uygulanacaktır;
 
-- Storing public keys of user accounts and perform authorization;
+  * Herhangi bir veritabanı değişikliği uygulamaya yansıtılacaktır.
 
-- Requesting database data from application pages and display application pages
-  to users;
+## Uygulama {#implementation}
 
-- Sending transactions to the server through [REST APIs](../reference/api2.md);
+IBAX'in iki ana bileşeni vardır, yani sunucu [go-ibax](https://github.com/IBAX-io/go-ibax) ve Weaver [Kaynak kodu](https://github.com/IBAX-io/weaver ).
 
-  In order to automatically create transactions against user operations, Weaver
-  will convert such operations into transactions when application developers
-  implement a contract from the IDE.
+dokumacı:
+  * Kullanıcı sayfalarının sağlanması;
+  * Uygulama geliştirme için IDE sağlanması;
+  * Kullanıcı hesaplarının açık anahtarlarının saklanması ve yetkilendirme yapılması;
+  * Uygulama sayfalarından veri tabanı verilerini talep etme ve uygulama sayfalarını kullanıcılara gösterme;
+  * İşlemleri [REST API'leri](../reference/api2.md) üzerinden sunucuya gönderme;
 
-Server:
+      Kullanıcı işlemlerine karşı otomatik olarak işlemler oluşturmak için, uygulama geliştiricileri IDE'den bir sözleşme uyguladığında Weaver bu işlemleri işlemlere dönüştürecektir.
 
-- Keeping the global state (database) of the node;
-- Implementation of the blockchain protocol;
-- Implementation of contract codes in the IBAX
-  [Virtual Machine](../topics/vm.md);
-- Implementation of page codes in the
-  [Template Engine](../topics/templates2.md);
-- Implementation of [RESTful API](../reference/api2.md).
+sunucu:
+  * Düğümün global durumunu (veritabanı) tutmak;
+  * Blok zinciri protokolünün uygulanması;
+  * IBAX [Sanal Makinede](../topics/vm.md) sözleşme kodlarının uygulanması;
+  * [Şablon Motorunda](../topics/templates2.md) sayfa kodlarının uygulanması;
+  * [RESTful API](../reference/api2.md) uygulaması.

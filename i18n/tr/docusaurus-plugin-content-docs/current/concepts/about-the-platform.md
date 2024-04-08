@@ -1,454 +1,284 @@
-# IBAX Overview
+# IBAX Genel Bakış {#ibax-overview}
 
-- [Features](#features)
-- [Architecture](#architecture)
-  - [Network](#network)
-  - [Honor Node](#honor-node)
-  - [Transactions](#transactions)
-  - [Network protocol](#network-protocol)
-  - [Block and transaction verification](#block-and-transaction-verification)
-  - [Database](#database)
-- [ECOLIB](#ecolib)
-  - [IDE](#ide)
-  - [Applications](#applications)
-  - [Tables](#tables)
-  - [Ecosystem Parameters](#ecosystem-parameters)
-- [Access rights control mechanism](#access-rights-control-mechanism)
-  - [Access Control Actions](#access-control-actions)
-  - [Access rights management](#access-rights-management)
-  - [Exclusive rights](#exclusive-rights)
-- [Virtual private ecosystem](#virtual-private-ecosystem)
-  - [Requests to web resources](#requests-to-web-resources)
-  - [Rights to read data](#rights-to-read-data)
-  - [CLB creation](#clb-creation)
-  - [CLB usage](#clb-usage)
+- [IBAX Genel Bakış](#ibax-overview)
+  - [Özellikler](#features)
+  - [Mimari](#architecture)
+    - [Ağ](#network)
+    - [Honor Node](#honor-node)
+    - [İşlemler](#transactions)
+    - [Ağ protokolü](#network-protocol)
+    - [Blok ve işlem doğrulama](#block-and-transaction-verification)
+    - [Veri tabanı](#database)
+  - [ECOLIB](#ecolib)
+    - [IDE](#ide)
+    - [Uygulamalar](#applications)
+    - [Tablolar](#tables)
+    - [Ekosistem Parametreleri](#ecosystem-parameters)
+  - [Erişim hakları kontrol mekanizması](#access-rights-control-mechanism)
+    - [Erişim hakları yönetimi](#access-rights-management)
+    - [Özel haklar](#exclusive-rights)
+  - [Sanal özel ekosistem](#virtual-private-ecosystem)
+    - [Web kaynaklarına yönelik istekler](#requests-to-web-resources)
+    - [Veri okuma hakları](#rights-to-read-data)
+    - [CLB oluşturma](#clb-creation)
+    - [CLB kullanımı](#clb-usage)
 
 import Highlight from '@site/src/components/Highlight';
 
-## Features {#features}
+## Özellikler {#features}
 
-The IBAX Network (IBAX) has an integrated application development environment
-(IDE). It is a multi-level access control system for data, user pages and smart
-contracts.
+IBAX Ağı (IBAX), entegre bir uygulama geliştirme ortamına (IDE) sahiptir. Veriler, kullanıcı sayfaları ve akıllı sözleşmeler için çok seviyeli bir erişim kontrol sistemidir.
 
-In terms of its structure and functions, IBAX is quite different from most
-existing blockchain platforms:
+Yapısı ve işlevleri açısından IBAX, mevcut çoğu blok zinciri platformundan oldukça farklıdır:
 
-- The development and use of IBAX applications are in an autonomous software
-  environment called **ecosystem**. Each ecosystem has its own membership rules
-  that are initially established by the creator;
+* IBAX uygulamalarının geliştirilmesi ve kullanımı, **ekosistem** adı verilen özerk bir yazılım ortamındadır. Her ekosistemin başlangıçta yaratıcı tarafından belirlenen kendi üyelik kuralları vardır;
 
-- Ecosystem activities, such as the data involved in <Highlight color="red">database table</Highlight> records or updates, are
-  based on **registers** created with **smart contracts**. In most other
-  blockchain platforms, activities are based on transaction exchange between
-  accounts;
+* <Highlight color="red">veritabanı tablosu</Highlight> kayıtlarında veya güncellemelerinde yer alan veriler gibi ekosistem faaliyetleri, **akıllı sözleşmeler** ile oluşturulan **kayıtlara** dayanmaktadır. Diğer blok zinciri platformlarının çoğunda, faaliyetler hesaplar arasındaki işlem alışverişine dayanır;
 
-- The access to **registers** and the control of relationships between ecosystem
-  members are managed by a set of rules called **smart laws**.
+* **Kayıtlara** erişim ve ekosistem üyeleri arasındaki ilişkilerin kontrolü, **akıllı yasalar** adı verilen bir dizi kural tarafından yönetilir.
 
-## Architecture {#architecture}
+## Mimari {#architecture}
 
-### Network {#network}
+### Ağ {#network}
 
-IBAX is built on a peer-to-peer (P2P) network.
+IBAX, eşler arası (P2P) bir ağ üzerine kurulmuştur.
 
-Guardian nodes in the network store the latest version of the blockchain
-database, which records the latest status of IBAX's blockchain.
+Ağdaki koruyucu düğümler, IBAX'in blok zincirinin en son durumunu kaydeden blok zinciri veritabanının en son sürümünü depolar.
 
-Network users can receive data by sending requests from the guardian node
-database via **Weaver** or REST API commands. After signing by users, new
-requests are sent to the network as transactions in binary format. Essentially,
-these transactions are commands to modify relevant database records.
-Transactions are aggregated in blocks, and such blocks are sent to the
-blockchains of all network nodes. Each guardian node will process the
-transactions in the block, thereby updating the corresponding data in the
-database.
+Ağ kullanıcıları, **Weaver** veya REST API komutları aracılığıyla koruyucu düğüm veritabanından istek göndererek veri alabilir. Kullanıcılar tarafından imzalandıktan sonra, yeni istekler ikili biçimde işlem olarak ağa gönderilir. Esasen, bu işlemler ilgili veritabanı kayıtlarını değiştirme komutlarıdır. İşlemler bloklar halinde toplanır ve bu bloklar tüm ağ düğümlerinin blok zincirlerine gönderilir. Her bir koruyucu düğüm, bloktaki işlemleri işleyecek ve böylece veritabanındaki ilgili verileri güncelleyecektir.
 
 ### Honor Node {#honor-node}
 
-A guardian node which is privileged to generate new blocks in the network is
-called a honor node. The maximum number of honor nodes is defined by
-[number_of_nodes](../reference/platform-parameters.md#number-of-nodes) in the
-platform parameters table, showing that the number of honor nodes is limited.
+Ağda yeni bloklar oluşturma ayrıcalığına sahip olan bir koruyucu düğüme Honor Node denir. Maksimum Honor Node sayısı, onur düğümlerinin sayısının sınırlı olduğunu gösteren platform parametreleri tablosunda no_of_nodes ile tanımlanır.
 
-An Honor Node is one of the key components of IBAX Public Network. It executes
-and validates transactions, collects transaction information from other nodes,
-adds transactions to the queue, and verifies the correctness and validity of new
-blocks using the confirmation mechanism. Generally, it has two states: packaging
-and non-packaging.
+Bir Honor Node, IBAX Kamu Ağının temel bileşenlerinden biridir. İşlemleri yürütür ve doğrular, diğer düğümlerden işlem bilgilerini toplar, işlemleri kuyruğa ekler ve onay mekanizmasını kullanarak yeni blokların doğruluğunu ve geçerliliğini doğrular. Genellikle iki durumu vardır: paketleme ve paketleme.
 
-An Honor Node in the packaging state delivers the highest performance. It
-obtains transaction requests to be executed from the transaction queue and
-verifies the ignature validity and correctness of transactions, e.g. transfer
-amount, permission for transaction operations, and accurate execution of
-transactions.
+Paketleme durumundaki bir Honor Node en yüksek performansı sunar. İşlem kuyruğundan yürütülecek işlem isteklerini alır ve işlemlerin imza geçerliliğini ve doğruluğunu doğrular, örn. transfer tutarı, işlem işlemleri için izin ve işlemlerin doğru yürütülmesi. Tüm parasal işlemler, doğru veya yanlış (yanlış işlemler geri alınacaktır), bloğa yazılacaktır. Yanlış işlemler cezai bir gaz ücretine tabi olacaktır. Gerçekleştirilen işlemler blok ile birlikte diğer Honor Node yayın yoluyla bildirilir.
 
-All ransactional operations, correct or wrong (wrong transactions will be rolled
-back), will be written into the block.
+Paketleme olmayan durumdaki bir Honor Node, paketleme düğümü tarafından oluşturulan blok içi işlemlerin doğru bir şekilde yürütülmesini sağlamak için temel olarak blok doğrulamasından sorumludur. Bir anormallik durumunda, istisna işleme mekanizmasını tetikler ve IBAX Ağı geri dönerek bloğu yeniden doğrular.
 
-Wrong transactions will incur a punitive gas fee. Executed transactions are
-notified to other Honor Nodes along with the block through broadcasting.
+İşlem yürütme verimliliğini sağlamak için Honor Nodeları, işlem bilgilerini sürekli olarak toplar.
 
-An Honor Node in the non-packaging state is mainly responsible for block
-verification to ensure in-block transactions generated by a packaging node are
-executed orrectly. In case of an anomaly, it will trigger the exception handling
-mechanism and IBAX Network will roll back and re-verify the block.
+### İşlemler {#transactions}
 
-In order to ensure transaction execution efficiency, Honor Nodes collect
-transaction information constantly.
+**Akıllı sözleşmeleri** uygulamak için kullanılan veriler de dahil olmak üzere işlemler Weaver tarafından oluşturulur.
 
-### Transactions {#transactions}
+İşlemler, kullanıcılar tarafından özel bir anahtarla imzalanır. Özel anahtar ve Weaver'ın imza işlevi tarayıcılarda, yazılım istemcilerinde, SIM kartlarda veya özel fiziksel cihazlarda saklanabilir. Mevcut uygulamada, özel anahtar ECDSA algoritması ile şifrelenir ve Weaver tarafında saklanır. Tüm işlemler ECDSA algoritması ile imzalanır.
 
-Transactions, including data used to implement **smart contracts**, are
-generated by Weaver.
+Bir işlemin yapısı aşağıdaki biçime uygundur:
 
-Transactions are signed by users with a private key. The private key and
-Weaver's signature function can be stored in browsers, software clients, SIM
-cards or dedicated physical devices. In the current implementation, the private
-key is encrypted with the ECDSA algorithm and stored at the Weaver side. All
-transactions are signed with the ECDSA algorithm.
+* Kimlik - uygulanan sözleşmenin kimliği;
 
-The structure of a transaction complies with the following format:
+* Params - sözleşmeye gönderilen parametreler;
 
-- ID - ID of the contract implemented;
-- Params - parameters sent to the contract;
-- KeyID - ID of the user sending the transaction;
-- PublicKey - public key of the honor node;
-- Time - timestamp generated by the transaction;
-- EcosystemID - ID of the ecosystem where the transaction is made;
-- ТokenEcosystem - ID of the ecosystem, 1 by default, and tokens within it are
-  used to cover the transaction costs.
+* Anahtar Kimliği - İşlemi gönderen kullanıcının kimliği;
 
-### Network protocol {#network-protocol}
+* PublicKey - onur düğümünün genel anahtarı;
 
-Transactions will be sent to honor nodes by users, where they are subject to
-basic verification to ensure the formats are correct and then are added to the
-queue.Transactions are also sent to other honor nodes on the network and added
-to the respective queue.
+* Zaman - işlem tarafından oluşturulan zaman damgası;
 
-A honor node is privileged to generate new blocks within a specific time period
-which is determined by the platform parameter **full_nodes** and a special
-algorithm. Honor nodes retrieve transactions from queues and send them to the
-block generator.
+* EcosystemID - İşlemin yapıldığı ekosistemin kimliği;
 
-When generating a new block, transactions in such block will also be processed:
-each transaction is sent to a virtual machine, where the contract corresponding
-to the transaction parameters is implemented, thereby updating records in the
-database.
+* TokenEcosystem - Ekosistemin kimliği, varsayılan olarak 1 ve içindeki jetonlar, işlem maliyetlerini karşılamak için kullanılır.
 
-New blocks should be verified to ensure there are no errors before sending to
-other honor nodes on other networks.
+### Ağ Protokolü {#network-protocol}
 
-A new block will be added to the block queue when received by other honor node
-and, after verification, to the blockchain of the honor node where it is located
-to process transactions in the block, and thereby updating records in the
-database.
+İşlemler, biçimlerin doğru olduğundan emin olmak için temel doğrulamaya tabi tutuldukları ve ardından kuyruğa eklendiği, kullanıcılar tarafından onur düğümlerine gönderilecek. İşlemler ayrıca ağdaki diğer onur düğümlerine gönderilir ve ilgili kuyruğa eklenir.
 
-### Block and transaction verification {#block-and-transaction-verification}
+Bir honor node, **full_nodes** platform parametresi ve özel bir algoritma tarafından belirlenen belirli bir süre içinde yeni bloklar oluşturma ayrıcalığına sahiptir. Onur düğümleri, işlemleri kuyruklardan alır ve bunları blok oluşturucuya gönderir. Yeni bir blok oluştururken, bu bloktaki işlemler de işlenecektir: her işlem, işlem parametrelerine karşılık gelen sözleşmenin uygulandığı bir sanal makineye gönderilir, böylece veritabanındaki kayıtlar güncellenir.
 
-After generating or receiving a new block, it will be verified on all other
-honor nodes, which cover the following:
+Diğer ağlardaki diğer onur düğümlerine göndermeden önce hata olmadığından emin olmak için yeni bloklar doğrulanmalıdır.
 
-- The first byte of the data received should be 0. If not, the data received
-  will not be considered as a block;
-- The received block generation timestamp should be before the current
-  timestamp;
-- The block generation timestamp should correspond to the time interval at which
-  the honor node having privilege to generate new blocks;
-- The height of a new block should be greater than the height of the largest
-  block on the existing blockchain;
-- It cannot exceed the maximum expenses allowed for all transactions in the
-  block;
-- The block must be properly signed with the secret key of the node which it is
-  located. The signature data should contain:
-  - The height of the block, the hash of the previous block, the timestamp of
-    the block, the ID of the ecosystem where the block is located, and the
-    account address of the honor node of the block;
-  - The position of the honor node in the platform parameter full_nodes array,
-    the Merkel Root (MrklRoot) of all transactions in the block, and the revert
-    hash of the previous block.
+Başka bir onur düğümü tarafından alındığında blok kuyruğuna ve doğrulamadan sonra, bloktaki işlemleri işlemek ve böylece veri tabanındaki kayıtları güncellemek için bulunduğu onur düğümünün blok zincirine yeni bir blok eklenecektir.
 
-To check the correctness of each transaction in the block with the following
-methods:
+### Blok ve işlem doğrulama {#block-and-transaction-verification}
 
-- The hash of each transaction must be unique;
-- A key-signed transaction cannot exceed the limit
-  ([max_tx_block_per_user](../reference/platform-parameters.md#max-tx-block-per-user));
-- It cannot exceed the limit of the maximum transaction size
-  ([max_tx_size](../reference/platform-parameters.md#max-tx-size));
-- The transaction time can neither be greater than the block generation time or
-  be greater than the block generation time plus 600 seconds, and it can be no
-  less than the block generation time minus 86400 seconds;
-- The transaction must be signed properly;
-- The user who implements the contract must have sufficient tokens in his
-  account to pay for the transaction cost.
+Yeni bir blok oluşturduktan veya aldıktan sonra, aşağıdakileri kapsayan diğer tüm honor nodelarında doğrulanacaktır:
 
-### Database {#database}
+* Alınan verinin ilk baytı 0 olmalıdır. Değilse, alınan veri blok olarak kabul edilmeyecektir;
 
-The underlying data storage layer of IBAX Network is a `PGSQL` database
-completely open to the public. Based on the permission design of the IBAX
-Operating System Platform, users do not need to worry about data security. With
-an object-oriented design philosophy, IBAX Network pre-compiles data through a
-relational PGSQL database and improves the data processing efficiency.
+* Alınan blok oluşturma zaman damgası, geçerli zaman damgasından önce olmalıdır;
 
-You may be interested in the following if you are a technical specialist, or
-just skip it if you are not. ① All tables without a number prefix in their name
-belong to permission tables of IBAX Network Basic; ② All tables with a number
-prefix in their name belong to permission tables of ecoLibs.
+* Blok oluşturma zaman damgası, onur düğümünün yeni bloklar oluşturma ayrıcalığına sahip olduğu zaman aralığına karşılık gelmelidir;
+
+* Yeni bir bloğun yüksekliği, mevcut blok zincirindeki en büyük bloğun yüksekliğinden daha büyük olmalıdır;
+
+* Bloktaki tüm işlemler için izin verilen maksimum harcamaları aşamaz;
+
+* Blok, bulunduğu düğümün gizli anahtarı ile uygun şekilde imzalanmalıdır. İmza verileri şunları içermelidir:
+
+  * Bloğun yüksekliği, önceki bloğun hash'i, bloğun zaman damgası, bloğun bulunduğu ekosistemin kimliği ve bloğun onur düğümünün hesap adresi;
+
+  * Platform parametresi full_nodes dizisindeki onur düğümünün konumu, bloktaki tüm işlemlerin Merkel Kökü (MrklRoot) ve önceki bloğun geri dönüş karması.
+
+Bloktaki her işlemin doğruluğunu aşağıdaki yöntemlerle kontrol etmek için:
+
+* Her işlemin hash'i benzersiz olmalıdır;
+
+* Anahtar imzalı bir işlem sınırı aşamaz ([max_tx_block_per_user](../reference/platform-parameters.md#max-tx-block-per-user));
+
+* Maksimum işlem boyutu sınırını aşamaz ([max_tx_size](../reference/platform-parameters.md#max-tx-size));
+
+* İşlem süresi, blok oluşturma süresinden daha büyük veya blok oluşturma süresi artı 600 saniyeden daha büyük olamaz ve blok oluşturma süresi eksi 86400 saniyeden daha az olamaz;
+
+* İşlem düzgün bir şekilde imzalanmalıdır;
+
+* Sözleşmeyi uygulayan kullanıcının işlem bedelini ödemesi için hesabında yeterli token olması gerekir.
+
+### Veri tabanı {#database}
+
+IBAX Ağının temel veri depolama katmanı, tamamen halka açık bir 'PGSQL' veritabanıdır. IBAX İşletim Sistemi Platformunun izin tasarımına dayalı olarak, kullanıcıların veri güvenliği konusunda endişelenmesine gerek yoktur. Nesne yönelimli tasarım felsefesi ile IBAX Ağı, verileri ilişkisel bir PGSQL veritabanı aracılığıyla önceden derler ve veri işleme verimliliğini artırır.
+
+Teknik bir uzmansanız aşağıdakiler ilginizi çekebilir veya değilseniz sadece atlayabilirsiniz.
+① Adında sayı öneki olmayan tüm tablolar, IBAX Network Basic'in izin tablolarına aittir;
+② Adında bir sayı öneki olan tüm tablolar ecoLibs'in izin tablolarına aittir.
 
 ## ECOLIB {#ecolib}
 
-It is quite easy for users, even common users, to create an ecoLib of their own
-on the IBAX Network System Platform. We have integrated and developed an
-application where ecoLib creation takes just one click.
+Kullanıcılar, hatta sıradan kullanıcılar için IBAX Ağ Sistemi Platformunda kendilerine ait bir ecoLib oluşturmak oldukça kolaydır. ecoLib oluşturmanın tek bir tıklamayla gerçekleştiği bir uygulamayı entegre ettik ve geliştirdik.
 
-When creating an ecoLib, you can configure the ecosystem parameters and rules,
-and set the administrator account and charging model. Most importantly, to apply
-the DPoA consensus within ecoLibs better, creators can set it up by writing or
-importing their own contracts.
+Bir ecoLib oluştururken, ekosistem parametrelerini ve kurallarını yapılandırabilir ve yönetici hesabını ve ücretlendirme modelini ayarlayabilirsiniz. En önemlisi, DPoA fikir birliğini ecoLibs içinde daha iyi uygulamak için, içerik oluşturucular bunu kendi sözleşmelerini yazarak veya içe aktararak kurabilirler.
 
-We support quick emission of ecoLib tokens by importing contract templates.
+Sözleşme şablonlarını içe aktararak ecoLib belirteçlerinin hızla yayılmasını destekliyoruz.
 
-Due to the differences in consensus and management permissions, ecoLibs fall
-into decentralized and centralized ones. They have no specific advantage or
-disadvantage by type. You should choose the appropriate one against your service
-needs. What to do if it is OK for now but not for the future? You can change
-ecoLib parameters, even the consensus mechanism, token, and governance method,
-on the IBAX Network System Platform. You can leave it all to the self-governance
-mechanism maintained by the ecoLib administrator or members (depending on the
-ecoLib type).
+Konsensüs ve yönetim izinlerindeki farklılıklar nedeniyle, ecoLib'ler merkezi olmayan ve merkezi olmayanlara ayrılır. Türlerine göre belirli bir avantaj veya dezavantajı yoktur. Servis ihtiyaçlarınıza uygun olanı seçmelisiniz. Şimdilik iyiyse ama gelecek için değilse ne yapmalı? IBAX Ağ Sistemi Platformunda ecoLib parametrelerini, hatta mutabakat mekanizmasını, belirteci ve yönetişim yöntemini değiştirebilirsiniz. Her şeyi ecoLib yöneticisi veya üyeleri (ecoLib türüne bağlı olarak) tarafından sağlanan öz-yönetim mekanizmasına bırakabilirsiniz.
 
-On the IBAX Network System Platform, an ecoLib has complete data control
-permissions and permissions to design and access independent database tables and
-fields. In the data control permission design, we support triggering when a
-field satisfies a logical expression. This feature allows for imagination space
-in special services like monitoring, logic satisfaction, and triggering by time
-and specific conditions.
+IBAX Ağ Sistemi Platformunda, bir ecoLib, bağımsız veritabanı tabloları ve alanları tasarlamak ve bunlara erişmek için eksiksiz veri kontrol izinlerine ve izinlerine sahiptir. Veri denetimi izin tasarımında, bir alan mantıksal bir ifadeyi karşıladığında tetiklemeyi destekleriz. Bu özellik, izleme, mantıksal tatmin ve zamana ve belirli koşullara göre tetikleme gibi özel hizmetlerde hayal gücü alanı sağlar.
 
-There may be multiple DApps in an ecoLib, and each of them can have independent
-parameters. An ecoLib is like a platform where you can implement anything you
-want.
+Bir ecoLib'de birden fazla DApp olabilir ve bunların her birinin bağımsız parametreleri olabilir. ecoLib, istediğiniz her şeyi uygulayabileceğiniz bir platform gibidir.
 
-In order to better support ecosystem developers, we provide the editing,
-management, and development tool Weaver. It will reduce the ecosystem
-development, maintenance, and management costs greatly.
+Ekosistem geliştiricilerini daha iyi desteklemek için Weaver düzenleme, yönetim ve geliştirme aracını sağlıyoruz. Ekosistem geliştirme, bakım ve yönetim maliyetlerini büyük ölçüde azaltacaktır.
 
 ### IDE {#ide}
 
-Weaver has a complete integrated development environment (IDE) for creating
-blockchain applications, which does not require software developers to have a
-deep understanding of the blockchain technology.
+Weaver, yazılım geliştiricilerin blok zinciri teknolojisini derinlemesine anlamalarını gerektirmeyen blok zinciri uygulamaları oluşturmak için eksiksiz bir entegre geliştirme ortamına (IDE) sahiptir.
 
-Weaver provides a table management tool, contract editor, page editor and other
-functions needed to create applications in the ecosystem, without the support of
-any software module.
+Weaver, herhangi bir yazılım modülünün desteği olmadan ekosistemde uygulamalar oluşturmak için gereken bir tablo yönetim aracı, sözleşme düzenleyici, sayfa düzenleyici ve diğer işlevleri sağlar.
 
-The IDE mainly includes the following parts:
+IDE temel olarak aşağıdaki bölümleri içerir:
 
-- list of ecosystem parameters;
-- contract editor;
-- table management tool;
-- page editor and visual page designer;
-- multi-language resources editor;
-- application import/export functions.
+* ekosistem parametrelerinin listesi;
 
-### Applications {#applications}
+* sözleşme editörü;
 
-An application is a collection of elements such as database tables, smart
-contracts, and user pages with access rights for configuration. The ecosystem to
-which the application element belongs is indicated by the prefix in the element
-name, such as <Highlight color="red">@1ElementName</Highlight>, where the
-ecosystem ID is indicated by the number <Highlight color="red">1</Highlight>
-after the <Highlight color="red">@</Highlight> symbol. When using application
-elements in the current ecosystem, the prefix <Highlight color="red">@1</Highlight> can be omitted. These applications can
-perform useful functions or implement various services.
+* tablo yönetim aracı;
 
-### Tables {#tables}
+* sayfa editörü ve görsel sayfa tasarımcısı;
 
-In IBAX's database, each ecosystem can create an unlimited number of tables.
-Tables of a specific ecosystem can be identified by a prefix containing the
-ecosystem ID, which will not be displayed in Weaver.
+* çoklu dil kaynakları düzenleyicisi;
 
-A table is not bound in any way and belongs to a certain contract. It can be
-used by all applications within the scope of the table's access rights.
+* uygulama içe/dışa aktarma işlevleri.
 
-Each ecosystem can create a set of data tables for developing its applications
-or may, possibly, access data tables of other ecosystems by specifying the table
-name prefix.
+### Uygulamalar {#applications}
 
-By configuring access rights through smart laws, data are logged into tables.
-Smart laws are used for rights management.
+Bir uygulama, yapılandırma için erişim haklarına sahip veritabanı tabloları, akıllı sözleşmeler ve kullanıcı sayfaları gibi bir öğeler topluluğudur. Uygulama öğesinin ait olduğu ekosistem, "@1ElementName" gibi öğe adındaki önekle belirtilir; burada ekosistem kimliği, "@" simgesinden sonra "1" sayısıyla belirtilir. Mevcut ekosistemdeki uygulama öğelerini kullanırken "@1" öneki atlanabilir. Bu uygulamalar, faydalı işlevleri yerine getirebilir veya çeşitli hizmetleri uygulayabilir.
 
-> Table management tool
+### Tablolar {#tables}
 
-You can find the table management tool in Weaver **menu Table**, which cover the
-following functions:
+IBAX'ın veritabanında, her ekosistem sınırsız sayıda tablo oluşturabilir. Belirli bir ekosistemin tabloları, Weaver'da görüntülenmeyecek olan ekosistem kimliğini içeren bir ön ek ile tanımlanabilir.
 
-- View the list of tables and their entries;
+Bir masa hiçbir şekilde bağlı değildir ve belirli bir sözleşmeye aittir. Tablonun erişim hakları kapsamındaki tüm uygulamalar tarafından kullanılabilir.
 
-- Create new tables;
+Her ekosistem, uygulamalarını geliştirmek için bir dizi veri tablosu oluşturabilir veya muhtemelen, tablo adı önekini belirterek diğer ekosistemlerin veri tablolarına erişebilir.
 
-- Add a table field and specify its data type, such as `Text` ， `Date/Time` ，
-  `Varchar` , `Character` ， `JSON` ， `Number` ， `Money` ， `Double`
-  ，`Binary`；
+Akıllı yasalar aracılığıyla erişim haklarını yapılandırarak, veriler tablolara kaydedilir. Hak yönetimi için akıllı yasalar kullanılır.
 
-- `Text` correspond `postgresql` `text`
+ >  Tablo tablo yönetim aracı
 
-- `Date/Time` correspond `postgresql` `timestamp`
+Tablo yönetimi aracını, analiz cihazı tablosunu listele:
 
-- `Varchar` correspond `postgresql` `varchar(102400)`
+* Tabloların listesini ve girişlerini görüntüleyin;
 
-- `Character` correspond `postgresql` `character(1) NOT NULL DEFAULT '0'`
+* Yeni tablolar oluşturun;
 
-- `JSON` correspond `postgresql` `jsonb`
+* Bir tablo alanı ekleyin ve gibi veri tipini belirtin:
+  - `Text` correspond `postgresql` `text`
+  - `Date/Time` correspond `postgresql` `timestamp`
+  - `Varchar` correspond `postgresql` `varchar(102400)`
+  - `Character` correspond `postgresql` `character(1) NOT NULL DEFAULT '0'`
+  - `JSON` correspond `postgresql` `jsonb`
+  - `Number` correspond `postgresql` `bigint NOT NULL DEFAULT '0'`
+  - `Money` correspond `postgresql` `decimal (30, 0) NOT NULL DEFAULT '0'`
+  - `Double` correspond `postgresql` `double precision`
+  - `Binary` correspond `postgresql` `bytea NOT NULL DEFAULT '\x'`
 
-- `Number` correspond `postgresql` `bigint NOT NULL DEFAULT '0'`
 
-- `Money` correspond `postgresql` `decimal (30, 0) NOT NULL DEFAULT '0'`
+* Ekleme, güncelleme verileri ve tablo yapısını değiştirme ayrıcalıklarını yönetin.
 
-- `Double` correspond `postgresql` `double precision`
+> Tablo veri işleme
 
-- `Binary` correspond `postgresql` `bytea NOT NULL DEFAULT '\x'`
+Daha iyi veritabanı işlemesi için hem Needle hem de Logicor, tablolardan değerleri ve veri dizilerini almak için kullanılan **DBFind** işlevine sahiptir.
 
-- Manage privileges for insert, update data and change table structure.
+Sözleşme dili **DBInsert** işlevi tablolara giriş eklemek için kullanılır. **DBUpdate** ve **DBUpdateExt** işlevleri, mevcut bir girdinin değerini güncellemek için kullanılır. Güncelleme sırasında tablolardaki ilgili veriler güncellenecek ve blok zinciri tüm geçmiş işlemleri korurken yeni işlemler ekleyecektir. Tablolardaki veriler yalnızca değiştirilebilir ve silinemez.
 
-> Table data manipulation
+Sözleşme uygulama süresini en aza indirmek için **DBFind** işlevi aynı anda birden çok tabloyu sorgulayamaz ve JOIN desteklenmez. Bu nedenle, uygulama tablolarını normalleştirmemeyi, mevcut tüm bilgileri girişlerde saklamanızı veya diğer tablolarda bulunan bilgileri tekrarlamanızı öneririz. Bu zorunlu değildir ancak bir blockchain uygulaması için gereklidir. Bu durumda veriler, ilişkisel bir veritabanında eşzamanlı olarak güncellenmesine rağmen, diğer tablolardaki aynı veriler güncellense bile güncellenemeyecek şekilde tam olarak saklanmalıdır.
 
-For better database manipulation, both Needle and Logicor have the **DBFind**
-function, which is used to retrieve values and data arrays from tables.
+### Ekosistem Parametreleri {#ecosystem-parameters}
 
-The contract language [DBInsert](../topics/script.md#dbinsert) function is used
-to add entries to tables. The [DBUpdate](../topics/script.md#dbupdate)
-and[DBUpdateExt](../topics/script.md#dbupdateext) functions are used to update
-the value of an existing entry. During updating, the corresponding data in
-tables will be updated, and the blockchain will add new transactions while
-retaining all historical transactions. Data in tables can only be modified and
-cannot be deleted.
+Weaver'ın menüsünde ekosistem parametrelerinin (**1_parameters**) listesini görüntüleyebilir ve düzenleyebilirsiniz. Ekosistem parametreleri aşağıdaki gruplara ayrılabilir:
 
-In order to minimize the contract implementation time, the
-[DBFind](../topics/script.md#dbfind) function cannot query multiple tables
-simultaneously, and JOIN is not supported. Therefore, we recommend not to
-normalize application tables, but to store all available information in entries
-or repeat the information available in other tables. This is not mandatory but
-necessary for a blockchain application. In this case, data should be stored
-fully, which cannot be updated even if the same data in other tables is updated,
-though it is updated synchronously in a relational database.
+* Genel parametreler: ekosistemi oluşturanın hesabı (kurucu_hesap) ve diğer bilgiler;
 
-### Ecosystem Parameters {#ecosystem-parameters}
+* Erişim hakları parametreleri: uygulama öğeleri için erişim izinlerini tanımlamak için kullanılır
 
-You may view and edit the list of ecosystem parameters (**1_parameters**) in
-Weaver's menu. Ecosystem parameters can be divided into the following groups:
+    * tablo yapısını değiştirin (değişen_tablolar);
 
-- General parameters: the account of the ecosystem creator (founder_account) and
-  other information;
-- Access rights parameters: used to define access permissions for application
-  elements
-  - change the table structure (changing_tables);
-  - change the contract (changing_contracts);
-  - change the user page (changing_page);
-  - change the menu (changing_menu);
-  - change the multi-language resources (changing_language).
-- Technical parameters: used to define the user styles (stylesheet);
-- User parameters: used to define constants or lists (separated by commas)
-  required for application operation.
+    * sözleşmeyi değiştirin (değişen_sözleşmeler);
 
-You may specify the edit permission for parameters of each ecosystem.
+    * kullanıcı sayfasını değiştir (değişen_sayfa);
 
-You may use the [EcosysParam](../topics/script.md#ecosysparam) function to
-retrieve the value of an ecosystem parameter by passing the ecosystem parameter
-title as a parameter to it.
+    * menüyü değiştir (change_menu);
 
-## Access rights control mechanism {#access-rights-control-mechanism}
+    * çoklu dil kaynaklarını değiştirin (değişen_dil).
 
-IBAX has a multi-level access permission management system. By configuring
-access rights, you can create and change any application element, such as the
-contracts, tables, user pages, ecosystem parameters. You may also change the
-access rights through configuration.
 
-By default, all rights in the IBAX ecosystem are managed by its creator, which
-is defined in the MainCondition contract of each ecosystem. But after creating
-smart laws, access control can be transferred to all or a group of ecosystem
-members. Access rights control
+* Teknik parametreler: kullanıcı stillerini (stil sayfası) tanımlamak için kullanılır;
 
-### Access Control Actions {#access-control-actions}
+* Kullanıcı parametreleri: uygulama çalışması için gerekli sabitleri veya listeleri (virgülle ayrılmış) tanımlamak için kullanılır.
 
-The access rights are defined in contract tables (**1_contracts** ), data tables
-(**1_tables** ), user page tables (**1_pages** ), menu tables (**1_menu** ), and
-code block tables (**1_blocks** ). You can find the corresponding menus in
-Weaver.
+Her ekosistemin parametreleri için düzenleme izni belirtebilirsiniz.
 
-### Access rights management {#access-rights-management}
+Ekosistem parametre başlığını parametre olarak geçirerek bir ekosistem parametresinin değerini almak için EcosysParam işlevini kullanabilirsiniz.
 
-The rules of access rights are configured by filling in the corresponding
-contract expressions **ContractConditions(“@1MainCondition”)**,
-**ContractAccess(“@1MainCondition”)** or logical expressions in the permission
-field. If the result of the request expression passes (true ), then access is
-granted. Otherwise, access is denied and related operations are terminated.
+## Erişim hakları kontrol mekanizması {#access-rights-control-mechanism}
 
-The easy way to define rights is to enter a logical expression in the right
-field. For example, `$key_id == 8919730491904441614`, where **$keyid**
-represents the ID of an ecosystem member.
+IBAX, çok seviyeli bir erişim izni yönetim sistemine sahiptir. Erişim haklarını yapılandırarak sözleşmeler, tablolar, kullanıcı sayfaları, ekosistem parametreleri gibi herhangi bir uygulama öğesini oluşturabilir ve değiştirebilirsiniz. Erişim haklarını yapılandırma yoluyla da değiştirebilirsiniz.
 
-The most common and recommended way to define rights is to use the
-`ContractConditions("@1ContractsName1","@1ContractsName2")` function. The
-contract name **ContractsName** is passed to the function as a parameter, and
-the contract result must be the result of a logical expression (true or false).
+Varsayılan olarak, IBAX ekosistemindeki tüm haklar, her ekosistemin MainCondition sözleşmesinde tanımlanan yaratıcısı tarafından yönetilir. Ancak akıllı yasalar oluşturulduktan sonra erişim kontrolü, ekosistem üyelerinin tümüne veya bir grubuna aktarılabilir.
+Erişim hakları kontrolü
 
-Another way to define rights is to use the
-`ContractAccess("@1ContractsName3","@1ContractsName4")` function. The contract
-**ContractsName** qualified to implement the corresponding operation can be
-passed to the function as a parameter. For example, if the right field of the
-amount column is configured as `ContractAccess("@1TokenTransfer")`, then you can
-only implement the contract **@1TokenTransfer** if you want to change the value
-in the amount column. The right to access the contract itself can be managed in
-the conditions section, which are quite complex and may contain many other
-contracts.
+Erişim hakları sözleşme tablolarında (**1_contracts** ), veri tablolarında (**1_tables** ), kullanıcı sayfası tablolarında (**1_pages** ), menü tablolarında (**1_menu** ) ve kod bloğunda tanımlanır. tablolar (**1_blocks** ). İlgili menüleri Weaver'da bulabilirsiniz.
 
-### Exclusive rights {#exclusive-rights}
+### Erişim hakları yönetimi {#access-rights-management}
 
-In case of emergencies or situations that are critical to the operation of an
-ecosystem, there are many special parameters in the list of ecosystem parameters
-(**1_parameters**) (such as **changing_contracts**、**changing_pages**), etc.,
-which defines rights to access all contracts, data tables, and pages of the
-current ecosystem. These rights are configured by key contracts.
+Erişim hakları kuralları, ilgili sözleşme ifadeleri **ContractConditions(“@1MainCondition”)**, **ContractAccess(“@1MainCondition”)** veya izin alanındaki mantıksal ifadeler doldurularak yapılandırılır. İstek ifadesinin sonucu (true) geçerse, erişim verilir. Aksi takdirde erişim reddedilir ve ilgili işlemler sonlandırılır.
 
-## Virtual private ecosystem {#virtual-private-ecosystem}
+Hakları tanımlamanın kolay yolu, sağdaki alana mantıksal bir ifade girmektir. Örneğin, "$key_id == 8919730491904441614", burada **$keyid** bir ekosistem üyesinin kimliğini temsil eder.
 
-In IBAX, you can create a virtual private ecosystem - **Cross Ledgers Base
-(CLB)**. A CLB has the full functionality of the standard ecosystem, but
-operates outside the blockchain. In CLB, you can use and create contracts and
-template languages, tables, and use Weaver to create applications. You may call
-contracts on the blockchain ecosystem via API.
+Hakları tanımlamanın en yaygın ve önerilen yolu, `ContractConditions("@1ContractsName1","@1ContractsName2")` işlevini kullanmaktır. Sözleşme adı **SözleşmeAdı**, işleve bir parametre olarak iletilir ve sözleşme sonucu, mantıksal bir ifadenin (doğru veya yanlış) sonucu olmalıdır.
 
-### Requests to web resources {#requests-to-web-resources}
+Hakları tanımlamanın başka bir yolu da `ContractAccess("@1ContractsName3","@1ContractsName4")` işlevini kullanmaktır. İlgili işlemi uygulamaya uygun **SözleşmeAdı** sözleşmesi, işleve parametre olarak geçirilebilir. Örneğin, tutar sütununun sağ alanı `ContractAccess("@1TokenTransfer")` olarak yapılandırılmışsa, o zaman yalnızca tutar sütunundaki değeri değiştirmek istiyorsanız **@1TokenTransfer** sözleşmesini uygulayabilirsiniz. Sözleşmeye erişim hakkı, oldukça karmaşık olan ve birçok başka sözleşmeyi içerebilen koşullar bölümünde yönetilebilir.
 
-CLB
+### Özel haklar {#exclusive-rights}
 
-> The main difference between a CLB and a standard ecosystem is that you can use
-> contract functions [HTTPRequest](../topics/script.md#httprequest) and
-> [HTTPPostJSON](../topics/script.md#httppostjson) to request any web resource
-> within the contract via **HTTP / HTTPS** requests. Parameters passed to this
-> function include: URLs, request methods (GET or POST), request headers and
-> request parameters.
+Bir ekosistemin çalışması için kritik olan acil durumlar veya durumlar durumunda, ekosistem parametreleri (**1_parameters**) listesinde (örneğin *değişen_sözleşmeler*, *sayfalarıdeğiştiren*), vb. birçok özel parametre vardır. mevcut ekosistemin tüm sözleşmelerine, veri tablolarına ve sayfalarına erişim haklarını tanımlar. Bu haklar, anahtar sözleşmelerle yapılandırılır.
 
-### Rights to read data {#rights-to-read-data}
+## Sanal özel ekosistem {#virtual-private-ecosystem}
 
-Though it is readable, data in CLB is not saved within the blockchain. You can
-choose to grant the read permission to database tables. You can set rights to
-read for individual columns, or for any row using a special contract.
+IBAX'te sanal bir özel ekosistem oluşturabilirsiniz - **Çapraz Defterler Tabanı (CLB)**. Bir CLB, standart ekosistemin tüm işlevlerine sahiptir, ancak blok zincirinin dışında çalışır. CLB'de sözleşmeleri ve şablon dillerini, tabloları kullanabilir ve oluşturabilir ve uygulamalar oluşturmak için Weaver'ı kullanabilirsiniz. API aracılığıyla blockchain ekosistemindeki sözleşmeleri arayabilirsiniz.
 
-### CLB creation {#clb-creation}
+### Web kaynaklarına yönelik istekler {#requests-to-web-resources}
 
-You may create a CLB node on the network. As predefined, the CLB node
-administrator is privileged to use the ecosystem list with the CLB
-functionality, and designate a user with ecosystem creator privileges to install
-applications, receive new members and configure the resources access
-permissions.
+    CLB ile standart ekosistem arasındaki temel fark, sözleşme işlevlerini ([HTTPRequest](../topics/script.md#httprequest)) ve ([HTTPPostJSON](../topics/script.md#httppostjson) kullanabilmenizdir. )) sözleşme kapsamındaki herhangi bir web kaynağını HTTP/HTTPS istekleri aracılığıyla talep etmek. Bu işleve iletilen parametreler şunları içerir: URL'ler, istek yöntemleri (GET veya POST), istek başlıkları ve istek parametreleri.
 
-### CLB usage {#clb-usage}
+### Veri okuma hakları {#rights-to-read-data}
 
-You may use a CLB to create registration forms, send verification information to
-users via email or phone, and store publicly accessible data. You can write and
-test applications, and then import them into the blockchain ecosystem. In a CLB,
-you may use scheduling contract tasks, create oracle machines to receive data
-from web resources and send such data to the blockchain ecosystem.
+Okunabilir olmasına rağmen, CLB'deki veriler blok zincirine kaydedilmez. Veritabanı tablolarına okuma izni vermeyi seçebilirsiniz. Ayrı sütunlar için veya özel bir sözleşme kullanarak herhangi bir satır için okuma hakları ayarlayabilirsiniz.
+
+### CLB oluşturma {#clb-creation}
+
+Ağ üzerinde bir CLB düğümü oluşturabilirsiniz. Önceden tanımlandığı gibi, CLB düğüm yöneticisi, ekosistem listesini CLB işleviyle kullanma ve uygulamaları yüklemek, yeni üyeler almak ve kaynaklara erişim izinlerini yapılandırmak için ekosistem oluşturucu ayrıcalıklarına sahip bir kullanıcı belirleme ayrıcalığına sahiptir.
+
+### CLB kullanımı {#clb-usage}
+
+Kayıt formları oluşturmak, kullanıcılara e-posta veya telefon yoluyla doğrulama bilgileri göndermek ve herkesin erişebileceği verileri depolamak için bir CLB kullanabilirsiniz. Uygulamaları yazıp test edebilir ve ardından bunları blok zinciri ekosistemine aktarabilirsiniz. Bir CLB'de, zamanlama sözleşmesi görevlerini kullanabilir, web kaynaklarından veri almak için oracle makineleri oluşturabilir ve bu verileri blok zinciri ekosistemine gönderebilirsiniz.

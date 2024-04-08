@@ -1,227 +1,152 @@
+
 # Decentralized Proof-of-Authority Consensus {#decentralized-proof-of-authority-consensus}
 
-- What is Decentralized Proof-of-Authority consensus
+* Merkezi Olmayan Yetki Kanıtı fikir birliği nedir
 
-- Advantages of DPoA consensus
+* DPoA konsensüsünün avantajları
 
-- DPoA consensus and common means of attack
+* DPoA konsensüsü ve ortak saldırı araçları
 
-- Implementation of DPoA consensus in IBAX
+* IBAX'te DPoA konsensüsünün uygulanması
 
-In this section, we will describe the Decentralized Proof-of-Authority consensus
-and its implementation in IBAX.
+Bu bölümde, Merkezi Olmayan Yetki Kanıtı fikir birliğini ve bunun IBAX'teki uygulamasını açıklayacağız.
 
-- [What is Decentralized Proof-of-Authority consensus](#what-is-decentralized-proof-of-authority-consensus)
-- [Advantages of DPoA consensus](#advantages-of-dpoa-consensus)
-- [DPoA consensus and common means of attack](#dpoa-consensus-and-common-means-of-attack)
-  - [DoS](#dos)
-  - [51 percent attack](#percent-attack-51)
-- [Implementation of DPoA consensus in IBAX](#implementation-of-dpoa-consensus-in-ibax)
-  - [Honor node](#honor-node)
-  - [Leader node](#leader-node)
-  - [Generation of new blocks](#generation-of-new-blocks)
-  - [Forks](#forks)
 
-## What is Decentralized Proof-of-Authority consensus {#what-is-decentralized-proof-of-authority-consensus}
+ - [Decentralized Proof-of-Authority Consensus nedir?](#what-is-decentralized-proof-of-authority-consensus)
+  - [DPoA fikir birliğinin avantajları](#advantages-of-dpoa-consensus)
+  - [DPoA fikir birliği ve ortak saldırı araçları](#dpoa-consensus-and-common-means-of-attack)
+    - [DoS](#dos)
+    - [51 yüzde saldırı](#percent-attack-51)
+  - [IBAX'te DPoA konsensüsünün uygulanması](#implementation-of-dpoa-consensus-in-ibax)
+    - [Honor node](#honor-node)
+    - [Leader node](#leader-node)
+    - [Yeni blokların oluşturulması](#generation-of-new-blocks)
+    - [Forks](#forks)
 
-Considering commercial application scenarios and real-world environments, IBAX
-Network has built a new consensus mechanism, DPoA (Decentralized Proof of
-Authority).
+## Decentralized Proof-of-Authority Consensus nedir? {#what-is-decentralized-proof-of-authority-consensus}
 
-Decentralization has always been our firm belief. It refers not only to IBAX’s
-infrastructure network environment. Instead, we will let decentralization take
-root in each ecoLib created in IBAX Network and use technical solutions to
-achieve a high degree of self-governance in each of them. For the purpose of
-highly distributed self-governance, we have made many changes in the overall
-architecture and technical implementation. However, in practice, we cannot avoid
-the centralized management concept. In order to find a balance between
-centralization and decentralization, in addition to the DPoA consensus
-mechanism, we have also formulated certain reward and incentive programs.
+Ticari uygulama senaryolarını ve gerçek dünya ortamlarını göz önünde bulunduran IBAX Ağı, yeni bir fikir birliği mekanizması olan DPoA (Merkezi Olmayan Yetki Kanıtı) oluşturmuştur.
 
-IBAX Network has created a new consensus mechanism that combines distribution,
-weak centralization, and a certification authority. We call it DPoA
-(Decentralized Proof of Authority). To ensure continuity for the entire IBAX
-Network, the consensus covers not only IBAX Public Network, but also ecoLibs
-created by each user and user group. This creates a truly self-governed,
-decentralized, fair, transparent, and fraud-proof Decentralized Autonomous
-Organization (DAO).
+Ademi merkeziyetçilik her zaman kesin inancımız olmuştur. Yalnızca IBAX'in altyapı ağ ortamını ifade etmez. Bunun yerine, IBAX Ağı'nda oluşturulan her ecoLib'de ademi merkeziyetçiliğin kök salmasına izin vereceğiz ve her birinde yüksek derecede öz yönetim elde etmek için teknik çözümler kullanacağız. Yüksek oranda dağıtılmış öz-yönetim amacıyla, genel mimaride ve teknik uygulamada birçok değişiklik yaptık. Ancak pratikte merkezi yönetim anlayışından kaçamayız. Merkezileşme ve ademi merkeziyetçilik arasında bir denge bulmak için DPoA konsensüs mekanizmasına ek olarak belirli ödül ve teşvik programları da oluşturduk.
 
-DPoA has a prevention mechanism against network attacks and allows creation of
-Mint Nodes that guard the network and mint new IBXC coins. IBAXCoin holders can
-stake a part of their IBXC liquidity balance in Mint Nodes for Mint & Stake
-Emission Rewards. Minting and staking serve to increase the cost and difficulty
-of attacks and increase the total value of IBXC coins proportionally. With this
-mechanism, the probability and harm of any attack are infinitely close to zero.
+IBAX Ağı, dağıtımı, zayıf merkezileştirmeyi ve bir sertifika yetkilisini birleştiren yeni bir fikir birliği mekanizması yarattı. Biz buna DPoA (Merkezi Olmayan Yetki Kanıtı) diyoruz. Tüm IBAX Ağı için sürekliliği sağlamak için, fikir birliği yalnızca IBAX Kamu Ağı'nı değil, aynı zamanda her kullanıcı ve kullanıcı grubu tarafından oluşturulan ecoLib'leri de kapsar. Bu, gerçekten kendi kendini yöneten, merkezi olmayan, adil, şeffaf ve dolandırıcılığa karşı dayanıklı bir Merkezi Olmayan Otonom Organizasyon (DAO) yaratır.
 
-## Advantages of DPoA consensus {#advantages-of-dpoa-consensus}
+DPoA, ağ saldırılarına karşı bir önleme mekanizmasına sahiptir ve ağı koruyan ve yeni IBXC paraları basan Darphane Düğümlerinin oluşturulmasına izin verir. IBAXCoin sahipleri, IBXC likidite bakiyelerinin bir kısmını Mint & Stake Emission Rewards için Mint Nodes'ta stake edebilirler. Darphane ve staking, saldırıların maliyetini ve zorluğunu artırmaya ve IBXC madeni paralarının toplam değerini orantılı olarak artırmaya hizmet eder. Bu mekanizma ile herhangi bir saldırının olasılığı ve zararı sonsuz derecede sıfıra yakındır.
 
-Compared to Proof-of-Work (PoW) or Proof-of-Stake (PoS) consensus, DPoA
-consensus has the following advantages:
+## DPoA fikir birliğinin avantajları {#advantages-of-dpoa-consensus}
 
-- No need of high-performance hardware. Compared to PoW consensus, nodes
-  implementing the DPoA consensus does not spend computational resources for
-  solving complex mathematical logic tasks;
+İş Kanıtı (PoW) veya Hisse Kanıtı (PoS) konsensüsü ile karşılaştırıldığında, DPoA konsensüsü aşağıdaki avantajlara sahiptir:
 
-- The interval of time to generate new blocks is predictable, but that for PoW
-  and PoS consensuses are different;
+* Yüksek performanslı donanıma ihtiyaç duymaz. PoW konsensüsüyle karşılaştırıldığında, DPoA konsensüsünü uygulayan düğümler, karmaşık matematiksel mantık görevlerini çözmek için hesaplama kaynakları harcamaz;
 
-- High transaction rate. Blocks are generated in a sequence at specified time
-  interval by authorized network nodes, which increases the speed of transaction
-  verification.
+* Yeni bloklar oluşturmak için zaman aralığı tahmin edilebilir, ancak PoW ve PoS fikir birliği için bu farklıdır;
 
-- Tolerance to compromised and malicious nodes, as long as 51% of nodes are not
-  compromised. IBAX implements a mechanism of banning nodes and revoking block
-  generation rights.
+* Yüksek işlem oranı. Bloklar, işlem doğrulama hızını artıran yetkili ağ düğümleri tarafından belirli bir zaman aralığında bir sırayla oluşturulur.
 
-## DPoA consensus and common means of attack {#dpoa-consensus-and-common-means-of-attack}
+* Düğümlerin %51'inin güvenliği ihlal edilmediği sürece, güvenliği ihlal edilmiş ve kötü niyetli düğümlere karşı tolerans. IBAX, düğümleri yasaklayan ve blok oluşturma haklarını iptal eden bir mekanizma uygular.
+
+## DPoA fikir birliği ve ortak saldırı araçları {#dpoa-consensus-and-common-means-of-attack}
 
 ### DoS {#dos}
 
-An attacker may send large amount of transactions and blocks to a targeted node
-in the network, making an attempt to disrupt its operation and make its services
-unavailable.
+Saldırgan, ağdaki hedeflenen bir düğüme büyük miktarda işlem ve blok göndererek, çalışmasını kesintiye uğratmaya ve hizmetlerini kullanılamaz hale getirmeye çalışabilir.
 
-The DPoA mechanism is possible to defend against DoS attacks:
+DPoA mekanizmasını DoS saldırılarına karşı savunmak mümkündür:
 
-- Because network nodes are pre-authenticated, block generation rights can be
-  granted only to nodes that can withstand DoS attacks.
+* Ağ düğümleri önceden doğrulanmış olduğundan, blok oluşturma hakları yalnızca DoS saldırılarına dayanabilen düğümlere verilebilir.
 
-- If a honor node is unavailable for a certain period, it can be excluded from
-  the list of honor nodes.
+* Bir onur düğümü belirli bir süre için kullanılamıyorsa, onur düğümleri listesinden çıkarılabilir.
 
-### 51% attack {#percent-attack-51}
+### yüzde 51 saldırı {#percent-attack-51}
 
-As to the scenario with the DPoA consensus, the 51% attack requires an attacker
-to obtain control over 51% of network nodes. But the scenario for the PoW
-consensus is different, which an attacker needs to obtain 51% of network
-computational power. Obtaining the control over nodes in a permissioned
-blockchain network is much harder than obtaining the computational power.
+DPoA fikir birliği senaryosuna göre, %51 saldırısı, bir saldırganın ağ düğümlerinin %51'inin kontrolünü ele geçirmesini gerektirir. Ancak, bir saldırganın ağ hesaplama gücünün %51'ini elde etmesi gereken PoW fikir birliği senaryosu farklıdır. İzin verilen bir blok zinciri ağındaki düğümler üzerinde kontrolü elde etmek, hesaplama gücünü elde etmekten çok daha zordur.
 
-For example, in a network implementing the PoW consensus, an attacker can
-increase computation power (performance) of the controlled network segment thus
-increasing the percentage of controlled nodes. This makes no sense for DPoA
-consensus, because the computational power of the node has no impact on the
-blockchain network decisions.
+Örneğin, PoW konsensüsünü uygulayan bir ağda, bir saldırgan, kontrollü ağ segmentinin hesaplama gücünü (performansını) artırabilir ve böylece kontrollü düğümlerin yüzdesini artırabilir. Bu, DPoA konsensüsü için bir anlam ifade etmiyor, çünkü düğümün hesaplama gücünün blok zinciri ağ kararları üzerinde hiçbir etkisi yok.
 
-## Implementation of DPoA consensus in IBAX {#implementation-of-dpoa-consensus-in-ibax}
+## IBAX'te DPoA konsensüsünün uygulanması {#implementation-of-dpoa-consensus-in-ibax}
 
 ### Honor node {#honor-node}
 
-In IBAX, only honor nodes can generate new blocks, which maintain the blockchain
-network and the distributed ledger.
+IBAX'te yalnızca honor nodeları, blok zinciri ağını ve dağıtılmış defteri tutan yeni bloklar oluşturabilir.
 
-The list of honor nodes is kept in the blockchain registry. The order of nodes
-determines the sequence in which nodes generate new blocks.
+Onur düğümlerinin listesi, blok zinciri kayıt defterinde tutulur. Düğümlerin sırası, düğümlerin yeni bloklar oluşturma sırasını belirler.
 
 ### Leader node {#leader-node}
 
-The leader node is the honor node that generates a new block at the current
-time. The following formula determines the leader node in the current honor node
-list:
-
-```text
-leader = ((time - first) / step) % nodes
-```
-
-> leader
+Aşağıdaki formül, mevcut **leadernode**, yani mevcut zamanda yeni bir blok oluşturması gereken bir düğümü belirler.
 
 ```
-Current leader node.
+lider = ((zaman - ilk) / adım) % düğüm
 ```
 
-> time
+> lider
 
-```
-Current time (UNIX).
-```
+Mevcut lider düğümü.
 
-> first
+> zaman
 
-```
-First block generation time (UNIX).
-```
+Geçerli saat (UNIX).
 
-> step
+> ilk
 
-```
-Number of seconds in the block generation interval.
-```
+İlk blok oluşturma süresi (UNIX).
 
-> nodes
+> adım
 
-```
-Total number of honor nodes.
-```
+Blok oluşturma aralığındaki saniye sayısı.
 
-#### Generation of new blocks {#generation-of-new-blocks}
+> düğümler
 
-New blocks are generated by a [leader node](#leader-node) of the current time
-interval. At each time interval, the leader role is passed to the next honor
-node from the list of honor nodes.
+Toplam honor node sayısı.
+
+### Yeni blokların oluşturulması {#generation-of-new-blocks}
+
+Yeni bloklar, geçerli zaman aralığının bir [leader node](#leader-node) tarafından oluşturulur. Her zaman aralığında lider rolü, onur düğümleri listesinden bir sonraki onur düğümüne iletilir.
 
 ![avatar](/img/block-generation.png)
 
-a) Steps for Generation of new blocks
+a) Yeni blokların çocukları için
 
-Main steps for generating a new block are as follows:
+Yeni bir blok oluşturmak için ana yetiştirme durumumuz:
 
-1. Collects all new transactions from the transaction queue of the node;
+1. Düğümün işindeki tüm yeni işlemler toplar;
 
-2. Executes transactions one by one. Invalid or inexecutable transactions are
-   rejected;
+2. İşlemleri tek tek. Geçersiz veya yürütülemez sahipleri reddedilir;
 
-3. Checks if the
-   [block generation limits](../reference/platform-parameters.md#configure-the-generation-of-blocks)
-   is in compliance;
+3. [blok oluşturma sınırlarının](../reference/platform-parameters.md#configure-the-generation-of-blocks) uyumlu olup olmadığını kontrol eder;
 
-4. Generates a block with valid transactions and signs it with the private key
-   of the honor node through the ECDSA algorithm;
+4. Geçerli işlemlere sahip bir blok oluşturur ve bunu ECDSA algoritması aracılığıyla honor node özel anahtarıyla imzalar;
 
-5. Sends this block to other honor nodes.
+5. Bu bloğu diğer onur düğümlerine gönderir.
 
-b) Verification of new blocks
+b) Yeni blokların doğrulanması
 
-Steps for verifying new blocks on other honor nodes:
+Diğer onur düğümlerinde yeni blokları doğrulama adımları:
 
-1. Receive a new block and verify:
+1.Yeni bir blok alın ve şunları doğrulayın:
 
-   – whether the new block was generated by the leader node of a current
-   interval;
+    – yeni bloğun geçerli bir aralığın leader node tarafından oluşturulup oluşturulmadığı;
 
-   – whether there are no other blocks generated by the leader node of a current
-   interval;
+    – geçerli bir aralığın leader node tarafından oluşturulan başka blok olup olmadığı;
 
-   – whether the new block is properly signed.
+    – yeni bloğun uygun şekilde imzalanıp imzalanmadığı.
 
-2. Execute transactions from the block one by one. Check whether the
-   transactions are executed successfully and within the
-   [block generation limits](../reference/platform-parameters.md#configure-the-generation-of-blocks)
-   .
+2. Bloktan işlemleri tek tek gerçekleştirin. İşlemlerin başarılı bir şekilde ve [blok oluşturma sınırları](../reference/platform-parameters.md#configure-the-generasyon-of-blocks) dahilinde yürütülüp yürütülmediğini kontrol edin.
 
-3. Add or reject the block, depending on the previous step:
+3. Önceki adıma bağlı olarak bloğu ekleyin veya reddedin:
 
-   – If block validation is successful, add the new block to the blockchain of
-   the current node;
+    – Blok doğrulama başarılıysa, yeni bloğu mevcut düğümün blok zincirine ekleyin;
 
-   – If block validation failed, reject the block and send a **bad block**
-   transaction;
+    – Blok doğrulama başarısız olursa, bloğu reddedin ve bir **hatalı blok** işlemi gönderin;
 
-   – If the honor node that created this invalid block continues to generate bad
-   blocks, it can be banned or excluded from the list of honor nodes.
+    – Bu geçersiz bloğu oluşturan onur düğümü hatalı bloklar oluşturmaya devam ederse, yasaklanabilir veya honor nodeları listesinden çıkarılabilir.
 
 ### Forks {#forks}
 
-A **fork** is an alternative version of the blockchain, which contains one or
-more blocks that were generated independently from the rest of the blockchain.
+Bir **fork**, blok zincirinin geri kalanından bağımsız olarak oluşturulmuş bir veya daha fazla blok içeren alternatif bir blok zinciri sürümüdür.
 
-Forks usually occur when a part of the network becomes desynchronized. Factors
-that are probably result in forks are high network latency, intentional or
-unintentional time limits violation, time desynchronization at nodes. If network
-nodes have a significant geographic distribution, block generation interval must
-be increased.
+Çatallar genellikle ağın bir kısmı senkronize olmadığında meydana gelir. Muhtemelen çatallanmalara neden olan faktörler, yüksek ağ gecikmesi, kasıtlı veya kasıtsız zaman sınırı ihlali, düğümlerde zaman senkronizasyonu bozulmasıdır. Ağ düğümlerinin önemli bir coğrafi dağılımı varsa, blok oluşturma aralığı artırılmalıdır.
 
-Forks are resolved by following the longest blockchain rule. When two blockchain
-versions are detected, honor nodes rollback the shorter one and accept the
-longer one.
+Çatallar, en uzun blok zinciri kuralı izlenerek çözülür. İki blok zinciri sürümü algılandığında, onur düğümleri daha kısa olanı geri alır ve daha uzun olanı kabul eder.
 
 ![avatar](/img/block-fork-resolution.png)

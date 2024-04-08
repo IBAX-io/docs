@@ -1,152 +1,112 @@
-# The IBAX Network
+# Le réseau IBAX {#the-ibax-network}
 
-In this section, we will brief you how to use IBAX.
+Dans cette section, nous vous expliquerons comment utiliser IBAX.
 
-- [Application developers](#application-developers)
-- [ECOLIB members](#ecolib-members)
-- [ECOLIB applications and platform applications](#ecolib-applications-and-platform-applications)
-- [Underlying model](#underlying-model)
-- [Implementation](#implementation)
+- [Le réseau IBAX](#the-ibax-network)
+  - [Développeurs d'applications](#application-developers)
+  - [Membres d'ECOLIB](#ecolib-members)
+  - [Applications ECOLIB et applications de plateforme](#ecolib-applications-and-platform-applications)
+  - [Modèle sous-jacent](#underlying-model)
+  - [Mise en œuvre](#implementation)
+  
 
-If you are interested in the development, use or management of applications in
-IBAX, then you may not need to understand it at all.
 
-In IBAX, the blockchain and the blockchain network are hidden from ECOLIB
-members, administrators, and application developers. IBAX offers
-[RESTful API](../reference/api2.md) for all user groups, which provide a
-tamper-proof and distributed access to the **global state** of the blockchain.
+Si vous êtes intéressé par le développement, l'utilisation ou la gestion des applications dans IBAX, vous n'avez peut-être pas besoin de le comprendre du tout.
 
-## Application developers {#application-developers}
+Dans IBAX, la blockchain et le réseau blockchain sont cachés aux membres d'ECOLIB, aux administrateurs et aux développeurs d'applications.
+IBAX propose une [API RESTful](../reference/api2.md) pour tous les groupes d'utilisateurs, qui offre un accès distribué et inviolable à l'état global de la blockchain.
 
-In technical terms, the **global state** is a set of data, which is implemented
-via IBAX's database. From the perspective of application developers, an
-application interacts with the database by querying, inserting and updating
-tables.
+## Développeurs d'applications {#application-developers}
 
-In IBAX, transactions are written into the blockchain by implementing various
-contracts. These transactions will call contract codes implemented by blockchain
-network nodes, which will update the global state (database) accordingly.
+En termes techniques, l'**état global** est un ensemble de données, qui est implémenté via la base de données d'IBAX. 
+Du point de vue des développeurs d'applications, une application interagit avec la base de données en interrogeant, en insérant et en mettant à jour des tables.
 
-For application developers, a contract is a function that data will be written
-to the database when it is implemented. Pages are like scripts and the page code
-is a set of page [template](../topics/templates2.md) functions, some of these
-functions display page elements, while other data comes from the database.
-Application developers do not need to understand what are transactions, block
-generation and consensus algorithms, just use it.
+Dans IBAX, les transactions sont écrites dans la blockchain en implémentant divers contrats intelligents. Ces transactions appelleront des codes de contrat intelligent implémentés par les nœuds du réseau blockchain, qui mettront à jour l'état global (base de données) en conséquence.
 
-## ECOLIB members {#ecolib-members}
+Pour les développeurs d'applications, un contrat intelligent est une fonction à laquelle des données seront écrites dans la base de données lorsqu'elle est implémentée. 
+Les pages sont comme des scripts et le code de la page est un ensemble de fonctions de modèle de page, certaines de ces fonctions affichent des éléments de page, tandis que d'autres données proviennent de la base de données. 
+Les développeurs d'applications n'ont pas besoin de comprendre ce que sont les transactions, la génération de blocs et les algorithmes de consensus, il suffit de les utiliser.
 
-Applications written by developers run in an environment called
-[ECOLIB](thesaurus.md#ecolib). An application usually serves a specific purpose
-and complete various tasks together with several other applications.
+## Membres d'ECOLIB {#ecolib-members}
 
-A user must become a member of an ECOLIB if wants to access applications in it,
-and it can be a member of multiple different ECOLIBs at the same time.
+Les applications écrites par les développeurs s'exécutent dans un environnement appelé [ECOLIB](thesaurus.md#ecolib).
+Une application sert généralement à un but spécifique et accomplit diverses tâches en collaboration avec plusieurs autres applications.
 
-ECOLIB members can view and modify the database from application pages, just
-like filling out forms, clicking buttons and navigating pages in a common web
-application.
+Un utilisateur doit devenir membre d'un ECOLIB s'il souhaite accéder aux applications qui s'y trouvent, et il peut être membre de plusieurs ECOLIB différents en même temps.
 
-## ECOLIB applications and platform applications {#ecolib-applications-and-platform-applications}
+Les membres d'ECOLIB peuvent consulter et modifier la base de données à partir des pages de l'application, tout comme remplir des formulaires, cliquer sur des boutons et naviguer entre les pages d'une application web classique.
 
-Applications may fall into **ECOLIB applications** and **platform
-applications**.
+## Applications ECOLIB et applications de plateforme {#ecolib-applications-and-platform-applications}
 
-> ECOLIB applications
+Les applications peuvent être classées en **applications ECOLIB** et **applications de plateforme**.
 
-An ECOLIB application implements certain unique functions or business processes
-of an ECOLIB, but it is only available in that ECOLIB.
+> Applications ECOLIB
 
-> Platform applications
+Une application ECOLIB met en œuvre certaines fonctions uniques ou des processus métier spécifiques à un ECOLIB, mais elle n'est disponible que dans cet ECOLIB.
 
-A platform application is applicable to all ECOLIBs. Any application could be
-developed as a platform application. IBAX developers would provide platform
-applications that support the core functions for ECOLIB governance, such as
-voting, notification, and ECOLIB member role management.
+> Applications de plateforme
 
-## Underlying model {#underlying-model}
+Une application de plateforme est applicable à tous les ECOLIBs. Toute application peut être développée en tant qu'application de plateforme. Les développeurs d'IBAX fourniraient des applications de plateforme qui soutiennent les fonctions principales de gouvernance des ECOLIBs, telles que le vote, la notification et la gestion des rôles des membres de l'ECOLIB.
 
-> Definition of layers
+## Modèle sous-jacent {#underlying-model}
 
-IBAX consists of several layers:
+> Définition des couches
 
-- User interaction layer
+IBAX est composé de plusieurs couches :
 
-  ECOLIB members interact with the application through pages and page elements.
+* Couche d'interaction utilisateur
 
-- Application layer
+    Les membres d'ECOLIB interagissent avec l'application via des pages et des éléments de page.
 
-  Application developers interact with the global state (data tables) through
-  contract codes and page codes.
+* Couche d'application
 
-- Global state layer
+    Les développeurs d'applications interagissent avec l'état global (tables de données) via des codes de contrat intelligent et des codes de page.
 
-  Update and synchronize the global state (database) based on operations written
-  to the distributed ledger (blockchain)
+* Couche d'état global
 
-- Blockchain layer
+    Met à jour et synchronise l'état global (base de données) en fonction des opérations écrites dans le grand livre distribué (blockchain).
 
-  Update the distributed ledger with new blocks. Operations (transactions) saved
-  in new blocks must be performed on the global state.
+* Couche blockchain
 
-- Node network layer
+    Met à jour le grand livre distribué avec de nouveaux blocs. Les opérations (transactions) enregistrées dans les nouveaux blocs doivent être effectuées sur l'état global.
 
-  It implemented the IBAX Network protocol, which distributes, verifies
-  transactions and generates new blocks on the node network. Similarly, new
-  blocks are distributed and verified by the node network.
+* Couche réseau de nœuds
 
-  The distributed ledger of all nodes is kept in sync. If having conflicts in a
-  node, the node will identify which blockchains are considered valid and
-  invalid blockchains will be rolled back accordingly.
+    Implémente le protocole du réseau IBAX, qui distribue, vérifie les transactions et génère de nouveaux blocs sur le réseau de nœuds. De même, les nouveaux blocs sont distribués et vérifiés par le réseau de nœuds.
 
-- Transaction layer
+    Le grand livre distribué de tous les nœuds est maintenu synchronisé. En cas de conflits dans un nœud, le nœud identifiera les blockchains considérées comme valides et les blockchains invalides seront annulées en conséquence.
 
-  Transactions are the basis for generating blocks and blockchain protocols, and
-  transactions themselves are the results of operations performed at the user
-  interaction layer. Transactions are generated by Weaver.
+* Couche de transaction
 
-  When a user or developer performs an operation such as clicking a button on a
-  page or implement a contract from the code editor, Weaver will convert this
-  operation into a transaction and send it to the network node connected to it.
+    Les transactions sont la base de la génération de blocs et des protocoles blockchain, et les transactions elles-mêmes sont le résultat des opérations effectuées au niveau de l'interaction utilisateur. Les transactions sont générées par Weaver.
 
-Therefore, the flow of transactions is as follows:
+    Lorsqu'un utilisateur ou un développeur effectue une opération telle que cliquer sur un bouton sur une page ou implémenter un contrat intelligent à partir de l'éditeur de code, Weaver convertira cette opération en une transaction et l'enverra au nœud réseau auquel il est connecté.
 
-- A user operation in a user page will become a transaction;
-- The transaction is contained in a block;
-- The block is included in the blockchain;
-- The change of operation will cause the global state of the blockchain to
-  change, and such operation will be applied to the database;
-- Any database change will be reflected in the application.
+Par conséquent, le flux des transactions est le suivant:
 
-## Implementation {#implementation}
+  * Une opération utilisateur sur une page utilisateur deviendra une transaction;
+  * La transaction est contenue dans un bloc;
+  * Le bloc est inclus dans la blockchain;
+  * Le changement d'opération entraînera un changement d'état global de la blockchain, et cette opération sera appliquée à la base de données;
+  * Tout changement de base de données sera reflété dans l'application.
 
-IBAX has two major components, i.e. server
-[go-ibax](https://github.com/IBAX-io/go-ibax) and Weaver
-[Source code](https://github.com/IBAX-io/weaver).
+## Mise en œuvre {#implementation}
+
+IBAX a deux composants majeurs, à savoir le serveur [go-ibax](https://github.com/IBAX-io/go-ibax) et Weaver [Code source](https://github.com/IBAX-io/weaver).
 
 Weaver:
+  * Fournit les pages utilisateur;
+  * Fournit l'IDE pour le développement d'applications;
+  * Stocke les clés publiques des comptes utilisateur et effectue l'autorisation;
+  * Demande les données de la base de données depuis les pages d'application et affiche les pages d'application aux utilisateurs;
+  * Envoie des transactions au serveur via [API REST](../reference/api2.md);
+  
+    Afin de créer automatiquement des transactions en fonction des opérations utilisateur, Weaver convertira ces opérations en transactions lorsque les développeurs d'applications implémenteront un contrat intelligent depuis l'IDE.
 
-- Providing the user pages;
-
-- Providing the IDE for application development;
-
-- Storing public keys of user accounts and perform authorization;
-
-- Requesting database data from application pages and display application pages
-  to users;
-
-- Sending transactions to the server through [REST APIs](../reference/api2.md);
-
-  In order to automatically create transactions against user operations, Weaver
-  will convert such operations into transactions when application developers
-  implement a contract from the IDE.
-
-Server:
-
-- Keeping the global state (database) of the node;
-- Implementation of the blockchain protocol;
-- Implementation of contract codes in the IBAX
-  [Virtual Machine](../topics/vm.md);
-- Implementation of page codes in the
-  [Template Engine](../topics/templates2.md);
-- Implementation of [RESTful API](../reference/api2.md).
+Serveur:
+  * Conserve l'état global (base de données) du nœud;
+  * Implémentation du protocole de la blockchain;
+  * Implémentation des codes de contrat intelligent dans la [Machine Virtuelle](../topics/vm.md) IBAX;
+  * Implémentation des codes de page dans le [Moteur de Modèles](../topics/templates2.md);
+  * Implémentation de l'[API RESTful](../reference/api2.md).
+  

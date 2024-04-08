@@ -1,174 +1,151 @@
-# Tutorial for application development {#tutorial-for-application-development}
+# Uygulama geliştirme eğitimi {#tutorial-for-application-development}
 
-In this section, we will show you how to develop a simple application on the
-IBAX Network.
+Bu bölümde size IBAX Ağı üzerinde basit bir uygulamanın nasıl geliştirileceğini göstereceğiz.
 
-- [The Goal](#the-goal)
-- [Part 1: The Environment](#part-1-the-environment)
-- [Part 2: Contract](#part-2-contract)
-  - [Creator account](#creator-account)
-  - [New application](#new-application)
-  - [New database table](#new-database-table)
-  - [New contract](#new-contract)
-    - [Contract code](#contract-code)
-    - [Create a contract](#create-a-contract)
-    - [Contract name](#contract-name)
-    - [Data](#data)
-    - [Conditions](#conditions)
-    - [Action](#action)
-    - [Full contract code](#full-contract-code)
-    - [Save and run](#save-and-run)
-- [Part 3: Page](#part-3-page)
-  - [New field](#new-field)
-  - [Update the contract](#update-the-contract)
-  - [Page](#page)
-    - [Designer views](#designer-views)
-    - [Developer view](#developer-view)
-    - [Fetch data from the database table](#fetch-data-from-the-database-table)
-    - [Full page code](#full-page-code-1)
-    - [Save the page](#save-the-page)
-- [Part 4: Application](#part-4-application)
-  - [Menu](#menu)
-    - [Add a menu item](#add-a-menu-item)
-    - [Test the new menu item](#test-the-new-menu-item)
-  - [Send a message](#send-a-message)
-    - [Form](#form)
-  - [Form navigation](#form-navigation)
-    - [Navigation buttons](#navigation-buttons)
-    - [Variables](#variables)
-    - [Entry count](#entry-count)
-    - [Table offset](#table-offset)
-    - [Button code](#button-code)
-    - [Page refreshing](#page-refreshing)
-  - [Full page code](#full-page-code-2)
-- [Conclusions](#conclusions)
+- [Hedef](#the-goal)
+  - [Bölüm 1: Çevre](#part-1-the-environment)
+  - [Bölüm 2: Sözleşme](#part-2-contract)
+    - [Oluşturucu hesabı](#creator-account)
+    - [Yeni uygulama](#new-application)
+    - [Yeni veritabanı tablosu](#new-database-table)
+    - [Yeni Kontrat](#new-contract)
+      - [Kontrat kodu](#contract-code)
+      - [Bir kontrat oluşturun](#create-a-contract)
+      - [Kontrat adı](#contract-name)
+      - [Data](#data)
+      - [Conditions](#conditions)
+      - [Action](#action)
+      - [Tam kontrat kodu](#full-contract-code)
+      - [Kaydet ve çalıştır](#save-and-run)
+  - [Bölüm 3: Sayfa](#part-3-page)
+    - [New-field](#new-field)
+    - [Sözleşmeyi güncelleyin](#update-the-contract)
+    - [Sayfa](#page)
+      - [Tasarımcı görünümleri](#designer-views)
+      - [Geliştirici görünümü](#developer-view)
+      - [Veritabanı tablosundan veri getir](#fetch-data-from-the-database-table)
+      - [Tam sayfa kodu](#full-page-code-1)
+      - [Sayfayı Kaydet](#save-the-page)
+  - [Bölüm 4: Uygulama](#part-4-application)
+    - [Menü](#menu)
+      - [Bir menü öğesi ekleyin](#add-a-menu-item)
+      - [Yeni menü öğesini test edin](#test-the-new-menu-item)
+    - [Mesaj gönder](#send-a-message)
+      - [Form](#form)
+    - [Formda gezinme](#form-navigation)
+      - [Gezinme butonları](#navigation-buttons)
+      - [Değişkenler](#variables)
+      - [Giriş sayısı](#entry-count)
+      - [Tablo ofseti](#table-offset)
+      - [Buton kodu](#button-code)
+      - [Sayfa kodu](#page-refreshing)
+    - [Tam sayfa kodu](#full-page-code-2)
+  - [Sonuçlar](#conclusions)
 
-## The Goal {#the-goal}
 
-The application begins with simple functions but grows in complexity as the
-tutorial progresses.
+## Amaç {#the-goal}
 
-In the final version of the application, some simple messages (strings) are
-stored in a database table, which contains the timestamps and account
-identifiers of senders. Users can view the messages list and add a new message
-from the application page which can be accessed from the menu of the ecosystem.
+Uygulama basit işlevlerle başlar, ancak öğretici ilerledikçe karmaşıklığı artar.
 
-## Part 1: The Environment {#part-1-the-environment}
+Uygulamanın son sürümünde, bazı basit mesajlar (dizeler), gönderenlerin zaman damgalarını ve hesap tanımlayıcılarını içeren bir veritabanı tablosunda saklanır. Kullanıcılar, ekosistem menüsünden erişilebilen uygulama sayfasından mesaj listesini görüntüleyebilir ve yeni bir mesaj ekleyebilir.
+
+## Bölüm 1: Environment {#part-1-the-environment}
 
 **Weaver**
 
-As the only client of IBAX, Weaver provides functions for all users and
-ecosystem roles. With it. Application developers can develop and test their
-applications, ecosystem administrators can manage their ecosystems, while users
-can interact with the ecosystems.
+IBAX'in tek müşterisi olan Weaver, tüm kullanıcılar ve ekosistem rolleri için işlevler sağlar. Bununla uygulama geliştiriciler uygulamalarını geliştirebilir ve test edebilir, ekosistem yöneticileri ekosistemlerini yönetebilir ve kullanıcılar ekosistemlerle etkileşime girebilir.
 
-In this tutorial, you are going to code contracts, page templates and perform
-all other actions in Weaver. Weaver also provides a way to restore, save and
-execute contract codes, manage data structures (database tables), assign access
-permissions and create applications.
+Bu eğitimde, Weaver'da sözleşmeleri, sayfa şablonlarını kodlayacak ve diğer tüm eylemleri gerçekleştireceksiniz. Weaver ayrıca sözleşme kodlarını geri yüklemek, kaydetmek ve yürütmek, veri yapılarını (veritabanı tabloları) yönetmek, erişim izinleri atamak ve uygulamalar oluşturmak için bir yol sağlar.
 
-Each node has its own Weaver instance.
+Her düğümün kendi Weaver örneği vardır.
 
-## Part 2: Contract {#part-2-contract}
+## 2. Bölüm: Sözleşme {#part-2-contract}
 
-Your first simple application is "Hello, World!".
+İlk basit uygulamanız "Merhaba Dünya!"
+
+> Not
+
+> Bu uygulamada dizeler bir veritabanı tablosunda tutulacak ve bir kullanıcı sayfası yok.
+
+### Oluşturucu hesabı {#creator-account}
+
+Geliştirici rolüne sahip hesaplara ekosistemin "kök" ayrıcalıkları atanacaktır. Varsayılan olarak, bu rol tüm eylemlere erişebilir. Yeni bir ekosistemde, oluşturucu hesaba, ekosistemde yeni uygulamalar ve veritabanı tabloları oluşturmak gibi büyük değişiklikler yapmak için kullanmanız gereken Yönetici rolü atanacaktır.
+
+İçerik oluşturucu hesabını kullanarak ekosisteme giriş yapın.
+
+### Yeni uygulama {#new-application}
+
+Ekosistem yaratıcısı olarak oturum açtıktan sonra yeni bir uygulama oluşturabilirsiniz.
+
+Yeni bir Uygulama Yarat:
+
+1. Geliştirici sekmesine gidin;
+
+ 2. Soldaki menüden Uygulama'yı seçin;
+
+ 3. Uygulama sayfasında Yeni'yi seçin;
+
+ 4. Ad alanında uygulama adını belirtin;
+
+ 5. Koşullar'ı "doğru" olarak ayarlayın;
+
+ "true", herkesin uygulamada değişiklik yapabileceği anlamına gelir;
+
+ Başka bir seçenek de `ContractConditions("MainCondition")` olup, bu, yaratıcısı dışında hiç kimsenin uygulamada değişiklik yapamayacağı anlamına gelir.
+
+ 6. Uygulamanız uygulamalar listesinde görüntülenecektir, etkinleştirmek için belirli bir uygulamanın Ad alanına tıklayın.
+
+> Not
+
+> Geliştirici sekmesinde bir uygulamaya tıklayarak ilgili kaynaklara erişebilirsiniz, ekosistem üzerinde hiçbir etkisi yoktur. Hangisini seçerseniz seçin, tüm ekosistem uygulamaları hala mevcuttur.
+
+### Yeni veritabanı tablosu {#new-database-table}
+
+Verileri depolamak için Weaver'da uygulama için bir veritabanı tablosu oluşturun.
+
+Bir veri tablosu oluşturun:
+
+ 1. Geliştirici sekmesinde, Uygulama - Ad > Veritabanı tablosu'nu seçin;
+
+ Seçilen uygulamaya ilişkin tüm veritabanı tabloları burada görüntülenecektir. Liste boşsa, uygulamanız için henüz hiçbir veritabanı tablosu oluşturulmamıştır.
+
+ 2. Yeni；'ye tıklayın
+
+ Weaver, yeni bir veritabanı tablosu oluşturmanız için size sayfayı gösterecektir.
+
+ 3. Ad alanında adı belirtin;
+
+ Bu öğreticide, veritabanı tablosunun adı 'apptable' olacaktır.
+
+ 4. "Mesaj" sütununu ekleyin, türünü "Metin" olarak ayarlayın;
+
+ Bu tablonun iki sütunu olmalıdır: "id" (ön tanımlı) ve "message". Daha sonra daha fazla sütun ekleyeceksiniz.
+
+ 5. Okuma ve yazma izinleriyle ilgili olarak, her alanı 'true' olarak ayarlayın;
+
+ Bu, herkesin veritabanı tablosuna giriş eklemesine, girişleri güncellemesine, sütun eklemesine ve giriş verilerini okumasına olanak tanır;
+
+ Bir seçenek olarak, yaratıcı hesabına okuma ve yazma izinlerini ayırabilirsiniz. Bu durumda, bu alanı `ContractConditions("MainCondition")` olarak ayarlayın.
+
+### Yeni Kontrat {#new-contract}
+
+#### Kontrat kodu {#contract-code}
+
+Her sözleşmenin üç bölümü vardır. Daha fazla ayrıntı için lütfen bakınız: [Sözleşme yapısı](../topics/script.md#contract-structure)。
+
+#### Bir kontrat oluşturun {#create-a-contract}
+
+1. Geliştirici sekmesinde, Uygulama - Ad > Kontratı seçin;
+
+ Uygulama ile ilgili tüm sözleşmeler burada görüntülenecektir. Yeni uygulamalar için liste boştur.
+
+2. Yeni'yi tıklayın;
+
+ Düzenleyicide yeni bir sözleşme şablonu görüntülenecektir.
+
+Boş bir sözleşme şablonu aşağıdaki gibi gösterilir:
 
 ```
-> In this application, strings will be stored in a database table, and there is not a user page.
-```
-
-### Creator account {#creator-account}
-
-Accounts with the Developer role will be assigned the "root" privileges of the
-ecosystem. By default, this role can access all actions. In a new ecosystem, the
-creator account will be assigned the Admin role, which you must use it to
-introduce major changes to the ecosystem, such as creating new applications and
-database tables.
-
-Log in to the ecosystem using the creator account.
-
-### New application {#new-application}
-
-Once you logged in as the ecosystem creator, you can create a new application.
-
-Create a new application:
-
-> 1. Go to the **Developer** tab;
->
-> 2. Select **Application** in the menu at the left;
->
-> 3. Select **New** at the **application** page;
->
-> 4. Specify the application name in the **APP** field;
->
-> 5. Set **Conditions** to `true`;
->
->    > `true` means anyone can make changes to the application;
->    >
->    > Another option is `ContractConditions("MainCondition")`, which means no
->    > one can make changes to the application except for the creator.
->
-> 6. Your application will be displayed in the applications list, click the Name> field of a specific application to activate it.
->
-> ```
-> You can access relevant resources by clicking an application in the Developer tab, no impact on the ecosystem.
-> No matter which one you choose, all ecosystem applications are still available.
-> ```
-
-### New database table {#new-database-table}
-
-To store the data, create a database table for the application in Weaver.
-
-Create a data table:
-
-> 1. In the **Developer** tab, select **Application** > **APP** > \*\*Database> table\*\*;
->
->    > All database tables in relation to the application selected will be
->    > displayed here. If the list is empty, then, no database tables have been
->    > created for your application yet.
->
-> 2. Click **New**；
->
->    > Weaver will show you the page to create a new database table.
->
-> 3. Specify the name in the **Name** field;
->
->    > In this tutorial, the name of the database table will be `apptable`.
->
-> 4. Add the `message` column, set its type as `Text`;
->
->    > This table must have two columns: `id` (predefine) and `message`. You are
->    > going to add more columns later. ![image](/img/app-tut-table.png)
-
-> 5. With respect to the read and write permissions, set each field to `true`;
->
->    > This will allow anyone to insert, update entries, add columns and read
->    > entry data on the database table;
->    >
->    > As an option, you may reserve the read and write permissions to the
->    > creator account. In this case, set this field to
->    > `ContractConditions("MainCondition")`.
-
-### New contract {#new-contract}
-
-#### Contract code {#contract-code}
-
-Each contract has three parts. For more details, please see:
-[Contract structure](../topics/script.md#contract-structure).
-
-#### Create a contract {#create-a-contract}
-
-1. In the **Developer** tab, select **Application** > **APP** > **Contract**;
-
-   > All contracts in relation to the application will be displayed here. The> list is empty for new applications.
-
-2. Click New;
-
-   > A new contract template will be displayed in the editor.
-
-An empty contract template is shown as below:
-
-```js
 contract ... {
     data {
 
@@ -182,24 +159,23 @@ contract ... {
 }
 ```
 
-#### Contract name {#contract-name}
+#### Kontrat adı {#contract-name}
 
-First, please specify the contract name.
+İlk olarak, lütfen sözleşme adını belirtin.
 
-```js
-contract AppContract {
+```  
+    contract AppContract {
 
-}
+    }
 ```
 
 #### Data {#data}
 
-Fill in the `data` section.
+'data' bölümünü doldurun.
 
-In the following example, `Message` refers to the variable name, while `string`
-the variable type.
+Aşağıdaki örnekte, "Mesaj" değişken adını belirtirken, "string" değişken türünü ifade eder.
 
-```js
+```
 data {
     Message string
 }
@@ -207,11 +183,9 @@ data {
 
 #### Conditions {#conditions}
 
-Fill in the `conditions` section. A simple verification condition is to avoid
-empty strings. If the length of `Message` is `0`, a predefined warning message
-will be triggered when implementing the contract.
+"Koşullar" bölümünü doldurun. Basit bir doğrulama koşulu, boş dizelerden kaçınmaktır. `Message`ın uzunluğu `0` ise, sözleşme uygulanırken önceden tanımlanmış bir uyarı mesajı tetiklenecektir.
 
-```js
+```
 conditions {
     // avoid writing empty strings
     if Size($Message) == 0 {
@@ -222,23 +196,21 @@ conditions {
 
 #### Action {#action}
 
-Fill in the `action` section. A simple action is to write `Message` into the
-data table.
+'action' bölümünü doldurun. Basit bir işlem, veri tablosuna "message" yazmaktır.
 
-```js
-action {
-    DBInsert("apptable", {message: $Message})
-}
+```
+    action {
+        DBInsert("apptable", {message: $Message})
+    }
 ```
 
-#### Full contract code {#full-contract-code}
+#### Tam kontrat kodu {#full-contract-code}
 
-The full contract code is shown below.
+Tam kontrat kodu aşağıda gösterilmiştir.
 
-All contracts in IBAX will be constructed like this, including the `data`,
-`conditions` and `action` sections.
+IBAX'teki tüm kontratlar, "data", "conditons" ve "action" bölümleri dahil olmak üzere bu şekilde oluşturulacaktır. 
 
-```js
+```
 contract AppContract {
     data {
         Message string
@@ -254,405 +226,334 @@ contract AppContract {
     }
 }
 ```
+#### Kaydet ve çalıştır {#save-and-run}
 
-#### Save and run {#save-and-run}
+Şimdi, sözleşmeyi test etmeye hazırlanıyoruz:
 
-Now, we are preparing to test the contract:
+1. Editörün menüsünde Kaydet'e tıklayın;
 
-> 1. Click Save in the editor's menu;
->
->    > This will update the contract code, and the updated version will be
->    > available to all network nodes.
->
-> 2. Click Run in the editor's menu;
->
->    > This will display the Run the Contract page.
->
-> 3. In the Run the Contract page, fill in the input parameters of the contract;
->
->    > As this contract has one parameter `Message`, set `Message` at the Key
->    > field and `Hello, World` at the Value field.
->    >
->    > ![image](/img/app-tut-execute.png)
->
-> 4. Click Run.
->
->    > The result will be displayed at the right.
+ Bu, sözleşme kodunu güncelleyecek ve güncellenmiş sürüm tüm ağ düğümleri için geçerli olacaktır.
 
-If successfully added some strings, then, the result will contain the block ID
-and result code to introduce the change of transactions.
+2. Editörün menüsünde Çalıştır'a tıklayın;
 
-```js
+ Bu, Sözleşmeyi Çalıştır sayfasını görüntüler.
+
+3. Sözleşmeyi Çalıştır sayfasında, sözleşmenin giriş parametrelerini girin;
+
+ Bu sözleşmenin bir "Message" parametresi olduğundan, Anahtar alanına "Message" ve Değer alanına "Merhaba, Dünya"yı ayarlayın.
+
+4. Çalıştır'a tıklayın.
+
+ Sonuç sağda görüntülenecektir.
+
+Bazı diziler başarıyla eklendiyse, sonuç, işlemlerin değişikliğini tanıtmak için blok kimliğini ve sonuç kodunu içerecektir.
+
+```
 {
-   "block": "31",
-   "result": null
+ "block": "31",
+ "result": null
 }
 ```
 
-## Part 3: Page {#part-3-page}
+## Bölüm 3: Sayfa {#part-3-page}
 
-When the contract becomes effective, it is time to extend it to something
-useful. In this part, you are going to implement the UI and other functions.
+Sözleşme yürürlüğe girdiğinde, onu yararlı bir şeye genişletmenin zamanı geldi. Bu bölümde, UI ve diğer işlevleri uygulayacaksınız.
 
-```
-In this application, strings will be stored in a database table, like entries in a log. Each string will have an author and timestamp.
+Not
 
-Users can view the list of strings stored at the application page, which is shown as a simple form then.
-```
+Bu uygulamada, dizeler, bir günlükteki girişler gibi bir veritabanı tablosunda saklanacaktır. Her dizenin bir yazarı ve zaman damgası olacaktır.
+
+Kullanıcılar, daha sonra basit bir form olarak gösterilen uygulama sayfasında saklanan dizelerin listesini görüntüleyebilir.
 
 ### New field {#new-field}
 
-As with the previous, edit the database table at the **Developer** tab >
-**Application** > **APP** > **Database table** page;
+Öncekinde olduğu gibi, Geliştirici sekmesi > Uygulama - Ad > Veritabanı tablosu sayfasında veritabanı tablosunu düzenleyin;
 
-Add the following fields into `apptable`:
+`apptable` içine aşağıdaki alanları ekleyin:
 
-- `author` , field type `Number`, set Change to `true`;
+* `author` , `Number` alan türü, Değiştir'i `true` olarak ayarlayın;
 
-This field will store the identifier of the author account.
+Bu alan, author hesabının tanımlayıcısını saklayacaktır.
 
-- `timestamp` , field type `Date/Time`, set **Change** to `true`.
+* `timestamp` , `Date/Time` alan türü, Change'i 'true' olarak ayarlayın.
 
-### Update the contract {#update-the-contract}
+### Kontratı güncelleyin {#update-the-contract}
 
-We will update the contract code to handle the author ID and timestamp.
+AuthorID ve timestamp işlemek için kontrat kodunu güncelleyeceğiz.
 
-The author ID is the account ID of the ecosystem. The timestamp is the date and
-time executing the contract in Unix time format.
+Yazar kimliği, ekosistemin hesap kimliğidir. Timestamp, sözleşmenin Unix zaman biçiminde yürütüldüğü tarih ve saattir.
 
-As both values are provided by the
-[Predefined variables](../topics/script.md#variables) and no need to input or
-verify the predefined variables, they can only be updated in the action part.
+Her iki değer de [Önceden tanımlanmış değişkenler](../topics/script.md#variables) tarafından sağlandığından ve önceden tanımlanmış değişkenlerin girilmesine veya doğrulanmasına gerek olmadığından, bunlar yalnızca işlem bölümünde güncellenebilir.
 
-Update the contract to write the author ID and timestamp into the database table
-when adding a message, among which the author ID is defined by `$key_id`, while
-the timestamp by `$time`.
+AuthorID "$key_id", timestamp ise "$time" ile tanımlandığı bir mesaj eklerken veritabanı tablosuna AuthorID ve timestamp yazmak için sözleşmeyi güncelleyin.
 
-```js
+```
 action {
-    DBInsert("apptable", {message: $Message, author: $key_id, timestamp: $time})
+ DBInsert("apptable", {message: $Message, author: $key_id, timestamp: $time})
 }
 ```
 
-### Page {#page}
+### Sayfa {#page}
 
-For the application page, it is a simple page where displays the messages stored
-in the database table.
+Uygulama sayfası için, veritabanı tablosunda saklanan mesajların görüntülendiği basit bir sayfadır.
 
-Like all other resources, you can create the UI page in Weaver:
+Diğer tüm kaynaklar gibi, UI sayfasını Weaver'da oluşturabilirsiniz:
 
-1. Navigate to the **Developer** tab, click **Application** > **APP** >
-   **Page**；
+1.Geliştirici sekmesine gidin, Uygulama - Ad > Sayfa'yı tıklayın;
 
-2. Click **New**；
+2. Yeni'yi tıklayın;
+ Görsel tasarımcı yeni bir sekmede açılacaktır.
 
-   > The visual designer will be opened in a new tab.
+#### Tasarımcı görünümleri {#designer-views}
 
-#### Designer views {#designer-views}
+Varsayılan sayfa boş. Sayfayı hızlı bir şekilde doldurmak için önceden tanımlanmış yapıyı kullanabilirsiniz.
 
-The default page is empty. You can use the predefine structure to quickly fill
-in the page.
+Temel bir tablo oluşturun:
 
-> ![image](/img/app-tut-designer.png)
+1. Sağdaki görünüm seçicide Tasarımcı'yı tıklayın;
+ Görünüm, görsel tasarımcıya geçecektir.
 
-Create a basic table:
+2. Soldaki menüde Başlıklı Tablo'yu seçin ve sayfaya sürükleyin.
+    Sayfada birden çok öğeye sahip bir tablo görüntülenecektir.
 
-1. In the view selector at the right, click Designer;
+#### Geliştirici görünümü {#developer-view}
 
-   > The view will be switched to the visual designer.
+IBAX'in kullanıcı sayfası bir [Şablon Dili](../topics/templates2.md) ile kodlandığından, sayfa kodunu yazarken lütfen Geliştirici görünümüne geçin.
 
-2. In the menu at the left, select Table With Header and drag it on to the
-   page.
+Geliştirici görünümüne geçin.
 
-   > A table with multiple elements will be displayed on the page.
+1. Sağdaki görünüm seçicide Geliştirici'ye tıklayın.
 
-#### Developer view {#developer-view}
+ Görünüm, sayfa kodunu tutan bir sekme ile düzenleyiciye geçecektir.
+ 
+#### Veritabanı tablosundan veri alın {#fetch-data-from-the-database-table}
+Şimdiye kadar, sayfa şablonuyla hiçbir şey yapılmadı. Bir sonraki adımda, sayfanın `apptable`dan veri görüntülemesine izin vermek için kodu güncelleyeceğiz.
 
-As the user page of IBAX is coded with a
-[Template Language](../topics/templates2.md), please switch to the Developer
-view when writing the page code.
+1. [DBFind](../topics/script.md#dbfind) işleviyle veritabanı tablosundan veri istemek için;
 
-> ![image](/img/app-tut-developer.png)
+ Aşağıdaki örnekte, bu işlev çağrısı `apptable`dan veri almak için kullanılır. Veriler, kaynak `src_table` içine yerleştirilecek ve zaman damgası alanına göre sıralanacaktır. `src_table` daha sonra tablo görünümündeki sayfa için veri kaynağı olarak kullanılacaktır.
 
-Switch to the Developer view.
+ ```
+    DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp)
+ ```
 
-1. In the view selector at the right, click **Developer**.
+2. `src_table`dan gelen verileri görüntülemek için, bunu `Table` işlevinde veri kaynağı ve başlık olarak belirtin.
 
-   > The view will be switched to the editor with a tab holding the page code.
+```
+    Table(Columns: "AUTHOR=author,TIME=timestamp,MESSAGE=message", Source: src_table)
+```
 
-#### Fetch data from the database table {#fetch-data-from-the-database-table}
+3. Sağdaki görüntü seçmede, verileri doğru görüntüleyip kontrol etme için önizleme'ye tıklayın.
 
-So far, nothing done with the page template. In the next, we will update the
-code to allow the page to display data from `apptable`.
+#### Tam sayfa kodu {#full-page-code-1}
 
-1. To request data from the database table with the
-   [DBFind](../topics/script.md#dbfind) function；
+Bu bölümün tam sayfa kodu aşağıdadır. Bu temel sayfa daha sonra genişletilecektir.
 
-   > In the following example, this function call is used to fetch data from
-   > `apptable`. The data will be put it in the source `src_table` and sorted by> the timestamp field. `src_table` will be later used as the data source for
-   >
-   > ```js
-   > DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp)
-   > ```
-
-2. To display the data from `src_table`, specify it as the data source and the
-   header in the `Table` function.
-
-   > ```js
-   > Table(Columns: "AUTHOR=author,TIME=timestamp,MESSAGE=message", Source: src_table)
-   > ```
-
-3. In the view selector at the right, click **Preview** to check whether the
-   data is displayed correctly.
-
-#### Full page code {#full-page-code-1}
-
-The following is the full page code for this part. This basic page will be
-expanded later.
-
-```js
+```
 DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp)
 
 Div(Class: panel panel-primary) {
     Div(Class: panel-heading, Body: Table block)
     Table(Columns: "AUTHOR=author,TIME=timestamp,MESSAGE=message", Source: src_table)
     Div(Class: panel-footer text-right) {
-        Button(Class: btn btn-primary, Contract: ContractName, Body: More)
+    Button(Class: btn btn-primary, Contract: ContractName, Body: More)
     }
 }
+
 ```
 
-#### Save the page {#save-the-page}
+#### Sayfayı kaydedin {#save-the-page}
 
-Click **Save** to save the page:
+Sayfayı kaydetmek için Kaydet'e tıklayın:
 
-1. Specify `AppPage` or any other name for the page in the **Page Name** field;
-2. Select `default_menu` in the **Menu**;
-3. Set **Conditions** to `true`;
-4. Click **OK**.
+1. Sayfa Adı alanında `AppPage` veya sayfa için başka bir ad belirtin;
 
-## Part 4: Application {#part-4-application}
+2. Menüde `default_menu` öğesini seçin;
 
-In the previous sections, you created a contract, a table to store data, and a
-basic UI page to display that data.
+3. Koşullar'ı `true` olarak ayarlayın;
 
-In this part, you are going to finalize the application to make its appearance
-and actions are similar to an actual one.
+4. Tamam'a tıklayın.
 
-### Menu {#menu}
+## Bölüm 4: Uygulama {#part-4-application}
 
-The page needs to be linked to a menu, for example, `default_page` displayed on
-the **Home** tab is linked to the default ecosystem menu `default_menu`.
+Önceki bölümlerde bir sözleşme, verileri depolamak için bir tablo ve bu verileri görüntülemek için temel bir kullanıcı arayüzü sayfası oluşturdunuz.
 
-As this application tutorial is very simple (only having one page), there is no
-need to create a separate menu for it. The new menu item in the default menu is
-sufficient.
+Bu bölümde, görünüşünü ve eylemlerinin gerçek olana benzer olmasını sağlamak için uygulamayı sonlandıracaksınız.
 
-> You can define the page menu by editing the page properties at the
-> **Developer** tab > **Application** > **APP** > **Page**. For example, if your
-> app has multiple pages, you may need to create a menu to navigate between
-> these pages and assign it to all pages of the app.
+### Menü {#menu}
 
-#### Add a menu item {#add-a-menu-item}
+Sayfanın bir menüye bağlanması gerekir; örneğin, Ana Sayfa sekmesinde görüntülenen `default_page`, varsayılan ekosistem menüsü `default_menu` ile bağlantılıdır.
 
-Like all other resources, menus can be created and edited in Weaver:
+Bu uygulama öğreticisi çok basit olduğundan (yalnızca bir sayfaya sahip olduğundan), bunun için ayrı bir menü oluşturmaya gerek yoktur. Varsayılan menüdeki yeni menü öğesi yeterlidir.
 
-1. Navigate to the **Developer** tab > **Menu**；
+> Not
 
-   > ![image](/img/app-tut-menu-list.png)
+> Geliştirici sekmesi > Uygulama - Ad > Sayfa'da sayfa özelliklerini düzenleyerek sayfa menüsünü tanımlayabilirsiniz. Örneğin, uygulamanızın birden fazla sayfası varsa, bu sayfalar arasında gezinmek için bir menü oluşturmanız ve bunu uygulamanın tüm sayfalarına atamanız gerekebilir.
 
-2. Click the Name of the `default_menu` entry;
+#### Bir menü öğesi ekleyin {#add-a-menu-item}
 
-   > A new tab will be opened in the editor.
+Diğer tüm kaynaklar gibi, menüler de Weaver'da oluşturulabilir ve düzenlenebilir:
 
-3. Add a new menu item to the end of the template, which will be linked to open
-   the application page and its icon comes from the
-   [FontAwesome](https://fontawesome.com/icons) icon set.
+1. Geliştirici sekmesi > Menü'ye gidin;
 
-   > ```js
-   > MenuItem(Title:Messages, Page:AppPage, Icon:"fa fa-envelope")
-   > ```
+2. `default_menu` girişinin Adını tıklayın;
 
-4. Click **Save**.
+ Editörde yeni bir sekme açılacaktır.
 
-#### Test the new menu item {#test-the-new-menu-item}
+3. Şablonun sonuna, uygulama sayfasını açmak için bağlanacak yeni bir menü öğesi ekleyin ve simgesi [FontAwesome](https://fontawesome.com/icons) simge setinden gelir.
 
-Check whether the new menu item is valid:
+```
+    MenuItem(Title:Messages, Page:AppPage, Icon:"fa fa-envelope")
+```
 
-1. Open the **Home** tab;
+4. Kaydet'e tıklayın.
+#### Yeni menü öğesini test edin {#test-the-new-menu-item}
 
-2. Click **Refresh** in the menu;
+Yeni menü öğesinin geçerli olup olmadığını kontrol edin:
 
-   > An entry with a header of Messages will appear;
-   >
-   > ![image](/img/app-tut-menu-messages.png)
+1. Giriş sekmesini açın;
 
-3. Click **Messages**.
+2. Menüde Yenile'ye tıklayın;
 
-   The application page will be opened.
+    Mesaj başlığına sahip bir giriş görünecektir;
 
-### Send a message {#send-a-message}
+3. Mesajlar'a tıklayın.
 
-The buttons in Logicor can be used to implement contracts and open pages,
-depending on the parameters. The [Button](../topics/templates2.md#button)
-function has two contract parameters:
+    Başvuru sayfası açılacaktır.
+### Bir mesaj göndermek {#send-a-message}
 
-- `Contract`
+Logicor'daki düğmeler, parametrelere bağlı olarak sözleşmeleri uygulamak ve sayfaları açmak için kullanılabilir.
 
-  Name of the contract activated.
+[Button](../topics/templates2.md#button) işlevinin iki sözleşme parametresi vardır:
 
-- `Params`
+*  `Contract`
 
-  Input parameters of the contract.
+    Etkinleştirilen sözleşmenin adı.
+
+*  `Params`
+
+    Sözleşmenin giriş parametreleri.
 
 #### Form {#form}
 
-To send data to the contract, add a form on the application page, which must
-have an input field for a message and a button to activate the contract
-AppContract.
+Sözleşmeye veri göndermek için, başvuru sayfasına bir mesaj için bir giriş alanına ve sözleşmeyi AppContract'ı etkinleştirmek için bir düğmeye sahip olması gereken bir form ekleyin.
 
-The following is an example of this type of form. It is nested in its own
-[Div](../topics/templates2.md#div). Putting it after the Div element that
-contains the form view, which defines that the
-[Input](../topics/templates2.md#input) field has a predefine name
-`message_input`. The button uses this name to send the value of `Message` to the
-contract. Finally, the [Val](../topics/templates2.md#calling-contracts) function
-is used to get the value of the input field.
+Aşağıda bu tür bir formun bir örneği verilmiştir. Kendi [Div](../topics/templates2.md#div) içinde yuvalanmıştır. [Girdi](../topics/templates2.md#input) alanının önceden tanımlanmış bir "message_input" ada sahip olduğunu tanımlayan form görünümünü içeren Div öğesinin arkasına koymak. Düğme, sözleşmeye `Mesaj` değerini göndermek için bu ismi kullanır. Son olarak, giriş alanının değerini almak için [Val](../topics/templates2.md#calling-contracts) işlevi kullanılır.
 
-```text
+```
 Div(Class: panel panel-primary) {
-  Form() {
-        Input(Name: message_input, Class: form-control, Type: text, Placeholder: "Write a message...", )
-        Button(Class: btn btn-primary, Body: Send, Contract: AppContract, Params: "Message=Val(message_input)")
-  }
+ Form() {
+ Input(Name: message_input, Class: form-control, Type: text, Placeholder: "Write a message...", )
+ Button(Class: btn btn-primary, Body: Send, Contract: AppContract, Params: "Message=Val(message_input)")
+ }
 }
 ```
 
-You may notice that when testing this new feature by sending a message, the form
-does not refresh. This will be introduced in [page refresh](#page-refreshing).
+Bu yeni özelliği mesaj göndererek test ederken formun yenilenmediğini fark edebilirsiniz. Bu, [sayfa yenilemede](#page-refreshing) tanıtılacaktır.
 
-### Form navigation {#form-navigation}
+### Formda gezinme {#form-navigation}
 
-Under the default view, the form on the page can only display 25 entries on the
-first page. Hence, you can add some simple buttons to navigate users to all form
-entries.
+Varsayılan görünümde, sayfadaki form ilk sayfada yalnızca 25 girdi görüntüleyebilir. Bu nedenle, kullanıcıları tüm form girişlerine yönlendirmek için bazı basit düğmeler ekleyebilirsiniz.
 
-#### Navigation buttons {#navigation-buttons}
+#### Yön butonları {#navigation-buttons}
 
-There will be two navigation buttons, and each of them could reload the
-application page and pass the parameters to it.
+İki gezinme butonu olacak ve her biri uygulama sayfasını yeniden yükleyebilir ve parametreleri ona iletebilir.
 
-- The _Previous_ button will display the first 25 entries. If there are no other
-  entries, the button will not be displayed;
-- The Next button will display the next 25 entries. If there are no other
-  entries, the button will not be displayed.
+* Önceki buton ilk 25 girişi görüntüleyecektir. Başka giriş yoksa buton görüntülenmez;
 
-#### Variables {#variables}
+* Sonraki butonunda sonraki 25 girişi görüntüleyecektir. Başka giriş yoksa, buton görüntülenmez.
 
-The navigation buttons require two variables to store the table view states:
+#### Değişkenler {#variables}
 
-- `#table_view_offset#`
+Gezinme düğmeleri, tablo görünümü durumlarını depolamak için iki değişken gerektirir:
 
-> This variable stores the offset of current table view. The navigation buttons
-> will pass it as a parameter when the page is reloaded.
+*  `#table_view_offset#`
 
-- `#record_count#`
+Bu değişken, mevcut tablo görünümünün ofsetini saklar.
 
-> This variable stores the total number of entries in the table. The value will
-> be calculated.
+Sayfa yeniden yüklendiğinde gezinme düğmeleri bunu bir parametre olarak iletecektir.
 
-#### Entry count {#entry-count}
+*  `#record_count#`
 
-To count `#record_count#`, please modify the existing
-[DBFind](../topics/script.md#dbfind) function call. The variable specified in
-the `.count()` call will store the entry count.
+ Bu değişken, tablodaki toplam giriş sayısını saklar.
 
-```text
+ Değer hesaplanacaktır.
+
+#### Giriş sayısı {#entry-count}
+
+`#record_count#` saymak için lütfen mevcut [DBFind](../topics/script.md#dbfind) işlev çağrısını değiştirin. `.count()` çağrısında belirtilen değişken, giriş sayısını saklayacaktır.
+
+```
 DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count)
 ```
 
-#### Table offset {#table-offset}
+#### Tablo ofseti {#table-offset}
 
-The table view offset must be passed to the page when the page is opened. If
-`#table_view_offset#` does not get a value, set it to 0.
+Sayfa açıldığında tablo görünümü ofseti sayfaya geçirilmelidir. `#table_view_offset#` bir değer almazsa 0 olarak ayarlayın.
 
-Add the following code to the top of the page.
+Aşağıdaki kodu sayfanın en üstüne ekleyin.
 
-```text
+```
 If(GetVar(table_view_offset)){
+
 }.Else{
     SetVar(table_view_offset, 0)
 }
 ```
 
-Modify the [DBFind](../topics/script.md#dbfind) function call again. This time
-it must use the new table view offset.
+[DBFind](../topics/script.md#dbfind) işlev çağrısını yeniden değiştirin. Bu sefer yeni tablo görünümü ofsetini kullanmalıdır.
 
-```text
+```
 DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,message").Order(timestamp).Count(record_count).Offset(#table_view_offset#)
 ```
 
-#### Button code {#button-code}
+#### Buton kodu {#button-code}
 
-Find the [Div](../topics/templates2.md#div) function call that defines the
-footer: `Div(Class:panel-footer text-right)`. Add the button code into it.
+Find the [Div](../topics/templates2.md#div) function call that defines the footer: `Div(Class:panel-footer text-right)`. Add the button code into it.
 
-```text
+```
 Div(Class: panel-footer text-right) {
-
 }
 ```
 
-The _Previous_ button will only appear if there is at least one Next to return.
-When adding a button, the new table view offset `offset_previous` of the page
-will be calculated. The parameters are passed to `PageParams` of the reopened
-page.
+*Previous* düğmesi yalnızca geri dönülecek en az bir Sonraki varsa görünür. Bir düğme eklerken, sayfanın yeni tablo görünümü ofset 'offset_previous' hesaplanacaktır. Parametreler, yeniden açılan sayfanın 'PageParams'ına iletilir.
 
-```text
+```
 If(#table_view_offset# >= 25) {
     SetVar(offset_previous, Calculate(#table_view_offset# - 25))
     Button(Class: btn btn-primary, Body: Previous, Page: AppPage, PageParams:"table_view_offset=#offset_previous#")
 }
 ```
 
-The Next button will only be displayed when the total number of records is
-greater than the number displayed on the page. When a button is added, the new
-table view offset `offset_next` of the page will be calculated. The parameters
-are passed to `PageParams` of the reopened page.
+Sonraki düğmesi, yalnızca toplam kayıt sayısı sayfada görüntülenen sayıdan fazla olduğunda görüntülenecektir. Bir düğme eklendiğinde, sayfanın yeni tablo görünümü ofset 'offset_next' hesaplanacaktır. Parametreler, yeniden açılan sayfanın 'PageParams'ına iletilir.
 
-```text
+```
 If(#record_count# >= Calculate(#table_view_offset# + 25)) {
     SetVar(offset_next, Calculate(#table_view_offset# + 25))
     Button(Class: btn btn-primary, Body: Next, Page: AppPage, PageParams:"table_view_offset=#offset_next#")
 }
 ```
 
-![image](/img/app-tut-navigation.png)
+Bu düğmeleri ekledikten sonra sayfayı kaydedin ve Ana Sayfa > Mesajlar menü öğesinden test edin.
 
-After adding these buttons, save the page and test it from the Home > Messages
-menu item.
+#### Sayfa yenileme {#page-refreshing}
 
-#### Page refreshing {#page-refreshing}
+Uygulanacak son işlev, sayfadaki tabloyu otomatik olarak güncellemektir. Kullanıcılar yeni bir mesaj gönderdiğinde, tabloda görüntülenmelidir.
 
-The last function to be implemented is to automatically update the table on the
-page. When users send a new message, it must be displayed in the table.
+Sözleşmeyi uygulamaya ek olarak, aynısını elde etmek için mevcut sayfayı yeniden açmak için Gönder düğmesini de kullanabilirsiniz. `#table_view_offset#` sayfaya herhangi bir değişiklik yapılmadan geçirilmelidir.
 
-In addition to implementing the contract, you may also use the Send button to
-reopen the current page to achieve the same. `#table_view_offset#` must be
-passed to the page without any change.
+Gönder düğmesine `Page` ve `PageParams` ekleyin, kod aşağıdaki gibidir:
 
-Add `Page` and `PageParams` to the Send button, the code is as follows:
-
-```text
+```
 Button(Class: btn btn-primary, Body: Send, Contract: AppContract, Params: "Message=Val(message_input)", Page:AppPage, PageParams:"table_view_offset=#table_view_offset#")
 ```
 
-### Full page code {#full-page-code-2}
 
-This part describes many changes to the application page. The following is the
-full code of the application page.
+### Tam sayfa kodu {#full-page-code-2}
 
-```text
+Bu bölüm, uygulama sayfasındaki birçok değişikliği açıklar. Uygulama sayfasının tam kodu aşağıdadır.
+
+```
 If(GetVar(table_view_offset)){
 }.Else{
     SetVar(table_view_offset, 0)
@@ -680,10 +581,6 @@ DBFind(Name: apptable, Source: src_table).Columns(Columns: "author,timestamp,mes
 }
 ```
 
-## Conclusions {#conclusions}
+## Sonuçlar {#conclusions}
 
-Instead of expounding other important topics for application developers, such as
-layout styles, access permissions management and interaction between
-applications and resources, this tutorial introduces how to create a basic
-application for an ecosystem. For more information on these advanced topics, see
-other relevant documents.
+Uygulama geliştiriciler için yerleşim stilleri, erişim izinleri yönetimi ve uygulamalar ve kaynaklar arasındaki etkileşim gibi diğer önemli konuları açıklamak yerine, bu öğretici bir ekosistem için temel bir uygulamanın nasıl oluşturulacağını anlatır. Bu ileri düzey konular hakkında daha fazla bilgi için diğer ilgili belgelere bakın.

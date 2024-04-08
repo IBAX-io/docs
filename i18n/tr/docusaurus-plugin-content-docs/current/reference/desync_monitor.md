@@ -1,56 +1,40 @@
-# Synchronized Monitoring Tool {#synchronized-monitoring-tool}
+# Senkronize İzleme Aracı {#synchronized-monitoring-tool}
 
-Desync_monitor is a special tool that can be used to verify whether the database
-on the specified node has been synchronized.
+Desync_monitor, belirtilen düğümdeki veritabanının senkronize edilip edilmediğini doğrulamak için kullanılabilecek özel bir araçtır.
 
-The tool can be used as a daemon or can be started to perform a one-time check.
+Araç, arka plan programı olarak kullanılabilir veya tek seferlik bir kontrol gerçekleştirmek için başlatılabilir.
 
-The operating principle of the tool is based on the following:
+Aletin çalışma prensibi aşağıdakilere dayanmaktadır:
 
-1. Each block contains the hash of all changes of all transactions, request the
-   specified node to provide its last block ID;
-2. Then request a block with this ID from all nodes and compare the above
-   hashes;
-3. If the hashes are different, a synchronization error message will be sent to
-   the email address specified in the command.
+1.Her blok, tüm işlemlerin tüm değişikliklerinin karmasını içerir, belirtilen düğümden son blok kimliğini sağlamasını isteyin;
+2.Ardından tüm düğümlerden bu ID ile bir blok talep edin ve yukarıdaki hash'leri karşılaştırın;
+3.Eğer hashler farklı ise, komutta belirtilen e-posta adresine bir senkronizasyon hata mesajı gönderilecektir.
 
-## Location {#location}
+## Konum {#location}
+Araç, `tools/desync_monitor/` dizininde bulunur.
 
-The tool is located in the `tools/desync_monitor/` directory.
+## Komut istemi bayrakları {#command-prompt-flags}
+Komut isteminden aşağıdaki bayraklar kullanılabilir:
+* confPath - Yapılandırma dosyasının yolu. Varsayılan dosya adı `config.toml`dur;
+* nodeList - İstenen bloğun virgülle ayrılmış düğüm listesi. Varsayılan "127.0.0.1:7079"dur;
+* daemonMode - Bir arka plan programı olarak başlatılır ve her N saniyede bir kimlik doğrulama gerektiğinde kullanılmalıdır. Bu bayrak varsayılan olarak "yanlış" olarak ayarlanmıştır;
+* queryingPeriod - Araç bir arka plan programı olarak başlatılırsa, bu parametre kontroller arasındaki zaman aralığını (saniye cinsinden) varsayılan olarak "1" saniye olarak ayarlar.
+* alertMessageTo – Senkronizasyon uyarı hatalarının gönderileceği e-posta adresi.
+    * alertMessageSubj - Uyarı mesajındaki mesaj konusu, varsayılan olarak `düğüm senkronizasyonu` sorunu;
+    * alertMessageFrom - Mesajın gönderildiği adres.
+    * smtpHost - e-posta göndermek için kullanılan SMTP sunucusu ana bilgisayarı, varsayılan olarak `""`;
+    * smtpPort - e-posta mesajları göndermek için kullanılan SMTP sunucu bağlantı noktası, varsayılan olarak "25";
+    * smtpUsername - SMTP sunucusu kullanıcı adı, varsayılan olarak `""`;
+    * smtpPassword - SMTP sunucu şifresi, varsayılan olarak `""`.
 
-## Command prompt flags {#command-prompt-flags}
+## Yapılandırma {#configuration}
+Araç, toml formatında bir yapılandırma dosyası kullanır.
 
-The following flags can be used from the command prompt:
+Varsayılan olarak, ikili dosyanın başlatılacağı klasördeki config.toml dosyasını arayacaktır.
 
-- **confPath** - Path of the configuration file. The default file name is
-  `config.toml`;
-- **nodesList** - Node list of the requested block, separated by commas. The
-  default is `127.0.0.1:7079`;
-- **daemonMode** - Started as a daemon and should be used when authentication is
-  required every N seconds. This flag is set to `false` by default;
-- **queryingPeriod** - If the tool is started as a daemon, this parameter sets
-  the time interval (in seconds) between checks, `1` second by default.
-- **alertMessageTo** - The email address to which synchronization warning errors
-  will be sent.
-  - **alertMessageSubj** - Message subject in the warning message, the
-    `node synchronization` problem by default;
-  - **alertMessageFrom** - Address where the message was sent;
-  - **smtpHost** - SMTP server host, used to send emails, the `""` by default;
-  - **smtpPort** - SMTP server port, used to send email messages, `25` by
-    default;
-  - **smtpUsername** - SMTP server username, `""` by default;
-  - **smtpPassword** - SMTP server password, `""` by default.
+Dosya yolu, configPath bayrağıyla değiştirilebilir.
 
-## Configuration {#configuration}
-
-The tool uses a configuration file in toml format.
-
-By default, it will look for the config.toml file in the folder where to start
-up the binary file.
-
-The file path can be changed with the **configPath**.
-
-```text
+```
 nodes_list = ["http://127.0.0.1:7079", "http://127.0.0.1:7002"]
 
 [daemon]
@@ -69,32 +53,23 @@ username = ""
 password = ""
 ```
 
-### nodes_list {#nodes-list}
+### node_list {#nodes-list}
+* knot_list - Bilgi isteyen düğümlerin (ana bilgisayarların) listesi.
 
-- nodes_list - List of nodes (hosts) requesting information.
+### [arka plan programı] {#daemon}
+Daemon modunun konfigürasyonu.
+* daemon_mode – Bir araç, bir arka plan programı olarak çalışır ve senkronizasyon kontrollerini gerçekleştirir.
+* querying_period - Senkronizasyon kontrolleri arasındaki zaman aralığı.
 
-### [daemon] {#daemon}
-
-Configuration of the daemon mode.
-
-- **daemon_mode** -- A tool works as a daemon and performs synchronization
-  checks.
-- **querying_period** -- Time interval between synchronization checks.
-
-### [alert_message] {#alert-message}
-
-Warning message parameters.
-
-- **to** -- recipient's e-mail of synchronization error warning messages;
-- **subject** -- message subject;
-- **from** -- sender's e-mail.
+### [uyarı mesajı] {#alert-message}
+Uyarı mesajı parametreleri.
+* için - alıcının senkronizasyon hatası uyarı mesajlarının e-postası;
+* konu - mesaj konusu;
+* gönderenin e-posta adresinden.
 
 ### [smtp] {#smtp}
-
-Simple Mail Transfer Protocol (SMTP) server parameters, used to send
-synchronization error messages.
-
-- **host** -- SMTP server hose;
-- **port** -- SMTP server port;
-- **username** -- SMTP server user name;
-- **password** --SMTP server password;
+Senkronizasyon hata mesajlarını göndermek için kullanılan Basit Posta Aktarım Protokolü (SMTP) sunucu parametreleri.
+* ana bilgisayar – SMTP sunucu host;
+* bağlantı noktası –SMTP sunucu bağlantı noktası;
+* kullanıcı adı – SMTP sunucusu kullanıcı adı;
+* şifre –SMTP sunucu şifresi;

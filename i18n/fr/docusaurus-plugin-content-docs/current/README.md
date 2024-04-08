@@ -11,35 +11,35 @@ contracts.
 
 ## Concept
 
-- [IBAX Overview](concepts/about-the-platform)
-- [The IBAX Network](concepts/blockchain-layers)
-- [Proof-of-Authority Consensus](concepts/consensus)
-- [Terms and Definitions](concepts/thesaurus)
+- [Aperçu d'IBAX](concepts/about-the-platform)
+- [Le réseau IBAX](concepts/blockchain-layers)
+- [Consensus de Preuve d'Autorité](concepts/consensus)
+- [Termes et Définitions](concepts/thesaurus)
 - [FAQ](concepts/faq)
 
 ## Tutorial
 
-- [Tutorial for application development](tutorials/app_tutorial)
-- [Development Tutorial](tutorials/tutorial)
+- [Tutoriel de développement d'application](tutorials/app_tutorial)
+- [Tutoriel de développement](tutorials/tutorial)
 
 ## Guide
 
-- [Smart Contracts](topics/script)
-- [Template Language](topics/templates2)
-- [Compiler and Virtual Machine](topics/vm)
-- [Daemon](topics/daemons)
+- [Contrats Intelligents](topics/script)
+- [Langage de Modèle](topics/templates2)
+- [Compilateur et Machine Virtuelle](topics/vm)
+- [Démon](topics/daemons)
 
-## Reference
+## Référence
 
-- [RESTful API](reference/api2)
-- [Platform Parameters](reference/platform-parameters)
-- [Server Configuration File](reference/backend-config)
-- [Synchronized Monitoring Tool](reference/desync_monitor)
-- [JSON-RPC Application Programming Interface](reference/json-rpc)
+- [API RESTful](reference/api2)
+- [Paramètres de la Plateforme](reference/platform-parameters)
+- [Fichier de Configuration du Serveur](reference/backend-config)
+- [Outil de Surveillance Synchronisée](reference/desync_monitor)
+- [Interface de Programmation d'Application JSON-RPC](reference/json-rpc)
 
-## Deployment
+## Déploiement
 
-- [Deployment of A IBAX Network](howtos/deployment)
+- [Déploiement d'un Réseau IBAX](howtos/deployment)
 
 ## Needle Language
 

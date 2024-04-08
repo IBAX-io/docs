@@ -1,353 +1,279 @@
-# Terms and Definitions {#terms-and-definitions}
 
-- [Blockchain terms](#blockchain-terms)
-  - [Blockchain](#blockchain)
-  - [Peer-to-peer network](#peer-to-peer-network)
-  - [Hash](#hash)
-  - [Block](#block)
-  - [Block verification](#block-verification)
-  - [Consensus](#consensus)
-  - [Token](#token)
-  - [Identification](#identification)
-  - [Unique identification](#unique-identification)
-  - [Private key](#private-key)
-  - [Public key](#public-key)
-  - [Digital signature](#digital-signature)
-  - [Smart contract](#smart-contract)
-  - [Transaction fee](#transaction-fee)
-  - [Double spend](#double-spend)
-  - [Encryption](#encryption)
-  - [Private blockchain](#private-blockchain)
-  - [Public blockchain](#public-blockchain)
-  - [Proof of Authority](#proof-of-authority)
-- [IBAX Terms](#ibax-terms)
-  - [Testnet](#testnet)
-  - [Mainnet](#mainnet)
-  - [Gas fee](#gas-fee)
-  - [Account address](#account-address)
-  - [Wallet address](#wallet-address)
-  - [Weaver](#weaver)
-  - [ECOLIB](#ecolib)
-  - [ECOLIB parameters](#ecolib-parameters)
-  - [ECOLIB members](#ecolib-members)
-  - [Virtual private ECOLIB](#virtual-private-ecolib)
-  - [Decentralized Proof-of-Authority](#decentralized-proof-of-authority)
-  - [Needle](#needle)
-  - [Logicor](#logicor)
-  - [Integrated Development Environment (IDE)](#integrated-development-environment-ide)
-  - [Page editor](#page-editor)
-  - [Visual page designer](#visual-page-designer)
-  - [Contract editor](#contract-editor)
-  - [Multilingual resources](#multilingual-resources)
-  - [Application export](#application-export)
-  - [Application import](#application-import)
-  - [Smart law](#smart-law)
-  - [Legal system](#legal-system)
-  - [Application](#application)
-  - [Page](#page)
-  - [Code segment](#code-segment)
-  - [Access rights](#access-rights)
-  - [Honor node](#honor-node)
-  - [Guardian node](#guardian-node)
-  - [Concurrent transaction processing](#concurrent-transaction-processing)
+# Terimler ve tanımlar {#terms-and-definitions}
 
-## Blockchain terms {#blockchain-terms}
+  - [Blockchain terimleri](#blockchain-terms)
+    - [Blockchain](#blockchain)
+    - [Peer to peer ağ](#peer-to-peer-network)
+    - [Hash](#hash)
+    - [Blok](#block)
+    - [Blok doğrulama](#block-verification)
+    - [Consensus](#consensus)
+    - [Token](#token)
+    - [Kimlik](#identification)
+    - [Benzersiz tanımlama](#unique-identification)
+    - [Private key](#private-key)
+    - [Public key](#public-key)
+    - [Dijital imza](#digital-signature)
+    - [Akıllı sözleşme](#smart-contract)
+    - [İşlem ücreti](#transaction-fee)
+    - [Çifte harcama](#double-spend)
+    - [Şifreleme](#encryption)
+    - [Private blockchain](#private-blockchain)
+    - [Public blok zinciri](#public-blockchain)
+    - [Yetki Belgesi](#proof-of-authority)
+  - [IBAX Şartları](#ibax-terms)
+    - [Testnet](#testnet)
+    - [Ana ağ](#mainnet)
+    - [Gaz ücreti](#gas-fee)
+    - [Hesap adresi](#account-address)
+    - [Cüzdan adresi](#wallet-address)
+    - [Weaver](#weaver)
+    - [ECOLIB](#ecolib)
+    - [ECOLIB parametreleri](#ecolib-parameters)
+    - [ECOLIB üyeleri](#ecolib-members)
+    - [Sanal özel ECOLIB](#virtual-private-ecolib)
+    - [Merkezi Olmayan Yetki Kanıtı](#decentralized-proof-of-authority)
+    - [Needle](#needle)
+    - [Mantık](#logicor)
+    - [Entegre Geliştirme Ortamı (IDE)](#integrated-development-environment-ide)
+    - [Sayfa düzenleyici](#page-editor)
+    - [Görsel sayfa tasarımcısı](#visual-page-designer)
+    - [Sözleşme düzenleyicisi](#contract-editor)
+    - [Çok dilli kaynaklar](#multilingual-resources)
+    - [Uygulama dışa aktarma](#application-export)
+    - [Uygulama içe aktarma](#application-import)
+    - [Akıllı hukuk](#smart-law)
+    - [Yasal sistem](#legal-system)
+    - [Uygulama](#application)
+    - [Sayfa](#page)
+    - [Kod segmenti](#code-segment)
+    - [Erişim hakları](#access-rights)
+    - [Honor Node](#honor-node)
+    - [Guardian Node](#guardian-node)
+    - [Eşzamanlı işlem işleme](#concurrent-transaction-processing)
+
+
+## Blok zinciri terimleri {#blockchain-terms}
 
 ### Blockchain {#blockchain}
 
-> Blockchain is an information system that stores data and transmits and
-> processes data within the system to prevent data from being forged or lost
-> while maintaining data reliability; Data protection is achieved by:
->
-> > 1. writing data into a blockchain of a series of encrypted blocks;
-> > 2. distributed storage of blockchain copies in peer-to-peer networks;
-> > 3. synchronization of blockchains on all nodes using a consensus mechanism;
-> > 4. ensuring data reliability when performing data operations using the> > network with algorithms that store data transmissions and process
+Blockchain, veri güvenilirliğini korurken verilerin sahte olmasını veya kaybolmasını önlemek için verileri depolayan ve sistem içinde veri ileten ve işleyen bir bilgi sistemidir; Veri koruması şu şekilde sağlanır:
 
-### Peer-to-peer network {#peer-to-peer-network}
+1. bir dizi şifreli bloktan oluşan bir blok zincirine veri yazmak;
 
-> A computer network, consisting of equally privileged nodes (without a central
-> server).
+2. eşler arası ağlarda blok zinciri kopyalarının dağıtılmış depolanması;
+
+3. Bir konsensüs mekanizması kullanarak tüm düğümlerde blok zincirlerinin senkronizasyonu;
+
+4. Blok zincirinde veri aktarımlarını saklayan ve sözleşmeleri işleyen algoritmalarla ağı kullanarak veri işlemleri gerçekleştirirken veri güvenilirliğini sağlamak.
+
+### Peer-to-peer ağ {#peer-to-peer-network}
+
+A computer network, consisting of equally privileged nodes (without a central server).
 
 ### Hash {#hash}
 
-> Also known as hashing, the binary value of any file or data set length that is
-> mapped to a shorter fixed-length binary value.
+Hashing olarak da bilinir, daha kısa bir sabit uzunluklu ikili değere eşlenen herhangi bir dosyanın veya veri kümesi uzunluğunun ikili değeri.
 
-### Block {#block}
+### Blok {#block}
 
-> After verifying the format and signature of the transaction, a transaction set
-> is grouped by the honor node into a specific data structure. A block contains
-> a hash pointer as a link to the previous block, which is one of the measures
-> to ensure the security of blockchain encryption.
+İşlemin biçimini ve imzasını doğruladıktan sonra, bir işlem kümesi, onur düğümü tarafından belirli bir veri yapısında gruplandırılır. Bir blok, blok zinciri şifrelemesinin güvenliğini sağlamaya yönelik önlemlerden biri olan önceki bloğa bağlantı olarak bir karma işaretçi içerir.
 
-### Block verification {#block-verification}
+### Blok doğrulama {#block-verification}
 
-> A procedure to verify the correctness of the block structure, generation time,
-> compatibility with the previous block, transaction signatures, and the
-> correspondence between the transaction and the block data.
+Blok yapısının doğruluğunu, oluşturma süresini, önceki blokla uyumluluğu, işlem imzalarını ve işlem ile blok verileri arasındaki yazışmayı doğrulamak için bir prosedür.
 
 ### Consensus {#consensus}
 
-> The verification protocol or algorithm of this type of protocol used by the
-> honor node in the process of adding new blocks to the blockchain.
+Honor tarafından blok zincirine yeni bloklar ekleme sürecinde kullanılan bu tür bir protokolün doğrulama protokolü veya algoritması.
 
-### Transaction {#transaction-1}
+### İşlem {#transaction-1}
 
-> Data transmission operations on the blockchain network or records of such
-> transactions in the blockchain.
+Blok zinciri ağındaki veri iletim işlemleri veya bu tür işlemlerin blok zincirindeki kayıtları.
 
 ### Token {#token}
 
-> Proof of encrypted digital rights and shares that can be circulated on the
-> blockchain. A set of identifiable digital records stored in a register,
-> including a mechanism for exchanging rights and shares between these records.
+Blok zincirinde dolaşabilen şifreli dijital hakların ve hisselerin kanıtı. Bu kayıtlar arasında hakların ve payların değiş tokuşu için bir mekanizma da dahil olmak üzere, bir sicilde saklanan bir dizi tanımlanabilir dijital kayıt.
 
-### Identification {#identification}
+### Kimlik {#identification}
 
-> An encryption program used to identify users in the system.
+Sistemdeki kullanıcıları tanımlamak için kullanılan bir şifreleme programı.
 
-### Unique identification {#unique-identification}
+### Benzersiz kimlik {#unique-identification}
 
-> The process of linking accounts with users requires legal and organizational
-> efforts or other procedures to achieve biometric identification in order to
-> link user names with actual users.
+Hesapları kullanıcılarla ilişkilendirme süreci, kullanıcı adlarını gerçek kullanıcılarla ilişkilendirmek için biyometrik tanımlama elde etmek için yasal ve kurumsal çabalar veya diğer prosedürler gerektirir.
 
 ### Private key {#private-key}
 
-> A string of characters secretly stored by its owner, used by the owner to
-> access virtual accounts on the internet and sign transactions.
+Sahibi tarafından gizlice saklanan, sahibi tarafından internetteki sanal hesaplara erişmek ve işlemleri imzalamak için kullanılan bir karakter dizisi.
 
 ### Public key {#public-key}
 
-> A string of characters used to check the authenticity of the private key. The
-> public key is uniquely derived from the private key.
+Özel anahtarın gerçekliğini kontrol etmek için kullanılan bir karakter dizisi. Genel anahtar, özel anahtardan benzersiz bir şekilde türetilir.
 
-### Digital signature {#digital-signature}
+### Elektronik imza {#digital-signature}
 
-> The attributes of a document or message obtained after encrypted data
-> processing. The digital signature is used to check the integrity of the
-> document (no modification) and authenticity (verification of the identity of
-> the sender).
+Şifrelenmiş veri işlemeden sonra elde edilen bir belgenin veya mesajın öznitelikleri. Dijital imza, belgenin bütünlüğünü (değişiklik yok) ve orijinalliğini (gönderenin kimliğinin doğrulanması) kontrol etmek için kullanılır.
 
-### Smart contract {#smart-contract}
+### Akıllı sözleşme {#smart-contract}
 
-> In the program that performs data storage operations in the blockchain, all
-> contracts are stored in the blockchain.
+Blok zincirinde veri depolama işlemlerini gerçekleştiren programda tüm sözleşmeler blok zincirinde saklanır.
 
-### Transaction fee {#transaction-fee}
+### İşlem ücreti {#transaction-fee}
 
-> The fee paid to the honor node to execute the transaction.
+İşlemi gerçekleştirmek için onur düğümüne ödenen ücret.
 
-### Double spend {#double-spend}
+### Çift harcama {#double-spend}
 
-> A method of attacking the blockchain network. The result is that a transaction
-> costs the same token twice.
+Blok zinciri ağına saldırmak için bir yöntem. Sonuç olarak, bir işlem aynı tokena iki kez mal olur.
 
-> This kind of attack occurs when the blockchain is forked, which can only be
-> executed when the attacker controls more than 50% of the network's
-> verification capability.
+Bu tür bir saldırı, blok zinciri çatallandığında meydana gelir ve bu, yalnızca saldırgan ağın doğrulama kapasitesinin %50'sinden fazlasını kontrol ettiğinde yürütülebilir.
 
-### Encryption {#encryption}
+### Şifreleme {#encryption}
 
-> A way of digital data conversion, only the party with the corresponding
-> decryption key can read it.
+Dijital veri dönüştürmenin bir yolu, yalnızca ilgili şifre çözme anahtarına sahip olan taraf onu okuyabilir.
 
-### Private blockchain {#private-blockchain}
+### Özel blok zinciri {#private-blockchain}
 
-> A blockchain network where all nodes and data access rights are centrally
-> controlled by a single organization (government, company or individual).
+Tüm düğümlerin ve veri erişim haklarının tek bir kuruluş (hükümet, şirket veya birey) tarafından merkezi olarak kontrol edildiği bir blok zinciri ağı.
 
-### Public blockchain {#public-blockchain}
+### Halka açık blok zinciri {#public-blockchain}
 
-> In a blockchain network that is not controlled by any organization, all
-> decisions are made by reaching a consensus among network participants.
-> Everyone can obtain and access the data of the blockchain network.
+Herhangi bir kuruluş tarafından kontrol edilmeyen bir blok zinciri ağında, tüm kararlar ağ katılımcıları arasında fikir birliğine varılarak alınır. Herkes blok zinciri ağının verilerini alabilir ve bunlara erişebilir.
 
-### Proof of Authority {#proof-of-authority}
+### Yetki Belgesi {#proof-of-authority}
 
-> Proof of Authority (PoA), IBAX Network has created a new consensus mechanism
-> that combines distribution, weak centralization, and a certification
-> authority. We call it PoA (Proof of Authority). To ensure continuity for the
-> entire IBAX Network, the consensus covers not only IBAX Public Network, but
-> also ecoLibs created by each user and user group. This creates a truly
-> self-governed, decentralized, fair, transparent, and fraud-proof Decentralized
-> Autonomous Organization (DAO).
+Yetki Kanıtı (PoA), IBAX Ağı, dağıtım, zayıf merkezileştirme ve bir sertifika yetkilisini birleştiren yeni bir fikir birliği mekanizması yarattı. Biz buna PoA (Yetki Kanıtı) diyoruz. Tüm IBAX Ağı için sürekliliği sağlamak için, fikir birliği yalnızca IBAX Kamu Ağı'nı değil, aynı zamanda her kullanıcı ve kullanıcı grubu tarafından oluşturulan ecoLib'leri de kapsar. Bu, gerçekten kendi kendini yöneten, merkezi olmayan, adil, şeffaf ve dolandırıcılığa karşı dayanıklı bir Merkezi Olmayan Otonom Organizasyon (DAO) yaratır.
 
-## IBAX Terms {#ibax-terms}
+## IBAX Şartları {#ibax-terms}
 
-### Testnet {#testnet}
+### Test ağı {#testnet}
 
-> The version of the blockchain network used for testing.
+Test için kullanılan blockchain ağının sürümü.
 
-### Mainnet {#mainnet}
+### Ana ağ {#mainnet}
 
-> The main version of the blockchain network.
+Blockchain ağının ana versiyonu.
 
-### Transaction {#transaction-2}
+### İşlem {#transaction-2}
 
-> Call the contract and pass the parameters to the operation command of the
-> contract. The result of the honor node execution is the update of the
-> database.
+Sözleşmeyi çağırın ve parametreleri sözleşmenin işlem komutuna iletin. Onur düğümü yürütmesinin sonucu, veritabanının güncellenmesidir.
 
-### Gas fee {#gas-fee}
+### Gaz ücreti {#gas-fee}
 
-> A conventional unit used to calculate the cost of performing certain
-> operations on a network of nodes. The fuel exchange rate is determined by a
-> vote on the honor node.
+Bir düğümler ağında belirli işlemleri gerçekleştirmenin maliyetini hesaplamak için kullanılan geleneksel bir birim. Yakıt değişim oranı, onur düğümündeki bir oylama ile belirlenir.
 
-### Account address {#account-address}
+### Hesap adresi {#account-address}
 
-> The data records store the token and can be accessed through a pair of keys
-> (private key and public key).
+Veri kayıtları belirteci depolar ve bir çift anahtar (özel anahtar ve genel anahtar) aracılığıyla erişilebilir.
 
-### Wallet address {#wallet-address}
+### Cüzdan adresi {#wallet-address}
 
-> The character encoding identifier of the user on the node network that is used
-> as the name of the user's virtual account.
+Kullanıcının sanal hesabının adı olarak kullanılan düğüm ağındaki kullanıcının karakter kodlama tanımlayıcısı.
 
 ### Weaver {#weaver}
 
-> The software client used to connect to the node network, which provides the
-> desktop and web browser versions.
->
-> Weaver integrates the platform development environment, including creating and
-> editing tables, pages, and contracts. Users can build ECOLIBs, create and use
-> applications in Weaver.
+Masaüstü ve web tarayıcısı sürümlerini sağlayan düğüm ağına bağlanmak için kullanılan yazılım istemcisi.
 
-### ECOLIB {#ecolib}
+Weaver, tablolar, sayfalar ve sözleşmeler oluşturma ve düzenleme dahil olmak üzere platform geliştirme ortamını bütünleştirir. Kullanıcılar ECOLIB'ler oluşturabilir, Weaver'da uygulamalar oluşturabilir ve kullanabilir.
 
-> A relatively closed or open software programming environment, including
-> applications and ECOLIB members.
->
-> ECOLIB members can issue exclusive tokens belonging to the ECOLIB, use smart
-> contracts to establish interaction rules between members, and set access
-> rights to application elements for members.
+### EKOLİB {#ecolib}
 
-### ECOLIB parameters {#ecolib-parameters}
+Uygulamalar ve ECOLIB üyeleri dahil olmak üzere nispeten kapalı veya açık bir yazılım programlama ortamı.
 
-> A set of configurable ECOLIB parameters, such as the account of the creator of
-> the ECOLIB and the permissions of changing application elements, can be
-> changed in the parameter table.
+ECOLIB üyeleri, ECOLIB'ye ait özel tokenlar çıkarabilir, üyeler arasında etkileşim kuralları oluşturmak için akıllı sözleşmeler kullanabilir ve üyeler için uygulama öğelerine erişim hakları belirleyebilir.
 
-### ECOLIB members {#ecolib-members}
+### ECOLIB parametreleri {#ecolib-parameters}
 
-> Users who can access specific ECOLIBs and application features.
+ECOLIB'yi oluşturan kişinin hesabı ve değişen uygulama öğelerinin izinleri gibi bir dizi yapılandırılabilir ECOLIB parametresi, parametre tablosunda değiştirilebilir.
 
-### Virtual private ECOLIB {#virtual-private-ecolib}
+### ECOLIB üyeleri {#ecolib-members}
 
-> Virtual private ECOLIB - Cross Ledgers Base (CLB), which has the full set of
-> functions of the standard ECOLIB, but works outside the blockchain. In CLB,
-> you can use and create contracts and template languages, database tables, and
-> use Weaver to create applications. You can call contracts on the blockchain
-> ECOLIB via APIs.
+Belirli ECOLIB'lere ve uygulama özelliklerine erişebilen kullanıcılar.
 
-### Decentralized Proof-of-Authority {#decentralized-proof-of-authority}
+### Sanal özel ECOLIB {#virtual-private-ecolib}
 
-> Decentralized Proof-of-Authority (DPoA) is a new consensus algorithm that
-> provides high performance and fault tolerance. In DPoA, the right to generate
-> new blocks is granted to nodes that have proven the right to do so, and such
-> nodes must be subject to preliminary verification.
+Sanal özel ECOLIB - Standart ECOLIB'nin tüm işlevlerine sahip olan ancak blok zincirinin dışında çalışan Çapraz Defterler Tabanı (CLB). CLB'de sözleşmeleri ve şablon dillerini, veritabanı tablolarını kullanabilir ve oluşturabilir ve uygulamalar oluşturmak için Weaver'ı kullanabilirsiniz. API'ler aracılığıyla ECOLIB blok zincirindeki sözleşmeleri arayabilirsiniz.
+
+### Merkezi Olmayan Yetki Kanıtı {#decentralized-proof-of-authority}
+
+Merkezi Olmayan Yetki Kanıtı (DPoA), yüksek performans ve hata toleransı sağlayan yeni bir fikir birliği algoritmasıdır. DPoA'da, yeni blok oluşturma hakkı, bunu yapma hakkını kanıtlamış düğümlere verilir ve bu tür düğümler ön doğrulamaya tabi olmalıdır.
 
 ### Needle {#needle}
 
-> A scripting language used to create smart contracts that can handle data
-> received from user pages and value operations performed in database tables.
->
-> You can create and edit contracts in Weaver's editor.
+Kullanıcı sayfalarından alınan verileri ve veritabanı tablolarında gerçekleştirilen değer işlemlerini işleyebilen akıllı sözleşmeler oluşturmak için kullanılan bir komut dosyası dili.
+Weaver'ın düzenleyicisinde sözleşmeler oluşturabilir ve düzenleyebilirsiniz.
 
-### Logicor {#logicor}
+### Mantıksal {#logicor}
 
-> The template language used to create pages. It can get values from database
-> tables, build user pages, and pass user input data to the **data** section of
-> the contract.
+Sayfaları oluşturmak için kullanılan şablon dili. Veritabanı tablolarından değerler alabilir, kullanıcı sayfaları oluşturabilir ve kullanıcı girdi verilerini sözleşmenin **veri** bölümüne iletebilir.
 
-### Integrated Development Environment (IDE) {#integrated-development-environment-ide}
+### Entegre Geliştirme Ortamı (IDE) {#integrated-development-environment-ide}
 
-> Integrated Development Environment (IDE) is a set of software tools used to
-> create applications.
->
-> Weaver's IDE includes a contract editor, page editor, database table
-> management tool, multi-language resources editor, as well as application
-> export and import functions. The IDE complements the visual page designer
-> based on semantic tools.
+Entegre Geliştirme Ortamı (IDE), uygulamalar oluşturmak için kullanılan bir dizi yazılım aracıdır.
 
-### Page editor {#page-editor}
+Weaver'ın IDE'si bir sözleşme düzenleyicisi, sayfa düzenleyicisi, veritabanı tablosu yönetim aracı, çok dilli kaynak düzenleyicisinin yanı sıra uygulama dışa aktarma ve içe aktarma işlevlerini içerir. IDE, anlamsal araçlara dayalı görsel sayfa tasarımcısını tamamlar.
 
-> In Weaver, you can create application pages by directly arranging basic
-> application elements, HTML containers, form fields, buttons and other tools on
-> the screen.
+### Sayfa düzenleyici {#page-editor}
 
-### Visual page designer {#visual-page-designer}
+Weaver'da, ekrandaki temel uygulama öğelerini, HTML kapsayıcılarını, form alanlarını, düğmeleri ve diğer araçları doğrudan düzenleyerek uygulama sayfaları oluşturabilirsiniz.
 
-> Tools for creating application pages in Weaver, including interface designer
-> and "Logicor" page code generator.
+### Görsel sayfa tasarımcısı {#visual-page-designer}
 
-### Contract editor {#contract-editor}
+Arayüz tasarımcısı ve "Logicor" sayfa kodu oluşturucu dahil, Weaver'da uygulama sayfaları oluşturmaya yönelik araçlar.
 
-> A tool for creating contracts using visual pages in Weaver.
+### Sözleşme düzenleyici {#contract-editor}
 
-### Multilingual resources {#multilingual-resources}
+Weaver'da görsel sayfaları kullanarak sözleşmeler oluşturmak için bir araç.
 
-> The module of application page localization in Weaver, which associates the
-> label on the application page with the text value of the selected language.
+### Çok dilli kaynaklar {#multilingual-resources}
 
-### Application export {#application-export}
+Uygulama sayfasındaki etiketi seçilen dilin metin değeriyle ilişkilendiren, Weaver'daki uygulama sayfası yerelleştirme modülü.
 
-> Save the source code of all tables, pages, and contracts of the application as
-> files.
+### Uygulama dışa aktarma {#application-export}
 
-### Application import {#application-import}
+Uygulamaya ait tüm tabloların, sayfaların ve sözleşmelerin kaynak kodunu dosya olarak kaydedin.
 
-> Load all tables, pages, and contracts of an application included in the export
-> file into the ECOLIB.
+### Uygulama içe aktarma {#application-import}
 
-### Smart law {#smart-law}
+Dışa aktarma dosyasında bulunan bir uygulamanın tüm tablolarını, sayfalarını ve sözleşmelerini ECOLIB'ye yükleyin.
 
-> It is a special set of smart contracts that contain regulatory information and
-> used to manage and control the operation and register access rights.
+### Akıllı yasa {#smart-law}
 
-### Legal system {#legal-system}
+Düzenleyici bilgileri içeren ve operasyonu yönetmek ve kontrol etmek ve erişim haklarını kaydetmek için kullanılan özel bir akıllı sözleşmeler setidir.
 
-> A set of rules and mechanisms established in smart law, which can regulate the
-> relationship between ECOLIB users, define procedural rules for changing
-> protocol parameters, and define various challenging solutions.
+### Yasal sistem {#legal-system}
 
-### Application {#application}
+ECOLIB kullanıcıları arasındaki ilişkiyi düzenleyebilen, protokol parametrelerini değiştirmek için prosedürel kuralları tanımlayabilen ve çeşitli zorlu çözümleri tanımlayabilen akıllı hukukta oluşturulmuş bir dizi kural ve mekanizma.
 
-> Create fully functional software products in Weaver's IDE.
->
-> An application is a collection of elements such as database tables, smart
-> contracts, and user pages with configuration access rights.
+### Başvuru {#application}
 
-### Page {#page}
+Weaver'ın IDE'sinde tamamen işlevsel yazılım ürünleri oluşturun.
 
-> The program code written in the Logicor template language that forms an
-> interactive interface on the screen.
+Bir uygulama, veritabanı tabloları, akıllı sözleşmeler ve yapılandırma erişim haklarına sahip kullanıcı sayfaları gibi bir öğeler topluluğudur.
 
-### Code segment {#code-segment}
+### Sayfa {#page}
 
-> The program code written in the Logicor template language that can be reused
-> in application pages.
+Ekranda interaktif bir arayüz oluşturan Logicor şablon dilinde yazılmış program kodu.
 
-### Access rights {#access-rights}
+### Kod segmenti {#code-segment}
 
-> Conditions to get access rights for creating and editing tables, contracts and
-> pages.
->
-> The access rights to tables can be configured with rights to add rows and
-> columns, and edit the values in columns.
+Uygulama sayfalarında tekrar kullanılabilen Logicor şablon dilinde yazılmış program kodu.
 
-### Honor node {#honor-node}
+### Erişim hakları {#access-rights}
 
-> A node in the network node that has the right to generate and verify blocks.
+Tablolar, sözleşmeler ve sayfalar oluşturmak ve düzenlemek için erişim hakları alma koşulları.
 
-### Guardian node {#guardian-node}
+Tablolara erişim hakları, satır ve sütun ekleme ve sütunlardaki değerleri düzenleme haklarıyla yapılandırılabilir.
 
-> A node on the network used to store the latest version of the complete
-> blockchain.
+### Honor Node {#honor-node}
 
-### Concurrent transaction processing {#concurrent-transaction-processing}
+Ağ düğümünde blok oluşturma ve doğrulama hakkına sahip bir düğüm.
 
-> A method to increase transaction processing speed by processing data from
-> different ECOLIBs at the same time.
+### Guardian Node {#guardian-node}
+
+Tam blok zincirinin en son sürümünü depolamak için kullanılan ağdaki bir düğüm.
+
+### Eşzamanlı işlem işleme {#concurrent-transaction-processing}
+
+Aynı anda farklı ECOLIB'lerden gelen verileri işleyerek işlem işleme hızını artırma yöntemi.

@@ -1,39 +1,17 @@
-# Compiler and Virtual Machine {#compiler-and-virtual-machine}
+---
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
 
-- [Source code storage and compilation](#source-code-storage-and-compilation)
-- [Virtual machine structures](#virtual-machine-structures)
-  - [VM Structure](#vm-structure)
-  - [Block structure](#block-structure)
-  - [ObjInfo structure](#objinfo-structure)
-    - [ContractInfo structure](#contractinfo-structure)
-    - [FieldInfo structure](#fieldinfo-structure)
-    - [FuncInfo structure](#funcinfo-structure)
-    - [FuncName Structure](#funcname-structure)
-    - [ExtFuncInfo structure](#extfuncinfo-structure)
-    - [VarInfo structure](#varinfo-structure)
-    - [ObjExtend value](#objextend-value)
-- [Virtual machine commands](#virtual-machine-commands)
-  - [ByteCode structure](#bytecode-structure)
-  - [Command identifiers](#command-identifiers)
-  - [Stack operation commands](#stack-operation-commands)
-  - [Runtime structure](#runtime-structure)
-    - [blockStack structure](#blockstack-structure)
-  - [RunCode function](#runcode-function)
-  - [Other functions for operations with VM](#other-functions-for-operations-with-vm)
-- [Compiler](#compiler)
-- [Lexical analyzer](#lexical-analyzer)
-  - [lextable/lextable.go](#lextable-lextable-go)
-  - [lex.go](#lex-go)
-- [Needle language](#needle-language)
-  - [Lexemes](#lexemes)
-  - [Types](#types)
-  - [Expressions](#expressions)
-  - [Scope](#scope)
-  - [Contract execution](#contract-execution)
-  - [Backus–Naur Form (BNF)](#backus-naur-form-bnf)
+import TOCInline from '@theme/TOCInline';
+
+
+# Compiler and Virtual Machine {#compiler-and-virtual-machine}
 
 This section involves program compilation and Needle language operations in the
 Virtual Machine (VM).
+
+<TOCInline toc={toc} />
 
 ## Source code storage and compilation {#source-code-storage-and-compilation}
 
@@ -72,7 +50,7 @@ A virtual machine is organized in memory as a structure like below.
 
 ```go
 type VM struct {
-   Block
+   *compile.CodeBlock
    ExtCost func(string) int64
    FuncCallsDB map[string]struct{}
    Extern bool
@@ -83,7 +61,7 @@ type VM struct {
 
 A VM structure has the following elements:
 
-- Block - contains a [block structure](#block-structure);
+- `CodeBlock` - contains a pointer to [block structure](#block-structure);
 - ExtCost - a function returns the cost of executing an external golang
   function;
 - FuncCallsDB - a collection of Golang function names. This function returns the
@@ -96,9 +74,9 @@ A VM structure has the following elements:
 - ShiftContract - ID of the first contract in the VM;
 - logger - VM error log output.
 
-### Block structure {#block-structure}
+### Code Block structure {#block-structure}
 
-A virtual machine is a tree composed of **Block type** objects.
+A virtual machine is a tree composed of **CodeBlock** objects.
 
 A block is an independent unit that contains some bytecodes. In simple terms,
 everything you put in the braces (`{}`) in the language is a block.
@@ -120,25 +98,25 @@ func my() {
 The block is organized in the memory as a structure like below.
 
 ```go
-type Block struct {
-   Objects map[string]*ObjInfo
+type CodeBlock struct {
+   Objects map[string]*Object
    Type int
    Owner *OwnerInfo
    Info interface{}
-   Parent *Block
+   Parent *CodeBlock
    Vars []reflect.Type
    Code ByteCodes
-   Children Blocks
+   Children CodeBlocks
 }
 ```
 
 A block structure consists of the following elements:
 
 - **Objects** - a map of internal objects of the pointer type
-  [ObjInfo](#objinfo-structure). For example, if there is a variable in the
+  [Object](#objinfo-structure). For example, if there is a variable in the
   block, you can get information about it by its name;
 - **Type** - the type of the block. For a function block, its type is
-  **ObjFunc**; for a contract block, its type is **ObjContract**;
+  **ObjFunction**; for a contract block, its type is **ObjContract**;
 - **Owner** - a structure of **OwnerInfo** pointer type. This structure contains
   information about the owner of the compiled contract, which is specified
   during contract compilation or obtained from the **contracts** table;
@@ -152,122 +130,138 @@ A block structure consists of the following elements:
 - **Children** - an array containing sub-blocks, such as function nesting,
   loops, conditional operators.
 
-### ObjInfo structure {#objinfo-structure}
+### Object structure {#objinfo-structure}
 
-The ObjInfo structure contains information about internal objects.
+The **Object** structure contains information about internal objects.
 
-```
-type ObjInfo struct {
-   Type int
-   Value interface{}
+```go
+type Object struct {
+   Type  ObjectType
+   Value isObjInfoValue
 }
 ```
 
-The ObjInfo structure has the following elements:
+The Object structure has the following elements:
 
 - **Type** is the object type, which has any of the following values:
 
-  - **ObjContract** – [contract](#contractinfo-structure);
-  - **ObjFunc** - function;
+  - **ObjDefault** - default object;
+  - **ObjContract** – see [contract](#contractinfo-structure);
+  - **ObjFunction** - internal function in the contract;
   - **ObjExtFunc** - external golang function;
-  - **ObjVar** - variable;
-  - **ObjExtend** - $name variable.
+  - **ObjVariable** - local Variables;
+  - **ObjExtVar** - extend variable (starting with `$`);
+  - **ObjOwner** - owner information.
 
-- **Value** – it contains the structure of each type.
+- **Value** – it contains the structure of each type, which depends on the
+  **Type** field.
 
 #### ContractInfo structure {#contractinfo-structure}
 
 Pointing to the **ObjContract** type, and the **Value** field contains a
 **ContractInfo** structure.
 
-```
+```go
 type ContractInfo struct {
-   ID uint32
-   Name string
-   Owner *OwnerInfo
-   Used map[string]bool
-   Tx *[]*FieldInfo
+    Id       uint32
+    Name     string
+    Owner    *OwnerInfo
+    Used     map[string]bool
+    Tx       *[]*FieldInfo
+    Settings map[string]any
+    CanWrite bool
 }
 ```
 
-The ContractInfo structure has the following elements:
+The **ContractInfo** structure has the following elements:
 
-- **ID** - contract ID, displayed in the blockchain when calling the contract;
+- **Id** - contract Id, displayed in the blockchain when calling the contract;
 - **Name** - contract name;
 - **Owner** - other information about the contract;
 - **Used** - map of contracts names that has been called;
-- **Tx** - a data array described in the [data section](script.md#data-section)
-  of the contract.
+- **Tx** - a data array described in the [data section](/needle/spec#spec-data) of
+  the contract;
+- **Settings** - declare constants in the contract;
+- **CanWrite** - a flag indicating whether the contract can write to the
+  database.
 
 #### FieldInfo structure {#fieldinfo-structure}
 
 The FieldInfo structure is used in the **ContractInfo** structure and describes
-elements in [data section](script.md#data-section) of a contract.
+elements in [data section](spec.md#spec-data) of a contract.
 
-```
+```go
 type FieldInfo struct {
    Name string
    Type reflect.Type
-   Original uint32
+   Original Token
    Tags string
 }
 ```
 
-The FieldInfo structure has the following elements:
+The **FieldInfo** structure has the following elements:
 
 - **Name** - field name;
 - **Type** - field type;
 - **Original** - optional field;
 - **Tags** - additional labels for this field.
 
-#### FuncInfo structure {#funcinfo-structure}
+#### FunctionInfo structure {#functionInfo-structure}
 
-Pointing to the ObjFunc type, and the Value field contains a FuncInfo structure.
+Pointing to the **ObjFunction** type, and the Value field contains a
+**FunctionInfo** structure.
 
-```
-type FuncInfo struct {
-   Params []reflect.Type
-   Results []reflect.Type
-   Names *map[string]FuncName
-   Variadic bool
-   ID uint32
+```go
+type FunctionInfo struct {
+    Id      uint32
+    Name    string
+    Params  []reflect.Type
+    Results []reflect.Type
+    Tails    map[string]FuncTail
+    Variadic bool
+    CanWrite bool
 }
 ```
 
-The FuncInfo structure has the following elements:
+The FunctionInfo structure has the following elements:
 
+- **Id** - function Id.
+- **Name** - function name;
 - **Params** - an array of parameter types;
 - **Results** - an array of returned types;
-- **Names** - map of data for tail functions, for example,
+- **Tails** - map of data for tail functions, for example,
   `DBFind().Columns ()`;
 - **Variadic** - true if the function can have a variable number of parameters;
-- **ID** - function ID.
+- **CanWrite** - a flag indicating whether the function can write to the
+  database.
 
-#### FuncName Structure {#funcname-structure}
+#### FuncTail Structure {#functail-structure}
 
-The FuncName structure is used for FuncInfo and describes the data of a tail
+The FuncTail structure is used for FunctionInfo and describes the data of a tail
 function.
 
-```
-type FuncName struct {
-   Params []reflect.Type
-   Offset []int
-   Variadic bool
+```go
+type FuncTail struct {
+    Name     string
+    Params   []reflect.Type
+    Offset   []int
+    Variadic bool
 }
 ```
 
-The FuncName structure has the following elements:
+The **FuncTail** structure has the following elements:
 
+- **Name** - tail function name;
 - **Params** - an array of parameter types;
 - **Offset** - the array of offsets for these variables. In fact, the values of
-  all parameters in a function can be initialized with the dot .;
+  all parameters in a function can be initialized with the dot(.);
 - **Variadic** - true if the tail function can have a variable number of
   parameters.
 
 #### ExtFuncInfo structure {#extfuncinfo-structure}
 
-Pointing to the ObjExtFunc type, and the Value field contains a ExtFuncInfo
-structure. It is used to describe golang functions.
+Pointing to the **ObjExtFunc** type, and the Value field contains a
+**ExtFuncInfo** structure. It is used to describe golang functions.
 
 ```go
 type ExtFuncInfo struct {
@@ -277,38 +271,51 @@ type ExtFuncInfo struct {
    Auto []string
    Variadic bool
    Func interface{}
+   CanWrite bool
 }
 ```
 
-The ExtFuncInfo structure has the following elements:
+The **ExtFuncInfo** structure has the following elements:
 
 - **Name**, **Params**, **Results** parameters have the same structure as
-  [FuncInfo](#funcinfo-structure);
+  [FunctionInfo](#functionInfo-structure);
 - **Auto** - an array of variables. If any, passes to the function as an
-  additional parameter. For example, a variable of type SmartContract sc;
-- **Func** - golang functions.
+  additional parameter;
+- **Func** - a golang functions;
+- **CanWrite** - a flag indicating whether the function can write to the
+  database.
 
-#### VarInfo structure {#varinfo-structure}
+#### ObjInfoVariable structure {#objinfovariable-structure}
 
-Pointing to the **ObjVar** type, and the **Value** field contains a **VarInfo**
-structure.
+Pointing to the **ObjVariable** type, and the **Value** field contains an
+ObjInfoVariable structure. It is used to describe variables.
 
 ```go
-type VarInfo struct {
-   Obj *ObjInfo
-   Owner *Block
+type ObjInfoVariable struct {
+    Name  string
+    Index int
 }
 ```
 
-The VarInfo structure has the following elements:
+The **ObjInfoVariable** structure has the following elements:
 
-- **Obj** - information about the type and value of the variable;
-- **Owner** - Pointer to the owner block.
+- **Name** - variable name;
+- **Index** - variable index in the current block.
 
-#### ObjExtend value {#objextend-value}
+#### ObjInfoExtendVariable structure {#objinfoextendvariable-structure}
 
-Pointing to the **ObjExtend** type, and the **Value** field contains a string
-containing the name of the variable or function.
+Pointing to the **ObjExtVar** type, and the **Value** field contains an
+ObjInfoExtendVariable structure. It is used to describe extend variables.
+
+```go
+type ObjInfoExtendVariable struct {
+    Name string
+}
+```
+
+The **ObjInfoVariable** structure has the following elements:
+
+- **Name** - extend variable name;
 
 ## Virtual machine commands {#virtual-machine-commands}
 
@@ -333,61 +340,62 @@ writes the result value into it if necessary.
 
 ### Command identifiers {#command-identifiers}
 
-Identifiers of the virtual machine commands are described in the vm/cmds_list.go
-file.
+Identifiers of the virtual machine commands are described in the
+**compiler/cmd_list.go** file.
 
-- **cmdPush** – put a value from the Value field to the stack. For example, put
+- **CmdPush** – put a value from the Value field to the stack. For example, put
   numbers and lines to the stack;
-- **cmdVar** - put the value of a variable to the stack. Value contains a
+- **CmdVar** - put the value of a variable to the stack. Value contains a
   pointer to the VarInfo structure and information about the variable;
-- **cmdExtend** – put the value of an external variable to the stack. Value
+- **CmdExtend** – put the value of an external variable to the stack. Value
   contains a string with the variable name (starting with $);
-- **cmdCallExtend** – call an external function (starting with `$`). The
+- **CmdCallExtend** – call an external function (starting with `$`). The
   parameters of the function are obtained from the stack, and the results are
   placed to the stack. Value contains a function name (starting with `$`);
-- **cmdPushStr** – put the string in Value to the stack;
-- **cmdCall** - calls the virtual machine function. Value contains a **ObjInfo**
+- **CmdPushStr** – put the string in Value to the stack;
+- **CmdCall** - calls the virtual machine function. Value contains a **Object**
   structure. This command is applicable to the **ObjExtFunc** golang function
   and **ObjFunc** Needle function. If a function is called, its parameters will
   be obtained from the stack and the result values will be placed to the stack;
-- **cmdCallVari** - similar to the **cmdCall** command, it calls the virtual
+- **CmdCallVariadic** - similar to the **CmdCall** command, it calls the virtual
   machine function. This command is used to call a function with a variable
   number of parameters;
-- **cmdReturn** - used to exit the function. The return values will be put to
+- **CmdReturn** - used to exit the function. The return values will be put to
   the stack, and the Value field is not used;
-- **cmdIf** – transfer control to the bytecode in the **block** structure, which
+- **CmdIf** – transfer control to the bytecode in the **block** structure, which
   is passed in the Value field. The control will be transferred to the stack
   only when the top element of the stack is called by the _valueToBool_ function
   and returned `true`. Otherwise, the control will be transferred to the next
   command;
-- **cmdElse** - this command works in the same way as the **cmdIf**, but only
+- **CmdElse** - this command works in the same way as the **CmdIf**, but only
   when the top element of the stack is called by the valueToBool function and
   returned `false`, the control will be transferred to the specified block;
-- **cmdAssignVar** – get a list of variables of type **VarInfo** from Value.
-  These variables use the **cmdAssign** command to get the value;
-- **cmdAssign** – assign the value in the stack to the variable obtained by the
-  **cmdAssignVar** command;
-- **cmdLabel** - defines a label when control is returned during the while loop;
-- **cmdContinue** - this command transfers control to the **cmdLabel** label.
+- **CmdAssignVar** – get a list of variables of type **VarInfo** from Value.
+  These variables use the **CmdAssign** command to get the value;
+- **CmdAssign** – assign the value in the stack to the variable obtained by the
+  **CmdAssignVar** command;
+- **CmdLabel** - defines a label when control is returned during the while loop;
+- **CmdContinue** - this command transfers control to the **CmdLabel** label.
   When executing a new iteration of the loop, Value is not used;
-- **cmdWhile** – use valueToBool to check the top element of the stack. If this
-  value is `true`, the **block** structure will be called from the value field;
-- **cmdBreak** - exits the loop;
-- **cmdIndex** – put the value in map or array into the stack by index, without
-  using Value. For example,
+- **CmdWhile** – use `valueToBool` to check the top element of the stack. If
+  this value is `true`, the **block** structure will be called from the value
+  field;
+- **CmdBreak** - exits the loop;
+- **CmdGetIndex** – put the value in map or array into the stack by index,
+  without using Value. For example,
   `(map | array) (index value) => (map | array [index value])`;
-- **cmdSetIndex** – assigns the value of the top element of the stack to
+- **CmdSetIndex** – assigns the value of the top element of the stack to
   elements of map or array, without using Value. For example,
   `(map | array) (index value) (value) => (map | array)`;
-- **cmdFuncName** - adds parameters that are passed using sequential
-  descriptions divided by dot . For example,
-  `func name => Func (...) .Name (...)`;
-- **cmdUnwrapArr** - defines a Boolean flag if the top element of the stack is
+- **CmdFuncTail** - adds parameters that are passed using sequential
+  descriptions divided by dot . For example, `func name => Func(...).Name(...)`;
+- **CmdUnwrapArr** - defines a Boolean flag if the top element of the stack is
   an array;
-- **cmdMapInit** – initializes the value of map;
-- **cmdArrayInit** – initializes the value of array;
-- **cmdError** - this command is created when a contract or function terminates
-  with a specified `error, warning, info`.
+- **CmdMapInit** – initializes the value of map;
+- **CmdArrayInit** – initializes the value of array;
+- **CmdError** - this command is created when a contract or function terminates
+  with a specified `error, warning, info`;
+- **CmdSliceColon** - initializes the value of the slice.
 
 ### Stack operation commands {#stack-operation-commands}
 
@@ -401,28 +409,49 @@ these commands. see [Operator](../needle/spec.md#spec-operator).
 The following are commands for direct stack processing. The Value field is not
 used in these commands.
 
-- **cmdNot** - logical negation. `(val) => (!ValueToBool(val))`;
-- **cmdSign** - change of sign. `(val) => (-val)`;
-- **cmdAdd** - addition. `(val1)(val2) => (val1 + val2)`;
-- **cmdSub** - subtraction. `(val1)(val2) => (val1-val2)`;
-- **cmdMul** - multiplication. `(val1)(val2) => (val1 * val2)`;
-- **cmdDiv** - division. `(val1)(val2) => (val1 / val2)`;
-- **cmdAnd** - logical AND.
+- **CmdInc** - increment. `(val) => (val + 1)`;
+- **CmdDec** - decrement. `(val) => (val - 1)`;
+- **CmdAssignAdd** - addition assignment. `(val1)(val2) => (val1 += val2)`;
+- **CmdAssignSub** - subtraction assignment. `(val1)(val2) => (val1 -= val2)`;
+- **CmdAssignMul** - multiplication assignment.
+  `(val1)(val2) => (val1 *= val2)`;
+- **CmdAssignDiv** - division assignment. `(val1)(val2) => (val1 /= val2)`;
+- **CmdAssignMod** - modulo assignment. `(val1)(val2) => (val1 %= val2)`;
+- **CmdAssignAnd** - logical AND assignment. `(val1)(val2) => (val1 &= val2)`;
+- **CmdAssignOr** - logical OR assignment. `(val1)(val2) => (val1 |= val2)`;
+- **CmdAssignXor** - bitwise XOR assignment. `(val1)(val2) => (val1 ^= val2)`;
+- **CmdAssignLShift** - left shift assignment.
+  `(val1)(val2) => (val1 <<= val2)`;
+- **CmdAssignRShift** - right shift assignment.
+  `(val1)(val2) => (val1 >>= val2)`;
+- **CmdNot** - logical negation. `(val) => (!ValueToBool(val))`;
+- **CmdSign** - change of sign. `(val) => (-val)`;
+- **CmdAdd** - addition. `(val1)(val2) => (val1 + val2)`;
+- **CmdSub** - subtraction. `(val1)(val2) => (val1 - val2)`;
+- **CmdMul** - multiplication. `(val1)(val2) => (val1 * val2)`;
+- **CmdDiv** - division. `(val1)(val2) => (val1 / val2)`;
+- **CmdMod** - modulo. `(val1)(val2) => (val1 % val2)`;
+- **CmdAnd** - logical AND.
   `(val1)(val2) => (valueToBool(val1) && valueToBool(val2))`;
-- **cmdOr** - logical OR.
+- **CmdBitAnd** - bitwise AND. `(val1)(val2) => (val1 & val2)`;
+- **CmdBitXor** - bitwise XOR. `(val1)(val2) => (val1 ^ val2)`;
+- **CmdBitOr** - bitwise OR. `(val1)(val2) => (val1 | val2)`;
+- **CmdOr** - logical OR.
   `(val1)(val2) => (valueToBool(val1) || valueToBool(val2))`;
-- **cmdEqual** - equality comparison, bool is returned.
+- **CmdEqual** - equality comparison, bool is returned.
   `(val1)(val2) => (val1 == val2)`;
-- **cmdNotEq** - inequality comparison, bool is returned.
+- **CmdNotEq** - inequality comparison, bool is returned.
   `(val1)(val2) => (val1 != val2)`;
-- **cmdLess** - less-than comparison, bool is returned.
-  `(val1)(val2) => (val1 <val2)`;
-- **cmdNotLess** - greater-than-or-equal comparison, bool is returned.
+- **CmdLess** - less-than comparison, bool is returned.
+  `(val1)(val2) => (val1 < val2)`;
+- **CmdGrEq** - greater-than-or-equal comparison, bool is returned.
   `(val1)(val2) => (val1 >= val2)`;
-- **cmdGreat** - greater-than comparison, bool is returned.
-  `(val1)(val2) => (val1> val2)`;
-- **cmdNotGreat** - less-than-or-equal comparison, bool is returned.
-  `(val1)(val2) => (val1 <= val2)`.
+- **CmdGreat** - greater-than comparison, bool is returned.
+  `(val1)(val2) => (val1 > val2)`;
+- **CmdLessEq** - less-than-or-equal comparison, bool is returned.
+  `(val1)(val2) => (val1 <= val2)`;
+- **CmdShiftL** - shift left. `(val1)(val2) => (val1 << val2)`;
+- **CmdShiftR** - shift right. `(val1)(val2) => (val1 >> val2)`;
 
 ### Runtime structure {#runtime-structure}
 
@@ -485,7 +514,7 @@ parameters are contained in the last element of the stack.
 
 ```go
 var namemap map[string][]interface{}
-if block.Type == ObjFunc && block.Info.(*FuncInfo).Names != nil {
+if block.Type == ObjFunc && block.Info.(*FunctionInfo).Names != nil {
    if rt.stack[len(rt.stack)-1] != nil {
       namemap = rt.stack[len(rt.stack)-1].(map[string][]interface{})
    }
@@ -509,8 +538,8 @@ from the last element of the stack in the order described by the function
 itself.
 
 ```go
-   if block.Type == ObjFunc && vkey <len(block.Info.(*FuncInfo).Params) {
-      value = rt.stack[start-len(block.Info.(*FuncInfo).Params)+vkey]
+   if block.Type == ObjFunc && vkey <len(block.Info.(*FunctionInfo).Params) {
+      value = rt.stack[start-len(block.Info.(*FunctionInfo).Params)+vkey]
    } else {
 ```
 
@@ -535,7 +564,7 @@ Next, update the values of variable parameters passed in the tail function.
 ```go
 if namemap != nil {
    for key, item := range namemap {
-      params := (*block.Info.(*FuncInfo).Names)[key]
+      params := (*block.Info.(*FunctionInfo).Names)[key]
       for i, value := range item {
          if params.Variadic && i >= len(params.Params)-1 {
 ```
@@ -560,7 +589,7 @@ into a variable array.
 
 ```go
 if block.Type == ObjFunc {
-   start -= len(block.Info.(*FuncInfo).Params)
+   start -= len(block.Info.(*FunctionInfo).Params)
 }
 ```
 
@@ -582,7 +611,7 @@ value to the end of the previous stack.
 
 ```go
    if last.Block.Type == ObjFunc {
-      for count := len(last.Block.Info.(*FuncInfo).Results); count > 0; count-- {
+      for count := len(last.Block.Info.(*FunctionInfo).Results); count > 0; count-- {
          rt.stack[start] = rt.stack[len(rt.stack)-count]
          start++
       }
@@ -634,8 +663,8 @@ name.
 ```
 
 The **ExtFuncInfo** structure has an **Auto** parameter array. Usually the first
-parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from
-the Needle language, because they are necessary for us to execute some golang
+parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from the
+Needle language, because they are necessary for us to execute some golang
 functions. Therefore, we specify that these variables will be used automatically
 when these functions are called. In this case, the first parameter of the above
 four functions is `rt *Runtime`.
@@ -665,7 +694,7 @@ Adds a function to the root **Objects** so that the compiler can find them later
 when using the contract.
 
 ```
-      vm.Objects[key] = &ObjInfo{ObjExtFunc, data}
+      vm.Objects[key] = &Object{ObjExtFunc, data}
    }
 }
 ```
@@ -734,10 +763,10 @@ during parsing and options for parsing lexIdent type tokens, then, variables,
 functions or contracts with this name will be checked. If nothing is found and
 this is not a function or contract call, then it will indicate an error.
 
-```
-objInfo, tobj := vm.findObj(lexem.Value.(string), block)
-if objInfo == nil && (!vm.Extern || i> *ind || i >= len(*lexems)-2 || (*lexems)[i+1].Type != isLPar) {
-   return fmt.Errorf(`unknown identifier %s`, lexem.Value.(string))
+```go
+obj, owner := p.findObj(p.lex.Value.(string), block)
+if obj == nil && (p.conf.IgnoreObj != IgnoreIdent || p.i >= len(p.inputs)-2 || p.nextN(1).Type != LPAREN) {
+  return p.syntaxErrorWrap(fmt.Errorf(eUnknownIdent, p.lex.Value))
 }
 ```
 
@@ -797,7 +826,7 @@ if isContract {
 }
 ```
 
-If we see that there is a square bracket next, then we add the **cmdIndex**
+If we see that there is a square bracket next, then we add the **CmdIndex**
 command to get the value by the index.
 
 ```go
@@ -876,10 +905,10 @@ func fNameBlock(buf *[]*Block, state int, lexem *Lexem) error {
          Owner: (*buf)[0].Owner}
       default:
          itype = ObjFunc
-         fblock.Info = &FuncInfo{}
+         fblock.Info = &FunctionInfo{}
    }
    fblock.Type = itype
-   prev.Objects[name] = &ObjInfo{Type: itype, Value: fblock}
+   prev.Objects[name] = &Object{Type: itype, Value: fblock}
    return nil
 }
 ```
@@ -900,7 +929,7 @@ correspond to additional program codes.
   identifier or a name with `$`, we can make function calls or assignments;
 - **stateToFork** – used to get the token stored in **stateFork**, which will be
   passed to the process function;
-- **stateLabel** – used to insert **cmdLabel** commands. _while_ structure
+- **stateLabel** – used to insert **CmdLabel** commands. _while_ structure
   requires this flag;
 - **stateMustEval** – check the availability of conditional expressions at the
   beginning of _if_ and _while_ structures.

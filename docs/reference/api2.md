@@ -34,7 +34,7 @@ returned.
 
 **Response Example**
 
-```text
+```json
 400 (Bad request)
 Content-Type: application/json
 {
