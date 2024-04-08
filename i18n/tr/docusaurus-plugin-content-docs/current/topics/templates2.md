@@ -1,260 +1,341 @@
 # Şablon Dili {#template-language}
 
-  - [Sayfa yapımı](#page-construction)
-    - [Şablon Engine](#template-engine)
-    - [Sayfalar oluşturun](#create-pages)
-      - [Görsel sayfa tasarımcısı](#visual-page-designer)
-      - [Uygulanabilir stiller](#applicable-styles)
-      - [Sayfa modülü](#page-module)
-      - [Dil kaynağı düzenleyicisi](#language-resource-editor)
-  - [Logicor şablon dili](#logicor-template-language)
-    - [Logicor'a genel bakış](#logicor-overview)
-      - [Sayfalara parametreler iletmek için PageParams kullanın](#use-pageparams-to-pass-parameters-to-pages)
-      - [Arama sözleşmeleri](#calling-contracts)
-  - [Mantıksal fonksiyon sınıflandırması](#logicor-function-classification)
-    - [Değişkenler üzerinde işlemler:](#operations-on-variables)
-    - [Navigasyon işlemleri:](#navigational-operations)
-    - [Veri işleme:](#data-manipulation)
-    - [Veri sunumu:](#data-presentation)
-    - [Verilerin kabulü:](#accepting-of-data)
-    - [Veri biçimlendirme öğeleri:](#data-formatting-elements)
-    - [Form element:](#form-elements)
-    - [Kod bloklarındaki işlemler:](#operations-on-code-blocks)
-  - [Mantıksal işlev başvuruları](#logicor-function-references)
-    - [Address](#address)
-    - [AddressToId](#addresstoid)
-    - [AddToolButton](#addtoolbutton)
-    - [And](#and)
-    - [AppParam](#appparam)
-    - [ArrayToSource](#arraytosource)
-    - [Binary](#binary)
-    - [Button](#button)
-    - [Calculate](#calculate)
-    - [Chart](#chart)
-    - [CmpTime](#cmptime)
-    - [Code](#code)
-    - [CodeAsIs](#codeasis)
-    - [Data](#data)
-    - [Custom](#custom)
-    - [DateTime](#datetime)
-    - [DBFind](#dbfind)
-    - [Div](#div)
-    - [EcosysParam](#ecosysparam)
-    - [Em](#em)
-    - [ForList](#forlist)
-    - [Form](#form)
-    - [GetColumnType](#getcolumntype)
-    - [GetHistory](#gethistory)
-    - [GetVar](#getvar)
-    - [Hint](#hint)
-    - [If](#if)
-    - [Image](#image)
-    - [ImageInput](#imageinput)
-    - [Include](#include)
-    - [Input](#input)
-    - [InputErr](#inputerr)
-    - [InputMap](#inputmap)
-    - [JsonToSource](#jsontosource)
-    - [Label](#label)
-    - [LangRes](#langres)
-    - [LinkPage](#linkpage)
-    - [Map](#map)
-    - [MenuGroup](#menugroup)
-    - [MenuItem](#menuitem)
-    - [Money](#money)
-    - [Or](#or)
-    - [P](#p)
-    - [QRcode](#qrcode)
-    - [RadioGroup](#radiogroup)
-    - [Range](#range)
-    - [Select](#select)
-    - [SetTitle](#settitle)
-    - [SetVar](#setvar)
-    - [Span](#span)
-    - [Strong](#strong)
-    - [SysParam](#sysparam)
-    - [Table](#table)
-    - [TransactionInfo](#transactioninfo)
-    - [VarAsIs](#varasis)
-  - [App styles for mobile devices](#app-styles-for-mobile-devices)
-    - [Layout](#layout)
-      - [Title](#title)
-      - [Strong-class names](#strong-class-names)
-      - [Color](#color)
-      - [Grid](#grid)
-      - [Panel](#panel)
-      - [Form](#form-app)
-      - [Button](#button-app)
-      - [Icon](#icon)
+- [Sayfa yapımı](#page-construction)
+  - [Şablon Engine](#template-engine)
+  - [Sayfalar oluşturun](#create-pages)
+    - [Görsel sayfa tasarımcısı](#visual-page-designer)
+    - [Uygulanabilir stiller](#applicable-styles)
+    - [Sayfa modülü](#page-module)
+    - [Dil kaynağı düzenleyicisi](#language-resource-editor)
+- [Logicor şablon dili](#logicor-template-language)
+  - [Logicor'a genel bakış](#logicor-overview)
+    - [Sayfalara parametreler iletmek için PageParams kullanın](#use-pageparams-to-pass-parameters-to-pages)
+    - [Arama sözleşmeleri](#calling-contracts)
+- [Mantıksal fonksiyon sınıflandırması](#logicor-function-classification)
+  - [Değişkenler üzerinde işlemler:](#operations-on-variables)
+  - [Navigasyon işlemleri:](#navigational-operations)
+  - [Veri işleme:](#data-manipulation)
+  - [Veri sunumu:](#data-presentation)
+  - [Verilerin kabulü:](#accepting-of-data)
+  - [Veri biçimlendirme öğeleri:](#data-formatting-elements)
+  - [Form element:](#form-elements)
+  - [Kod bloklarındaki işlemler:](#operations-on-code-blocks)
+- [Mantıksal işlev başvuruları](#logicor-function-references)
+  - [Address](#address)
+  - [AddressToId](#addresstoid)
+  - [AddToolButton](#addtoolbutton)
+  - [And](#and)
+  - [AppParam](#appparam)
+  - [ArrayToSource](#arraytosource)
+  - [Binary](#binary)
+  - [Button](#button)
+  - [Calculate](#calculate)
+  - [Chart](#chart)
+  - [CmpTime](#cmptime)
+  - [Code](#code)
+  - [CodeAsIs](#codeasis)
+  - [Data](#data)
+  - [Custom](#custom)
+  - [DateTime](#datetime)
+  - [DBFind](#dbfind)
+  - [Div](#div)
+  - [EcosysParam](#ecosysparam)
+  - [Em](#em)
+  - [ForList](#forlist)
+  - [Form](#form)
+  - [GetColumnType](#getcolumntype)
+  - [GetHistory](#gethistory)
+  - [GetVar](#getvar)
+  - [Hint](#hint)
+  - [If](#if)
+  - [Image](#image)
+  - [ImageInput](#imageinput)
+  - [Include](#include)
+  - [Input](#input)
+  - [InputErr](#inputerr)
+  - [InputMap](#inputmap)
+  - [JsonToSource](#jsontosource)
+  - [Label](#label)
+  - [LangRes](#langres)
+  - [LinkPage](#linkpage)
+  - [Map](#map)
+  - [MenuGroup](#menugroup)
+  - [MenuItem](#menuitem)
+  - [Money](#money)
+  - [Or](#or)
+  - [P](#p)
+  - [QRcode](#qrcode)
+  - [RadioGroup](#radiogroup)
+  - [Range](#range)
+  - [Select](#select)
+  - [SetTitle](#settitle)
+  - [SetVar](#setvar)
+  - [Span](#span)
+  - [Strong](#strong)
+  - [SysParam](#sysparam)
+  - [Table](#table)
+  - [TransactionInfo](#transactioninfo)
+  - [VarAsIs](#varasis)
+- [App styles for mobile devices](#app-styles-for-mobile-devices)
+  - [Layout](#layout)
+    - [Title](#title)
+    - [Strong-class names](#strong-class-names)
+    - [Color](#color)
+    - [Grid](#grid)
+    - [Panel](#panel)
+    - [Form](#form-app)
+    - [Button](#button-app)
+    - [Icon](#icon)
 
 ## Sayfa yapımı {#page-construction}
 
-Weaver'ın Entegre Geliştirme Ortamı (IDE), bir JavaScript kitaplığı olan React kullanılarak oluşturulmuştur. Sayfa düzenleyicisi ve görsel sayfa tasarımcısı vardır. Sayfalar, tablolardan veri almak ve görüntülemek, kullanıcı girdi verilerini almak için formlar oluşturmak, sözleşmelere veri iletmek ve uygulama sayfaları arasında gezinmek için kullanılan bir uygulamanın temel parçalarıdır. Sözleşmeler gibi, sayfalar da blok zincirinde depolanır, bu da yazılım istemcisine yüklendiğinde kurcalamaya karşı dayanıklı olmalarını sağlayabilir.
+Weaver'ın Entegre Geliştirme Ortamı (IDE), bir JavaScript kitaplığı olan React
+kullanılarak oluşturulmuştur. Sayfa düzenleyicisi ve görsel sayfa tasarımcısı
+vardır. Sayfalar, tablolardan veri almak ve görüntülemek, kullanıcı girdi
+verilerini almak için formlar oluşturmak, sözleşmelere veri iletmek ve uygulama
+sayfaları arasında gezinmek için kullanılan bir uygulamanın temel parçalarıdır.
+Sözleşmeler gibi, sayfalar da blok zincirinde depolanır, bu da yazılım
+istemcisine yüklendiğinde kurcalamaya karşı dayanıklı olmalarını sağlayabilir.
 
 ### Şablon Engine {#template-engine}
 
-Sayfa öğeleri (sayfalar ve menüler), geliştiriciler tarafından Weaver'ın sayfa düzenleyicisindeki şablon dilini kullanarak bir doğrulama düğümünün şablon motorunda oluşturulur. Tüm sayfalar, IBAX'in geliştirme ekibi tarafından geliştirilen Logicor dili kullanılarak oluşturulmuştur. Ağdaki düğümlerden sayfa istemek için content/... API komutlarını kullanın. Şablon motorunun bu tür bir isteğe yanıt olarak gönderdiği şey bir HTML sayfası değil, şablon yapısına uygun bir ağaç oluşturan HTML etiketlerinden oluşan bir JSON kodudur. Şablon motorunu test etmek istiyorsanız, [content](../reference/api2.md#content) API komutuna başvurabilirsiniz.
+Sayfa öğeleri (sayfalar ve menüler), geliştiriciler tarafından Weaver'ın sayfa
+düzenleyicisindeki şablon dilini kullanarak bir doğrulama düğümünün şablon
+motorunda oluşturulur. Tüm sayfalar, IBAX'in geliştirme ekibi tarafından
+geliştirilen Logicor dili kullanılarak oluşturulmuştur. Ağdaki düğümlerden sayfa
+istemek için content/... API komutlarını kullanın. Şablon motorunun bu tür bir
+isteğe yanıt olarak gönderdiği şey bir HTML sayfası değil, şablon yapısına uygun
+bir ağaç oluşturan HTML etiketlerinden oluşan bir JSON kodudur. Şablon motorunu
+test etmek istiyorsanız, [content](../reference/api2.md#content) API komutuna
+başvurabilirsiniz.
 
 ### Sayfalar oluşturun {#create-pages}
 
-Weaver'ın yönetim aracının Sayfalar bölümünde bulunabilen sayfaları oluşturmak ve düzenlemek için sayfa düzenleyiciyi kullanabilirsiniz. Düzenleyici şunlar için kullanılabilir:
+Weaver'ın yönetim aracının Sayfalar bölümünde bulunabilen sayfaları oluşturmak
+ve düzenlemek için sayfa düzenleyiciyi kullanabilirsiniz. Düzenleyici şunlar
+için kullanılabilir:
 
-* Sayfa kodunu yazın, Logicor şablon dilinin anahtar sözcüklerini vurgulayın;
-* Sayfalardaki menüleri seçin ve görüntüleyin;
-* Menü sayfasını düzenleyin;
-* Sözleşme Koşulları işlevinde izinli sözleşme adını belirterek veya Değişiklik koşullarında erişim iznini doğrudan belirterek, sayfaları değiştirme iznini yapılandırın;
-* Görsel sayfa tasarımcısını başlatın;
-* Önizleme sayfaları.
+- Sayfa kodunu yazın, Logicor şablon dilinin anahtar sözcüklerini vurgulayın;
+- Sayfalardaki menüleri seçin ve görüntüleyin;
+- Menü sayfasını düzenleyin;
+- Sözleşme Koşulları işlevinde izinli sözleşme adını belirterek veya Değişiklik
+  koşullarında erişim iznini doğrudan belirterek, sayfaları değiştirme iznini
+  yapılandırın;
+- Görsel sayfa tasarımcısını başlatın;
+- Önizleme sayfaları.
 
 #### Görsel sayfa tasarımcısı {#visual-page-designer}
 
-Görsel sayfa tasarımcısı, Logicor dilinde arayüz kodlarını kullanmadan sayfa düzenleri oluşturmak için kullanılabilir. Bununla, bu tür öğeleri sürükleyip bırakarak sayfalardaki form öğelerinin ve metnin konumunu ayarlayabilir ve sayfa bloklarının boyutunu yapılandırabilirsiniz. Standart veri modellerini sunmak için bir dizi kullanıma hazır blok sağlar: başlıklar, formlar ve bilgi panelleri ile. Görsel sayfa tasarımcısında bir sayfa oluşturduktan sonra sayfa düzenleyicide veri almak için program mantığı ve koşullu yapı yazabilirsiniz. Gelecekte, ek işlevlere sahip görsel bir sayfa tasarımcısı oluşturmayı planlıyoruz.
+Görsel sayfa tasarımcısı, Logicor dilinde arayüz kodlarını kullanmadan sayfa
+düzenleri oluşturmak için kullanılabilir. Bununla, bu tür öğeleri sürükleyip
+bırakarak sayfalardaki form öğelerinin ve metnin konumunu ayarlayabilir ve sayfa
+bloklarının boyutunu yapılandırabilirsiniz. Standart veri modellerini sunmak
+için bir dizi kullanıma hazır blok sağlar: başlıklar, formlar ve bilgi panelleri
+ile. Görsel sayfa tasarımcısında bir sayfa oluşturduktan sonra sayfa
+düzenleyicide veri almak için program mantığı ve koşullu yapı yazabilirsiniz.
+Gelecekte, ek işlevlere sahip görsel bir sayfa tasarımcısı oluşturmayı
+planlıyoruz.
 
 #### Uygulanabilir stiller {#applicable-styles}
 
-Varsayılan olarak, sayfalar Angular'ın Bootstrap Angle stiliyle sunulur. Kullanıcılar ihtiyaçlarına göre kendi stillerini oluşturabilirler. Stil, ekosistem parametre tablosundaki stil parametresi stil sayfasında saklanır.
+Varsayılan olarak, sayfalar Angular'ın Bootstrap Angle stiliyle sunulur.
+Kullanıcılar ihtiyaçlarına göre kendi stillerini oluşturabilirler. Stil,
+ekosistem parametre tablosundaki stil parametresi stil sayfasında saklanır.
 
 #### Sayfa modülü {#page-module}
 
-Bir kod bloğunu birden çok sayfada kullanmak için, onu tutmak ve sayfa koduna gömmek için bir sayfa modülü oluşturabilirsiniz. Sayfa modülleri Weaver'ın Modül Bloklarında oluşturulabilir ve düzenlenebilir. Sayfalar gibi düzenleme izinleri tanımlanabilir.
+Bir kod bloğunu birden çok sayfada kullanmak için, onu tutmak ve sayfa koduna
+gömmek için bir sayfa modülü oluşturabilirsiniz. Sayfa modülleri Weaver'ın Modül
+Bloklarında oluşturulabilir ve düzenlenebilir. Sayfalar gibi düzenleme izinleri
+tanımlanabilir.
 
 #### Dil kaynağı düzenleyicisi {#language-resource-editor}
 
-Weaver, Logicor şablon dilinin **LangRes** işlevini kullanarak sayfa yerelleştirme için bir mekanizma içerir. Sayfadaki dil kaynak etiketlerini, yazılım istemcisinde veya tarayıcıda kullanıcı tarafından seçilen dile karşılık gelen metin satırlarıyla değiştirebilir. **LangRes** işlevi yerine **$lable$** kısa sözdizimini kullanabilirsiniz. Sözleşme tarafından başlatılan açılır pencerelerdeki mesajların çevirisi, Needle'ın **LangRes** işlevi tarafından gerçekleştirilir.
+Weaver, Logicor şablon dilinin **LangRes** işlevini kullanarak sayfa
+yerelleştirme için bir mekanizma içerir. Sayfadaki dil kaynak etiketlerini,
+yazılım istemcisinde veya tarayıcıda kullanıcı tarafından seçilen dile karşılık
+gelen metin satırlarıyla değiştirebilir. **LangRes** işlevi yerine **$lable$**
+kısa sözdizimini kullanabilirsiniz. Sözleşme tarafından başlatılan açılır
+pencerelerdeki mesajların çevirisi, Needle'ın **LangRes** işlevi tarafından
+gerçekleştirilir.
 
-Weaver'ın Dil kaynakları bölümünde dil kaynakları oluşturabilir ve düzenleyebilirsiniz. Bir dil kaynağı, etiket adlarından ve bu adın farklı dillerdeki karşılık gelen çevirisinin yanı sıra karşılık gelen iki harfli dil tanımlayıcısından (EN, ZH, JP, vb.) oluşur.
+Weaver'ın Dil kaynakları bölümünde dil kaynakları oluşturabilir ve
+düzenleyebilirsiniz. Bir dil kaynağı, etiket adlarından ve bu adın farklı
+dillerdeki karşılık gelen çevirisinin yanı sıra karşılık gelen iki harfli dil
+tanımlayıcısından (EN, ZH, JP, vb.) oluşur.
 
-Dil kaynakları ekleme ve değiştirme izinleri, diğer tablolarla aynı şekilde tanımlanabilir.
+Dil kaynakları ekleme ve değiştirme izinleri, diğer tablolarla aynı şekilde
+tanımlanabilir.
 
 ## Logicor şablon dili {#logicor-template-language}
 
 Logicor işlevleri aşağıdaki işlemleri sağlar:
 
-* Veritabanından değerleri alma: ```DBFind```, veritabanından alınan verileri tablolar ve grafikler olarak gösteren;
-* Değişken değerleri atamak ve görüntülemek için veri işlemleri: ```SetVar, GetVar, Data```;
-* Tarih/saat değerlerini görüntüleme ve karşılaştırma: ```DateTime, Now, CmpTime```;
-* Formlar oluşturmak için çeşitli kullanıcı verisi giriş alanlarını kullanın: ```Form, ImageInput, Input, RadioGroup, Select```;
-* Hata mesajlarını görüntüleyerek form alanındaki verileri doğrulayın: ```Validate, InputErr```;
-* Gezinme öğelerini görüntüleme: ```AddToolButton, LinkPage, Button```;
-* Çağrı sözleşmeleri: ``` Düğme```;
-* Çeşitli etiketler dahil olmak üzere HTML sayfa düzeni öğeleri oluşturma ve belirli css sınıflarını seçme: ```Div, P, Span, vb```;
-* Sayfalara resim yerleştirme ve boşaltma: ```Image, ImageInput```;
-* Sayfa düzeni parçasının görüntülenme koşulları: ```If, ElseIf, Else```;
-* Çok seviyeli menüler oluşturma;
-* Sayfa yerelleştirme.
+- Veritabanından değerleri alma: `DBFind`, veritabanından alınan verileri
+  tablolar ve grafikler olarak gösteren;
+- Değişken değerleri atamak ve görüntülemek için veri işlemleri:
+  `SetVar, GetVar, Data`;
+- Tarih/saat değerlerini görüntüleme ve karşılaştırma: `DateTime, Now, CmpTime`;
+- Formlar oluşturmak için çeşitli kullanıcı verisi giriş alanlarını kullanın:
+  `Form, ImageInput, Input, RadioGroup, Select`;
+- Hata mesajlarını görüntüleyerek form alanındaki verileri doğrulayın:
+  `Validate, InputErr`;
+- Gezinme öğelerini görüntüleme: `AddToolButton, LinkPage, Button`;
+- Çağrı sözleşmeleri: ` Düğme`;
+- Çeşitli etiketler dahil olmak üzere HTML sayfa düzeni öğeleri oluşturma ve
+  belirli css sınıflarını seçme: `Div, P, Span, vb`;
+- Sayfalara resim yerleştirme ve boşaltma: `Image, ImageInput`;
+- Sayfa düzeni parçasının görüntülenme koşulları: `If, ElseIf, Else`;
+- Çok seviyeli menüler oluşturma;
+- Sayfa yerelleştirme.
 
 ### Logicor'a genel bakış {#logicor-overview}
 
-Logicor sayfa şablonu dili, bir işlevin başka bir işlevi ``FuncName(parameters)``` çağırmasına ve işlevleri iç içe yerleştirmesine izin veren işlevsel bir dildir. Parametreleri tırnak işaretleri olmadan belirtebilir ve gereksiz parametreleri silebilirsiniz.
+Logicor sayfa şablonu dili, bir işlevin başka bir işlevi
+``FuncName(parameters)``` çağırmasına ve işlevleri iç içe yerleştirmesine izin
+veren işlevsel bir dildir. Parametreleri tırnak işaretleri olmadan belirtebilir
+ve gereksiz parametreleri silebilirsiniz.
 
-Parametre virgül içeriyorsa, tırnak içine alınmalıdır (geri tırnak veya çift tırnak). Bir işlevin yalnızca bir parametresi varsa, tırnak işaretleri olmadan virgül kullanabilirsiniz. Ayrıca, parametrenin eşleşmemiş bir kapatma parantezi varsa, tırnak işaretleri kullanılmalıdır.
+Parametre virgül içeriyorsa, tırnak içine alınmalıdır (geri tırnak veya çift
+tırnak). Bir işlevin yalnızca bir parametresi varsa, tırnak işaretleri olmadan
+virgül kullanabilirsiniz. Ayrıca, parametrenin eşleşmemiş bir kapatma parantezi
+varsa, tırnak işaretleri kullanılmalıdır.
 
-Bir parametreyi tırnak içine alırsanız ancak parametrenin kendisi tırnak işaretleri içeriyorsa, metinde farklı tırnak türleri veya birden çok tırnak kullanabilirsiniz.
+Bir parametreyi tırnak içine alırsanız ancak parametrenin kendisi tırnak
+işaretleri içeriyorsa, metinde farklı tırnak türleri veya birden çok tırnak
+kullanabilirsiniz.
 
-İşlev tanımında her parametrenin belirli bir adı vardır. İşlevi çağırabilir ve parametreleri bildirim sırasına göre veya herhangi bir parametre kümesini herhangi bir ad sırasına göre belirtebilirsiniz: ```Parametre_adı: Parametre_değeri```. Bu yöntemi kullanarak, geçerli şablonla uyumluluğu bozmadan yeni işlev parametrelerini güvenle ekleyebilirsiniz:
+İşlev tanımında her parametrenin belirli bir adı vardır. İşlevi çağırabilir ve
+parametreleri bildirim sırasına göre veya herhangi bir parametre kümesini
+herhangi bir ad sırasına göre belirtebilirsiniz:
+`Parametre_adı: Parametre_değeri`. Bu yöntemi kullanarak, geçerli şablonla
+uyumluluğu bozmadan yeni işlev parametrelerini güvenle ekleyebilirsiniz:
 
-İşlevler, metin döndürebilir, HTML öğeleri oluşturabilir (örneğin, ```Input```) veya iç içe HTML öğeleriyle (```Div, P, Span```) HTML öğeleri oluşturabilir. İkinci durumda, iç içe öğeyi tanımlamak için önceden tanımlanmış Gövde adında bir parametre kullanılır. Örneğin, iki div'i başka bir div'e yerleştirmek şöyle görünür:
+İşlevler, metin döndürebilir, HTML öğeleri oluşturabilir (örneğin, `Input`) veya
+iç içe HTML öğeleriyle (`Div, P, Span`) HTML öğeleri oluşturabilir. İkinci
+durumda, iç içe öğeyi tanımlamak için önceden tanımlanmış Gövde adında bir
+parametre kullanılır. Örneğin, iki div'i başka bir div'e yerleştirmek şöyle
+görünür:
 
-Body parametresinde açıklanan iç içe öğeleri tanımlamak için şu gösterim kullanılabilir: ```FuncName(...){...}```. İç içe öğeler parantez içinde belirtilmelidir:
+Body parametresinde açıklanan iç içe öğeleri tanımlamak için şu gösterim
+kullanılabilir: `FuncName(...){...}`. İç içe öğeler parantez içinde
+belirtilmelidir:
 
-Aynı işlevi art arda birden çok kez belirtmeniz gerekiyorsa, adını her seferinde yazmak yerine `.` noktasını kullanabilirsiniz. Örneğin, aşağıdakiler aynıdır:
+Aynı işlevi art arda birden çok kez belirtmeniz gerekiyorsa, adını her seferinde
+yazmak yerine `.` noktasını kullanabilirsiniz. Örneğin, aşağıdakiler aynıdır:
 
-Bu dil ile SetVar fonksiyonu ile bir değişken atayabilir ve değerine `#name#` ile başvurabilirsiniz.
+Bu dil ile SetVar fonksiyonu ile bir değişken atayabilir ve değerine `#name#`
+ile başvurabilirsiniz.
 
-Ekosistemin dil kaynaklarına başvurmak için, dilin adı langres olan `$langres$` kullanabilirsiniz.
+Ekosistemin dil kaynaklarına başvurmak için, dilin adı langres olan `$langres$`
+kullanabilirsiniz.
 
 Aşağıdaki değişkenler önceden tanımlanmıştır:
 
-* `#key_id#` - Mevcut kullanıcının hesap adresi;
-* `#ecosystem_id#` - Mevcut ekosistem ID;
-* `#guest_key#` - Konuk hesabının adresi;
-* `#isMobile#` - 1, Weaver bir mobil cihazda çalışıyorsa.
+- `#key_id#` - Mevcut kullanıcının hesap adresi;
+- `#ecosystem_id#` - Mevcut ekosistem ID;
+- `#guest_key#` - Konuk hesabının adresi;
+- `#isMobile#` - 1, Weaver bir mobil cihazda çalışıyorsa.
 
 #### Sayfalara parametreler iletmek için PageParams kullanın {#use-pageparams-to-pass-parameters-to-pages}
 
-Birçok işlev, yeni bir sayfaya yeniden yönlendirme yaparken parametreleri iletmek için kullanılan PageParams parametresini destekler. Örneğin: PageParams: `"param1=değer1,param2=değer2"`. Parametre değeri, basit bir dize veya referans değerine sahip bir değişken olabilir. Parametreleri sayfalara aktarırken, parametre adına sahip bir değişken oluşturulur, örn. "#param1#" ve "#param2#".
+Birçok işlev, yeni bir sayfaya yeniden yönlendirme yaparken parametreleri
+iletmek için kullanılan PageParams parametresini destekler. Örneğin: PageParams:
+`"param1=değer1,param2=değer2"`. Parametre değeri, basit bir dize veya referans
+değerine sahip bir değişken olabilir. Parametreleri sayfalara aktarırken,
+parametre adına sahip bir değişken oluşturulur, örn. "#param1#" ve "#param2#".
 
-* `PageParams: "hello=world"` - Yeni sayfa, değer olarak world ile birlikte merhaba parametresini alır;
-* `PageParams: "hello=#world#"` - Yeni sayfa, dünya değişkeninin değeriyle merhaba parametresini alır.
+- `PageParams: "hello=world"` - Yeni sayfa, değer olarak world ile birlikte
+  merhaba parametresini alır;
+- `PageParams: "hello=#world#"` - Yeni sayfa, dünya değişkeninin değeriyle
+  merhaba parametresini alır.
 
 Ayrıca Val işlevi, yeniden yönlendirmede belirtilen formlardan veri alabilir.
 
-* `PageParams: "hello=Val(world)"` - Yeni sayfa, world form öğesinin değeriyle merhaba parametresini alır.
+- `PageParams: "hello=Val(world)"` - Yeni sayfa, world form öğesinin değeriyle
+  merhaba parametresini alır.
 
 #### Arama sözleşmeleri {#calling-contracts}
 
-Logicor, bir formdaki Düğme işlevine tıklayarak sözleşme çağrılarını uygular. Bir olay tetiklendiğinde, kullanıcının sayfadaki bir form alanına girdiği veriler sözleşmeye aktarılacaktır. Form alan adı, çağrılan sözleşmenin veri bölümündeki değişken adına karşılık geliyorsa, veriler otomatik olarak aktarılacaktır. Düğme işlevi, kullanıcının sözleşmenin yürütüldüğünü doğrulaması için kalıcı bir pencere açmasına ve sözleşme başarıyla yürütüldüğünde belirtilen sayfaya yeniden yönlendirmeyi başlatmasına ve belirli parametreleri sayfaya geçirmesine olanak tanır.
+Logicor, bir formdaki Düğme işlevine tıklayarak sözleşme çağrılarını uygular.
+Bir olay tetiklendiğinde, kullanıcının sayfadaki bir form alanına girdiği
+veriler sözleşmeye aktarılacaktır. Form alan adı, çağrılan sözleşmenin veri
+bölümündeki değişken adına karşılık geliyorsa, veriler otomatik olarak
+aktarılacaktır. Düğme işlevi, kullanıcının sözleşmenin yürütüldüğünü doğrulaması
+için kalıcı bir pencere açmasına ve sözleşme başarıyla yürütüldüğünde belirtilen
+sayfaya yeniden yönlendirmeyi başlatmasına ve belirli parametreleri sayfaya
+geçirmesine olanak tanır.
 
 ## Mantıksal fonksiyon sınıflandırması {#logicor-function-classification}
 
 ### Değişkenler üzerinde işlemler: {#operations-on-variables}
 
-|        |        |         |
-| ------ | ------ | ------- |
+|                   |                   |                     |
+| ----------------- | ----------------- | ------------------- |
 | [GetVar](#getvar) | [SetVar](#setvar) | [VarAsIs](#varasis) |
 
-### Navigasyon işlemleri: {#navigational-operations} 
+### Navigasyon işlemleri: {#navigational-operations}
 
-|               |        |          |
-| ------------- | ------ | -------- |
+|                                 |                   |                       |
+| ------------------------------- | ----------------- | --------------------- |
 | [AddToolButton](#addtoolbutton) | [Button](#button) | [LinkPage](#linkpage) |
 
 ### Veri işleme: {#data-manipulation}
 
-|           |          |       |
-| --------- | -------- | ----- |
+|                         |                       |                 |
+| ----------------------- | --------------------- | --------------- |
 | [Calculate](#calculate) | [DateTime](#datetime) | [Money](#money) |
-| [CmpTime](#cmptime)   |          |       |
+| [CmpTime](#cmptime)     |                       |                 |
 
 ### Veri sunumu: {#data-presentation}
 
-|          |           |          |
-| -------- | --------- | -------- |
-| [Code](#code)     | [Hint](#hint)      | [MenuItem](#menuitem) |
-| [CodeAsIs](#codeasis) | [Image](#image)     | [QRcode](#qrcode)   |
-| [Chart](#chart)    | [MenuGroup](#menugroup) | [Table](#table)    |
-| [ForList](#forlist)  |           |          |
+|                       |                         |                       |
+| --------------------- | ----------------------- | --------------------- |
+| [Code](#code)         | [Hint](#hint)           | [MenuItem](#menuitem) |
+| [CodeAsIs](#codeasis) | [Image](#image)         | [QRcode](#qrcode)     |
+| [Chart](#chart)       | [MenuGroup](#menugroup) | [Table](#table)       |
+| [ForList](#forlist)   |                         |                       |
 
 ### Verilerin kabulü: {#accepting-of-data}
 
-|             |               |                 |
-| ----------- | ------------- | --------------- |
-| [Address](#address)     | [EcosysParam](#ecosysparam)   | [LangRes](#langres)         |
-| [AddressToId](#addresstoid) | [GetHistory](#gethistory)    | [Range](#range)           |
-| [AppParam](#appparam)    | [GetColumnType](#getcolumntype) | [SysParam](#sysparam)        |
-| [Data](#data)        | [JsonToSource](#jsontosource)  | [Binary](#binary)          |
-| [DBFind](#dbfind)      | [ArrayToSource](#arraytosource) | [TransactionInfo](#transactioninfo) |
+|                             |                                 |                                     |
+| --------------------------- | ------------------------------- | ----------------------------------- |
+| [Address](#address)         | [EcosysParam](#ecosysparam)     | [LangRes](#langres)                 |
+| [AddressToId](#addresstoid) | [GetHistory](#gethistory)       | [Range](#range)                     |
+| [AppParam](#appparam)       | [GetColumnType](#getcolumntype) | [SysParam](#sysparam)               |
+| [Data](#data)               | [JsonToSource](#jsontosource)   | [Binary](#binary)                   |
+| [DBFind](#dbfind)           | [ArrayToSource](#arraytosource) | [TransactionInfo](#transactioninfo) |
 
 ### Veri biçimlendirme öğeleri: {#data-formatting-elements}
 
-|      |          |        |
-| ---- | -------- | ------ |
-| [Div](#div)  | [SetTitle](#settitle) | [Span](#span)   |
-| [Em](#em)   | [Label](#label)    | [Strong](#strong) |
-| [P](#p)    |          |        |
+|             |                       |                   |
+| ----------- | --------------------- | ----------------- |
+| [Div](#div) | [SetTitle](#settitle) | [Span](#span)     |
+| [Em](#em)   | [Label](#label)       | [Strong](#strong) |
+| [P](#p)     |                       |                   |
 
-### Form element:  {#form-elements}
+### Form element: {#form-elements}
 
-|            |            |          |
-| ---------- | ---------- | -------- |
-| [Form](#form)       | [InputErr](#inputerr)   | [InputMap](#inputmap) |
-| [ImageInput](#imageinput) | [RadioGroup](#radiogroup) | [Map](#map)      |
-| [Input](#input)      | [Select](#select)     |          |
+|                           |                           |                       |
+| ------------------------- | ------------------------- | --------------------- |
+| [Form](#form)             | [InputErr](#inputerr)     | [InputMap](#inputmap) |
+| [ImageInput](#imageinput) | [RadioGroup](#radiogroup) | [Map](#map)           |
+| [Input](#input)           | [Select](#select)         |                       |
 
-### Kod bloklarındaki işlemler:  {#operations-on-code-blocks}
+### Kod bloklarındaki işlemler: {#operations-on-code-blocks}
 
-|      |      |         |
-| ---- | ---- | ------- |
-| [If](#if)   | [Or](#or)   | [Include](#include) |
-| [And](#and)  |      |         |
-
-
+|             |           |                     |
+| ----------- | --------- | ------------------- |
+| [If](#if)   | [Or](#or) | [Include](#include) |
+| [And](#and) |           |                     |
 
 ## Mantıksal işlev başvuruları {#logicor-function-references}
 
 ### Address {#address}
 
-Bu işlev, belirli bir hesap adresinin `xxxx-xxxx-...-xxxx` cüzdan adresini döndürür; adres belirtilmemişse, parametre olarak mevcut kullanıcının hesap adresi kullanılacaktır.
+Bu işlev, belirli bir hesap adresinin `xxxx-xxxx-...-xxxx` cüzdan adresini
+döndürür; adres belirtilmemişse, parametre olarak mevcut kullanıcının hesap
+adresi kullanılacaktır.
 
 **Syntax**
 
@@ -262,10 +343,12 @@ Bu işlev, belirli bir hesap adresinin `xxxx-xxxx-...-xxxx` cüzdan adresini dö
 Address(account)
 
 ```
+
 > Address
-  * `account`
-  
-    Hesap adresi.
+
+- `account`
+
+  Hesap adresi.
 
 **Example**
 
@@ -284,9 +367,10 @@ AddressToId(Wallet)
 ```
 
 > AddressToId
-  * `Wallet`
-  
-    The wallet address in XXXX-...-XXXX format.
+
+- `Wallet`
+
+  The wallet address in XXXX-...-XXXX format.
 
 **Example**
 
@@ -305,38 +389,35 @@ AddToolButton(Title, Icon, Page, PageParams)
  [.Popup(Width, Header)]
 ```
 
-
-
 > AddToolButton
 
-  * `Title`
-  
-    Buton başlığı.
+- `Title`
 
-  * `Icon`
-  
-    Buton icon stili.
+  Buton başlığı.
 
-  * `Page`
-  
-    Yönlendirilen sayfanın adı.
+- `Icon`
 
-  * `PageParams`
-  
-    Sayfaya aktarılan parametreler.
+  Buton icon stili.
 
-    
+- `Page`
+
+  Yönlendirilen sayfanın adı.
+
+- `PageParams`
+
+  Sayfaya aktarılan parametreler.
 
 > Popup
 
-  Modal penceresi açılır.
-  * `Header`
+Modal penceresi açılır.
 
-    Pencerenin başlığı.
-  * `Width`
+- `Header`
 
-      Pencere genişliğinin yüzdesi.
-       Aralığı 1 ila 100 arasındadır.
+  Pencerenin başlığı.
+
+- `Width`
+
+  Pencere genişliğinin yüzdesi. Aralığı 1 ila 100 arasındadır.
 
 **Example**
 
@@ -346,7 +427,10 @@ AddToolButton(Title: $@1broadcast$, Page: @1notifications_broadcast, Icon: icon-
 
 ### And {#and}
 
-Mantıksal bir işlemin sonucunu döndürür. Parantez içinde listelenen tüm parametreler virgülle ayrılır. Parametrelerden biri boş bir dize, sıfır veya `false` ise, parametre değeri `false`, aksi takdirde parametre değeri `true` olur. Parametre değeri `true` ise, fonksiyon `1`, aksi halde `0` döndürür.
+Mantıksal bir işlemin sonucunu döndürür. Parantez içinde listelenen tüm
+parametreler virgülle ayrılır. Parametrelerden biri boş bir dize, sıfır veya
+`false` ise, parametre değeri `false`, aksi takdirde parametre değeri `true`
+olur. Parametre değeri `true` ise, fonksiyon `1`, aksi halde `0` döndürür.
 
 **Syntax**
 
@@ -362,31 +446,40 @@ If(And(#myval1#,#myval2#), Span(OK))
 
 ### AppParam {#appparam}
 
-Geçerli ekosistemin app_params tablosundan alınan uygulama parametresi değerini çıktılayın. Belirtilen ada sahip bir dil kaynağı varsa, değeri otomatik olarak değiştirilecektir.
+Geçerli ekosistemin app_params tablosundan alınan uygulama parametresi değerini
+çıktılayın. Belirtilen ada sahip bir dil kaynağı varsa, değeri otomatik olarak
+değiştirilecektir.
 
 **Syntax**
+
 ```
 AppParam(App, Name, Index, Source)
 
 ```
 
 > AppParam
-  * `App`
-  
-    Uygulama ID.
-  * `Name`
 
-    Parametre adı.
-  * `Index`
+- `App`
 
-    Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir.
-     Parametre öğeleri dizini, 1'den başlar. Örneğin, `type = full,light` ise, `AppParam(1, type, 2)`, `light` değerini döndürür.
-     Source parametresi ile birlikte kullanılamaz.
-  * `Source`
+  Uygulama ID.
 
-    Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir.
-     Öğeleri belirli parametrelerin değerleri olan bir veri nesnesi oluşturun. Bu nesne, [Tablo](#table) ve [Seç](#select) işlevleri için bir veri kaynağı olarak kullanılabilir.
-     Index parametresi ile birlikte kullanılamaz.
+- `Name`
+
+  Parametre adı.
+
+- `Index`
+
+  Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir.
+  Parametre öğeleri dizini, 1'den başlar. Örneğin, `type = full,light` ise,
+  `AppParam(1, type, 2)`, `light` değerini döndürür. Source parametresi ile
+  birlikte kullanılamaz.
+
+- `Source`
+
+  Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir. Öğeleri
+  belirli parametrelerin değerleri olan bir veri nesnesi oluşturun. Bu nesne,
+  [Tablo](#table) ve [Seç](#select) işlevleri için bir veri kaynağı olarak
+  kullanılabilir. Index parametresi ile birlikte kullanılamaz.
 
 **Example**
 
@@ -396,21 +489,26 @@ AppParam(1, type, Source: mytype)
 
 ### ArrayToSource {#arraytosource}
 
-Bir arraytosource öğesi oluşturun ve onu bir JSON dizisinin anahtar/değer çiftleriyle doldurun. Elde edilen veriler, daha sonra kaynak giriş işlevinde (örn. Tablo) kullanılabilecek olan Kaynak öğesine yerleştirilir.
+Bir arraytosource öğesi oluşturun ve onu bir JSON dizisinin anahtar/değer
+çiftleriyle doldurun. Elde edilen veriler, daha sonra kaynak giriş işlevinde
+(örn. Tablo) kullanılabilecek olan Kaynak öğesine yerleştirilir.
 
 **Syntax**
+
 ```
 ArrayToSource(Source, Data)
 
 ```
 
 > ArrayToSource
-  * `Source`
-  
-    Veri kaynağı adı.
-  * `Data`
 
-    Bir JSON dizisi veya bir JSON dizisi (`#name#`) içeren bir değişken adı.
+- `Source`
+
+  Veri kaynağı adı.
+
+- `Data`
+
+  Bir JSON dizisi veya bir JSON dizisi (`#name#`) içeren bir değişken adı.
 
 **Example**
 
@@ -424,26 +522,32 @@ ArrayToSource(dat, [1, 2, 3])
 İkili tablo ikili dosyalarında depolanan statik dosyalara bağlantılar döndürür.
 
 **Syntax**
+
 ```
 Binary(Name, AppID, MemberID)[.ById(ID)][.Ecosystem(ecosystem)]
 ```
 
 > Binary
-  * `Name`
-  
-    Dosya adı.
-  * `AppID`
-  
-    Uygulama ID.
-  * `MemberID`
 
-    Hesap adresi, varsayılan olarak 0.
-  * `ID`
+- `Name`
 
-    Statik dosya ID.
-  * `Ecosystem`
+  Dosya adı.
 
-    Ekosistem ID. Belirtilmezse, mevcut ekosistemden ikili dosya istenir.
+- `AppID`
+
+  Uygulama ID.
+
+- `MemberID`
+
+  Hesap adresi, varsayılan olarak 0.
+
+- `ID`
+
+  Statik dosya ID.
+
+- `Ecosystem`
+
+  Ekosistem ID. Belirtilmezse, mevcut ekosistemden ikili dosya istenir.
 
 **Example**
 
@@ -455,9 +559,11 @@ Image(Src: Binary().ById(#id#).Ecosystem(#eco#))
 
 ### Button {#button}
 
-Bir sözleşme çağırmak veya bir sayfa açmak için bir düğme oluşturacak bir düğme HTML öğesi oluşturun.
+Bir sözleşme çağırmak veya bir sayfa açmak için bir düğme oluşturacak bir düğme
+HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Button(Body, Page, Class, Contract, Params, PageParams)
  [.CompositeContract(Contract, Data)]
@@ -468,80 +574,113 @@ Button(Body, Page, Class, Contract, Params, PageParams)
 ```
 
 > Button
-  * `Body`
-  
-    Child text veya element.
-  * `Page`
 
-    Yönlendirilen sayfanın adı.
-  * `Class`
+- `Body`
 
-    Buton class
-  * `Contract`
+  Child text veya element.
 
-    Aranan sözleşmenin adı.
-  * `Params`
+- `Page`
 
-    Sözleşmeye aktarılan değerlerin listesi. Normalde, sözleşme parametresinin değeri (veri bölümü), id'nin benzer bir ada sahip bir HTML öğesinden (giriş alanı gibi) elde edilir. Öğe kimliği, sözleşme parametresinin adından farklıysa, değer, ContractField1=idname1, ContractField2=idname2 biçiminde atanmalıdır. Bu parametre, `{contractField1: idname1, ContractField2: idname2}` nesnesi olarak attr'ye döndürülür.
-  * `PageParams`
+  Yönlendirilen sayfanın adı.
 
-    Yönlendirme sayfasına iletilen parametrelerin biçimi pageField1=idname1, pageField2=idname2 şeklindedir. #pageField1 ve #pageField2 hedef sayfa parametre adlarına sahip değişkenler, hedef sayfada oluşturulur ve belirtilen değerlere atanır. Parametre geçişi için daha fazla spesifikasyona bakın Parametreleri sayfalara geçirmek için PageParams kullanın).
-  
+- `Class`
+
+  Buton class
+
+- `Contract`
+
+  Aranan sözleşmenin adı.
+
+- `Params`
+
+  Sözleşmeye aktarılan değerlerin listesi. Normalde, sözleşme parametresinin
+  değeri (veri bölümü), id'nin benzer bir ada sahip bir HTML öğesinden (giriş
+  alanı gibi) elde edilir. Öğe kimliği, sözleşme parametresinin adından
+  farklıysa, değer, ContractField1=idname1, ContractField2=idname2 biçiminde
+  atanmalıdır. Bu parametre,
+  `{contractField1: idname1, ContractField2: idname2}` nesnesi olarak attr'ye
+  döndürülür.
+
+- `PageParams`
+
+  Yönlendirme sayfasına iletilen parametrelerin biçimi pageField1=idname1,
+  pageField2=idname2 şeklindedir. #pageField1 ve #pageField2 hedef sayfa
+  parametre adlarına sahip değişkenler, hedef sayfada oluşturulur ve belirtilen
+  değerlere atanır. Parametre geçişi için daha fazla spesifikasyona bakın
+  Parametreleri sayfalara geçirmek için PageParams kullanın).
+
 > CompositeContract
 
-  Butona ek sözleşmeler eklemek için kullanılır. CompositeContract birden çok kez kullanılabilir.
-  * `Name`
+Butona ek sözleşmeler eklemek için kullanılır. CompositeContract birden çok kez
+kullanılabilir.
 
-    Sözleşmenin adı.
-  * `Data`
+- `Name`
 
-    Sözleşme parametreleri JSON dizileridir.
-> Alert
+  Sözleşmenin adı.
 
- Mesajı görüntüleyin.
-  * `Text`
+- `Data`
 
-    Mesajın metni.
-  * `ConfirmButton`
-  
-    Onayla buton başlığı.
-  * `CancelButton`
+      Sözleşme parametreleri JSON dizileridir.
 
-    İptal buton başlığı.
-  * `Icon`
+  > Alert
 
-    Buton icon.
-> Popup
+Mesajı görüntüleyin.
 
-  Çıkış modu modal.
-  * `Header`
+- `Text`
 
-    Window başlığı.
-  * `Width`
+  Mesajın metni.
 
-     Pencere genişliğinin yüzdesi.
-     Aralığı 1 ila 100 arasındadır.
-> Style
+- `ConfirmButton`
 
-  Belirtilen CSS stili.
-  * `Style`
+  Onayla buton başlığı.
 
-    CSS stili.
-> ErrorRedirect
+- `CancelButton`
 
-:ref:contractfundef-Throw işlevi sözleşme yürütme sırasında bir hata oluşturduğunda belirtin ve bir sayfaya yönlendirin. Birkaç ErrorRedirect çağrısı olabilir. Bu nedenle, *errredirect* özniteliği döndürülürken öznitelik anahtarı ErrorID'dir ve değer, parametreler listesidir.
+  İptal buton başlığı.
 
-  * `ErrorID`
+- `Icon`
 
-    Hata ID.
+      Buton icon.
 
-  * `PageName`
+  > Popup
 
-    Yönlendirme sayfasının adı.
+Çıkış modu modal.
 
-  * `PageParams`
+- `Header`
 
-    Sayfaya aktarılan parametreler.
+  Window başlığı.
+
+- `Width`
+
+       Pencere genişliğinin yüzdesi.
+       Aralığı 1 ila 100 arasındadır.
+
+  > Style
+
+Belirtilen CSS stili.
+
+- `Style`
+
+      CSS stili.
+
+  > ErrorRedirect
+
+:ref:contractfundef-Throw işlevi sözleşme yürütme sırasında bir hata
+oluşturduğunda belirtin ve bir sayfaya yönlendirin. Birkaç ErrorRedirect çağrısı
+olabilir. Bu nedenle, _errredirect_ özniteliği döndürülürken öznitelik anahtarı
+ErrorID'dir ve değer, parametreler listesidir.
+
+- `ErrorID`
+
+  Hata ID.
+
+- `PageName`
+
+  Yönlendirme sayfasının adı.
+
+- `PageParams`
+
+  Sayfaya aktarılan parametreler.
 
 **Example**
 
@@ -551,23 +690,30 @@ Button(Contract: MyContract, Body:My Contract, Class: myclass, Params:"Name=myid
 ```
 
 ### Calculate {#calculate}
-Exp parametresinde geçirilen aritmetik ifadenin sonucunu döndürür. Aşağıdaki işlemler uygulanabilir: +, -, *, / ve parantezler ().
+
+Exp parametresinde geçirilen aritmetik ifadenin sonucunu döndürür. Aşağıdaki
+işlemler uygulanabilir: +, -, \*, / ve parantezler ().
 
 **Syntax**
+
 ```
 Calculate(Exp, Type, Prec)
 ```
 
 > Calculate
-  * `Exp`
 
-    Sayıları ve #name# değişkenini içeren bir aritmetik ifade.
-  * `Type`
+- `Exp`
 
-    Sonuç veri türü: int, kayan nokta, para. Belirtilmemişse, ondalık noktalı bir sayı varsa kayan, aksi takdirde int'dir.
-  * `Prec`
+  Sayıları ve #name# değişkenini içeren bir aritmetik ifade.
 
-    ondalık noktadan sonra iki önemli basamak ile kayan nokta ve para verileri.
+- `Type`
+
+  Sonuç veri türü: int, kayan nokta, para. Belirtilmemişse, ondalık noktalı bir
+  sayı varsa kayan, aksi takdirde int'dir.
+
+- `Prec`
+
+  ondalık noktadan sonra iki önemli basamak ile kayan nokta ve para verileri.
 
 **Example**
 
@@ -582,26 +728,32 @@ Calculate("((10+#val#-45)\*3.0-10)/4.5 + #val#", Prec: 4)
 HTML çizelgeleri oluşturun.
 
 **Syntax**
+
 ```
 Chart(Type, Source, FieldLabel, FieldValue, Colors)
 ```
 
 > Chart
-  * `Type`
 
-    Çizelge tipi.
-  * `Source`
+- `Type`
 
-    [DBFind](#dbfind) işlevinden alınan veri kaynağının adı.
-  * `FieldLabel`
+  Çizelge tipi.
 
-    Başlık alanının adı.
-  * `FieldValue`
+- `Source`
 
-    Değer alanının adı.
-  * `Colors`
+  [DBFind](#dbfind) işlevinden alınan veri kaynağının adı.
 
-    Renklerin listesi.
+- `FieldLabel`
+
+  Başlık alanının adı.
+
+- `FieldValue`
+
+  Değer alanının adı.
+
+- `Colors`
+
+  Renklerin listesi.
 
 **Example**
 
@@ -616,8 +768,8 @@ Chart(Type: "bar", Source: mysrc, FieldLabel: "name", FieldValue: "count", Color
 
 ### CmpTime {#cmptime}
 
-Aynı formatta iki zaman değerini karşılaştırır.
-Unixtime, `YYYY-AA-GG SS:DD:SS` ve `YYYYMMDD` gibi herhangi bir zaman biçimini destekler.
+Aynı formatta iki zaman değerini karşılaştırır. Unixtime, `YYYY-AA-GG SS:DD:SS`
+ve `YYYYMMDD` gibi herhangi bir zaman biçimini destekler.
 
 **Syntax**
 
@@ -625,12 +777,11 @@ Unixtime, `YYYY-AA-GG SS:DD:SS` ve `YYYYMMDD` gibi herhangi bir zaman biçimini 
 CmpTime(Time1, Time2)
 ```
 
-
 Geri dönüş değeri
 
-* `-1` - Time1 < Time2;
-* `0` - Time1 = Time2;
-* `1` - Time1> Time2.
+- `-1` - Time1 < Time2;
+- `0` - Time1 = Time2;
+- `1` - Time1> Time2.
 
 **Example**
 
@@ -642,16 +793,17 @@ If(CmpTime(#time1#, #time2#)<0){...}
 
 Belirtilen kodu görüntülemek için bir kod öğesi oluşturun.
 
-Bir değişkeni değişkenin değeriyle değiştirir (örneğin, `#name#`).
-**Syntax**
+Bir değişkeni değişkenin değeriyle değiştirir (örneğin, `#name#`). **Syntax**
+
 ```
 Code(Text)
 ```
 
 > Code
-  * `Text`
 
-    Kaynak kodu.
+- `Text`
+
+  Kaynak kodu.
 
 **Example**
 
@@ -663,18 +815,20 @@ Code( P(This is the first line.
 
 ### CodeAsIs {#codeasis}
 
-Belirtilen kodu görüntülemek için bir kod öğesi oluşturun.
-Bir değişkeni değeriyle değiştirmez. Örneğin, `#name#` olduğu gibi görüntülenecektir.
+Belirtilen kodu görüntülemek için bir kod öğesi oluşturun. Bir değişkeni
+değeriyle değiştirmez. Örneğin, `#name#` olduğu gibi görüntülenecektir.
 
 **Syntax**
+
 ```
 CodeAsIs(Text)
 ```
 
 > CodeAsIs
-  * `Text`
 
-    Kyanak kodu.
+- `Text`
+
+  Kyanak kodu.
 
 **Example**
 
@@ -686,45 +840,53 @@ CodeAsIs( P(This is the #test1#.
 
 ### Data {#data}
 
-Bir veri öğesi oluşturun, belirtilen verilerle doldurun ve Kaynağa koyun. Ardından, [Tablo](#table) ve diğer işlevlerde veri girişi olarak Kaynak alabilirsiniz. Sütun adlarının sırası, veri giriş değerlerinin sırasına karşılık gelir.
+Bir veri öğesi oluşturun, belirtilen verilerle doldurun ve Kaynağa koyun.
+Ardından, [Tablo](#table) ve diğer işlevlerde veri girişi olarak Kaynak
+alabilirsiniz. Sütun adlarının sırası, veri giriş değerlerinin sırasına karşılık
+gelir.
 
 **Syntax**
+
 ```
 Data(Source,Columns,Data)
  [.Custom(Column){Body}]
 ```
 
 > Data
-  * `Source`
 
-    Veri kaynağının adı. Daha sonra diğer işlevlere veri kaynağı olarak iletilecek herhangi bir adı belirtebilirsiniz.
+- `Source`
 
-  * `Columns`
+  Veri kaynağının adı. Daha sonra diğer işlevlere veri kaynağı olarak iletilecek
+  herhangi bir adı belirtebilirsiniz.
 
-    Virgülle ayrılmış sütun adlarının listesi.
+- `Columns`
 
-  * `Data`
+  Virgülle ayrılmış sütun adlarının listesi.
 
-    Veri seti.
+- `Data`
 
-    Satır başına bir kayıt. Sütun değerleri virgülle ayrılmalıdır. Veri ve Sütunlar aynı sırada ayarlanmalıdır.
+  Veri seti.
 
-    Virgüllü değerler çift tırnak içine alınmalıdır (`"example1, example2", 1, 2`). Alıntılanan değerler iki çift tırnak içine alınmalıdır (`"""example", "example2""", 1, 2`).
+  Satır başına bir kayıt. Sütun değerleri virgülle ayrılmalıdır. Veri ve
+  Sütunlar aynı sırada ayarlanmalıdır.
 
-    
+  Virgüllü değerler çift tırnak içine alınmalıdır
+  (`"example1, example2", 1, 2`). Alıntılanan değerler iki çift tırnak içine
+  alınmalıdır (`"""example", "example2""", 1, 2`).
 
 ### Custom {#custom}
 
     Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları genellikle [Tablo](#tablo)'ya ve veri almak için diğer işlevlere atanır.
      Birden çok hesaplanmış sütun atamak istiyorsanız, birden çok Özel işlev kullanın.
 
-  * `Column`
+- `Column`
 
-    Benzersiz ve zorunlu olan sütun adı.
+  Benzersiz ve zorunlu olan sütun adı.
 
-  * `Body`
+- `Body`
 
-    Kod bloğu. Girişteki diğer sütunlardan değerler almak için `#columnname#` kullanabilir ve ardından bu değerleri kod bloklarında kullanabilirsiniz.
+  Kod bloğu. Girişteki diğer sütunlardan değerler almak için `#columnname#`
+  kullanabilir ve ardından bu değerleri kod bloklarında kullanabilirsiniz.
 
 **Example**
 
@@ -741,18 +903,23 @@ Data(mysrc,"id,name"){
 Saati ve tarihi belirtilen biçimde görüntüleyin.
 
 **Syntax**
+
 ```
 DateTime(DateTime, Format)
 ```
 
 > DateTime
-  * `DateTime`
 
-    Unixtime veya standart biçimde `2006-01-02T15:04:05` ifade edilen saat ve tarih.
-  * `Format`
+- `DateTime`
 
-    Format şablonu: yıl 2 basamaklı `YY`, 4 basamaklı `YYYY`, ay `AA`, gün `GG`, saat SS, dakika AA, saniye SS , örneğin: `YY/AA/GG SS:DD"`
-     Belirtilmemiş veya eksik ise `YYYY-AA-GG SS:MI:SS` kullanılacaktır.
+  Unixtime veya standart biçimde `2006-01-02T15:04:05` ifade edilen saat ve
+  tarih.
+
+- `Format`
+
+  Format şablonu: yıl 2 basamaklı `YY`, 4 basamaklı `YYYY`, ay `AA`, gün `GG`,
+  saat SS, dakika AA, saniye SS , örneğin: `YY/AA/GG SS:DD"` Belirtilmemiş veya
+  eksik ise `YYYY-AA-GG SS:MI:SS` kullanılacaktır.
 
 **Example**
 
@@ -763,9 +930,12 @@ DateTime(#mytime#,HH:MI DD.MM.YYYY)
 
 ### DBFind {#dbfind}
 
-Bir dbfind öğesi oluşturun, onu tablo tablosunun verileriyle doldurun ve daha sonra [Table](#table) ve diğer Kaynak fonksiyonlarının giriş verileri için kullanılabilecek olan Source yapısına yerleştirin.
+Bir dbfind öğesi oluşturun, onu tablo tablosunun verileriyle doldurun ve daha
+sonra [Table](#table) ve diğer Kaynak fonksiyonlarının giriş verileri için
+kullanılabilecek olan Source yapısına yerleştirin.
 
 **Syntax**
+
 ```
 DBFind(table, Source)
     [.Columns(columns)]
@@ -782,88 +952,115 @@ DBFind(table, Source)
 ```
 
 > DBFind
-  * `table`
 
-    Tablo adı
-  * `Source`
+- `table`
 
-    Veri kaynağı adı.
+  Tablo adı
+
+- `Source`
+
+  Veri kaynağı adı.
 
 > Columns
-  * `columns`
 
-    Belirtilmezse, tüm alanların bir listesi döndürülür. JSON tipi bir alan varsa, kayıt alanını işlemek için şu sözdizimini kullanabilirsiniz: `columnname->fieldname`. Bu durumda, oluşturulan alan adı "columnname.fieldname" olur.
+- `columns`
+
+  Belirtilmezse, tüm alanların bir listesi döndürülür. JSON tipi bir alan varsa,
+  kayıt alanını işlemek için şu sözdizimini kullanabilirsiniz:
+  `columnname->fieldname`. Bu durumda, oluşturulan alan adı
+  "columnname.fieldname" olur.
 
 > Where
-  * `conditions`
 
-   Veri sorgulama koşulları. DBFind'e bakın.
-    JSON tipi bir alan varsa, kayıt alanını işlemek için şu sözdizimini kullanabilirsiniz: `columnname->fieldname`.
+- `conditions`
 
-> WhereId
-  Query by ID, e.g. `.WhereId(1)`.
-  * `Id`
+Veri sorgulama koşulları. DBFind'e bakın. JSON tipi bir alan varsa, kayıt
+alanını işlemek için şu sözdizimini kullanabilirsiniz: `columnname->fieldname`.
 
-   Entri ID.
+> WhereId Query by ID, e.g. `.WhereId(1)`.
 
-> Order
-  Alana göre sırala.
-   Sıralama sözdizimi hakkında daha fazla bilgi için bkz. [DBFind](#dbfind).
-   * "isim"
+- `Id`
+
+Entri ID.
+
+> Order Alana göre sırala. Sıralama sözdizimi hakkında daha fazla bilgi için
+> bkz. [DBFind](#dbfind).
+
+- "isim"
+
 
     Alan adı
 
 > Limit
-  * `limit`
-  
-    Döndürülen giriş sayısı, varsayılan olarak 25'tir. Maksimum sayı 10.000'dir.
+
+- `limit`
+
+  Döndürülen giriş sayısı, varsayılan olarak 25'tir. Maksimum sayı 10.000'dir.
 
 > Offset
-  * `Offset`
 
-    Ofset
+- `Offset`
+
+  Ofset
 
 > Count
 
-  Where koşulunun toplam satır sayısını belirtin.
-   Bir değişkende saklamaya ek olarak, toplam sayı, dbfind öğesinin count parametresinde döndürülür.
+Where koşulunun toplam satır sayısını belirtin. Bir değişkende saklamaya ek
+olarak, toplam sayı, dbfind öğesinin count parametresinde döndürülür.
 
-   Where ve WhereID belirtilmezse, tablodaki toplam satır sayısı döndürülür.
+Where ve WhereID belirtilmezse, tablodaki toplam satır sayısı döndürülür.
 
-  * `countvar`
+- `countvar`
 
-    Satır sayısını tutan değişkenin adı.
+  Satır sayısını tutan değişkenin adı.
 
 > Ecosystem
-  * `Id`
 
-   Ekosistem kimliği. Varsayılan olarak, veriler mevcut ekosistemdeki belirtilen tablodan gelir.
+- `Id`
+
+Ekosistem kimliği. Varsayılan olarak, veriler mevcut ekosistemdeki belirtilen
+tablodan gelir.
 
 > Cutoff
 
-  Büyük miktarda metin verisini kesmek ve görüntülemek için kullanılır.
-  * `columns`
+Büyük miktarda metin verisini kesmek ve görüntülemek için kullanılır.
 
-  Cutoff işlevi tarafından işlenmesi gereken alanların virgülle ayrılmış listesi.
-    Alan değeri, iki alana sahip bir JSON nesnesi ile değiştirilecektir: bağlantı bağlantısı ve başlık başlığı. Alan değeri 32'den fazla karakter içeriyorsa, tam metnin ilk 32 karakterine işaret eden bağlantı döndürülür. Alan değeri 32 veya daha az karakter içeriyorsa, bağlantı geçersiz olarak ayarlanır ve başlık tüm alan değerini içerir.
+- `columns`
+
+Cutoff işlevi tarafından işlenmesi gereken alanların virgülle ayrılmış listesi.
+Alan değeri, iki alana sahip bir JSON nesnesi ile değiştirilecektir: bağlantı
+bağlantısı ve başlık başlığı. Alan değeri 32'den fazla karakter içeriyorsa, tam
+metnin ilk 32 karakterine işaret eden bağlantı döndürülür. Alan değeri 32 veya
+daha az karakter içeriyorsa, bağlantı geçersiz olarak ayarlanır ve başlık tüm
+alan değerini içerir.
 
 > Custom
 
-  Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları genellikle [Tablo](#tablo)'ya ve veri almak için diğer işlevlere atanır.
-   Birden çok hesaplanmış sütun atamak istiyorsanız, birden çok Özel işlev kullanın.
-  * `Column`
+Verilere hesaplanmış sütunlar atayabilirsiniz. Örneğin, düğmeler ve diğer sayfa
+düzeni öğeleri için alan şablonları belirleyebilirsiniz. Bu alan şablonları
+genellikle [Tablo](#tablo)'ya ve veri almak için diğer işlevlere atanır. Birden
+çok hesaplanmış sütun atamak istiyorsanız, birden çok Özel işlev kullanın.
 
-   Benzersiz ve zorunlu olan sütun adı.
-  * `Body`
+- `Column`
 
-   Kod bloğu. Girişteki diğer sütunlardan değerler almak için `#columnname#` kullanabilir ve ardından bu değerleri kod bloklarında kullanabilirsiniz.
+Benzersiz ve zorunlu olan sütun adı.
+
+- `Body`
+
+Kod bloğu. Girişteki diğer sütunlardan değerler almak için `#columnname#`
+kullanabilir ve ardından bu değerleri kod bloklarında kullanabilirsiniz.
 
 > Vars
 
-  Sorgu tarafından elde edilen ilk satır, değerleri olan bir dizi değişken üretecektir. Belirtildiğinde Limit parametresi otomatik olarak 1 olur ve sadece bir (1) kayıt döndürülür.
-  * `Prefix`
+Sorgu tarafından elde edilen ilk satır, değerleri olan bir dizi değişken
+üretecektir. Belirtildiğinde Limit parametresi otomatik olarak 1 olur ve sadece
+bir (1) kayıt döndürülür.
 
-   Değişken adına eklenen önek. Biçimi `#prefix_columnname#` şeklindedir, burada sütun adı alt çizgi sembolünü hemen takip eder. JSON alanı içeren bir sütun varsa, oluşturulan değişken şu biçimde olacaktır: `#prefix_columnname_field#`.
+- `Prefix`
+
+Değişken adına eklenen önek. Biçimi `#prefix_columnname#` şeklindedir, burada
+sütun adı alt çizgi sembolünü hemen takip eder. JSON alanı içeren bir sütun
+varsa, oluşturulan değişken şu biçimde olacaktır: `#prefix_columnname_field#`.
 
 **Example**
 
@@ -880,6 +1077,7 @@ DBFind(parameters,myparam).Custom(myid){Strong(#id#)}.Custom(myname){
 Bir div HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Div(Class, Body)
  [.Style(Style)]
@@ -888,30 +1086,41 @@ Div(Class, Body)
 ```
 
 > Div
-  * `Class`
 
-    Div'in class adı.
-  * `Body`
+- `Class`
 
-    Child element.
-> Style
+  Div'in class adı.
 
-  Belirtilen CSS stili.
-  * `Style`
+- `Body`
 
-   CSS stili.
+      Child element.
+
+  > Style
+
+Belirtilen CSS stili.
+
+- `Style`
+
+CSS stili.
+
 > Show
 
- Div görüntüleme koşullarını tanımlayın.
-   * `Condition`
+Div görüntüleme koşullarını tanımlayın.
 
-   Aşağıdaki Gizle bölümüne bakın.
+- `Condition`
+
+Aşağıdaki Gizle bölümüne bakın.
+
 > Hide
 
 Div'i gizlemek için koşulları tanımlayın.
-   * `Condition`
 
-   İfade biçimi `GirdiAdı=Değer` şeklindedir; tüm ifadeler doğru olduğunda, *Koşul* doğrudur ve `GirişAdı`nın değeri "Değer"e eşit olduğunda, *Koşul* doğrudur. Birden fazla *Show* veya *Hide* çağrılırsa, en az bir *Koşul* parametresi true olmalıdır.
+- `Condition`
+
+İfade biçimi `GirdiAdı=Değer` şeklindedir; tüm ifadeler doğru olduğunda, _Koşul_
+doğrudur ve `GirişAdı`nın değeri "Değer"e eşit olduğunda, _Koşul_ doğrudur.
+Birden fazla _Show_ veya _Hide_ çağrılırsa, en az bir _Koşul_ parametresi true
+olmalıdır.
 
 **Example**
 
@@ -931,26 +1140,35 @@ Form(){
 
 ### EcosysParam {#ecosysparam}
 
-Bu işlev, mevcut ekosistemin ekosistem parametre tablosundan parametre değerlerini alır. Döndürülen sonuç adı dil kaynaklarını içeriyorsa, buna göre çevrilecektir.
+Bu işlev, mevcut ekosistemin ekosistem parametre tablosundan parametre
+değerlerini alır. Döndürülen sonuç adı dil kaynaklarını içeriyorsa, buna göre
+çevrilecektir.
 
 **Syntax**
+
 ```
 EcosysParam(Name, Index, Source)
 ```
 
 > EcosysParam
-  * `Name`
 
-    Parametre adı.
-  * `Index`
+- `Name`
 
-    İstenen parametre virgülle ayrılmış öğelerin bir listesiyse, 1'den başlayarak bir dizin belirtebilirsiniz. Örneğin, "gender = male,female" ise, "gender = male,female", "female" değerini döndürür.
-     Source parametresi ile birlikte kullanılamaz.
-  * `Source`
+  Parametre adı.
 
-    Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir.
-     Öğeleri belirtilen parametrelerin değerleri olan bir veri nesnesi oluşturun. Bu nesne, [Tablo](#tablo) ve [Seç](#seç) işlevleri için bir veri kaynağı olarak kullanılabilir.
-     Index parametresi ile birlikte kullanılamaz.
+- `Index`
+
+  İstenen parametre virgülle ayrılmış öğelerin bir listesiyse, 1'den başlayarak
+  bir dizin belirtebilirsiniz. Örneğin, "gender = male,female" ise, "gender =
+  male,female", "female" değerini döndürür. Source parametresi ile birlikte
+  kullanılamaz.
+
+- `Source`
+
+  Parametre değeri virgülle ayrılmış bir liste olduğunda kullanılabilir. Öğeleri
+  belirtilen parametrelerin değerleri olan bir veri nesnesi oluşturun. Bu nesne,
+  [Tablo](#tablo) ve [Seç](#seç) işlevleri için bir veri kaynağı olarak
+  kullanılabilir. Index parametresi ile birlikte kullanılamaz.
 
 ```
 Address(EcosysParam(founder_account))
@@ -965,17 +1183,20 @@ Select(Name: gender, Source: src_gender, NameColumn: name, ValueColumn: id)
 Bir em HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Em(Body, Class)
 ```
 
 > Em
-  * `Body`
 
-    Child text veya element.
-  * `Class`
+- `Body`
 
-    em sınıfı adı.
+  Child text veya element.
+
+- `Class`
+
+  em sınıfı adı.
 
 **Example**
 
@@ -985,48 +1206,59 @@ This is an Em(important news).
 
 ### ForList {#forlist}
 
-Kaynak veri kaynağındaki öğelerin listesini Body'de ayarlanan şablon biçiminde görüntüleyin ve bir **forlist** öğesi oluşturun.
+Kaynak veri kaynağındaki öğelerin listesini Body'de ayarlanan şablon biçiminde
+görüntüleyin ve bir **forlist** öğesi oluşturun.
 
 **Syntax**
+
 ```
 ForList(Source, Index){Body}
 ```
 
 > ForList
-  * `Source`
 
-    [DBFind](#dbfind) veya [Data](#data) işlevinden alınan veri kaynağı.
-  * `Index`
+- `Source`
 
-    1'den başlayarak yineleme sayacının değişkeni.
-     İsteğe bağlı bir parametre. Belirtilmezse, yineleme sayısı değeri [Source] _index değişkenine yazılır.
-  * `Body`
+  [DBFind](#dbfind) veya [Data](#data) işlevinden alınan veri kaynağı.
 
-    Öğe eklemek için şablon.
+- `Index`
+
+  1'den başlayarak yineleme sayacının değişkeni. İsteğe bağlı bir parametre.
+  Belirtilmezse, yineleme sayısı değeri [Source] \_index değişkenine yazılır.
+
+- `Body`
+
+  Öğe eklemek için şablon.
 
 ```
 ForList(mysrc){Span(#mysrc_index#. #name#)}
 ```
 
 ### Form {#form}
-   Bir form HTML öğesi oluşturun.
+
+Bir form HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Form(Class, Body) [.Style(Style)]
 ```
+
 > Form
-  * `Body`
 
-    Child text veya element.
-  * `Class`
+- `Body`
 
-    Formun sınıf adı.
-> Style
-  Belirtilen CSS stili.
-  * `Style`
+  Child text veya element.
 
-   CSS stili.
+- `Class`
+
+      Formun sınıf adı.
+
+  > Style Belirtilen CSS stili.
+
+- `Style`
+
+CSS stili.
 
 **Example**
 
@@ -1038,7 +1270,8 @@ Form(class1 class2, Input(myid))
 
 Belirli bir tablonun alan veri türünü döndürür.
 
-Döndürülen türler şunları içerir: `text, varchar, number, money, double, bytes, json, datetime, double`.
+Döndürülen türler şunları içerir:
+`text, varchar, number, money, double, bytes, json, datetime, double`.
 **Syntax**
 
 ```
@@ -1046,12 +1279,14 @@ GetColumnType(Table, Column)
 ```
 
 > GetColumnType
-  * `Table`
 
-    Tablo adı.
-  * `Column`
+- `Table`
 
-    Field adı.
+  Tablo adı.
+
+- `Column`
+
+  Field adı.
 
 **Example**
 
@@ -1061,28 +1296,37 @@ SetVar(coltype,GetColumnType(members, member_name))Div(){#coltype#}
 
 ### GetHistory {#gethistory}
 
-Bir gethistory öğesi oluşturun ve bunu belirtilen tablodaki girişlerin geçmiş değişiklik kayıtlarıyla doldurun. Oluşturulan veriler, daha sonra kaynak giriş işlevinde kullanılabilecek olan Kaynak öğesine yerleştirilecektir (örneğin, [Tablo](#tablo)).
-Dizi, son değiştirilenden itibaren sıralanır.
-Dizideki kimlik alanı, rollback_tx tablosunun kimliğini gösterir. block_id, blok kimliğini temsil eder, blok_zamanı, blok oluşturma zaman damgasını temsil eder.
+Bir gethistory öğesi oluşturun ve bunu belirtilen tablodaki girişlerin geçmiş
+değişiklik kayıtlarıyla doldurun. Oluşturulan veriler, daha sonra kaynak giriş
+işlevinde kullanılabilecek olan Kaynak öğesine yerleştirilecektir (örneğin,
+[Tablo](#tablo)). Dizi, son değiştirilenden itibaren sıralanır. Dizideki kimlik
+alanı, rollback_tx tablosunun kimliğini gösterir. block_id, blok kimliğini
+temsil eder, blok_zamanı, blok oluşturma zaman damgasını temsil eder.
 
 **Syntax**
+
 ```
 GetHistory(Source, Name, Id, RollbackId)
 ```
 
 > GetHistory
-  * `Source`
 
-    Veri kaynağı adı.
-  * `Name`
+- `Source`
 
-    Tablo adı.
-  * `Id`
+  Veri kaynağı adı.
 
-    Entri ID.
-  * `RollbackId`
+- `Name`
 
-    İsteğe bağlı bir parametre. Belirtilirse, rollback_tx tablosundan belirtilen kimliğe sahip yalnızca bir kayıt döndürülür.
+  Tablo adı.
+
+- `Id`
+
+  Entri ID.
+
+- `RollbackId`
+
+  İsteğe bağlı bir parametre. Belirtilirse, rollback_tx tablosundan belirtilen
+  kimliğe sahip yalnızca bir kayıt döndürülür.
 
 **Example**
 
@@ -1093,17 +1337,21 @@ GetHistory(blocks, BlockHistory, 1)
 ### GetVar {#getvar}
 
 Zaten var olan belirtilen değişkenin değerini veya yoksa boş bir dize döndürür.
-Getvar öğesi yalnızca düzenlenebilir bir ağaç istendiğinde oluşturulur. `GetVar(varname)` ve `#varname` arasındaki fark, varname yoksa GetVar'ın boş bir dize döndürmesi, #varname# ise bir dize değeri olarak yorumlanmasıdır.
+Getvar öğesi yalnızca düzenlenebilir bir ağaç istendiğinde oluşturulur.
+`GetVar(varname)` ve `#varname` arasındaki fark, varname yoksa GetVar'ın boş bir
+dize döndürmesi, #varname# ise bir dize değeri olarak yorumlanmasıdır.
 
 **Syntax**
+
 ```
 GetVar(Name)
 ```
 
 > GetVar
-  * `Name`
 
-    Variable adı.
+- `Name`
+
+  Variable adı.
 
 **Example**
 
@@ -1116,20 +1364,24 @@ If(GetVar(name)){#name#}.Else{Name is unknown}
 İpuçları için bir ipucu öğesi oluşturun.
 
 **Syntax**
+
 ```
 Hint(Icon,Title,Text)
 ```
 
 > Hint
-  * `Icon`
 
-    Icon adı.
-  * `Title`
+- `Icon`
 
-    Hint başlığı.
-  * `Text`
+  Icon adı.
 
-    Hint text.
+- `Title`
+
+  Hint başlığı.
+
+- `Text`
+
+  Hint text.
 
 **Example**
 
@@ -1139,10 +1391,11 @@ Hint(Icon: "icon-wrench",Title:$@1pa_settings$,Text: This is a hint text)
 
 ### If {#if}
 
-Durum bildirimi.
-Koşul'u karşılayan ilk If veya ElseIf alt öğesini döndürür. Aksi takdirde, Else alt öğesini döndürün.
+Durum bildirimi. Koşul'u karşılayan ilk If veya ElseIf alt öğesini döndürür.
+Aksi takdirde, Else alt öğesini döndürün.
 
 **Syntax**
+
 ```
 If(Condition){ Body}
  [.ElseIf(Condition){ Body }]
@@ -1150,12 +1403,15 @@ If(Condition){ Body}
 ```
 
 > If
-  * `Condition`
 
-    Koşul boş bir dizeye eşitse, 0 veya yanlış ise, koşulun karşılanmadığı kabul edilir. Diğer tüm durumlarda, bu koşulun sağlandığı kabul edilir.
-  * `Body`
+- `Condition`
 
-    Child element.
+  Koşul boş bir dizeye eşitse, 0 veya yanlış ise, koşulun karşılanmadığı kabul
+  edilir. Diğer tüm durumlarda, bu koşulun sağlandığı kabul edilir.
+
+- `Body`
+
+  Child element.
 
 **Example**
 
@@ -1169,24 +1425,29 @@ If(#value#){
 ```
 
 ### Image {#image}
+
 Bir görüntü HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Image(Src, Alt, Class)
  [.Style(Style)]
 ```
 
 > Image
-  * `Src`
 
-    Image kaynağı, dosya veya `veri:...`
-  * `Alt`
+- `Src`
 
-    Image görüntülenemediğinde alternatif metin.
-  * `Сlass`
+  Image kaynağı, dosya veya `veri:...`
 
-    Image class adı.
+- `Alt`
+
+  Image görüntülenemediğinde alternatif metin.
+
+- `Сlass`
+
+  Image class adı.
 
 **Example**
 
@@ -1199,23 +1460,28 @@ Image(Src: Binary().ById(#id#), Class: preview).Style(height: 40px; widht 40px;)
 Bir resim yüklemek için bir imageinput öğesi oluşturun.
 
 **Syntax**
+
 ```
 ImageInput(Name, Width, Ratio, Format)
 ```
 
 > ImageInput
-  * `Name`
 
-    Element adı.
-  * `Width`
+- `Name`
 
-    Kırpılan görüntünün genişliği.
-  * `Ratio`
+  Element adı.
 
-    En boy oranı veya görüntü yüksekliği.
-  * `Format`
+- `Width`
 
-    Yüklenen görüntünün formatı.
+  Kırpılan görüntünün genişliği.
+
+- `Ratio`
+
+  En boy oranı veya görüntü yüksekliği.
+
+- `Format`
+
+  Yüklenen görüntünün formatı.
 
 **Example**
 
@@ -1228,14 +1494,16 @@ ImageInput(avatar, 100, 2/1)
 Belirtilen ada sahip şablonu sayfa koduna ekleyin.
 
 **Syntax**
+
 ```
 Include(Name)
 ```
 
 > Include
-  * `Name`
 
-    Şablon adı.
+- `Name`
+
+  Şablon adı.
 
 **Example**
 
@@ -1248,6 +1516,7 @@ Div(myclass, Include(mywidget))
 Bir giriş HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Input(Name, Class, Placeholder, Type, Value, Disabled)
  [.Validate(validation parameters)]
@@ -1255,33 +1524,42 @@ Input(Name, Class, Placeholder, Type, Value, Disabled)
 ```
 
 > Input
-  * `Name`
 
-    Element adı.
-  * `Class`
+- `Name`
 
-    Class adı.
-  * `Placeholder`
+  Element adı.
 
-    Giriş alanının beklenen değerini sor.
-  * `Type`
+- `Class`
 
-    input tipi.
-  * `Value`
+  Class adı.
 
-    Element değeri.
-  * `Disabled`
+- `Placeholder`
 
-    Giriş öğesini devre dışı bırakın.
-> Validate
+  Giriş alanının beklenen değerini sor.
 
-  Parametreyi doğrulayın.
+- `Type`
+
+  input tipi.
+
+- `Value`
+
+  Element değeri.
+
+- `Disabled`
+
+      Giriş öğesini devre dışı bırakın.
+
+  > Validate
+
+Parametreyi doğrulayın.
+
 > Style
 
-  Belirtilen CSS stili.
-  * `Style`
+Belirtilen CSS stili.
 
-    CSS stili.
+- `Style`
+
+  CSS stili.
 
 **Example**
 
@@ -1295,17 +1573,20 @@ Input(Name: num, Type: text).Validate(minLength: 6, maxLength: 20)
 Hata metnini doğrulamak için bir inputerr öğesi oluşturun.
 
 **Syntax**
+
 ```
 InputErr(Name,validation errors)]
 ```
 
 > InputErr
-  * `Name`
 
-    [Input](#input) öğesinin adına karşılık gelir.
-  * `validation errors`
+- `Name`
 
-    Bir veya daha fazla parametre için doğrulama hata mesajı.
+  [Input](#input) öğesinin adına karşılık gelir.
+
+- `validation errors`
+
+  Bir veya daha fazla parametre için doğrulama hata mesajı.
 
 **Example**
 
@@ -1317,31 +1598,41 @@ maxLength: The length of the value must be less than 20 characters)
 
 ### InputMap {#inputmap}
 
-Harita üzerinde koordinatları seçebilen adres için bir metin giriş alanı oluşturun.
+Harita üzerinde koordinatları seçebilen adres için bir metin giriş alanı
+oluşturun.
 
 **Syntax**
+
 ```
 InputMap(Name, Type, MapType, Value)
 ```
 
 > InputMap
-  * `Name`
 
-    Element adı.
-  * `Value`
+- `Name`
 
-    Varsayılan değer.
-     Değer, dize biçiminde bir nesnedir. Örneğin, `{"coords":[{"lat":number,"lng":number},]}` veya `{"zoom":int, "center":{"lat":number,"lng" : sayı}}`. InputMap önceden tanımlanmış Değer ile oluşturulduğunda, adres alanı adres değerini kaydetmek için kullanılabilir, böylece geçersiz olmaz.
-  * `Type`
+  Element adı.
 
-    Harita nokta eşleme türü:
-    * `polygon` - çok noktalı bir kapalı döngünün alanını gösterir;
-    * `Line` - kapalı döngü olmaksızın birden çok nokta içeren bir çoklu çizgi anlamına gelir;
-    * `Point` - tek nokta koordinatını gösterir.
-  * `MapType`
+- `Value`
 
-    Harita türü.
-     Şu değerlere sahiptir: `hibrit, yol haritası, uydu, arazi`.
+  Varsayılan değer. Değer, dize biçiminde bir nesnedir. Örneğin,
+  `{"coords":[{"lat":number,"lng":number},]}` veya
+  `{"zoom":int, "center":{"lat":number,"lng" : sayı}}`. InputMap önceden
+  tanımlanmış Değer ile oluşturulduğunda, adres alanı adres değerini kaydetmek
+  için kullanılabilir, böylece geçersiz olmaz.
+
+- `Type`
+
+  Harita nokta eşleme türü:
+
+  - `polygon` - çok noktalı bir kapalı döngünün alanını gösterir;
+  - `Line` - kapalı döngü olmaksızın birden çok nokta içeren bir çoklu çizgi
+    anlamına gelir;
+  - `Point` - tek nokta koordinatını gösterir.
+
+- `MapType`
+
+  Harita türü. Şu değerlere sahiptir: `hibrit, yol haritası, uydu, arazi`.
 
 **Example**
 
@@ -1351,21 +1642,26 @@ InputMap(Name: Coords,Type: polygon, MapType: hybrid, Value: `{"zoom":8, "center
 
 ### JsonToSource {#jsontosource}
 
-Bir jsontosource öğesi oluşturun ve onu bir JSON dizisinin anahtar/değer çiftleriyle doldurun. Elde edilen veriler, daha sonra kaynak giriş işlevinde kullanılabilecek olan Kaynak öğesine yerleştirilir (ör. [Tablo](#tablo)).
-Sonuç verilerindeki kayıtlar JSON anahtarına göre alfabetik olarak sıralanır.
+Bir jsontosource öğesi oluşturun ve onu bir JSON dizisinin anahtar/değer
+çiftleriyle doldurun. Elde edilen veriler, daha sonra kaynak giriş işlevinde
+kullanılabilecek olan Kaynak öğesine yerleştirilir (ör. [Tablo](#tablo)). Sonuç
+verilerindeki kayıtlar JSON anahtarına göre alfabetik olarak sıralanır.
 
 **Syntax**
+
 ```
 JsonToSource(Source, Data)
 ```
 
 > JsonToSource
-  * `Source`
 
-    Veri kaynağı adı.
-  * `Data`
+- `Source`
 
-    Bir JSON nesnesi veya bir JSON nesnesi (`#name#`) içeren bir değişken adı.
+  Veri kaynağı adı.
+
+- `Data`
+
+  Bir JSON nesnesi veya bir JSON nesnesi (`#name#`) içeren bir değişken adı.
 
 **Example**
 
@@ -1379,25 +1675,31 @@ JsonToSource(dat, {"param":"value", "param2": "value 2"})
 Bir etiket HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Label(Body, Class, For)
  [.Style(Style)]
 ```
 
 > Label
-  * `Body`
 
-    Child text veya element.
-  * `Class`
+- `Body`
 
-    Class adı.
-  * `For`
+  Child text veya element.
 
-    Bir form öğesine bağlayın.
-> `StyleThe`:CSS stili belirtildi.
-  * `Style`
+- `Class`
 
-    CSS stili.
+  Class adı.
+
+- `For`
+
+      Bir form öğesine bağlayın.
+
+  > `StyleThe`:CSS stili belirtildi.
+
+- `Style`
+
+  CSS stili.
 
 **Example**
 
@@ -1407,17 +1709,18 @@ Label(The first item).
 
 ### LangRes {#langres}
 
-Belirli bir dil kaynağı döndürür. Ağacı düzenlemeniz istenirse, langres öğesi döndürülür ve kısa biçim sembolünü $langres$ kullanabilirsiniz.
-**Syntax**
+Belirli bir dil kaynağı döndürür. Ağacı düzenlemeniz istenirse, langres öğesi
+döndürülür ve kısa biçim sembolünü $langres$ kullanabilirsiniz. **Syntax**
 
 ```
 LangRes(Name)
 ```
 
 > LangRes
-  * `Name`
 
-    Dil kaynağının adı.
+- `Name`
+
+  Dil kaynağının adı.
 
 **Example**
 
@@ -1428,8 +1731,7 @@ LangRes(myres)
 
 ### LinkPage {#linkpage}
 
-Sayfaya bağlantı veren bir bağlantı sayfası öğesi oluşturun.
-**Syntax**
+Sayfaya bağlantı veren bir bağlantı sayfası öğesi oluşturun. **Syntax**
 
 ```
 LinkPage(Body, Page, Class, PageParams)
@@ -1437,25 +1739,31 @@ LinkPage(Body, Page, Class, PageParams)
 ```
 
 > LinkPage
-  * `Body`
 
-    Child text veya element.
-  * `Page`
+- `Body`
 
-    Yönlendirme sayfasının adı.
-  * `Class`
+  Child text veya element.
 
-    Buton class adı.
-  * `PageParams`
+- `Page`
 
-    Yönlendirme sayfası parametreleri.
-> Style
+  Yönlendirme sayfasının adı.
 
-  Belirtilen CSS stili.
-  * `Style`
+- `Class`
 
-  CSS stili
-  
+  Buton class adı.
+
+- `PageParams`
+
+      Yönlendirme sayfası parametreleri.
+
+  > Style
+
+Belirtilen CSS stili.
+
+- `Style`
+
+CSS stili
+
 **Example**
 
 ```
@@ -1467,23 +1775,27 @@ LinkPage(Class: #style_link# h5 text-bold, Page: @1roles_view, PageParams: "v_ro
 Görsel bir harita oluşturun ve koordinatları herhangi bir biçimde görüntüleyin.
 
 **Syntax**
+
 ```
 Map(Hmap, MapType, Value)
 ```
 
 > Map
-  * `Hmap`
 
-    Sayfadaki bir HTML öğesinin yüksekliği.
-     Varsayılan değer 100'dür.
-  * `Value`
+- `Hmap`
 
-    Harita değeri, dize biçiminde bir nesne.
-     Örneğin, `{"coords":[{"lat":number,"lng":number},]}` veya `{"zoom":int, "center":{"lat":number,"lng" : sayı}}`. Merkez belirtilmezse, harita penceresi belirtilen koordinatlara göre otomatik olarak ayarlanacaktır.
-  * `MapType`
+  Sayfadaki bir HTML öğesinin yüksekliği. Varsayılan değer 100'dür.
 
-    Harita türü.
-     Şu değerlere sahiptir: `hibrit, yol haritası, uydu, arazi`.
+- `Value`
+
+  Harita değeri, dize biçiminde bir nesne. Örneğin,
+  `{"coords":[{"lat":number,"lng":number},]}` veya
+  `{"zoom":int, "center":{"lat":number,"lng" : sayı}}`. Merkez belirtilmezse,
+  harita penceresi belirtilen koordinatlara göre otomatik olarak ayarlanacaktır.
+
+- `MapType`
+
+  Harita türü. Şu değerlere sahiptir: `hibrit, yol haritası, uydu, arazi`.
 
 **Example**
 
@@ -1493,25 +1805,28 @@ Map(MapType:hybrid, Hmap:400, Value:{"coords":[{"lat":55.58774531752405,"lng":36
 
 ### MenuGroup {#menugroup}
 
-Menüde iç içe bir alt menü oluşturun ve menü grubu öğesini döndürün. Bunu dil kaynağıyla değiştirmeden önce name parametresi Title değerini döndürür.
+Menüde iç içe bir alt menü oluşturun ve menü grubu öğesini döndürün. Bunu dil
+kaynağıyla değiştirmeden önce name parametresi Title değerini döndürür.
 
 **Syntax**
+
 ```
 MenuGroup(Title, Body, Icon)
 ```
+
 > MenuGroup
 
-  * `Title`
+- `Title`
 
-    Menü öğesinin adı.
+  Menü öğesinin adı.
 
-  * `Body`
+- `Body`
 
-    Bir alt menüdeki alt öğeler.
+  Bir alt menüdeki alt öğeler.
 
-  * `Icon`
+- `Icon`
 
-    Icon.
+  Icon.
 
 **Example**
 
@@ -1527,27 +1842,28 @@ MenuGroup(My Menu){
 Bir menü öğesi oluşturun ve menü öğesi öğesini döndürün.
 
 **Syntax**
+
 ```
 MenuItem(Title, Page, Params, Icon)
 ```
 
 > MenuItem
 
-  * `Title`
+- `Title`
 
-    Menü öğesinin adı.
+  Menü öğesinin adı.
 
-  * `Page`
+- `Page`
 
-    Yönlendirme sayfasının adı.
+  Yönlendirme sayfasının adı.
 
-  * `Params`
+- `Params`
 
-    Yönlendirme sayfası parametreleri.
+  Yönlendirme sayfası parametreleri.
 
-  * `Icon`
+- `Icon`
 
-    Icon.
+  Icon.
 
 **Example**
 
@@ -1560,19 +1876,21 @@ MenuItem(Title:$@1roles$, Page:@1roles_list, Icon:"icon-pie-chart")
 exp / 10 ^ basamağının dize değerini döndürür.
 
 **Syntax**
+
 ```
 Money(Exp, Digit)
 ```
 
 > Money
 
-  * `Exp`
+- `Exp`
 
-    Dize biçiminde bir sayı.
+  Dize biçiminde bir sayı.
 
-  * `Digit`
+- `Digit`
 
-    "Exp/10^digit" ifadesinde 10'un üssü. Değer pozitif veya negatif olabilir ve pozitif bir değer, ondalık noktadan sonraki basamak sayısını belirler.
+  "Exp/10^digit" ifadesinde 10'un üssü. Değer pozitif veya negatif olabilir ve
+  pozitif bir değer, ondalık noktadan sonraki basamak sayısını belirler.
 
 **Example**
 
@@ -1582,13 +1900,17 @@ Money(Exp, Digit)
 
 ### Or {#or}
 
-Bir if mantıksal işleminin sonucunu döndürür. Parantez içinde listelenen tüm parametreler virgülle ayrılır. Değer olan bir parametreye sahip olmak boş bir dize, sıfır veya `false` değilse, parametre değeri `true` olur, aksi takdirde parametre değeri `false` olur. Parametre değeri `true` ise, fonksiyon `1`, aksi halde `0` döndürür.
+Bir if mantıksal işleminin sonucunu döndürür. Parantez içinde listelenen tüm
+parametreler virgülle ayrılır. Değer olan bir parametreye sahip olmak boş bir
+dize, sıfır veya `false` değilse, parametre değeri `true` olur, aksi takdirde
+parametre değeri `false` olur. Parametre değeri `true` ise, fonksiyon `1`, aksi
+halde `0` döndürür.
 
 **Syntax**
+
 ```
 Or(parameters)
 ```
-
 
 **Example**
 
@@ -1601,6 +1923,7 @@ If(Or(#myval1#,#myval2#), Span(OK))
 Bir p HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 P(Body, Class)
  [.Style(Style)]
@@ -1608,21 +1931,21 @@ P(Body, Class)
 
 > P
 
-  * `Body`
+- `Body`
 
-    Child text veya element.
+  Child text veya element.
 
-  * `Class`
+- `Class`
 
-    Class adı.
+  Class adı.
 
 > Style
 
 Belirtilen CSS stili.
 
-  * `Style`
+- `Style`
 
-    CSS stili.
+  CSS stili.
 
 **Example**
 
@@ -1636,14 +1959,16 @@ P(This is the first line.
 Belirtilen metinle QR kodunu döndürür ve bir qrcode öğesi oluşturur.
 
 **Syntax**
+
 ```
 QRcode(Text)
 ```
 
 > QRcode
-  * `Text`
 
-    QR kod metni.
+- `Text`
+
+  QR kod metni.
 
 **Example**
 
@@ -1656,6 +1981,7 @@ QRcode(#name#)
 Bir radyo grubu öğesi oluşturun.
 
 **Syntax**
+
 ```
 RadioGroup(Name, Source, NameColumn, ValueColumn, Value, Class)
  [.Validate(validation parameters)]
@@ -1664,42 +1990,42 @@ RadioGroup(Name, Source, NameColumn, ValueColumn, Value, Class)
 
 > RadioGroup
 
-  * `Name`
+- `Name`
 
-    Öğe adı.
+  Öğe adı.
 
-  * `Source`
+- `Source`
 
-    DBFind veya Veri işlevinden elde edilen veri kaynağı.
+  DBFind veya Veri işlevinden elde edilen veri kaynağı.
 
-  * `NameColumn`
+- `NameColumn`
 
-    Veri kaynağının alan adı.
+  Veri kaynağının alan adı.
 
-  * `ValueColumn`
+- `ValueColumn`
 
-    Veri kaynağının değer adı.
-     Custom ile oluşturulan alanlar bu parametrede kullanılamaz.
+  Veri kaynağının değer adı. Custom ile oluşturulan alanlar bu parametrede
+  kullanılamaz.
 
-  * `Value`
+- `Value`
 
-    Varsayılan değer.
+  Varsayılan değer.
 
-  * `Class`
+- `Class`
 
-    Class adı
+  Class adı
 
 > Validate
 
-  Parametreyi doğrulayın.
+Parametreyi doğrulayın.
 
 > Style
 
-  Belirtilen CCS stili.
+Belirtilen CCS stili.
 
-  * `Style`
+- `Style`
 
-    CSS stili.
+  CSS stili.
 
 **Example**
 
@@ -1709,30 +2035,34 @@ RadioGroup(Name: type_decision, Source: numbers_type_decisions, NameColumn: name
 
 ### Range {#range}
 
-Bir aralık öğesi oluşturun, tamsayı öğelerini doldurmak için Adımdan Şuna (Kime dahil değil) adım boyutunu kullanın. Oluşturulan veriler Kaynağa konulacak ve daha sonra kaynak girişinin işlevinde kullanılabilir (ör. [Tablo](#tablo)). Geçersiz bir parametre belirtilirse, boş bir Kaynak döndürülür.
+Bir aralık öğesi oluşturun, tamsayı öğelerini doldurmak için Adımdan Şuna (Kime
+dahil değil) adım boyutunu kullanın. Oluşturulan veriler Kaynağa konulacak ve
+daha sonra kaynak girişinin işlevinde kullanılabilir (ör. [Tablo](#tablo)).
+Geçersiz bir parametre belirtilirse, boş bir Kaynak döndürülür.
 
 **Syntax**
+
 ```
 Range(Source,From,To,Step)
 ```
 
 > Range
 
-  * `Source`
+- `Source`
 
-    Veri kaynağı adı.
+  Veri kaynağı adı.
 
-  * `From`
+- `From`
 
-    Başlangıç değeri (i = Kimden).
+  Başlangıç değeri (i = Kimden).
 
-  * `To`
+- `To`
 
-    Bitiş değeri (i < To).
+  Bitiş değeri (i < To).
 
-  * `Step`
+- `Step`
 
-    Değer değişikliği adımı. Belirtilmemişse, varsayılan değer 1'dir.
+  Değer değişikliği adımı. Belirtilmemişse, varsayılan değer 1'dir.
 
 **Example**
 
@@ -1747,6 +2077,7 @@ Range(Source: neg, From: #from#, To: #to#, Step: #step#)
 Seçili bir HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Select(Name, Source, NameColumn, ValueColumn, Value, Class)
  [.Validate(validation parameters)]
@@ -1755,42 +2086,42 @@ Select(Name, Source, NameColumn, ValueColumn, Value, Class)
 
 > Select
 
-  * `Name`
+- `Name`
 
-    Öğe adı.
+  Öğe adı.
 
-  * `Source`
+- `Source`
 
-    [DBFind](#dbfind) veya [Data](#data) işlevinden alınan veri kaynağı.
+  [DBFind](#dbfind) veya [Data](#data) işlevinden alınan veri kaynağı.
 
-  * `NameColumn`
+- `NameColumn`
 
-    Veri kaynağının alan adı.
+  Veri kaynağının alan adı.
 
-  * `ValueColumn`
+- `ValueColumn`
 
-    Veri kaynağının değer adı.
-     [Custom](#custom) ile oluşturulan alanlar bu parametrede kullanılamaz.
+  Veri kaynağının değer adı. [Custom](#custom) ile oluşturulan alanlar bu
+  parametrede kullanılamaz.
 
-  * `Value`
+- `Value`
 
-    Varsayılan değer.
+  Varsayılan değer.
 
-  * `Class`
+- `Class`
 
-    Class adı.
+  Class adı.
 
 > Validate
 
-  Parametreyi doğrulayın.
+Parametreyi doğrulayın.
 
 > Style
 
-  Belirtilen CSS stili.
+Belirtilen CSS stili.
 
-  * `Style`
+- `Style`
 
-    CSS stili.
+  CSS stili.
 
 **Example**
 
@@ -1804,14 +2135,16 @@ Select(mysrc, name)
 Sayfa başlığını ayarlamak ve bir settitle öğesi oluşturmak için.
 
 **Syntax**
+
 ```
 SetTitle(Title)
 ```
 
 > SetTitle
-  * `Title`
 
-    Sayfa başlığı
+- `Title`
+
+  Sayfa başlığı
 
 **Example**
 
@@ -1824,19 +2157,20 @@ SetTitle(My page)
 Belirtilen değişken Adına Değer değerini atayın.
 
 **Syntax**
+
 ```
 SetVar(Name, Value)
 ```
 
 > SetVar
 
-  * `Name`
+- `Name`
 
-    Değişken ismi.
+  Değişken ismi.
 
-  * `Value`
+- `Value`
 
-    Değişken değeri, başka bir değişkene referans içerebilir.
+  Değişken değeri, başka bir değişkene referans içerebilir.
 
 **Example**
 
@@ -1850,6 +2184,7 @@ Span(#out#)
 Bir yayılma HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Span(Body, Class)
  [.Style(Style)]
@@ -1857,21 +2192,21 @@ Span(Body, Class)
 
 > Span
 
-  * `Body`
+- `Body`
 
-    Child text veya element.
+  Child text veya element.
 
-  * `Class`
+- `Class`
 
-    Class adı.
+  Class adı.
 
 > Style
 
-  Belirtilen CCS stili.
+Belirtilen CCS stili.
 
-  * `Style`
+- `Style`
 
-    CSS style.
+  CSS style.
 
 **Example**
 
@@ -1884,19 +2219,20 @@ This is Span(the first item, myclass1).
 Güçlü bir HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Strong(Body, Class)
 ```
 
 > Strong
 
-  * `Body`
+- `Body`
 
-    Child text veya element.
+  Child text veya element.
 
-  * `Class`
+- `Class`
 
-    Class adı.
+  Class adı.
 
 **Example**
 
@@ -1906,17 +2242,20 @@ This is Strong(the first item, myclass1).
 
 ### SysParam {#sysparam}
 
-System_parameters platform parametre tablosunda belirli bir parametrenin değerini alın.
+System_parameters platform parametre tablosunda belirli bir parametrenin
+değerini alın.
 
 **Syntax**
+
 ```
 SysParam(Name)
 ```
 
 > SysParam
-  * `Name`
 
-    Platform parametresinin adı.
+- `Name`
+
+  Platform parametresinin adı.
 
 **Example**
 
@@ -1929,6 +2268,7 @@ SysParam(max_columns)
 Bir tablo HTML öğesi oluşturun.
 
 **Syntax**
+
 ```
 Table(Source, Columns)
  [.Style(Style)]
@@ -1936,21 +2276,21 @@ Table(Source, Columns)
 
 > Table
 
-  * `Source`
+- `Source`
 
-    Belirli bir veri kaynağının adı.
+  Belirli bir veri kaynağının adı.
 
-  * `Columns`
+- `Columns`
 
-    Başlık ve ilgili sütun adı, ör.: Başlık1=sütun1,Başlık2=sütun2.
+  Başlık ve ilgili sütun adı, ör.: Başlık1=sütun1,Başlık2=sütun2.
 
 > Style
 
-  Belirtilen CSS stili.
+Belirtilen CSS stili.
 
-  * `Style`
+- `Style`
 
-    CSS stili.
+  CSS stili.
 
 **Example**
 
@@ -1961,20 +2301,24 @@ Table(mysrc,"ID=id,Name=name")
 
 ### TransactionInfo {#transactioninfo}
 
-İşlemleri belirtilen hash ile sorgular ve yürütülen sözleşmeler ve parametreleri hakkında bilgi verir.
+İşlemleri belirtilen hash ile sorgular ve yürütülen sözleşmeler ve parametreleri
+hakkında bilgi verir.
 
 **Syntax**
+
 ```
 TransactionInfo(Hash)
 ```
 
 > TransactionInfo
-  * `Hash`
 
-    Onaltılık dize biçiminde işlem hashleri.
-> Return value
+- `Hash`
 
-  JSON biçiminde bir dize döndürür:
+      Onaltılık dize biçiminde işlem hashleri.
+
+  > Return value
+
+JSON biçiminde bir dize döndürür:
 
 ```
 {"contract":"ContractName", "params":{"key": "val"}, "block": "N"}
@@ -1982,9 +2326,9 @@ TransactionInfo(Hash)
 
 Neresi:
 
-* `contract` - Sözleşme adı;
-* `params` - Sözleşme parametrelerine aktarılan veriler;
-* `block` - İşlemi işleyen bloğun ID'si.
+- `contract` - Sözleşme adı;
+- `params` - Sözleşme parametrelerine aktarılan veriler;
+- `block` - İşlemi işleyen bloğun ID'si.
 
 **Example**
 
@@ -1994,24 +2338,27 @@ P(TransactionInfo(#hash#))
 
 ### VarAsIs {#varasis}
 
-Değeri, değeri yerine belirli bir değişkenin adı olan belirli bir değişken Adına atar.
+Değeri, değeri yerine belirli bir değişkenin adı olan belirli bir değişken Adına
+atar.
 
 Değişken ikameli sürümler için bkz. [SetVar](#setvar).
 
 **Syntax**
+
 ```
 VarAsIs(Name, Value)
 ```
 
 > VarAsIs
 
-  * `Name`
+- `Name`
 
-    Variable name.
+  Variable name.
 
-  * `Value`
+- `Value`
 
-    Değişken bir değer. Değerdeki değişken adı değiştirilmeyecektir. Örneğin, Değer örnek #varname# ise, değişken değeri de örnek #varname# olur.
+  Değişken bir değer. Değerdeki değişken adı değiştirilmeyecektir. Örneğin,
+  Değer örnek #varname# ise, değişken değeri de örnek #varname# olur.
 
 **Example**
 
@@ -2027,68 +2374,68 @@ Span(#name#) // I am #Name#
 
 #### Title {#title}
 
-* `h1`… `h6`
+- `h1`… `h6`
 
 #### Strong-class names {#strong-class-names}
 
-* `.text-muted`
-* `.text-primary`
-* `.text-success`
-* `.text-info`
-* `.text-warning`
-* `.text-danger`
+- `.text-muted`
+- `.text-primary`
+- `.text-success`
+- `.text-info`
+- `.text-warning`
+- `.text-danger`
 
 #### Color {#color}
 
-* `.bg-danger-dark`
-* `.bg-danger`
-* `.bg-danger-light`
-* `.bg-info-dark`
-* `.bg-info`
-* `.bg-info-light`
-* `.bg-primary-dark`
-* `.bg-primary`
-* `.bg-primary-light`
-* `.bg-success-dark`
-* `.bg-success`
-* `.bg-success-light`
-* `.bg-warning-dark`
-* `.bg-warning`
-* `.bg-warning-light`
-* `.bg-gray-darker`
-* `.bg-gray-dark`
-* `.bg-gray`
-* `.bg-gray-light`
-* `.bg-gray-lighter`
+- `.bg-danger-dark`
+- `.bg-danger`
+- `.bg-danger-light`
+- `.bg-info-dark`
+- `.bg-info`
+- `.bg-info-light`
+- `.bg-primary-dark`
+- `.bg-primary`
+- `.bg-primary-light`
+- `.bg-success-dark`
+- `.bg-success`
+- `.bg-success-light`
+- `.bg-warning-dark`
+- `.bg-warning`
+- `.bg-warning-light`
+- `.bg-gray-darker`
+- `.bg-gray-dark`
+- `.bg-gray`
+- `.bg-gray-light`
+- `.bg-gray-lighter`
 
 #### Grid {#grid}
 
-* `.row`
-* `.row.row-table`
-* `.col-xs-1`… `.col-xs-12`, only used in `.row.row-table`.
+- `.row`
+- `.row.row-table`
+- `.col-xs-1`… `.col-xs-12`, only used in `.row.row-table`.
 
 #### Panel {#panel}
 
-* `.panel`
-* `.panel.panel-heading`
-* `.panel.panel-body`
-* `.panel.panel-footer`
+- `.panel`
+- `.panel.panel-heading`
+- `.panel.panel-body`
+- `.panel.panel-footer`
 
 #### Form {#form-app}
 
-* `.form-control`
+- `.form-control`
 
 #### Button {#button-app}
 
-* `.btn.btn-default`
-* `.btn.btn-link`
-* `.btn.btn-primary`
-* `.btn.btn-success`
-* `.btn.btn-info`
-* `.btn.btn-warning`
-* `.btn.btn-danger`
+- `.btn.btn-default`
+- `.btn.btn-link`
+- `.btn.btn-primary`
+- `.btn.btn-success`
+- `.btn.btn-info`
+- `.btn.btn-warning`
+- `.btn.btn-danger`
 
 #### Icon {#icon}
 
-* All fa-class icons are from FontAwesome: `fa fa-<icon-name></icon-name>`.
-* All icon-class icons are from SimpleLineIcons: `icon-<icon-name>`.
+- All fa-class icons are from FontAwesome: `fa fa-<icon-name></icon-name>`.
+- All icon-class icons are from SimpleLineIcons: `icon-<icon-name>`.

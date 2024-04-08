@@ -1,21 +1,29 @@
 # Bir IBAX Ağının Kurulması {#deployment-of-a-ibax-network}
+
 Bu bölümde, size kendi blok zinciri ağınızı nasıl kuracağınızı göstereceğiz.
+
 ## Bir dağıtım örneği {#an-deployment-example}
 
 Örnek olarak aşağıdaki üç düğümle bir blok zinciri ağı kurulacaktır.
 
 Üç ağ düğümü:
 
-  * Düğüm 1, blok zinciri ağındaki yeni bloklar oluşturabilen ve kendisine bağlı istemcilerden işlemler gönderebilen ilk düğümdür;
-  * Düğüm 2, kendisine bağlı istemcilerden yeni bloklar oluşturabilen ve işlemler gönderebilen başka bir onur düğümüdür;
-  * Düğüm 3, yeni bloklar oluşturamayan ancak kendisine bağlı istemcilerden işlem gönderebilen bir koruyucu düğümdür.
+- Düğüm 1, blok zinciri ağındaki yeni bloklar oluşturabilen ve kendisine bağlı
+  istemcilerden işlemler gönderebilen ilk düğümdür;
+- Düğüm 2, kendisine bağlı istemcilerden yeni bloklar oluşturabilen ve işlemler
+  gönderebilen başka bir onur düğümüdür;
+- Düğüm 3, yeni bloklar oluşturamayan ancak kendisine bağlı istemcilerden işlem
+  gönderebilen bir koruyucu düğümdür.
 
 Dağıtılacak üç düğümün yapılandırmaları:
-* Her düğüm kendi PostgreSQL veritabanı sistemi örneğini kullanır;
-* Her düğüm kendi Centrifugo hizmet örneğini kullanır;
-* Sunucu tarafı github arka ucu, diğer arka uç bileşenleriyle aynı ana bilgisayara dağıtılır.
 
-Düğümler tarafından kullanılan örnek adresler ve bağlantı noktaları aşağıdaki tabloda açıklanmıştır:
+- Her düğüm kendi PostgreSQL veritabanı sistemi örneğini kullanır;
+- Her düğüm kendi Centrifugo hizmet örneğini kullanır;
+- Sunucu tarafı github arka ucu, diğer arka uç bileşenleriyle aynı ana
+  bilgisayara dağıtılır.
+
+Düğümler tarafından kullanılan örnek adresler ve bağlantı noktaları aşağıdaki
+tabloda açıklanmıştır:
 
 | Node |       Component       |    IP & port     |
 | :--: | :-------------------: | :--------------: |
@@ -33,7 +41,9 @@ Düğümler tarafından kullanılan örnek adresler ve bağlantı noktaları aş
 |  3   | go-ibax (API service) | 192.168.1.3:7079 |
 
 ## Dağıtım aşaması {#deploy-phase}
+
 Kendi blok zinciri ağınız birkaç aşamada devreye alınmalıdır:
+
 - [Bir IBAX Ağının Dağıtımı](#deployment-of-a-ibax-network)
   - [Bir dağıtım örneği](#an-deployment-example)
   - [Dağıtım aşaması](#deploy-phase)
@@ -71,13 +81,19 @@ Kendi blok zinciri ağınız birkaç aşamada devreye alınmalıdır:
 
 ### İlk düğümü dağıtın {#deploy-the-first-node}
 
-İlk düğüm özel bir düğümdür çünkü blok zinciri ağını başlatmak çok önemlidir. Blok zincirinin ilk bloğu, ilk düğüm tarafından oluşturulur ve diğer tüm düğümler blok zincirini ondan indirir. İlk düğümün sahibi platform yaratıcısıdır.
+İlk düğüm özel bir düğümdür çünkü blok zinciri ağını başlatmak çok önemlidir.
+Blok zincirinin ilk bloğu, ilk düğüm tarafından oluşturulur ve diğer tüm
+düğümler blok zincirini ondan indirir. İlk düğümün sahibi platform
+yaratıcısıdır.
 
 ### Bağımlılıklar ve ortam ayarları {#dependencies-and-environment-settings}
 
 #### sudo {#sudo}
 
-Debian 9'un tüm komutları, root olmayan bir kullanıcı olarak çalıştırılmalıdır. Ancak, bazı sistem komutlarının yürütülmesi için süper kullanıcı izinleri gerekir. Varsayılan olarak, sudo Debian 9'da kurulu değildir, önce onu kurmalısınız.
+Debian 9'un tüm komutları, root olmayan bir kullanıcı olarak çalıştırılmalıdır.
+Ancak, bazı sistem komutlarının yürütülmesi için süper kullanıcı izinleri
+gerekir. Varsayılan olarak, sudo Debian 9'da kurulu değildir, önce onu
+kurmalısınız.
 
 1. Süper kullanıcı olun.
 
@@ -104,12 +120,15 @@ usermod -a -G sudo user
 ```
 
 5. Yeniden başlattıktan sonra değişiklikler geçerli olur.
-   
+
 ### Golang {#golang}
 
-Go'yu [Resmi Dokümantasyona](https://golang.org/doc/install#tarball) göre yükleyin.
+Go'yu [Resmi Dokümantasyona](https://golang.org/doc/install#tarball) göre
+yükleyin.
 
-1. Go'nun en son kararlı sürümünü (> 1.10.x) [Golang resmi web sitesinden](https://golang.org/dl/) veya komut satırından indirin:
+1. Go'nun en son kararlı sürümünü (> 1.10.x)
+   [Golang resmi web sitesinden](https://golang.org/dl/) veya komut satırından
+   indirin:
 
 ```shell
 wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
@@ -121,7 +140,8 @@ wget https://dl.google.com/go/go1.11.2.linux-amd64.tar.gz
 tar -C /usr/local -xzf go1.11.2.linux-amd64.tar.gz
 ```
 
-3. PATH ortam değişkenlerine `/usr/local/go/bin` ekleyin (`/etc/profile` veya `$HOME/.profile` konumunda bulunur).
+3. PATH ortam değişkenlerine `/usr/local/go/bin` ekleyin (`/etc/profile` veya
+   `$HOME/.profile` konumunda bulunur).
 
 ```shell
 export PATH=$PATH:/usr/local/go/bin
@@ -149,7 +169,9 @@ sudo apt install -y postgresql
 
 ### Centrifugo {#centrifugo}
 
-1. Centrifugo V.1.8.0'ı [GitHub](https://github.com/centrifugal/centrifugo/releases/) adresinden veya komut satırından indirin:
+1. Centrifugo V.1.8.0'ı
+   [GitHub](https://github.com/centrifugal/centrifugo/releases/) adresinden veya
+   komut satırından indirin:
 
 ```shell
 wget https://github.com/centrifugal/centrifugo/releases/download/v1.8.0/centrifugo-1.8.0-linux-amd64.zip \
@@ -167,9 +189,12 @@ rm -R centrifugo-1.8.0-linux-amd64 \
 
 ### Dizin yapısı {#directory-structure}
 
-Debian 9 sistemi için blockchain platformu tarafından kullanılan tüm yazılımların ayrı bir dizinde saklanması önerilir.
+Debian 9 sistemi için blockchain platformu tarafından kullanılan tüm
+yazılımların ayrı bir dizinde saklanması önerilir.
 
-`/opt/backenddir` dizini burada kullanılır, ancak herhangi bir dizini kullanabilirsiniz. Bu durumda, lütfen tüm komutları ve yapılandırma dosyalarını buna göre değiştirin.
+`/opt/backenddir` dizini burada kullanılır, ancak herhangi bir dizini
+kullanabilirsiniz. Bu durumda, lütfen tüm komutları ve yapılandırma dosyalarını
+buna göre değiştirin.
 
 1. Blok zinciri platformu için bir dizin oluşturun:
 
@@ -183,7 +208,9 @@ sudo mkdir /opt/backenddir
 sudo chown user /opt/backenddir/
 ```
 
-3. Centrifugo, go-ibax ve düğüm verileri için alt dizinler oluşturun. Tüm düğüm verileri, "X" düğüm numarası olmak üzere "nodeX" adlı bir dizinde depolanır. Dağıtılacak düğüme göre, "düğüm1" Düğüm 1'dir, "düğüm2" Düğüm 2'dir vb.
+3. Centrifugo, go-ibax ve düğüm verileri için alt dizinler oluşturun. Tüm düğüm
+   verileri, "X" düğüm numarası olmak üzere "nodeX" adlı bir dizinde depolanır.
+   Dağıtılacak düğüme göre, "düğüm1" Düğüm 1'dir, "düğüm2" Düğüm 2'dir vb.
 
 ```shell
 mkdir /opt/backenddir/go-ibax \
@@ -193,7 +220,9 @@ mkdir /opt/backenddir/centrifugo \
 
 ### Veritabanı oluştur {#create-a-database}
 
-1. Kullanıcı parolasını postgres varsayılan parolası *123456* ile değiştirin. Kendi parolanızı belirleyebilirsiniz, ancak bunu *config.toml* düğüm yapılandırma dosyasında değiştirmelisiniz.
+1. Kullanıcı parolasını postgres varsayılan parolası _123456_ ile değiştirin.
+   Kendi parolanızı belirleyebilirsiniz, ancak bunu _config.toml_ düğüm
+   yapılandırma dosyasında değiştirmelisiniz.
 
 ```shell
 sudo -u postgres psql -c "ALTER USER postgres WITH PASSWORD '123456'"
@@ -213,12 +242,15 @@ sudo -u postgres psql -c "CREATE DATABASE chaindb"
 echo '{"secret":"CENT_SECRET"}' > /opt/backenddir/centrifugo/config.json
 ```
 
-Kendi *gizlinizi* ayarlayabilirsiniz, ancak bunu *config.toml* düğüm yapılandırma dosyasında da değiştirmelisiniz.
+Kendi _gizlinizi_ ayarlayabilirsiniz, ancak bunu _config.toml_ düğüm
+yapılandırma dosyasında da değiştirmelisiniz.
 
 ### go-ibax'ı kurun {#install-go-ibax}
 
 1. GitHub'dan github-backend'i indirin:
-2. go-ibax ikili dosyasını `/opt/backenddir/go-ibax` dizinine kopyalayın. Varsayılan Go çalışma alanını kullanıyorsanız, ikili dosyalar `$HOME/go/bin` dizininde bulunur:
+2. go-ibax ikili dosyasını `/opt/backenddir/go-ibax` dizinine kopyalayın.
+   Varsayılan Go çalışma alanını kullanıyorsanız, ikili dosyalar `$HOME/go/bin`
+   dizininde bulunur:
 
 ```shell
 cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
@@ -239,7 +271,9 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
  --tcpPort=7078
 ```
 
-4. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 1'in anahtarlarını oluşturun:
+4. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 1'in
+   anahtarlarını oluşturun:
+
 ```shell
 /opt/backenddir/go-ibax generateKeys \
  --config=/opt/backenddir/node1/config.toml
@@ -249,7 +283,8 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
 
 > Not
 >
-> Kendi blok zinciri ağınızı oluşturmak istiyorsanız, `--test=true' seçeneğini kullanmalısınız. Aksi takdirde yeni bir hesap oluşturamazsınız.
+> Kendi blok zinciri ağınızı oluşturmak istiyorsanız, `--test=true' seçeneğini
+> kullanmalısınız. Aksi takdirde yeni bir hesap oluşturamazsınız.
 
 ```shell
 /opt/backenddir/go-ibax generateFirstBlock \
@@ -267,10 +302,13 @@ cp $HOME/go/bin/go-ibax /opt/backenddir/go-ibax
 ### İlk düğüm sunucusunu başlatın {#initiate-the-first-node-server}
 
 İlk düğüm sunucusunu başlatmak için aşağıdaki iki hizmeti başlatmanız gerekir:
-* Centrifugo
-* go-ibax
 
-Bu dosyalarla [hizmetler](https://wiki.debian.org/systemd/Services) oluşturamadıysanız, farklı konsollardaki dizinlerden ikili dosyaları çalıştırabilirsiniz.
+- Centrifugo
+- go-ibax
+
+Bu dosyalarla [hizmetler](https://wiki.debian.org/systemd/Services)
+oluşturamadıysanız, farklı konsollardaki dizinlerden ikili dosyaları
+çalıştırabilirsiniz.
 
 1. Centrifugo çalıştırın:
 
@@ -289,11 +327,14 @@ Bu dosyalarla [hizmetler](https://wiki.debian.org/systemd/Services) oluşturamad
 
 ## Diğer düğümleri dağıtın {#deploy-other-nodes}
 
-Diğer tüm düğümlerin (Düğüm 2 ve Düğüm 3) konuşlandırılması birincisine benzer olsa da, üç fark vardır:
+Diğer tüm düğümlerin (Düğüm 2 ve Düğüm 3) konuşlandırılması birincisine benzer
+olsa da, üç fark vardır:
 
-* İlk bloğu oluşturmanız gerekmez. Ancak, Düğüm 1'den geçerli düğüm veri dizinine kopyalanması gerekir;
-* Düğüm, `--nodesAddr` seçeneğini yapılandırarak Düğüm 1'den blokları indirmelidir;
-* Düğüm kendi adreslerini ve portlarını kullanmalıdır.
+- İlk bloğu oluşturmanız gerekmez. Ancak, Düğüm 1'den geçerli düğüm veri
+  dizinine kopyalanması gerekir;
+- Düğüm, `--nodesAddr` seçeneğini yapılandırarak Düğüm 1'den blokları
+  indirmelidir;
+- Düğüm kendi adreslerini ve portlarını kullanmalıdır.
 
 ### Düğüm 2 {#node-2}
 
@@ -317,13 +358,15 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
 --nodesAddr=192.168.1.1
 ```
 
-6. İlk blok dosyasını Düğüm 2'ye kopyalayın. Örneğin, bu işlemi Düğüm 2 üzerinden scp üzerinden gerçekleştirebilirsiniz:
+6. İlk blok dosyasını Düğüm 2'ye kopyalayın. Örneğin, bu işlemi Düğüm 2
+   üzerinden scp üzerinden gerçekleştirebilirsiniz:
 
 ```shell
  scp user@192.168.1.1:/opt/backenddir/node1/1block /opt/backenddir/node2/
 ```
 
-7. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 2'nin anahtarlarını oluşturun:
+7. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 2'nin
+   anahtarlarını oluşturun:
 
 ```shell
  /opt/backenddir/go-ibax generateKeys \
@@ -351,7 +394,9 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
  --config=/opt/backenddir/node2/config.toml
 ```
 
-Sonuç olarak, düğüm bloğu ilk düğümden indirir. Bu düğüm bir doğrulama düğümü olmadığı için yeni bir blok oluşturamaz. Düğüm 2, daha sonra doğrulama düğümleri listesine eklenecektir.
+Sonuç olarak, düğüm bloğu ilk düğümden indirir. Bu düğüm bir doğrulama düğümü
+olmadığı için yeni bir blok oluşturamaz. Düğüm 2, daha sonra doğrulama düğümleri
+listesine eklenecektir.
 
 ### Düğüm 3 {#node-3}
 
@@ -379,13 +424,15 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
 --nodesAddr=192.168.1.1
 ```
 
-6. İlk blok dosyasını Düğüm 3'e kopyalayın. Örneğin, bu işlemi Düğüm 3'te scp aracılığıyla gerçekleştirebilirsiniz:
+6. İlk blok dosyasını Düğüm 3'e kopyalayın. Örneğin, bu işlemi Düğüm 3'te scp
+   aracılığıyla gerçekleştirebilirsiniz:
 
 ```shell
  scp user@192.168.1.1:/opt/backenddir/node1/1block /opt/backenddir/node3/
 ```
 
-7. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 3'ün anahtarını oluşturun:
+7. Düğümün ve hesabın genel ve özel anahtarları dahil olmak üzere Düğüm 3'ün
+   anahtarını oluşturun:
 
 ```shell
  /opt/backenddir/go-ibax generateKeys \
@@ -413,15 +460,19 @@ Aşağıda gösterildiği gibi çalıştırma talimatlarını izleyin:
  --config=/opt/backenddir/node3/config.toml
 ```
 
-Sonuç olarak, düğüm bloğu ilk düğümden indirir. Bu düğüm bir doğrulama düğümü olmadığı için yeni bir blok oluşturamaz. İstemci düğüme bağlı olabilir ve ağa işlemler gönderebilir.
+Sonuç olarak, düğüm bloğu ilk düğümden indirir. Bu düğüm bir doğrulama düğümü
+olmadığı için yeni bir blok oluşturamaz. İstemci düğüme bağlı olabilir ve ağa
+işlemler gönderebilir.
 
 ## Front-end dağıtımı {#front-end-deployment}
 
-Yalnızca Debian 9 (Stretch) 64-bit Resmi Sürümüne **GNOME GUI** yüklendikten sonra, Govis istemcisi "yarn" paket yöneticisiyle oluşturulabilir.
+Yalnızca Debian 9 (Stretch) 64-bit Resmi Sürümüne **GNOME GUI** yüklendikten
+sonra, Govis istemcisi "yarn" paket yöneticisiyle oluşturulabilir.
 
 ### Yazılım önkoşulları {#software-prerequisites}
 
-1. Node.js LTS sürüm 8.11'i Node.js resmi web sitesinden veya komut satırından indirin:
+1. Node.js LTS sürüm 8.11'i Node.js resmi web sitesinden veya komut satırından
+   indirin:
 
 ```shell
 curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
@@ -433,7 +484,8 @@ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash
 sudo apt install -y nodejs
 ```
 
-1. Yarn [Github](https://github.com/yarnpkg/yarn/releases) deposundan veya komut satırından Yarn 1.7.0 sürümünü indirin:
+1. Yarn [Github](https://github.com/yarnpkg/yarn/releases) deposundan veya komut
+   satırından Yarn 1.7.0 sürümünü indirin:
 
 ```shell
 cd/opt/backenddir \
@@ -464,20 +516,21 @@ cd/opt/backenddir/ibax-front/ \
 
 ### Blok zinciri ağı için yapılandırma dosyasını ekleyin {#add-the-configuration-file-for-the-blockchain-network}
 
-1. Düğüm bağlantısı hakkında bilgi içeren bir *settings.json* dosyası oluşturun:
+1. Düğüm bağlantısı hakkında bilgi içeren bir _settings.json_ dosyası oluşturun:
 
 ```shell
 cp/opt/backenddir/ibax-front/public/settings.json.dist \
  /opt/backenddir/ibax-front/public/public/settings.json
 ```
- 
-2. *settings.json* dosyasını herhangi bir metin düzenleyicide düzenleyin ve gerekli ayarları bu biçimde ekleyin:
+
+2. _settings.json_ dosyasını herhangi bir metin düzenleyicide düzenleyin ve
+   gerekli ayarları bu biçimde ekleyin:
 
 ```
 http://Node_IP-address:Node_HTTP-Port
 ```
 
-Üç düğüm için *settings.json* dosyası örnekleri:
+Üç düğüm için _settings.json_ dosyası örnekleri:
 
 ```json
 {
@@ -504,7 +557,9 @@ cd/opt/backenddir/ibax-front \
 yarn release --publish never -l
 ```
 
-Oluşturulduktan sonra uygulamanız kullanılabilir ancak bağlantı konfigürasyonu değiştirilemez. Bu ayarların değiştirilmesi gerekiyorsa, uygulamanın yeni bir sürümü oluşturulmalıdır.
+Oluşturulduktan sonra uygulamanız kullanılabilir ancak bağlantı konfigürasyonu
+değiştirilemez. Bu ayarların değiştirilmesi gerekiyorsa, uygulamanın yeni bir
+sürümü oluşturulmalıdır.
 
 ### Weaver Web Uygulaması Oluşturun {#build-weaver-web-application}
 
@@ -515,7 +570,12 @@ cd/opt/backenddir/ibax-front/ \
 && yarn build
 ```
 
-Oluşturulduktan sonra yeniden dağıtılabilir dosyalar /build dizinine yerleştirilecektir. Dağıtım için istediğiniz herhangi bir web sunucusunu kullanabilirsiniz ve *settings.json* dosyası da bu dizine yerleştirilmelidir. Bağlantı ayarları değiştirilirse uygulamayı yeniden oluşturmaya gerek olmadığını unutmayın. Bunun yerine *settings.json* dosyasını düzenleyin ve web sunucusunu yeniden başlatın.
+Oluşturulduktan sonra yeniden dağıtılabilir dosyalar /build dizinine
+yerleştirilecektir. Dağıtım için istediğiniz herhangi bir web sunucusunu
+kullanabilirsiniz ve _settings.json_ dosyası da bu dizine yerleştirilmelidir.
+Bağlantı ayarları değiştirilirse uygulamayı yeniden oluşturmaya gerek olmadığını
+unutmayın. Bunun yerine _settings.json_ dosyasını düzenleyin ve web sunucusunu
+yeniden başlatın.
 
 1. Geliştirme veya test amacıyla Yarn'ın web sunucusunu oluşturabilirsiniz:
 
@@ -524,29 +584,37 @@ sudo yarn global add serve \
 && serve -s build
 ```
 
-Bundan sonra, Weaver web uygulamanız şu konumda kullanılabilir olacaktır: `http://localhost:5000`.
+Bundan sonra, Weaver web uygulamanız şu konumda kullanılabilir olacaktır:
+`http://localhost:5000`.
 
 ## Blok zinciri ağını yapılandırın {#configure-the-blockchain-network}
 
 ### İçerik oluşturucu hesabını oluşturun {#create-the-creator-account}
 
-İlk düğüm sahibi için bir hesap oluşturun. Bu hesap, yeni blok zinciri platformunun yaratıcısıdır ve yönetici erişimine sahiptir.
+İlk düğüm sahibi için bir hesap oluşturun. Bu hesap, yeni blok zinciri
+platformunun yaratıcısıdır ve yönetici erişimine sahiptir.
 
 1. Weaver'ı çalıştırın;
 
 2. Aşağıdaki verileri kullanarak mevcut hesabı içe aktarın:
 
-– `/opt/backenddir/node1/PrivateKey` dosyasında bulunan düğüm sahibinin özel anahtarının yedeğini yükleyin.
+– `/opt/backenddir/node1/PrivateKey` dosyasında bulunan düğüm sahibinin özel
+anahtarının yedeğini yükleyin.
 
 > Not
 >
->Bu dizinde iki özel anahtar dosyası vardır. `PrivateKey` dosyası, düğüm sahibinin hesabını oluşturmak için kullanılır. 'NodePrivateKey' dosyası, düğümün kendisinin özel anahtarıdır ve gizli tutulmalıdır.
+> Bu dizinde iki özel anahtar dosyası vardır. `PrivateKey` dosyası, düğüm
+> sahibinin hesabını oluşturmak için kullanılır. 'NodePrivateKey' dosyası,
+> düğümün kendisinin özel anahtarıdır ve gizli tutulmalıdır.
 
-3.Hesaba giriş yaptıktan sonra, şu anda herhangi bir rol oluşturulmadığı için lütfen Rolsüz seçeneğini seçiniz.
+3.Hesaba giriş yaptıktan sonra, şu anda herhangi bir rol oluşturulmadığı için
+lütfen Rolsüz seçeneğini seçiniz.
 
 ### Uygulamaları, rolleri ve şablonları içe aktarın {#import-applications-roles-and-templates}
 
-Şu anda, blockchain platformu boş bir durumda. Temel ekosistem işlevlerini destekleyen roller, şablonlar ve uygulama çerçeveleri ekleyerek yapılandırabilirsiniz.
+Şu anda, blockchain platformu boş bir durumda. Temel ekosistem işlevlerini
+destekleyen roller, şablonlar ve uygulama çerçeveleri ekleyerek
+yapılandırabilirsiniz.
 
 1.Uygulama deposunu klonlayın;
 
@@ -558,10 +626,11 @@ cd/opt/backenddir \
 2. Weaver'da Geliştirici> İçe Aktar'a gidin;
 
 3. Uygulamaları aşağıdaki sıraya göre içe aktarın:
+
 ```
- A./opt/backenddir/dapps/system.json 
- B./opt/backenddir/dapps/conditions.json 
- C./opt/backenddir/dapps/basic.json 
+ A./opt/backenddir/dapps/system.json
+ B./opt/backenddir/dapps/conditions.json
+ C./opt/backenddir/dapps/basic.json
  D./opt/backenddir/dapps/lang_res.json
 ```
 
@@ -571,15 +640,18 @@ cd/opt/backenddir \
 
 6.Sisteme Yönetici olarak giriş yapın;
 
-7. Ana Sayfa> Oy> Şablon Listesi'ne gidin ve Varsayılan Şablonu Yükle'ye tıklayın.
+7. Ana Sayfa> Oy> Şablon Listesi'ne gidin ve Varsayılan Şablonu Yükle'ye
+   tıklayın.
 
 ### İlk düğümü düğüm listesine ekleyin {#add-the-first-node-to-the-node-list}
 
-1.Geliştirici> Platform Parametreleri'ne gidin ve first_nodes parametresini tıklayın;
+1.Geliştirici> Platform Parametreleri'ne gidin ve first_nodes parametresini
+tıklayın;
 
 2.İlk blok zinciri ağ düğümünün parametrelerini belirtin.
 
-  * public_key - Düğümün genel anahtarı `/opt/backenddir/node1/NodePublicKey` dosyasında bulunur;
+- public_key - Düğümün genel anahtarı `/opt/backenddir/node1/NodePublicKey`
+  dosyasında bulunur;
 
 ```
 {"api_address":"http://192.168.1.1:7079","public_key":"%node_public_key%","tcp_address":"192.168.1.1:7078"}
@@ -589,8 +661,12 @@ cd/opt/backenddir \
 
 ### Konsensüs rol grubuna üye ekleyin {#add-members-into-the-consensus-role-group}
 
-Varsayılan olarak, yalnızca fikir birliği rolü (Consensus) grubundaki üyeler, diğer ana düğümleri eklemek için gereken oylamaya katılabilir. Bu, yeni bir ana düğüm eklemeden önce ekosistem üyelerinin role atanması gerektiği anlamına gelir.
-Bu bölümde, içerik oluşturucunun hesabı, fikir birliği rol grubunun tek üyesi olarak belirlenir. Bir üretim ortamında, bu rolün yönetişimi gerçekleştiren platform üyelerine atanması gerekir.
+Varsayılan olarak, yalnızca fikir birliği rolü (Consensus) grubundaki üyeler,
+diğer ana düğümleri eklemek için gereken oylamaya katılabilir. Bu, yeni bir ana
+düğüm eklemeden önce ekosistem üyelerinin role atanması gerektiği anlamına
+gelir. Bu bölümde, içerik oluşturucunun hesabı, fikir birliği rol grubunun tek
+üyesi olarak belirlenir. Bir üretim ortamında, bu rolün yönetişimi
+gerçekleştiren platform üyelerine atanması gerekir.
 
 1. Ana Sayfa> Rol'e gidin ve Konsensüs'e tıklayın;
 
@@ -600,10 +676,11 @@ Bu bölümde, içerik oluşturucunun hesabı, fikir birliği rol grubunun tek ü
 
 1. Weaver'ı çalıştırın;
 
-2. Aşağıdaki verileri kullanarak mevcut hesabı içe aktarın:
-     – `/opt/backenddir/node2/PrivateKey` dosyasında bulunan düğüm sahibinin özel anahtarının yedeğini yükleyin.
-     
-3. Hesaba giriş yaptıktan sonra, şu anda herhangi bir rol oluşturulmadığı için lütfen Rolsüz seçeneğini seçin.
+2. Aşağıdaki verileri kullanarak mevcut hesabı içe aktarın: –
+   `/opt/backenddir/node2/PrivateKey` dosyasında bulunan düğüm sahibinin özel
+   anahtarının yedeğini yükleyin.
+3. Hesaba giriş yaptıktan sonra, şu anda herhangi bir rol oluşturulmadığı için
+   lütfen Rolsüz seçeneğini seçin.
 
 4. Ana Sayfa> Kişisel Bilgiler'e gidin ve kişisel bilgilerin başlığına tıklayın;
 
@@ -612,14 +689,15 @@ Bu bölümde, içerik oluşturucunun hesabı, fikir birliği rol grubunun tek ü
 ### Doğrulayıcı rolüyle düğüm sahibini atayın {#assign-the-node-owner-with-the-validators-role}
 
 1. Yeni düğüm sahibi tarafından yapılan işlemler:
-    1. Ana Sayfa> Doğrulayıcı'ya gidin;
-    2. Talep Oluştur'a tıklayın ve doğrulayıcı adayın başvuru formunu doldurun;
-    3. İstek gönder'e tıklayın.
+   1. Ana Sayfa> Doğrulayıcı'ya gidin;
+   2. Talep Oluştur'a tıklayın ve doğrulayıcı adayın başvuru formunu doldurun;
+   3. İstek gönder'e tıklayın.
 2. Oluşturucu tarafından yapılan işlemler:
-    1. Konsensüs rolüyle oturum açın (Consensus);
-    2. Ana Sayfa> Doğrulayıcı'ya gidin;
-    3. Adayın isteğine göre oylamaya başlamak için "Oynat" simgesine tıklayın;
-    4. Ana Sayfa> Oy'a gidin ve Oylama durumunu güncelle'yi tıklayın;
-    5. Oylama adına tıklayın ve düğüm sahibi için oy verin.
+   1. Konsensüs rolüyle oturum açın (Consensus);
+   2. Ana Sayfa> Doğrulayıcı'ya gidin;
+   3. Adayın isteğine göre oylamaya başlamak için "Oynat" simgesine tıklayın;
+   4. Ana Sayfa> Oy'a gidin ve Oylama durumunu güncelle'yi tıklayın;
+   5. Oylama adına tıklayın ve düğüm sahibi için oy verin.
 
-Sonuç olarak, yeni düğümün sahibinin hesabına Doğrulayıcı rolü atanır ve yeni düğüm, ana düğümler listesine eklenir.
+Sonuç olarak, yeni düğümün sahibinin hesabına Doğrulayıcı rolü atanır ve yeni
+düğüm, ana düğümler listesine eklenir.

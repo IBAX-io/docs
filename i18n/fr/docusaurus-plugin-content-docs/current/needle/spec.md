@@ -25,7 +25,7 @@ In Needle language, the main code block structure includes
 Use the `contract` keyword to declare a smart contract, followed by the name of
 the smart contract, and its content must be enclosed in curly braces.
 
-> ContractStmt = "contract" [Identifier](#spec-identifier)
+> ContractStmt = "contract" [Identifier](#spec-identifier) >
 > [CodeBlockStmt](#spec-codeblock).
 
 Smart contract structure has three main parts: [Data](#spec-data),
@@ -47,7 +47,8 @@ optional and not required.
 
 > `DataStmt` = `"data"` `"{"` { `ParamSign` } `"}"` .
 >
-> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [ `Tag` ] .
+> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [
+> `Tag` ] .
 >
 > `Tag` = `"optional"` .
 
@@ -340,10 +341,10 @@ flow.
 ### Identifier {#spec-identifier}
 
 Identifiers are used to identify variables, functions, constants, and other
-program names. Identifiers are composed of one or more letters `A|a` to `Z|z`, numbers `0` to `9`, and
-underscores `_`, and must begin with a letter. Identifiers cannot contain spaces and
-special characters. Identifiers are case-sensitive and cannot use
-[keywords](#spec-keyword) as identifiers.
+program names. Identifiers are composed of one or more letters `A|a` to `Z|z`,
+numbers `0` to `9`, and underscores `_`, and must begin with a letter.
+Identifiers cannot contain spaces and special characters. Identifiers are
+case-sensitive and cannot use [keywords](#spec-keyword) as identifiers.
 
 > `Identifier` = `unicode_letter` `{` `letter` | `unicode_digit` `}`
 >
@@ -477,7 +478,7 @@ during program execution.
 The keyword `var` is used to declare local variables, and the variable must be
 followed by a variable name and type.
 
-> `LocalVarDecl` = `"var"` [IdentifierList](#spec-identifier)
+> `LocalVarDecl` = `"var"` [IdentifierList](#spec-identifier) >
 > [Typename](#spec-typename) .
 
 When declaring a variable, its value is the default value. To declare one or
@@ -670,47 +671,47 @@ precision loss should be considered to avoid incorrect results.
 The following lists the operators and result types between operands of different
 types:
 
-| operand                           | x       | y       | z       |                                     |
-| --------------------------------- | ------- | ------- | ------- | ----------------------------------- |
-| not(`!`)       | -       |         | bool    | y to bool                           |
-| unary(`+`,`-`) | *       | int     | int     |                                     |
-|                                   | -       | float   | float   |                                     |
-| `<<` , `>>`                       | int     | int     | int     |                                     |
-| `&`,`^`,`｜`                       | int     | int     | int     |                                     |
-| `++` , `--`                       | int     | int     | int     |                                     |
-| `+`,`-`,`*`,`/`,`%`               | string  | string  | string  | (only `+`)       |
-|                                   | string  | int     | int     | x to int                            |
-|                                   | string  | float   | float   | x to decimal, y to decimal          |
-|                                   | float   | string  | float   | x to decimal, y to decimal          |
-|                                   | float   | int     | float   | x to decimal, y to decimal          |
-|                                   | float   | float   | float   | x to decimal, y to decimal          |
-|                                   | int     | string  | int     | y to int                            |
-|                                   | int     | int     | int     |                                     |
-|                                   | int     | float   | float   | x to decimal, y to decimal          |
-|                                   | decimal | string  | decimal | y to decimal                        |
-|                                   | decimal | int     | decimal | y to decimal                        |
-|                                   | decimal | float   | decimal | y to decimal                        |
-|                                   | decimal | decimal | decimal |                                     |
-| `&&`,\`\\                         |         |         | bool    | x to bool, y to bool                |
-| `==` ,`!=` ,`<`,`<=`,`>`,`>=`     | nil     | nil     | bool    | only(`==` ,`!=`) |
-|                                   | bool    | bool    | bool    | only(`==` ,`!=`) |
-|                                   | string  | string  | bool    |                                     |
-|                                   | string  | int     | bool    | y to string                         |
-|                                   | string  | float   | bool    | y to string                         |
-|                                   | string  | decimal | bool    | y to string                         |
-|                                   | float   | string  | bool    | x to decimal, y to decimal          |
-|                                   | float   | int     | bool    | x to decimal, y to decimal          |
-|                                   | float   | float   | bool    | x to decimal, y to decimal          |
-|                                   | float   | decimal | bool    | x to decimal                        |
-|                                   | int     | string  | bool    | y to int                            |
-|                                   | int     | int     | bool    |                                     |
-|                                   | int     | float   | bool    | x to decimal, y to decimal          |
-|                                   | int     | decimal | bool    | y to int                            |
-|                                   | decimal | string  | bool    | y to decimal                        |
-|                                   | decimal | int     | bool    | y to decimal                        |
-|                                   | decimal | float   | bool    | y to decimal                        |
-|                                   | decimal | decimal | bool    |                                     |
-|                                   |         |         |         |                                     |
+| operand                       | x       | y       | z       |                            |
+| ----------------------------- | ------- | ------- | ------- | -------------------------- |
+| not(`!`)                      | -       |         | bool    | y to bool                  |
+| unary(`+`,`-`)                | \*      | int     | int     |                            |
+|                               | -       | float   | float   |                            |
+| `<<` , `>>`                   | int     | int     | int     |                            |
+| `&`,`^`,`｜`                  | int     | int     | int     |                            |
+| `++` , `--`                   | int     | int     | int     |                            |
+| `+`,`-`,`*`,`/`,`%`           | string  | string  | string  | (only `+`)                 |
+|                               | string  | int     | int     | x to int                   |
+|                               | string  | float   | float   | x to decimal, y to decimal |
+|                               | float   | string  | float   | x to decimal, y to decimal |
+|                               | float   | int     | float   | x to decimal, y to decimal |
+|                               | float   | float   | float   | x to decimal, y to decimal |
+|                               | int     | string  | int     | y to int                   |
+|                               | int     | int     | int     |                            |
+|                               | int     | float   | float   | x to decimal, y to decimal |
+|                               | decimal | string  | decimal | y to decimal               |
+|                               | decimal | int     | decimal | y to decimal               |
+|                               | decimal | float   | decimal | y to decimal               |
+|                               | decimal | decimal | decimal |                            |
+| `&&`,\`\\                     |         |         | bool    | x to bool, y to bool       |
+| `==` ,`!=` ,`<`,`<=`,`>`,`>=` | nil     | nil     | bool    | only(`==` ,`!=`)           |
+|                               | bool    | bool    | bool    | only(`==` ,`!=`)           |
+|                               | string  | string  | bool    |                            |
+|                               | string  | int     | bool    | y to string                |
+|                               | string  | float   | bool    | y to string                |
+|                               | string  | decimal | bool    | y to string                |
+|                               | float   | string  | bool    | x to decimal, y to decimal |
+|                               | float   | int     | bool    | x to decimal, y to decimal |
+|                               | float   | float   | bool    | x to decimal, y to decimal |
+|                               | float   | decimal | bool    | x to decimal               |
+|                               | int     | string  | bool    | y to int                   |
+|                               | int     | int     | bool    |                            |
+|                               | int     | float   | bool    | x to decimal, y to decimal |
+|                               | int     | decimal | bool    | y to int                   |
+|                               | decimal | string  | bool    | y to decimal               |
+|                               | decimal | int     | bool    | y to decimal               |
+|                               | decimal | float   | bool    | y to decimal               |
+|                               | decimal | decimal | bool    |                            |
+|                               |         |         |         |                            |
 
 ### Slice {#spec-slice}
 
@@ -792,10 +793,10 @@ executed, otherwise the `else` code block is executed.
 `elif` is actually equivalent to `else if`, it must be defined before the `else`
 statement.
 
-> `IfStmt` = "if" [Expression](#spec-expression)
+> `IfStmt` = "if" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) { `ElIfStmtList` } [`ElseStmt`] .
 >
-> `ElIfStmtList` = "elif" [Expression](#spec-expression)
+> `ElIfStmtList` = "elif" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) .
 >
 > `ElseStmt` = "else" [CodeBlockStmt](#spec-codeblock) .
@@ -816,7 +817,7 @@ The `while` statement provides the ability to repeatedly execute a code block as
 long as the expression evaluates to `true`. The condition is evaluated before
 each iteration.
 
-> `WhileStmt` = "while" [Expression](#spec-expression)
+> `WhileStmt` = "while" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) .
 
 ```c

@@ -1,19 +1,24 @@
 # Sunucu Yapılandırma Dosyası {#server-configuration-file}
 
 Bu bölümde, sunucu yapılandırma dosyasındaki parametreleri tanıtacağız.
-## Sunucu yapılandırma dosyasına giriş  {#introduction-to-the-server-configuration-file}
+
+## Sunucu yapılandırma dosyasına giriş {#introduction-to-the-server-configuration-file}
 
 Sunucu yapılandırma dosyası, IBAX'in düğüm yapılandırmasını tanımlar.
+
 ## Konum {#location}
 
-Bu dosya sunucunun çalışma dizininde bulunur ve `config.toml` olarak adlandırılır.
+Bu dosya sunucunun çalışma dizininde bulunur ve `config.toml` olarak
+adlandırılır.
+
 ## Bölümler {#sections}
 
 Yapılandırma dosyası aşağıdaki bölümlerden oluşur:
 
 > genel bölüm
 
-DataDir çalışma dizini, FirstBlockPath ilk blok dizini ve diğer parametreleri tanımlar.
+DataDir çalışma dizini, FirstBlockPath ilk blok dizini ve diğer parametreleri
+tanımlar.
 
 > [TCPServer]
 
@@ -48,6 +53,7 @@ Günlük hizmeti Günlüğünün parametrelerini tanımlar.
 Token dolaşım hizmeti TokenMovement'in parametrelerini tanımlar.
 
 ## Örnek bir yapılandırma dosyası {#an-example-configuration-file}
+
 ```
 PidFilePath = "/IBAX-data/go-ibax.pid"
 LockFilePath = "/IBAX-data/go-ibax.lock"

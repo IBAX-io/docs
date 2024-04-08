@@ -5,7 +5,6 @@ toc_max_heading_level: 4
 
 import TOCInline from '@theme/TOCInline';
 
-
 # Compiler and Virtual Machine {#compiler-and-virtual-machine}
 
 This section involves program compilation and Needle language operations in the
@@ -179,8 +178,8 @@ The **ContractInfo** structure has the following elements:
 - **Name** - contract name;
 - **Owner** - other information about the contract;
 - **Used** - map of contracts names that has been called;
-- **Tx** - a data array described in the [data section](/needle/spec#spec-data) of
-  the contract;
+- **Tx** - a data array described in the [data section](/needle/spec#spec-data)
+  of the contract;
 - **Settings** - declare constants in the contract;
 - **CanWrite** - a flag indicating whether the contract can write to the
   database.

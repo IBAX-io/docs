@@ -689,9 +689,9 @@ Operations with strings:
 
 Operations with bytes:
 
-|                                 |                                 |   |
-| ------------------------------- | ------------------------------- | - |
-| [StringToBytes](#stringtobytes) | [BytesToString](#bytestostring) |   |
+|                                 |                                 |     |
+| ------------------------------- | ------------------------------- | --- |
+| [StringToBytes](#stringtobytes) | [BytesToString](#bytestostring) |     |
 
 Operations with date and time in SQL format:
 
@@ -708,9 +708,9 @@ Operations with platform parameters:
 
 CLB mode function operation:
 
-|                             |                               |   |
-| --------------------------- | ----------------------------- | - |
-| [HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) |   |
+|                             |                               |     |
+| --------------------------- | ----------------------------- | --- |
+| [HTTPRequest](#httprequest) | [HTTPPostJSON](#httppostjson) |     |
 
 Functions for master CLB nodes:
 

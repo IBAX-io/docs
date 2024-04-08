@@ -634,8 +634,8 @@ name.
 ```
 
 The **ExtFuncInfo** structure has an **Auto** parameter array. Usually the first
-parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from
-the Needle language, because they are necessary for us to execute some golang
+parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from the
+Needle language, because they are necessary for us to execute some golang
 functions. Therefore, we specify that these variables will be used automatically
 when these functions are called. In this case, the first parameter of the above
 four functions is `rt *Runtime`.
