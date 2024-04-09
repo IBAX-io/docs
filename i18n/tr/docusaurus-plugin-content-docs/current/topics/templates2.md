@@ -988,8 +988,7 @@ Entri ID.
 
 - "isim"
 
-
-    Alan adı
+  Alan adı
 
 > Limit
 

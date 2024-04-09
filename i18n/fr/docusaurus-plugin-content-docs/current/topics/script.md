@@ -740,8 +740,6 @@ deuxième élément. Vous devriez utiliser la structure de requête suivante :
 
     Requêtes par ID. Par exemple, .WhereId(1).
 
-
-
 > Order
 
     Utilisé pour trier l'ensemble de résultats par une colonne spécifiée, ou par id par défaut.
@@ -763,8 +761,6 @@ deuxième élément. Vous devriez utiliser la structure de requête suivante :
 > Ecosystemid
 
     Identifiant de l'écosystème. Par défaut, la table de l'écosystème actuel est interrogée.
-
-
 
 **Exemple**
 

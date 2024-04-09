@@ -2169,7 +2169,9 @@ txN - transaction N
 }
 ```
 
-**Hatalı Cevap** E_LIMITTXSIZE,_E_BANNED_
+**Hatalı Cevap** 
+
+_E_LIMITTXSIZE_, _E_BANNED_
 
 ### txstatus {#txstatus}
 

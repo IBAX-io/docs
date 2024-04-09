@@ -1411,8 +1411,8 @@ _E_ECOSYSTEM_
 
 [Authorization](#authorization)
 
-**GET**/ Renvoie des informations sur le paramètre **`{name}`** dans l'écosystème
-actuel ou spécifié.
+**GET**/ Renvoie des informations sur le paramètre **`{name}`** dans
+l'écosystème actuel ou spécifié.
 
 **Demande**
 

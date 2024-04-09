@@ -1,76 +1,52 @@
+---
+toc_min_heading_level: 2
+toc_max_heading_level: 4
+---
+
+import TOCInline from '@theme/TOCInline';
+
 # Compiler and Virtual Machine {#compiler-and-virtual-machine}
 
-- [Source code storage and compilation](#source-code-storage-and-compilation)
-- [Virtual machine structures](#virtual-machine-structures)
-  - [VM Structure](#vm-structure)
-  - [Block structure](#block-structure)
-  - [ObjInfo structure](#objinfo-structure)
-    - [ContractInfo structure](#contractinfo-structure)
-    - [FieldInfo structure](#fieldinfo-structure)
-    - [FuncInfo structure](#funcinfo-structure)
-    - [FuncName Structure](#funcname-structure)
-    - [ExtFuncInfo structure](#extfuncinfo-structure)
-    - [VarInfo structure](#varinfo-structure)
-    - [ObjExtend value](#objextend-value)
-- [Virtual machine commands](#virtual-machine-commands)
-  - [ByteCode structure](#bytecode-structure)
-  - [Command identifiers](#command-identifiers)
-  - [Stack operation commands](#stack-operation-commands)
-  - [Runtime structure](#runtime-structure)
-    - [blockStack structure](#blockstack-structure)
-  - [RunCode function](#runcode-function)
-  - [Other functions for operations with VM](#other-functions-for-operations-with-vm)
-- [Compiler](#compiler)
-- [Lexical analyzer](#lexical-analyzer)
-  - [lextable/lextable.go](#lextable-lextable-go)
-  - [lex.go](#lex-go)
-- [Needle language](#needle-language)
-  - [Lexemes](#lexemes)
-  - [Types](#types)
-  - [Expressions](#expressions)
-  - [Scope](#scope)
-  - [Contract execution](#contract-execution)
-  - [Backus–Naur Form (BNF)](#backus-naur-form-bnf)
+Bu bölüm, Sanal Makinede (VM) program derleme ve Needle dili işlemlerini içerir.
 
-This section involves program compilation and Needle language operations in the
-Virtual Machine (VM).
+<TOCInline toc={toc} />
 
-## Source code storage and compilation {#source-code-storage-and-compilation}
+## Kaynak kodu depolama ve derleme {#source-code-storage-and-compilation}
 
-Contracts and functions are written with Golang and stored in the contract
-tables of ecosystems.
+Sözleşmeler ve fonksiyonlar Golang ile yazılır ve ekosistemlerin sözleşme
+tablolarında saklanır.
 
-When a contract is executed, its source code will be read from the database and
-compiled into bytecode.
+Bir sözleşme yürütüldüğünde, kaynak kodu veritabanından okunacak ve bayt koduna
+derlenecektir.
 
-When a contract is changed, its source code will be updated and saved in the
-database. Then, the source code is compiled, thereby updating the bytecode in
-the corresponding virtual machine.
+Bir sözleşme değiştirildiğinde, kaynak kodu güncellenecek ve veritabanına
+kaydedilecektir. Daha sonra kaynak kod derlenir, böylece ilgili sanal makinedeki
+bayt kodu güncellenir.
 
-As bytecodes are not physically saved, it will be compiled anew when the program
-is executed again.
+Bayt kodları fiziksel olarak kaydedilmediği için program tekrar
+çalıştırıldığında yeniden derlenecektir.
 
-The entire source code described in the contract table of each ecosystem is
-compiled into a virtual machine in strict order, and the status of the virtual
-machine is the same on all nodes.
+Her ekosistemin sözleşme tablosunda açıklanan kaynak kodunun tamamı katı bir
+sırayla sanal bir makinede derlenir ve sanal makinenin durumu tüm düğümlerde
+aynıdır.
 
-When the contract is called, the virtual machine will not change its status in
-any way. The execution of any contract or calling of any function occurs on a
-separate running stack created during each external call.
+Sözleşme çağrıldığında, sanal makine durumunu hiçbir şekilde değiştirmeyecektir.
+Herhangi bir sözleşmenin yürütülmesi veya herhangi bir işlevin çağrılması, her
+harici çağrı sırasında oluşturulan ayrı bir çalışan yığında gerçekleşir.
 
-Each ecosystem can have a so-called virtual ecosystem, which can be used within
-a node in conjunction with tables outside the blockchain, without direct
-affection on the blockchain or other virtual ecosystems. In this case, the node
-hosting such a virtual ecosystem will compile its contract and create its own
-virtual machine.
+Her ekosistem, blok zinciri veya diğer sanal ekosistemler üzerinde doğrudan etki
+olmaksızın blok zinciri dışındaki tablolarla birlikte bir düğüm içinde
+kullanılabilen sanal bir ekosisteme sahip olabilir. Bu durumda böyle bir sanal
+ekosistemi barındıran düğüm, sözleşmesini derleyecek ve kendi sanal makinesini
+oluşturacaktır.
 
-## Virtual machine structures {#virtual-machine-structures}
+## Sanal makine yapıları {#virtual-machine-structures}
 
-### VM Structure {#vm-structure}
+### VM Yapıları {#vm-structure}
 
-A virtual machine is organized in memory as a structure like below.
+Bir sanal makine, aşağıdaki gibi bir yapı olarak bellekte düzenlenmiştir.
 
-```go
+```
 type VM struct {
    Block
    ExtCost func(string) int64
@@ -81,33 +57,33 @@ type VM struct {
 }
 ```
 
-A VM structure has the following elements:
+Bir VM yapısı aşağıdaki öğelere sahiptir:
 
-- Block - contains a [block structure](#block-structure);
-- ExtCost - a function returns the cost of executing an external golang
-  function;
-- FuncCallsDB - a collection of Golang function names. This function returns the
-  execution cost as the first parameter. These functions use EXPLAIN to
-  calculate the cost of database processing;
-- Extern - a Boolean flag indicating whether a contract is an external contract.
-  It is set to true when a VM is created. Contracts called are not displayed
-  when the code is compiled. In other words, it allows to call the contract code
-  determined in the future;
-- ShiftContract - ID of the first contract in the VM;
-- logger - VM error log output.
+- Blok - bir [blok yapısı](#block-structure);
+- ExtCost - bir işlev, harici bir golang işlevini yürütmenin maliyetini
+  döndürür;
+- FuncCallsDB - Golang işlev adlarının bir koleksiyonu. Bu işlev, yürütme
+  maliyetini ilk parametre olarak döndürür. Bu işlevler, veritabanı işleme
+  maliyetini hesaplamak için EXPLAIN'i kullanır;
+- Extern - bir sözleşmenin harici bir sözleşme olup olmadığını gösteren bir
+  Boole bayrağı. Bir VM oluşturulduğunda true olarak ayarlanır. Kod
+  derlendiğinde çağrılan sözleşmeler görüntülenmez. Yani ileride belirlenen
+  sözleşme kodunun çağrılmasını sağlar;
+- ShiftContract - VM'deki ilk sözleşmenin kimliği;
+- logger - VM hata günlüğü çıktısı.
 
-### Block structure {#block-structure}
+### Blok Yapıları {#block-structure}
 
-A virtual machine is a tree composed of **Block type** objects.
+Sanal makine, **Blok tipi** nesnelerden oluşan bir ağaçtır.
 
-A block is an independent unit that contains some bytecodes. In simple terms,
-everything you put in the braces (`{}`) in the language is a block.
+Bir blok, bazı bayt kodları içeren bağımsız bir birimdir. Basit bir ifadeyle,
+dilde parantezler (`{}`) içine koyduğunuz her şey bir bloktur.
 
-For example, the following code would create a block with functions. This block
-also contains another block with an if statement, which contains a block with a
-while statement.
+Örneğin, aşağıdaki kod, fonksiyonlara sahip bir blok oluşturacaktır. Bu blok
+ayrıca bir if ifadesine sahip başka bir blok içerir ve bu blok while ifadesine
+sahip bir blok içerir.
 
-```go
+```
 func my() {
    if true {
       while false {
@@ -117,9 +93,9 @@ func my() {
 }
 ```
 
-The block is organized in the memory as a structure like below.
+Blok, bellekte aşağıdaki gibi bir yapı olarak düzenlenmiştir.
 
-```go
+```
 type Block struct {
    Objects map[string]*ObjInfo
    Type int
@@ -132,29 +108,27 @@ type Block struct {
 }
 ```
 
-A block structure consists of the following elements:
+Bir blok yapısı aşağıdaki unsurlardan oluşur:
 
-- **Objects** - a map of internal objects of the pointer type
-  [ObjInfo](#objinfo-structure). For example, if there is a variable in the
-  block, you can get information about it by its name;
-- **Type** - the type of the block. For a function block, its type is
-  **ObjFunc**; for a contract block, its type is **ObjContract**;
-- **Owner** - a structure of **OwnerInfo** pointer type. This structure contains
-  information about the owner of the compiled contract, which is specified
-  during contract compilation or obtained from the **contracts** table;
-- **Info** - it contains information about the object, which depends on the
-  block type;
-- **Parent** - a pointer to the parent block;
-- **Vars** - an array containing the types of current block variables;
-- **Code** - the bytecode of the block itself, which will be executed when the
-  control rights are passed to the block, for example, function calls or loop
-  bodies;
-- **Children** - an array containing sub-blocks, such as function nesting,
-  loops, conditional operators.
+- **Objects** - [ObjInfo](#objinfo-structure) pointer türündeki internal
+  objelerin haritası. Örneğin, blokta bir değişken varsa, onun adıyla ilgili
+  bilgi alabilirsiniz;
+- **Type** - bloğun türü. Bir fonksiyon bloğu için tipi **ObjFunc**; bir
+  sözleşme bloğu için türü **ObjContract**'tır;
+- **Owner** - **OwnerInfo** işaretçi türünün yapısı. Bu yapı, sözleşmenin
+  derlenmesi sırasında belirtilen veya **sözleşmeler** tablosundan elde edilen,
+  derlenmiş sözleşmenin sahibine ilişkin bilgileri içerir;
+- **Info** - blok türüne bağlı olarak nesne hakkında bilgi içerir;
+- **Parent** - üst bloğa bir işaretçi;
+- **Vars** - mevcut blok değişkenlerinin türlerini içeren bir dizi;
+- **Code** - örneğin fonksiyon çağrıları veya döngü gövdeleri gibi kontrol
+  hakları bloğa aktarıldığında yürütülecek bloğun kendisinin bayt kodu;
+- **Children** - fonksiyon iç içe yerleştirme, döngüler, koşullu operatörler
+  gibi alt blokları içeren bir dizi.
 
-### ObjInfo structure {#objinfo-structure}
+### ObjInfo Yapısı {#objinfo-structure}
 
-The ObjInfo structure contains information about internal objects.
+ObjInfo yapısı, internal nesneler hakkında bilgi içerir.
 
 ```
 type ObjInfo struct {
@@ -163,22 +137,20 @@ type ObjInfo struct {
 }
 ```
 
-The ObjInfo structure has the following elements:
+ObjInfo yapısı aşağıdaki öğelere sahiptir:
 
 - **Type** is the object type, which has any of the following values:
-
   - **ObjContract** – [contract](#contractinfo-structure);
   - **ObjFunc** - function;
   - **ObjExtFunc** - external golang function;
   - **ObjVar** - variable;
   - **ObjExtend** - $name variable.
-
 - **Value** – it contains the structure of each type.
 
-#### ContractInfo structure {#contractinfo-structure}
+#### ContractInfo Yapısı {#contractinfo-structure}
 
-Pointing to the **ObjContract** type, and the **Value** field contains a
-**ContractInfo** structure.
+**ObjContract** türüne işaret edilir ve **Value** alanı bir **ContractInfo**
+yapısı içerir.
 
 ```
 type ContractInfo struct {
@@ -190,19 +162,19 @@ type ContractInfo struct {
 }
 ```
 
-The ContractInfo structure has the following elements:
+ContractInfo yapısı aşağıdaki değişkenlere sahiptir:
 
-- **ID** - contract ID, displayed in the blockchain when calling the contract;
-- **Name** - contract name;
-- **Owner** - other information about the contract;
-- **Used** - map of contracts names that has been called;
-- **Tx** - a data array described in the [data section](script.md#data-section)
-  of the contract.
+- **ID** - sözleşme çağrılırken blok zincirinde görüntülenen contractID
+- **Name** - contract adı;
+- **Owner** - sözleşme ile ilgili diğer bilgiler;
+- **Used** - çağrılan sözleşme adlarının haritası;
+- **Tx** - kontratın [data section](script.md#data-section) açıklanan bir veri
+  dizisi.
 
-#### FieldInfo structure {#fieldinfo-structure}
+#### FieldInfo Yapısı {#fieldinfo-structure}
 
-The FieldInfo structure is used in the **ContractInfo** structure and describes
-elements in [data section](script.md#data-section) of a contract.
+FieldInfo yapısı **ContractInfo** yapısında kullanılır ve bir sözleşmenin
+[datasection](script.md#data-section) içindeki öğeleri açıklar.
 
 ```
 type FieldInfo struct {
@@ -213,16 +185,16 @@ type FieldInfo struct {
 }
 ```
 
-The FieldInfo structure has the following elements:
+FieldInfo yapısı aşağıdaki öğelere sahiptir:
 
-- **Name** - field name;
-- **Type** - field type;
-- **Original** - optional field;
-- **Tags** - additional labels for this field.
+- **Name** - field adı;
+- **Type** - field tipi;
+- **Original** - opsiyonel field;
+- **Tags** - bu alan için ek etiketler.
 
-#### FuncInfo structure {#funcinfo-structure}
+#### FuncInfo Yapısı {#funcinfo-structure}
 
-Pointing to the ObjFunc type, and the Value field contains a FuncInfo structure.
+ObjFunc tipine işaret eden ve Değer alanı bir FuncInfo yapısı içerir.
 
 ```
 type FuncInfo struct {
@@ -234,19 +206,19 @@ type FuncInfo struct {
 }
 ```
 
-The FuncInfo structure has the following elements:
+FuncInfo yapısı aşağıdaki değişkenlere sahiptir:
 
-- **Params** - an array of parameter types;
-- **Results** - an array of returned types;
-- **Names** - map of data for tail functions, for example,
+- **Params** - bir dizi parametre türü;
+- **Results** - bir dizi döndürülen tür;
+- **Names** - örneğin kuyruk fonksiyonları için veri haritası,
   `DBFind().Columns ()`;
-- **Variadic** - true if the function can have a variable number of parameters;
+- **Variadic** - işlev değişken sayıda parametreye sahip olabilirse true;
 - **ID** - function ID.
 
-#### FuncName Structure {#funcname-structure}
+#### FuncName Yapısı {#funcname-structure}
 
-The FuncName structure is used for FuncInfo and describes the data of a tail
-function.
+FuncName yapısı, FuncInfo için kullanılır ve bir kuyruk fonksiyonunun verilerini
+tanımlar.
 
 ```
 type FuncName struct {
@@ -256,20 +228,19 @@ type FuncName struct {
 }
 ```
 
-The FuncName structure has the following elements:
+FuncName yapısı aşağıdaki öğelere sahiptir:
 
-- **Params** - an array of parameter types;
-- **Offset** - the array of offsets for these variables. In fact, the values of
-  all parameters in a function can be initialized with the dot .;
-- **Variadic** - true if the tail function can have a variable number of
-  parameters.
+- **Params** - bir dizi parametre türü;
+- **Offset** - bu değişkenler için ofset dizisi. Aslında, bir fonksiyondaki tüm
+  parametrelerin değerleri dot. ile başlatılabilir;
+- **Variadic** - tail işlevi değişken sayıda parametreye sahip olabilirse true.
 
-#### ExtFuncInfo structure {#extfuncinfo-structure}
+#### ExtFuncInfo Yapısı {#extfuncinfo-structure}
 
-Pointing to the ObjExtFunc type, and the Value field contains a ExtFuncInfo
-structure. It is used to describe golang functions.
+ObjExtFunc türüne işaret eden ve Değer alanı bir ExtFuncInfo yapısı içerir.
+Golang fonksiyonlarını tanımlamak için kullanılır.
 
-```go
+```
 type ExtFuncInfo struct {
    Name string
    Params []reflect.Type
@@ -280,126 +251,125 @@ type ExtFuncInfo struct {
 }
 ```
 
-The ExtFuncInfo structure has the following elements:
+ExtFuncInfo yapısı aşağıdaki öğelere sahiptir:
 
-- **Name**, **Params**, **Results** parameters have the same structure as
-  [FuncInfo](#funcinfo-structure);
-- **Auto** - an array of variables. If any, passes to the function as an
-  additional parameter. For example, a variable of type SmartContract sc;
-- **Func** - golang functions.
+- **Name**, **Params**, **Results** parametreler [FuncInfo](#funcinfo-structure)
+  ile aynı yapıya sahiptir;
+- **Auto** - bir dizi değişken. Varsa ek parametre olarak fonksiyona geçer.
+  Örneğin, SmartContract sc türünde bir değişken;
+- **Func** - golang fonksiyonu.
 
-#### VarInfo structure {#varinfo-structure}
+#### VarInfo Yapısı {#varinfo-structure}
 
-Pointing to the **ObjVar** type, and the **Value** field contains a **VarInfo**
-structure.
+**ObjVar** türüne işaret edilir ve **Value** alanı bir **VarInfo** yapısı
+içerir.
 
-```go
+```
 type VarInfo struct {
    Obj *ObjInfo
    Owner *Block
 }
 ```
 
-The VarInfo structure has the following elements:
+VarInfo yapısı aşağıdaki unsurlara sahiptir:
 
-- **Obj** - information about the type and value of the variable;
-- **Owner** - Pointer to the owner block.
+- **Obj** - değişkenin türü ve değeri hakkında bilgi;
+- **Owner** - Owner bloğunun pointerı.
 
-#### ObjExtend value {#objextend-value}
+#### ObjExtend Değer {#objextend-value}
 
-Pointing to the **ObjExtend** type, and the **Value** field contains a string
-containing the name of the variable or function.
+**ObjExtend** türüne işaret edilir ve **Value** alanı, değişken veya işlevin
+adını içeren bir dize içerir.
 
-## Virtual machine commands {#virtual-machine-commands}
+## Sanal makine komutları {#virtual-machine-commands}
 
-### ByteCode structure {#bytecode-structure}
+### ByteCode Yapısı {#bytecode-structure}
 
-A bytecode is a sequence of **ByteCode** type structures.
+Bir bayt kodu, **ByteCode** tipi yapıların bir dizisidir.
 
-```go
+```
 type ByteCode struct {
    Cmd uint16
    Value interface{}
 }
 ```
 
-This structure has the following fields:
+Bu yapı aşağıdaki alanlara sahiptir:
 
 - **Cmd** - the identifier of the storage commands;
-- **Value** - contains the operand (value).
+- **Value** - işleneni içerir (değer).
 
-In general, commands perform an operation on the top element of the stack and
-writes the result value into it if necessary.
+Genel olarak komutlar, yığının en üst öğesinde bir işlem gerçekleştirir ve
+gerekirse sonuç değerini buna yazar.
 
 ### Command identifiers {#command-identifiers}
 
-Identifiers of the virtual machine commands are described in the vm/cmds_list.go
-file.
+Sanal makine komutlarının identifiersları, vm/cmds_list.go dosyasında
+açıklanmıştır.
 
-- **cmdPush** – put a value from the Value field to the stack. For example, put
-  numbers and lines to the stack;
-- **cmdVar** - put the value of a variable to the stack. Value contains a
-  pointer to the VarInfo structure and information about the variable;
-- **cmdExtend** – put the value of an external variable to the stack. Value
-  contains a string with the variable name (starting with $);
-- **cmdCallExtend** – call an external function (starting with `$`). The
-  parameters of the function are obtained from the stack, and the results are
-  placed to the stack. Value contains a function name (starting with `$`);
-- **cmdPushStr** – put the string in Value to the stack;
-- **cmdCall** - calls the virtual machine function. Value contains a **ObjInfo**
-  structure. This command is applicable to the **ObjExtFunc** golang function
-  and **ObjFunc** Needle function. If a function is called, its parameters will
-  be obtained from the stack and the result values will be placed to the stack;
-- **cmdCallVari** - similar to the **cmdCall** command, it calls the virtual
-  machine function. This command is used to call a function with a variable
-  number of parameters;
-- **cmdReturn** - used to exit the function. The return values will be put to
-  the stack, and the Value field is not used;
-- **cmdIf** – transfer control to the bytecode in the **block** structure, which
-  is passed in the Value field. The control will be transferred to the stack
-  only when the top element of the stack is called by the _valueToBool_ function
-  and returned `true`. Otherwise, the control will be transferred to the next
-  command;
-- **cmdElse** - this command works in the same way as the **cmdIf**, but only
-  when the top element of the stack is called by the valueToBool function and
-  returned `false`, the control will be transferred to the specified block;
-- **cmdAssignVar** – get a list of variables of type **VarInfo** from Value.
-  These variables use the **cmdAssign** command to get the value;
-- **cmdAssign** – assign the value in the stack to the variable obtained by the
-  **cmdAssignVar** command;
-- **cmdLabel** - defines a label when control is returned during the while loop;
-- **cmdContinue** - this command transfers control to the **cmdLabel** label.
-  When executing a new iteration of the loop, Value is not used;
-- **cmdWhile** – use valueToBool to check the top element of the stack. If this
-  value is `true`, the **block** structure will be called from the value field;
-- **cmdBreak** - exits the loop;
-- **cmdIndex** – put the value in map or array into the stack by index, without
-  using Value. For example,
+- **cmdPush** – Değer alanından yığına bir değer koyun. Örneğin, yığına sayılar
+  ve satırlar koyun;
+- **cmdVar** - bir değişkenin değerini yığına koyun. Değer, VarInfo yapısına bir
+  işaretçi ve değişken hakkında bilgi içerir;
+- **cmdExtend** – yığına harici bir değişkenin değerini koyun. Değer, değişken
+  adıyla ($ ile başlayan) bir dize içerir;
+- **cmdCallExtend** – harici bir işlevi çağırın ($ ile başlayan). Fonksiyonun
+  parametreleri yığından elde edilir ve sonuçlar yığına yerleştirilir. Değer bir
+  fonksiyon adı içerir ($ ile başlar);
+- **cmdPushStr** – dizeyi Değer'e yığına koyun;
+- **cmdCall** - sanal makine işlevini çağırır. Değer bir **ObjInfo** yapısı
+  içerir. Bu komut, **ObjExtFunc** golang işlevi ve **ObjFunc** İğne işlevi için
+  geçerlidir. Bir fonksiyon çağrılırsa, parametreleri yığından alınacak ve sonuç
+  değerleri yığına yerleştirilecektir;
+- **cmdCallVari** - **cmdCall** komutuna benzer şekilde sanal makine işlevini
+  çağırır. Bu komut, değişken sayıda parametreye sahip bir işlevi çağırmak için
+  kullanılır;
+- **cmdReturn** - fonksiyondan çıkmak için kullanılır. Dönüş değerleri yığına
+  konur ve Değer alanı kullanılmaz;
+- **cmdIf** – Değer alanına iletilen **blok** yapısındaki bayt koduna kontrolü
+  aktarın. Kontrol, yalnızca yığının en üst öğesi _valueToBool_ işlevi
+  tarafından çağrıldığında ve 'true' döndürüldüğünde yığına aktarılacaktır. Aksi
+  takdirde, kontrol bir sonraki komuta aktarılacaktır;
+- **cmdElse** - bu komut, **cmdIf** ile aynı şekilde çalışır, ancak yalnızca
+  yığının üst öğesi valueToBool işlevi tarafından çağrıldığında ve 'false'
+  döndürüldüğünde, kontrol belirtilen bloğa aktarılacaktır;
+- **cmdAssignVar** – Value'dan **VarInfo** türündeki değişkenlerin bir listesini
+  alın. Bu değişkenler,**cmdAssign** değeri almak için komut;
+- **cmdAssign** – yığındaki değeri **cmdAssignVar** komutuyla elde edilen
+  değişkene atayın;
+- **cmdLabel** - while döngüsü sırasında kontrol döndürüldüğünde bir etiket
+  tanımlar;
+- **cmdContinue** - bu komut, kontrolü **cmdLabel** etiketine aktarır. Döngünün
+  yeni bir yinelemesi yürütülürken Değer kullanılmaz;
+- **cmdWhile** – yığının üst öğesini kontrol etmek için valueToBool kullanın. Bu
+  değer "doğru" ise,**block** yapı, değer alanından çağrılır;
+- **cmdBreak** - döngüden çıkar;
+- **cmdIndex** – Değer kullanmadan, haritadaki veya dizideki değeri dizine göre
+  yığına koyun. Örneğin,
   `(map | array) (index value) => (map | array [index value])`;
-- **cmdSetIndex** – assigns the value of the top element of the stack to
-  elements of map or array, without using Value. For example,
+- **cmdSetIndex** – Değer kullanmadan, yığının en üst öğesinin değerini harita
+  veya dizi öğelerine atar. Örneğin,
   `(map | array) (index value) (value) => (map | array)`;
-- **cmdFuncName** - adds parameters that are passed using sequential
-  descriptions divided by dot . For example,
-  `func name => Func (...) .Name (...)`;
-- **cmdUnwrapArr** - defines a Boolean flag if the top element of the stack is
-  an array;
-- **cmdMapInit** – initializes the value of map;
-- **cmdArrayInit** – initializes the value of array;
-- **cmdError** - this command is created when a contract or function terminates
-  with a specified `error, warning, info`.
+- **cmdFuncName** - dot. ile bölünen sıralı açıklamalar kullanılarak geçirilen
+  parametreleri ekler. Örneğin, `func name => Func (...) .Name (...)`;
+- **cmdUnwrapArr** - yığının en üst öğesi bir dizi ise bir Boole bayrağı
+  tanımlar;
+- **cmdMapInit** – map değerini başlatır;
+- **cmdArrayInit** - dizinin değerini başlatır;
+- **cmdError** - bu komut, bir sözleşme veya işlev belirtilen bir ile sona
+  erdiğinde oluşturulur.`error, warning, info`.
 
-### Stack operation commands {#stack-operation-commands}
+### Yığın işlem komutları {#stack-operation-commands}
 
-:::tip
+> Not
 
-In the current version, automatic type conversion is not fully applicable for
-these commands. see [Operator](../needle/spec.md#spec-operator).
+> Mevcut sürümde, bu komutlar için otomatik tip dönüştürme tam olarak
+> uygulanamaz. Örneğin,
 
-:::
+> `string + float | int | decimal => float | int | decimal, float + int | str => float, but int + string => runtime error`.
 
-The following are commands for direct stack processing. The Value field is not
-used in these commands.
+Aşağıdakiler, doğrudan yığın işleme için komutlardır. Bu komutlarda Değer alanı
+kullanılmaz.
 
 - **cmdNot** - logical negation. `(val) => (!ValueToBool(val))`;
 - **cmdSign** - change of sign. `(val) => (-val)`;
@@ -424,14 +394,14 @@ used in these commands.
 - **cmdNotGreat** - less-than-or-equal comparison, bool is returned.
   `(val1)(val2) => (val1 <= val2)`.
 
-### Runtime structure {#runtime-structure}
+### Runtime Yapısı {#runtime-structure}
 
-The execution of bytecodes will not affect the virtual machine. For example, it
-allows various functions and contracts to run simultaneously in a single virtual
-machine. The Runtime structure is used to run functions and contracts, as well
-as any expressions and bytecode.
+Bayt kodlarının yürütülmesi sanal makineyi etkilemez. Örneğin, çeşitli
+işlevlerin ve sözleşmelerin tek bir sanal makinede aynı anda çalışmasına izin
+verir. Runtime yapısı, herhangi bir ifade ve bayt kodunun yanı sıra işlevleri ve
+sözleşmeleri çalıştırmak için kullanılır.
 
-```go
+```
 type RunTime struct {
    stack []interface{}
    blocks []*blockStack
@@ -443,47 +413,47 @@ type RunTime struct {
 }
 ```
 
-- **stack** - the stack to execute the bytecode;
-- **blocks** - block calls stack;
-- **vars** - stack of variables. Its variable will be added to the stack of
-  variables when the bytecode is called in the block. After exiting the block,
-  the size of the stack of variables will return to the previous value;
-- **extend** - a pointer to map with values of external variables (`$name`);
-- **vm** - a virtual machine pointer;
-- **cost** - fuel unit of the resulting cost of execution;
-- **err** - error occurred during execution.
+- **stack** - bayt kodunu yürütmek için yığın;
+- **blocks** - calls yığınını engelle;
+- **vars** - değişken yığını. Blokta bayt kodu çağrıldığında, değişkeni değişken
+  yığınına eklenecektir. Bloktan çıktıktan sonra, değişken yığınının boyutu
+  önceki değere dönecektir;
+- **extend** - external değişkenlerin değerleriyle eşlenecek bir işaretçi
+  (`$name`);
+- **vm** - bir sanal makine işaretçisi;
+- **cost** - ortaya çıkan yürütme maliyetinin yakıt birimi;
+- **err** - yürütme sırasında hata oluştu.
 
-#### blockStack structure {#blockstack-structure}
+#### blockStack Yapısı {#blockstack-structure}
 
-The blockStack structure is used in the Runtime structure.
+Runtime yapısında blockStack yapısı kullanılır.
 
-```go
+```
 type blockStack struct {
    Block *Block
    Offset int
 }
 ```
 
-- **Block** - a pointer to the block being executed;
-- **Offset** – the offset of the last command executed in the bytecode of the
-  specified block.
+- **Block** - yürütülmekte olan bloğa bir işaretçi;
+- **Offset** – belirtilen bloğun bayt kodunda yürütülen son komutun ofseti.
 
-### RunCode function {#runcode-function}
+### RunCode Fonksiyonu {#runcode-function}
 
-Bytecodes are executed in the **RunCode** function. It contains a loop that
-performs the corresponding operation for each bytecode command. Before
-processing a bytecode, the data required must be initialized.
+Bayt kodları **RunCode** işlevinde yürütülür. Her bayt kodu komutu için karşılık
+gelen işlemi gerçekleştiren bir döngü içerir. Bir bayt kodunu işlemeden önce,
+gerekli veriler başlatılmalıdır.
 
-New blocks are added to other blocks.
+Diğer bloklara yeni bloklar eklenir.
 
-```go
+```
 rt.blocks = append(rt.blocks, &blockStack{block, len(rt.vars)})
 ```
 
-Next, get the information of relevant parameters of the tail function. These
-parameters are contained in the last element of the stack.
+Ardından, kuyruk fonksiyonunun ilgili parametrelerinin bilgilerini alın. Bu
+parametreler yığının son elemanında bulunur.
 
-```go
+```
 var namemap map[string][]interface{}
 if block.Type == ObjFunc && block.Info.(*FuncInfo).Names != nil {
    if rt.stack[len(rt.stack)-1] != nil {
@@ -493,10 +463,10 @@ if block.Type == ObjFunc && block.Info.(*FuncInfo).Names != nil {
 }
 ```
 
-Then, all variables defined in the current block must be initialized with their
-initial values.
+Ardından, mevcut blokta tanımlanan tüm değişkenler, başlangıç ​​değerleri ile
+başlatılmalıdır.
 
-```go
+```
 start := len(rt.stack)
 varoff := len(rt.vars)
 for vkey, vpar := range block.Vars {
@@ -504,19 +474,18 @@ for vkey, vpar := range block.Vars {
    var value interface{}
 ```
 
-Since variables in the function are also variables, we need to retrieve them
-from the last element of the stack in the order described by the function
-itself.
+Fonksiyondaki değişkenler de değişken olduğundan, onları fonksiyonun tanımladığı
+sıraya göre yığının son elemanından almamız gerekir.
 
-```go
+```
    if block.Type == ObjFunc && vkey <len(block.Info.(*FuncInfo).Params) {
       value = rt.stack[start-len(block.Info.(*FuncInfo).Params)+vkey]
    } else {
 ```
 
-Initialize local variables with their initial values.
+Yerel değişkenleri başlangıç ​​değerleriyle başlatın.
 
-```go
+```
       value = reflect.New(vpar).Elem().Interface()
 
       if vpar == reflect.TypeOf(map[string]interface{}{}) {
@@ -530,9 +499,10 @@ Initialize local variables with their initial values.
 }
 ```
 
-Next, update the values of variable parameters passed in the tail function.
+Ardından, tail işlevinde geçirilen değişken parametrelerin değerlerini
+güncelleyin.
 
-```go
+```
 if namemap != nil {
    for key, item := range namemap {
       params := (*block.Info.(*FuncInfo).Names)[key]
@@ -540,10 +510,10 @@ if namemap != nil {
          if params.Variadic && i >= len(params.Params)-1 {
 ```
 
-If variable parameters passed belongs to a variable number of parameters, then
-these parameters will be combined into an array of variables.
+Geçirilen değişken parametreler değişken sayıda parametreye aitse, bu
+parametreler bir dizi değişkende birleştirilir.
 
-```go
+```
             off := varoff + params.Offset[len(params.Params)-1]
             rt.vars[off] = append(rt.vars[off].([]interface{}), value)
          } else {
@@ -554,33 +524,33 @@ these parameters will be combined into an array of variables.
 }
 ```
 
-After that, all we have to do is delete values passed from the top of the stack
-as function parameters, thereby moving the stack. We have copied their values
-into a variable array.
+Bundan sonra tek yapmamız gereken, yığının tepesinden fonksiyon parametreleri
+olarak geçen değerleri silmek ve böylece yığını taşımaktır. Değerlerini bir
+değişken dizisine kopyaladık.
 
-```go
+```
 if block.Type == ObjFunc {
    start -= len(block.Info.(*FuncInfo).Params)
 }
 ```
 
-When a bytecode command loop finished, we must clear the stack correctly.
+Bir bayt kodu komut döngüsü bittiğinde, yığını doğru şekilde temizlemeliyiz.
 
-```go
+```
 last := rt.blocks[len(rt.blocks)-1]
 ```
 
-Delete the current block from the stack of blocks.
+Mevcut bloğu blok yığınından silin.
 
-```go
+```
 rt.blocks = rt.blocks[:len(rt.blocks)-1]
 if status == statusReturn {
 ```
 
-If successfully exited from a function already executed, we will add the return
-value to the end of the previous stack.
+Halihazırda yürütülen bir fonksiyondan başarıyla çıkılırsa, dönüş değerini
+önceki yığının sonuna ekleyeceğiz.
 
-```go
+```
    if last.Block.Type == ObjFunc {
       for count := len(last.Block.Info.(*FuncInfo).Results); count > 0; count-- {
          rt.stack[start] = rt.stack[len(rt.stack)-count]
@@ -590,12 +560,11 @@ value to the end of the previous stack.
    } else {
 ```
 
-As you can see, if we do not execute the function, then we will not restore the
-stack status and exit the function as is. The reason is that loops and
-conditional structures that have been executed in the function are also bytecode
-blocks.
+Gördüğünüz gibi, fonksiyonu çalıştırmazsak, yığın durumunu geri yüklemeyeceğiz
+ve fonksiyondan olduğu gibi çıkmayacağız. Bunun nedeni, fonksiyonda yürütülen
+döngüler ve koşullu yapıların da bayt kodu blokları olmasıdır.
 
-```go
+```
    return
 
    }
@@ -604,111 +573,107 @@ blocks.
 rt.stack = rt.stack[:start]
 ```
 
-### Other functions for operations with VM {#other-functions-for-operations-with-vm}
+### VM ile işlemler için diğer işlevler {#other-functions-for-operations-with-vm}
 
-Your may create a virtual machine with the **NewVM** function. Each virtual
-machine will be added with four functions, such as **ExecContract**,
-**MemoryUsage**, **CallContract**, and **Settings**, through the **Extend**
-function.
+**NewVM** işleviyle sanal bir makine oluşturabilirsiniz. Her sanal makine,
+**Extend** işlevi aracılığıyla **ExecContract**, **MemoryUsage**,
+**CallContract** ve **Settings** gibi dört işlevle eklenecektir.
 
-```go
+```
 for key, item := range ext.Objects {
    fobj := reflect.ValueOf(item).Type()
 ```
 
-We traverse all the objects passed and only look at the functions.
+Geçen tüm nesneleri dolaşıyoruz ve sadece işlevlere bakıyoruz.
 
-```go
+```
    switch fobj.Kind() {
    case reflect.Func:
 ```
 
-We fill the **ExtFuncInfo** structure according to the information received
-about the function, and add its structure to the top level map **Objects** by
-name.
+**ExtFuncInfo** yapısını fonksiyon hakkında aldığımız bilgilere göre
+dolduruyoruz ve yapısını üst seviye haritasına **Objects** ismiyle ekliyoruz.
 
-```go
+```
    data := ExtFuncInfo{key, make([]reflect.Type, fobj.NumIn()), make([]reflect.Type, fobj.NumOut()),
    make([]string, fobj.NumIn()), fobj.IsVariadic(), item}
    for i := 0; i <fobj.NumIn(); i++ {
 ```
 
-The **ExtFuncInfo** structure has an **Auto** parameter array. Usually the first
-parameter is `sc *SmartContract` or `rt *Runtime`, we cannot pass them from the
-Needle language, because they are necessary for us to execute some golang
-functions. Therefore, we specify that these variables will be used automatically
-when these functions are called. In this case, the first parameter of the above
-four functions is `rt *Runtime`.
+**ExtFuncInfo** yapısı bir **Auto** parametre dizisine sahiptir. Genellikle ilk
+parametre `sc *SmartContract`veya `rt *Runtime`'dır, onları Needle dilinden
+geçiremeyiz, çünkü bunlar bizim için bazı golang fonksiyonlarını yürütmemiz için
+gereklidir. Bu nedenle bu fonksiyonlar çağrıldığında bu değişkenlerin otomatik
+olarak kullanılacağını belirtiyoruz. Bu durumda, yukarıdaki dört işlevin ilk
+parametresi `rt *Runtime`dır.
 
-```go
+```
    if isauto, ok := ext.AutoPars[fobj.In(i).String()]; ok {
       data.Auto[i] = isauto
    }
 ```
 
-Information about assigning the parameters.
+Parametrelerin atanması hakkında bilgi.
 
-```go
+```
       data.Params[i] = fobj.In(i)
    }
 ```
 
-And the types of return values.
+Ve dönüş değerleri türleri.
 
-```go
+```
 for i := 0; i <fobj.NumOut(); i++ {
    data.Results[i] = fobj.Out(i)
 }
 ```
 
-Adds a function to the root **Objects** so that the compiler can find them later
-when using the contract.
+Derleyicinin daha sonra sözleşmeyi kullanırken bulabilmesi için **Objects**
+köküne bir işlev ekler.
 
 ```
       vm.Objects[key] = &ObjInfo{ObjExtFunc, data}
    }
+
 }
 ```
 
 ## Compiler {#compiler}
 
-Functions in the compile.go file are responsible for compiling the array of
-tokens obtained from the lexical analyzer. Compilation can be divided into two
-levels conditionally. At the top level, we deal with functions, contracts, code
-blocks, conditional and loop statements, variable definitions, and so on. At the
-lower level, we compile expressions in code blocks or conditions in loops and
-conditional statements.
+compile.go dosyasındaki işlevler, sözcük çözümleyicisinden elde edilen belirteç
+dizisini derlemekten sorumludur. Derleme şartlı olarak iki seviyeye ayrılabilir.
+En üst düzeyde, işlevler, sözleşmeler, kod blokları, koşullu ve döngü ifadeleri,
+değişken tanımları vb. ile ilgileniyoruz. Alt düzeyde, ifadeleri kod bloklarında
+veya koşulları döngülerde ve koşullu ifadelerde derleriz.
 
-First, we will start from the simple lower level. In the **compileEval**
-function, expressions can be converted to bytecode. Since we use a virtual
-machine with a stack, it is necessary to convert ordinary infix record
-expressions into postfix notation or reverse Polish notation. For example, we
-convert `1+2` to `12+` and put `1` and `2` to the stack. Then, we apply the
-addition operation to the last two elements in the stack and write the result to
-the stack. You can find this
+İlk olarak, basit alt seviyeden başlayacağız. **compileEval** işlevinde ifadeler
+bayt koduna dönüştürülebilir. Yığınlı bir sanal makine kullandığımız için,
+sıradan infix kayıt ifadelerini postfix notasyonuna veya ters Lehçe notasyonuna
+dönüştürmek gerekir. Örneğin, `1+2`yi `12+`ya çeviririz ve yığına `1` ve `2`
+koyarız. Ardından stack içerisindeki son iki elemana toplama işlemini
+uyguluyoruz ve sonucu stack’e yazıyoruz. Bu
 [conversion](https://master.virmandy.net/perevod-iz-infiksnoy-notatsii-v-postfiksnuyu-obratnaya-polskaya-zapis/)
-algorithm on the Internet.
+algoritmasını İnternette bulabilirsiniz.
 
-The global variable `opers = map [uint32] operPrior` contains the priority of
-operations required for conversion to inverse Polish notation.
+`opers = map [uint32] operPrior` global değişkeni, invers Polish gösterime
+dönüştürmek için gereken işlemlerin önceliğini içerir.
 
-The following variables are defined at the beginning of the **compileEval**
-function:
+**compileEval** işlevinin başında aşağıdaki değişkenler tanımlanır:
 
-- **buffer** - temporary buffer for bytecode commands;
-- **bytecode** - final buffer of bytecode commands;
-- **parcount** - temporary buffer used to calculate parameters when calling a
-  function;
-- **setIndex** - variables in the work process will be set to true when we
-  assign map or array elements. For example, `a["my"] = 10`. In this case, we
-  need to use the specified **CmdSetIndex** command.
+- **buffer** - bayt kodu komutları için geçici arabellek;
+- **bytecode** - bayt kodu komutlarının son arabelleği;
+- **parcount** - bir işlevi çağırırken parametreleri hesaplamak için kullanılan
+  geçici buffer;
+- **setIndex** - harita veya dizi öğeleri atadığımızda, çalışma sürecindeki
+  değişkenler true olarak ayarlanacaktır. Örneğin, `a["my"] = 10`. Bu durumda
+  belirtilen **cmdSetIndex** komutunu kullanmamız gerekiyor.
 
-We get a token in a loop and process it accordingly. For example, expression
-paring will be stopped if braces are found. When moving the string, we check
-whether the previous statement is an operation and whether it is inside the
-parentheses, otherwise it will exit the expression is parsed.
+Bir döngüde bir token alırız ve buna göre işleriz. Örneğin, braces bulunursa
+ifade eşlemesi durdurulacaktır. Stringi taşırken önceki statement bir işlem olup
+olmadığını ve parantez içinde olup olmadığını kontrol ederiz, aksi halde parse
+edilen ifadeden çıkacaktır.
 
-```go
+```
 case isRCurly, isLCurly:
    i--
    if prevLex == isComma || prevLex == lexOper {
@@ -720,19 +685,21 @@ case lexNewLine:
       continue main
    }
    for k := len(buffer) - 1; k >= 0; k-- {
-   if buffer[k].Cmd == CmdSys {
+   if buffer[k].Cmd == cmdSys {
       continue main
    }
 }
 break main
+
 ```
 
-In general, the algorithm itself corresponds to an algorithm for converting to
-inverse Polish notation. With the consideration of the calling of necessary
-contracts, functions, and indexes, as well as other things not encountered
-during parsing and options for parsing lexIdent type tokens, then, variables,
-functions or contracts with this name will be checked. If nothing is found and
-this is not a function or contract call, then it will indicate an error.
+Genel olarak, algoritmanın kendisi, inverse Polish notasyonuna dönüştürmek için
+bir algoritmaya karşılık gelir. Gerekli sözleşmelerin, işlevlerin ve dizinlerin
+çağrılmasının yanı sıra ayrıştırma sırasında karşılaşılmayan diğer şeyler ve
+lexIdent tipi belirteçleri ayrıştırma seçenekleri göz önüne alındığında, bu adla
+değişkenler, işlevler veya sözleşmeler kontrol edilecektir. Hiçbir şey
+bulunamazsa ve bu bir işlev veya sözleşme çağrısı değilse, bir hata olduğunu
+gösterir.
 
 ```
 objInfo, tobj := vm.findObj(lexem.Value.(string), block)
@@ -741,12 +708,12 @@ if objInfo == nil && (!vm.Extern || i> *ind || i >= len(*lexems)-2 || (*lexems)[
 }
 ```
 
-We may encounter such a situation, and the contract call will be described
-later. In this example, if no functions or variables with the same name are
-found, then we think it is necessary to call a contract. In this compiled
-language, there is no difference between contracts and function calls. But we
-need to call the contract through the **ExecContract** function used in the
-bytecode.
+Böyle bir durumla karşılaşabiliriz ve sözleşme görüşmesi daha sonra
+anlatılacaktır. Bu örnekte, aynı isimde herhangi bir fonksiyon veya değişken
+bulunamazsa, bir sözleşme çağırmanın gerekli olduğunu düşünüyoruz. Bu derlenmiş
+dilde, sözleşmeler ve işlev çağrıları arasında hiçbir fark yoktur. Ancak
+sözleşmeyi bytecode'da kullanılan **ExecContract** işlevi aracılığıyla
+çağırmamız gerekiyor.
 
 ```
 if objInfo.Type == ObjContract {
@@ -758,24 +725,24 @@ if objInfo.Type == ObjContract {
 }
 ```
 
-We record the number of variables so far in `count`, which will also be written
-to the stack along with the number of function parameters. In each subsequent
-detection of parameters, we only need to increase this number by one unit at the
-last element of the stack.
+Şimdiye kadarki değişkenlerin sayısını, fonksiyon parametrelerinin sayısı ile
+birlikte yığına da yazılacak olan `count` içine kaydederiz. Parametrelerin
+sonraki her tespitinde, yığının son elemanında bu sayıyı yalnızca bir birim
+artırmamız gerekir.
 
-```go
+```
 count := 0
 if (*lexems)[i+2].Type != isRPar {
    count++
 }
 ```
 
-We have a list Used of called parameters for contracts, then we need to mark the
-case of the contract is called. If the contract is called without parameters, we
-must add two empty parameters to call **ExecContract** to get at least two
-parameters.
+Kontratlar için kullanılan parametreleri içeren bir listemiz var, sonra
+kontratın çağrıldığı durumu işaretlememiz gerekiyor. Kontrat parametresiz
+çağrılırsa, en az iki parametre almak için **ExecContract** çağrısına iki boş
+parametre eklemeliyiz.
 
-```go
+```
 if isContract {
    name := StateName((*block)[0].Info.(uint32), lexem.Value.(string))
    for j := len(*block) - 1; j >= 0; j-- {
@@ -797,10 +764,10 @@ if isContract {
 }
 ```
 
-If we see that there is a square bracket next, then we add the **cmdIndex**
-command to get the value by the index.
+Yanında bir braces olduğunu görürsek, indekse göre değeri almak için
+**cmdIndex** komutunu ekliyoruz.
 
-```go
+```
 if (*lexems)[i+1].Type == isLBrack {
    if objInfo == nil || objInfo.Type != ObjVar {
       return fmt.Errorf(`unknown variable %s`, lexem.Value.(string))
@@ -809,24 +776,25 @@ if (*lexems)[i+1].Type == isLBrack {
 }
 ```
 
-The **CompileBlock** function can generate object trees and
-expression-independent bytecodes. The compilation process is based on a finite
-state machine, just like a lexical analyzer, but with the following differences.
-First, we do not use symbols but tokens; second, we will immediately describe
-the _states_ variables in all states and transitions. It represents an array of
-objects indexed by token type. Each token has a structure of _compileState_, and
-a new state is specified in _NewState_. If it is clear what structure we have
-resolved, we can specify the function of the handler in the _Func_ field.
+**CompileBlock** işlevi, nesne ağaçları ve ifadeden bağımsız bayt kodları
+oluşturabilir. Derleme işlemi, tıpkı bir sözlüksel çözümleyici gibi, ancak
+aşağıdaki farklılıklarla birlikte, sonlu durumlu bir makineye dayanmaktadır. İlk
+olarak, semboller değil tokenlar kullanıyoruz; ikinci olarak, tüm durumlar ve
+geçişlerdeki _durumlar_ değişkenlerini hemen tanımlayacağız. Belirteç türüne
+göre dizine alınmış bir dizi nesneyi temsil eder. Her simgenin bir
+_compileState_ yapısı vardır ve _NewState_ içinde yeni bir durum belirtilir.
+Hangi yapıyı çözdüğümüz açıksa, _Func_ alanında işleyicinin fonksiyonunu
+belirtebiliriz.
 
-Let us review the main state as an example.
+Örnek olarak ana durumu inceleyelim.
 
-If we encounter a newline or comment, then we will remain in the same state. If
-we encounter the **contract** keyword, then we change the state to
-_stateContract_ and start parsing the structure. If we encounter the **func**
-keyword, then we change the state to _stateFunc_. If other tokens are received,
-the function generating error will be called.
+Bir satırsonu veya yorumla karşılaşırsak, aynı durumda kalırız. **contract**
+anahtar kelimesiyle karşılaşırsak, durumu _stateContract_ olarak değiştirir ve
+yapıyı ayrıştırmaya başlarız. **func** anahtar kelimesiyle karşılaşırsak, durumu
+_stateFunc_ olarak değiştiririz. Diğer belirteçler alınırsa, fonksiyon üreten
+hata çağrılır.
 
-```go
+```
 {// stateRoot
    lexNewLine: {stateRoot, 0},
    lexKeyword | (keyContract << 8): {stateContract | statePush, 0},
@@ -836,14 +804,14 @@ the function generating error will be called.
 },
 ```
 
-Suppose we encountered the **func** keyword and we have changed the state to
-_stateFunc_. Since the function name must follow the **func** keyword, we will
-keep the same state when changing the function name. For all other tokens, we
-will generate corresponding errors. If we get the function name in the token
-identifier, then we go to the _stateFParams_ state, where we can get the
-parameters of the function.
+**func** anahtar sözcüğüyle karşılaştığımızı ve durumu _stateFunc_ olarak
+değiştirdiğimizi varsayalım. İşlev adının **func** anahtar sözcüğünü takip
+etmesi gerektiğinden, işlev adını değiştirirken aynı durumu koruyacağız. Diğer
+tüm belirteçler için ilgili hataları üreteceğiz. Belirteç tanımlayıcıda işlev
+adını alırsak, işlevin parametrelerini alabileceğimiz _stateFParams_ durumuna
+gideriz.
 
-```go
+```
 {// stateFunc
    lexNewLine: {stateFunc, 0},
    lexIdent: {stateFParams, cfNameBlock},
@@ -851,18 +819,17 @@ parameters of the function.
 },
 ```
 
-At the same time as the above operations, we will call the **fNameBlock**
-function. It should be noted that the Block structure is created with the
-statePush mark, where we get it from the buffer and fill it with the data we
-need. The **fNameBlock** function is suitable for contracts and functions
-(including those nested in them). It fills the _Info_ field with the
-corresponding structure and writes itself into the _Objects_ of the parent
-block. In this way, we can call the function or contract with the specified
-name. Similarly, we create corresponding functions for all states and variables.
-These functions are usually very small and perform some duties when constructing
-the virtual machine tree.
+Yukarıdaki işlemlerle aynı zamanda **fNameBlock** fonksiyonunu çağıracağız.
+Unutulmamalıdır ki Block yapısı, tampondan aldığımız ve ihtiyacımız olan
+verilerle doldurduğumuz statePush işareti ile oluşturulmaktadır. **fNameBlock**
+işlevi, sözleşmeler ve işlevler için uygundur (iç içe geçmiş olanlar dahil).
+_Bilgi_ alanını ilgili yapı ile doldurur ve kendisini üst bloğun _Nesnelerine_
+yazar. Bu şekilde belirtilen isim ile fonksiyonu veya sözleşmeyi çağırabiliriz.
+Benzer şekilde, tüm durumlar ve değişkenler için karşılık gelen fonksiyonlar
+yaratırız. Bu işlevler genellikle çok küçüktür ve sanal makine ağacını
+oluştururken bazı görevleri yerine getirir.
 
-```go
+```
 func fNameBlock(buf *[]*Block, state int, lexem *Lexem) error {
    var itype int
    prev := (*buf)[len(*buf)-2]
@@ -884,45 +851,42 @@ func fNameBlock(buf *[]*Block, state int, lexem *Lexem) error {
 }
 ```
 
-For the **CompileBlock** function, it just traverses all the tokens and switches
-states according to the tokens described in states. Almost all additional tokens
-correspond to additional program codes.
+**CompileBlock** işlevi için, tüm belirteçler arasında geçiş yapar ve durumlarda
+açıklanan belirteçlere göre durumları değiştirir. Hemen hemen tüm ek
+belirteçler, ek program kodlarına karşılık gelir.
 
-- **statePush** – adds the **Block** object to the object tree;
-- **statePop** - used when the block ends with a closing brace;
-- **stateStay** - you need to keep the current mark when changing to a new
-  state;
-- **stateToBlock** - transition to the **stateBlock** state for processing
-  _while_ and _if_. After processing expressions, you need to process blocks
-  within the braces;
-- **stateToBody** - transition to the **stateBody** state;
-- **stateFork** - save the marked position. When the expression starts with an
-  identifier or a name with `$`, we can make function calls or assignments;
-- **stateToFork** – used to get the token stored in **stateFork**, which will be
-  passed to the process function;
-- **stateLabel** – used to insert **cmdLabel** commands. _while_ structure
-  requires this flag;
-- **stateMustEval** – check the availability of conditional expressions at the
-  beginning of _if_ and _while_ structures.
+- **statePush** – **Blok** nesnesini nesne ağacına ekler;
+- **statePop** - blok bir kapatma braces ile sona erdiğinde kullanılır;
+- **stateStay** - yeni bir duruma geçerken mevcut işareti korumanız gerekir;
+- **stateToBlock** - _while_ ve _if_ işlemek için **stateBlock** durumuna geçiş.
+  İfadeleri işledikten sonra, parantez içindeki blokları işlemeniz gerekir;
+- **stateToBody** - **stateBody** durumuna geçiş;
+- **stateFork** - işaretli konumu kaydedin. İfade bir tanımlayıcı veya `$` ile
+  bir isim ile başladığında, fonksiyon çağrıları veya atamalar yapabiliriz;
+- **stateToFork** – işlem işlevine iletilecek olan **stateFork** içinde saklanan
+  belirteci almak için kullanılır;
+- **stateLabel** – **cmdLabel** komutlarını eklemek için kullanılır. _while_
+  yapısı bu bayrağı gerektirir;
+- **stateMustEval** – _if_ ve _while_ yapılarının başında koşullu ifadelerin
+  kullanılabilirliğini kontrol edin.
 
-In addition to the **CompileBlock** function, the **FlushBlock** function should
-also be mentioned. But the problem is that the block tree is constructed
-independently of existing virtual machines. More precisely, we obtain
-information about functions and contracts that exist in a virtual machine, but
-we collect the compiled blocks into a separate tree. Otherwise, if an error
-occurs during compilation, we must roll back the virtual machine to the previous
-state. Therefore, we go to the compilation tree separately, but after the
-compilation is successful, the **FlushContract** function must be called. This
-function adds the completed block tree to the current virtual machine. The
-compilation phase is now complete.
+**CompileBlock** işlevine ek olarak, **FlushBlock** işlevinden de
+bahsedilmelidir. Ancak sorun, blok ağacının mevcut sanal makinelerden bağımsız
+olarak oluşturulmasıdır. Daha doğrusu sanal bir makinede var olan işlevler ve
+sözleşmeler hakkında bilgi alıyoruz ancak derlenen blokları ayrı bir ağaçta
+topluyoruz. Aksi halde derleme sırasında bir hata oluşursa sanal makineyi bir
+önceki duruma döndürmemiz gerekir. Bu nedenle derleme ağacına ayrı ayrı
+gidiyoruz fakat derleme başarılı olduktan sonra **FlushContract** fonksiyonu
+çağrılmalıdır. Bu işlev, tamamlanmış blok ağacını mevcut sanal makineye ekler.
+Derleme aşaması artık tamamlanmıştır.
 
-## Lexical analyzer {#lexical-analyzer}
+## Lexical analizör {#lexical-analyzer}
 
-The lexical analyzer processes incoming strings and forms a sequence of tokens
-of the following types :
+Sözcüksel çözümleyici, gelen dizeleri işler ve aşağıdaki türlerde bir dizi
+belirteç oluşturur:
 
-- **lexSys** - system token, for example: `{}, [], (), ,, .` etc;
-- **lexOper** - operation token, for example: `+, -, /, \, *`;
+- **lexSys** - system token, örnek: `{}, [], (), ,, .` etc;
+- **lexOper** - operation token, örnek: `+, -, /, \, *`;
 - **lexNumber** - number;
 - **lexident** - identifier;
 - **lexNewline** - newline character;
@@ -930,66 +894,63 @@ of the following types :
 - **lexComment** - comment;
 - **lexKeyword** - keyword;
 - **lexType** - type;
-- **lexExtend** - reference to external variables or functions, for example:
+- **lexExtend** - harici değişkenlere veya fonksiyonlara referans, örneğin:
   `$myname`.
 
-In the current version, a conversion table (finite state machine) is initially
-constructed with the help of the [lextable.go](#lextable-lextable-go) file to
-parse the tokens, which is written to the lex_table.go file. In general, you can
-get rid of the conversion table initially generated by the file and create a
-conversion table in the memory (`init()`) immediately upon startup. The lexical
-analysis itself occurs in the lexParser function in the [lex.go](#lex-go) file.
+Mevcut sürümde, lex_table.go dosyasına yazılan belirteçleri ayrıştırmak için
+başlangıçta [lextable.go](#lextable-lextable-go) dosyası
+yardımıyla bir dönüşüm tablosu (sonlu durum makinesi) oluşturulur. Genel olarak,
+dosya tarafından başlangıçta oluşturulan dönüştürme tablosundan kurtulabilir ve
+başlangıçta hemen bellekte (`init()`) bir dönüştürme tablosu oluşturabilirsiniz.
+Sözcük analizinin kendisi [lex.go](#lex-go) dosyasındaki lexParser işlevinde
+gerçekleşir.
 
 ### lextable/lextable.go {#lextable-lextable-go}
 
-Here we define the alphabet to operate and describe how the finite state machine
-changes from one state to another based on the next received symbol.
+Burada çalışacak alfabeyi tanımlıyoruz ve sonlu durum makinesinin bir sonraki
+alınan sembole göre bir durumdan diğerine nasıl değiştiğini açıklıyoruz.
 
-_states_ is a JSON object containing a list of states.
+_durumlar_, bir durum listesi içeren bir JSON nesnesidir.
 
-Except for specific symbols, `d` stands for all symbols not specified in the
-state. `n` stands for 0x0a, `s` stands for space, `q` stands for backquote, `Q`
-stands for double quote, `r` stands for character >= 128, `a` stands for AZ and
-az, and `1` stands for 1- 9.
+Belirli semboller dışında, `d`, durumda belirtilmeyen tüm sembolleri ifade eder.
+`n` 0x0a, `s` boşluk, `q` ters alıntı, `Q` çift tırnak, `r` >= 128, `a` AZ ve az
+ve `1` 1-9 anlamına gelir.
 
-The name of these states are keys, and the possible values are listed in the
-value object. Then, there is a new state to make transitions for each group.
-Then there is the name of the token. If we need to return to the initial state,
-the third parameter is the service token, which indicates how to handle the
-current symbol.
+Bu durumların adı anahtarlardır ve olası değerler değer nesnesinde listelenir.
+Daha sonra her grup için geçiş yapılacak yeni bir durum vardır. Sonra jetonun
+adı var. İlk duruma geri dönmemiz gerekirse, üçüncü parametre, mevcut sembolün
+nasıl ele alınacağını gösteren hizmet simgesidir.
 
-For example, we have the main state and the incoming characters `/`,
+Örneğin, ana durumumuz ve gelen karakterler `/`,
 `"/": ["solidus", "", "push next"]`,
 
-- **push** - gives the command to remember that it is in a separate stack ;
+- **push** - gayrı bir yığında olduğunu hatırlama komutunu verir;
+- **next** - sonraki karaktere gider ve aynı zamanda durumu **solidus** olarak
+  değiştiririz. Bundan sonra, bir sonraki karakteri alır ve **solidus**'un
+  durumunu kontrol edin.
 
-- **next** - goes to the next character, and at the same time we change the
-  status to **solidus**. After that, gets the next character and check the
-  status of **solidus**.
+Sonraki karakterde `/` veya `/*` varsa, o zaman `//` veya `/*` ile başladıkları
+için yorum **yorum** durumuna gideriz. Açıkçası, her yorumun daha sonra farklı
+bir durumu vardır, çünkü farklı bir sembolle biterler.
 
-If the next character has `/` or `/*`, then we go to the comment **comment**
-state because they start with `//` or `/*`. Obviously, each comment has a
-different state afterwards, because they end with a different symbol.
+Sonraki karakter `/` ve `*` değilse, yığındaki her şeyi **lexOper** tipi
+etiketler olarak kaydeder, yığını temizler ve ana duruma döneriz.
 
-If the next character is not `/` and `*`, then we record everything in the stack
-as **lexOper** type tags, clear the stack and return to the main state.
+Aşağıdaki modül, durum ağacını sayısal bir diziye dönüştürür ve onu
+_lex_table.go_ dosyasına yazar.
 
-The following module converts the state tree into a numeric array and writes it
-into the _lex_table.go_ file.
+İlk döngüde:
 
-In the first loop:
+Geçerli sembollerden oluşan bir alfabe oluşturuyoruz.
 
-We form an alphabet of valid symbols.
-
-```go
+```
 for ind, ch := range alphabet {
    i := byte(ind)
 ```
 
-In addition, in **state2int**, we provide each state with its own sequence
-identifier.
+Ek olarak, **state2int** içinde her duruma kendi dizi tanımlayıcısını sağlarız.
 
-```go
+```
    state2int := map[string]uint{`main`: 0}
    if err := json.Unmarshal([]byte(states), &data); err == nil {
    for key := range data {
@@ -997,131 +958,122 @@ identifier.
    state2int[key] = uint(len(state2int))
 ```
 
-When we traverse all states and each set in a state and each symbol in a set, we
-write a three-byte number [new state identifier (0 = main)] + [token type ( 0-no
-token)] + [token]. The bidimensionality of the _table_ array is that it is
-divided into states and 34 input symbols from the _alphabet_ array, which are
-arranged in the same order.
-
-We are in the _main_ state on the zero row of the _table_. Take the first
-character, find its index in the _alphabet_ array, and get the value from the
-column with the given index. Starting from the value received, we receive the
-token in the low byte. If the parsing is complete, the second byte indicates the
-type of token received. In the third byte, we receive the index of the next new
-state. All of these are described in more detail in the **lexParser** function
-in _lex.go_.
-
-If you want to add some new characters, you need to add them to the _alphabet_
-array and increase the quantity of the _AlphaSize_ constant. If you want to add
-a new symbol combination, it should be described in the status, similar to the
-existing options. After the above operation, run the _lextable.go_ file to
-update the _lex_table.go_ file.
+Tüm durumları ve bir durumdaki her bir kümeyi ve bir kümedeki her bir sembolü
+geçtiğimizde, üç baytlık bir sayı yazarız [new state identifier (0 = main)] +
+[token type ( 0-no token)] + [token]. . _table_ dizisinin iki boyutluluğu,
+durumlara ve aynı sırada düzenlenmiş _alfabe_ dizisinden 34 giriş sembolüne
+bölünmüş olmasıdır. _Tablonun_ sıfır satırında _main_ durumundayız. İlk
+karakteri alın, _alphabet_ dizisinde dizinini bulun ve verilen dizine sahip
+sütundan değeri alın. Alınan değerden başlayarak jetonu düşük bayt olarak
+alıyoruz. Ayrıştırma tamamlandıysa, ikinci bayt, alınan belirtecin türünü
+gösterir. Üçüncü baytta, bir sonraki yeni durumun indeksini alırız. Bunların
+tümü _lex.go_ içindeki **lexParser** işlevinde daha ayrıntılı olarak
+açıklanmıştır. Bazı yeni karakterler eklemek istiyorsanız, bunları _alphabet_
+dizisine eklemeniz ve _AlphaSize_ sabitinin miktarını artırmanız gerekir. Yeni
+bir sembol kombinasyonu eklemek isterseniz, mevcut seçeneklere benzer şekilde
+durum içinde açıklanmalıdır. Yukarıdaki işlemden sonra _lex_table.go_ dosyasını
+güncellemek için _lextable.go_ dosyasını çalıştırın.
 
 ### lex-go {#lex-go}
 
-The **lexParser** function directly generates lexical analysis and returns an
-array of received tags based on incoming strings. Let us analyze the structure
-of tokens.
+**lexParser** işlevi doğrudan sözcüksel analiz oluşturur ve gelen dizelere
+dayalı olarak bir dizi alınan etiket döndürür. Tokenların yapısını analiz
+edelim.
 
-```go
+```
 type Lexem struct {
-   Type  Token // Type of the lexem
+   Type  uint32 // Type of the lexem
    Value interface{} // Value of lexem
    Line  uint32 // Line of the lexem
    Column uint32 // Position inside the line
 }
 ```
 
-- **Type** - token type. It has one of the following values:
+- **Type** - belirteç türü. Aşağıdaki değerlerden birine sahiptir:
   `lexSys, lexOper, lexNumber, lexIdent, lexString, lexComment, lexKeyword, lexType, lexExtend`;
+- **Value** – token değeri. Değerin türü, belirteç türüne bağlıdır, daha
+  ayrıntılı olarak analiz edelim:
+  - **lexSys** - parantez, virgül vb. içerir. Bu durumda,
+    `Type = ch << 8 | lexSys`, lütfen `isLPar ... isRBrack` sabitine bakın ve
+    değeri uint32 bittir;
+  - **lexOper** - değer, uint32 biçimindeki eşdeğer bir karakter dizisini temsil
+    eder. 'isNot ... isOr' sabitlerine bakın;
+  - **lexNumber** - sayılar int64 veya float64 olarak saklanır. Sayının ondalık
+    noktası varsa, float64'tür;
+  - **lexIdent** - tanımlayıcılar dize olarak saklanır;
+  - **lexNewLine** - yeni satır karakteri. Ayrıca satır ve token konumunu
+    hesaplamak için kullanılır;
+  - **lexString** - satırlar dize olarak saklanır;
+  - **lexComment** - yorumlar dize olarak saklanır;
+  - **lexKeyword** - anahtar sözcükler için yalnızca ilgili dizinler saklanır,
+    bkz. `keyContract ... keyTail` sabiti. Bu durumda `Type = KeyID << 8 | lexKeyword`.
+    Ayrıca, "true, false, nil" anahtar sözcüklerinin hemen
+    lexNumber tipi belirteçlere dönüştürüleceği ve ilgili "bool" ve `interface {}`
+    türlerinin kullanılacağına dikkat edilmelidir;
+  - **lexType** – bu değer, karşılık gelen "reflect.Type" tipi değerini içerir;
+  - **lexExtend** – `$` ile başlayan tanımlayıcılar. Bu değişkenler ve işlevler
+    dışarıdan iletilir ve bu nedenle özel türdeki belirteçlere atanır. Bu değer,
+    adı başında $ olmadan bir dize olarak içerir.
+- **Line** - tokenın bulunduğu satır;
+- **Column** - tokenın satır içi konumu.
 
-- **Value** – token value. The type of value depends on the token type, Let us
-  analyze it in more detail:
+**lexParser** işlevini ayrıntılı olarak analiz edelim. **todo** işlevi, mevcut
+duruma ve gelen sembole göre alfabedeki sembol dizinini arar ve dönüşüm
+tablosundan yeni bir durum, belirteç tanımlayıcısı (varsa) ve diğer belirteçleri
+alır. Ayrıştırmanın kendisi, her bir sonraki karakter için sırayla **todo**
+işlevini çağırmayı ve yeni bir duruma geçmeyi içerir. Etiket alındıktan sonra
+çıktı kriterlerinde karşılık gelen jetonu oluşturup ayrıştırma işlemine devam
+ediyoruz. Ayrıştırma işlemi sırasında belirteç sembollerini ayrı bir yığın veya
+dizide biriktirmediğimize dikkat edilmelidir, çünkü yalnızca belirtecin
+başlangıcının ofsetini kaydederiz. Belirteci aldıktan sonra, bir sonraki
+belirtecin ofsetini mevcut ayrıştırma konumuna taşırız.
 
-  - **lexSys** - includes brackets, commas, etc. In this case,
-    `Type = ch << 8 | lexSys`, please refer to the `isLPar ... isRBrack`
-    constant, and its value is uint32 bits;
-  - **lexOper** - the value represents an equivalent character sequence in the
-    form of uint32. See the `isNot ... isOr` constants;
-  - **lexNumber** - numbers are stored as int64 or float64. If the number has a
-    decimal point, it is float64;
-  - **lexIdent** - identifiers are stored as string;
-  - **lexNewLine** - newline character. Also used to calculate the row and token
-    position;
-  - **lexString** - lines are stored as string;
-  - **lexComment** - comments are stored as string;
-  - **lexKeyword** - for keywords, only the corresponding indexes are stored,
-    see the `keyContract ... keyTail` constant. In this case
-    `Type = KeyID << 8 | lexKeyword`. In addition, it should be noted that the
-    `true, false, nil` keywords will be immediately converted to lexNumber type
-    tokens, and the corresponding `bool` and `intreface {}` types will be used;
-  - **lexType** – this value contains the corresponding `reflect.Type` type
-    value;
-  - **lexExtend** – identifiers beginning with a `$`. These variables and
-    functions are passed from the outside and are therefore assigned to special
-    types of tokens. This value contains the name as a string without a $ at the
-    beginning.
+Geriye kalan tek şey, ayrıştırmada kullanılan sözcüksel durum belirteçlerini
+kontrol etmektir:
 
-- **Line** - the line where the token is found;
+- **lexfPush** - bu simge, yeni bir simgede simgeler biriktirmeye başladığımız
+  anlamına gelir;
+- **lexfNext** - karakter, geçerli simgeye eklenmelidir;
+- **lexfPop** - tokenın alınması tamamlandı. Genellikle, bu bayrakla,
+  ayrıştırılmış belirtecin tanımlayıcı türüne sahibiz;
+- **lexfSkip** - bu token, karakterleri ayrıştırmanın dışında tutmak için
+  kullanılır. Örneğin, dizgedeki kontrol eğik çizgileri \n \r \" şeklindedir.
+  Sözcüksel analiz aşamasında bunlar otomatik olarak değiştirilecektir..
 
-- **Column** - in-line position of the token.
-
-Let us analyze the **lexParser** function in detail. The **todo** function looks
-up the symbol index in the alphabet based on the current state and the incoming
-symbol, and obtains a new state, token identifier (if any), and other tokens
-from the conversion table. The parsing itself involves calling the **todo**
-function in turn for each next character and switching to a new state. Once the
-tag is received, we create the corresponding token in the output criteria and
-continue the parsing process. It should be noted that during the parsing
-process, we do not accumulate the token symbols into a separate stack or array,
-because we only save the offset of the start of the token. After getting the
-token, we move the offset of the next token to the current parsing position.
-
-All that remains is to check the lexical status tokens used in the parsing:
-
-- **lexfPush** - this token means that we start to accumulate symbols in a new
-  token;
-- **lexfNext** - the character must be added to the current token;
-- **lexfPop** - the receipt of the token is complete. Usually, with this flag we
-  have the identifier type of the parsed token;
-- **lexfSkip** - this token is used to exclude characters from parsing. For
-  example, the control slashes in the string are \n \r ". They will be
-  automatically replaced during the lexical analysis stage.
-
-## Needle language {#needle-language}
+## Needle dili {#needle-language}
 
 ### Lexemes {#lexemes}
 
-The source code of a program must be in UTF-8 encoding.
+Bir programın kaynak kodu UTF-8 kodlamasında olmalıdır.
 
-The following lexical types are processed:
+Aşağıdaki sözcük türleri işlenir:
 
 - **Keywords** -
   `action, break, conditions, continue, contract, data, else, error, false, func, If, info, nil, return, settings, true, var, warning, while`;
-- **Number** - only decimal numbers are accepted. There are two basic types:
-  **int** and **float**. If the number has a decimal point, it becomes a float
-  **float**. **int** type is equivalent to **int64** in golang, while **float**
-  type is equivalent to **float64** in golang.
-- **String** - the string can be enclosed in double quotes `("a string")` or
-  backquotes ``(\`a string\`)``. Both types of strings can contain newline
-  characters. Strings in double quotes can contain double quotes, newline
-  characters, and carriage returns escaped with slashes. For example,
-  `"This is a \"first string\".\r\nThis is a second string."`.
-- **Comment** - there are two types of comments. Single-line comments use two
-  slashes (//). For example, // This is a single-line comment. Multi-line
-  comments use slash and asterisk symbols and can span multiple lines. For
-  example, `/* This is a multi-line comment */`.
-- **Identifier** - the names of variables and functions composed of a-z and A-Z
-  letters, UTF-8 symbols, numbers and underscores. The name can start with a
-  letter, underscore, `@` or `$`. The name starting with `$` is the name of the
-  variable defined in the **data section**. The name starting with `$` can also
-  be used to define global variables in the scope of **conditions** and **action
-  sections**. Ecosystem contracts can be called using the `@` symbol. For
-  example: `@1NewTable(...)`.
+- **Number** - sadece ondalık sayılar kabul edilir. İki temel tür vardır:
+  **int** ve **float**. Sayının ondalık noktası varsa, kayan nokta ** kayan
+  nokta** olur. **int** türü, golang'da **int64** ile eşdeğerdir, **float** türü
+  ise golang'da **float64** ile eşdeğerdir.
+- **String** - dize `("a dize")` çift tırnak içine alınabilir veya
+  ``(\`a dize\`)`` ters tırnak içine alınabilir. Her iki dize türü de yeni satır
+  karakterleri içerebilir. Çift tırnak içindeki dizeler, çift tırnak, yeni satır
+  karakterleri ve eğik çizgilerle kaçan satır başları içerebilir. Örneğin,
+  `"Bu bir \"ilk dizedir\".\r\nBu ikinci bir dizedir."`.
+- **Comment** - iki tür yorum vardır. Tek satırlı yorumlar iki eğik çizgi (//)
+  kullanır. Örneğin, // Bu tek satırlık bir yorumdur. Çok satırlı yorumlar eğik
+  çizgi ve yıldız sembollerini kullanır ve birden çok satıra yayılabilir.
+  Örneğin, `/* Bu çok satırlı bir yorumdur */`.
+- **Identifier** - a-z ve A-Z harfleri, UTF-8 sembolleri, sayılar ve alt
+  çizgilerden oluşan değişkenlerin ve fonksiyonların adları. Ad bir harf, alt
+  çizgi, `@` veya `$` ile başlayabilir. `$` ile başlayan ad, **data** tanımlanan
+  değişkenin adıdır. `$` ile başlayan ad, **conditons** ve **actions**
+  kapsamındaki global değişkenleri tanımlamak için de kullanılabilir. Ekosistem
+  sözleşmeleri `@` sembolü kullanılarak çağrılabilir. Örneğin:
+  `@1NewTable(...)`.
 
-### Types {#types}
+### Türler {#types}
 
-Corresponding golang types are specified next to the Needle types.
+Karşılık gelen golang türleri, Needle türlerinin yanında belirtilir.
 
 - **bool** - bool, **false** by default;
 - **bytes** - []byte{}, an empty byte array by default;
@@ -1131,70 +1083,69 @@ Corresponding golang types are specified next to the Needle types.
 - **map** - map[string]interface{}, an empty object array by default;
 - **money** - decimal. Decimal, **0** by default;
 - **float** - float64, **0** by default;
-- **string** - string, an empty string by default;
-- **file** - map[string]interface{}, an empty object array by default.
+- **string** - string,;
+- **file** - map[string]interface{}, varsayılan olarak boş bir nesne dizisi.
 
-These types of variables are defined with the `var` keyword. For example,
-`var var1, var2 int`. When defined in this way, a variable will be assigned with
-a default value by type.
+Bu tür değişkenler `var` anahtar kelimesi ile tanımlanır. Örneğin,
+`var var1, var2 int`. Bu şekilde tanımlandığında, türe göre varsayılan bir
+değere sahip bir değişken atanacaktır.
 
-All variable values are of the interface{} type, and then they are assigned to
-the required golang types. Therefore, for example, array and map types are
-golang types []interface{} and map[string]interface{}. Both types of arrays can
-contain elements of any type.
+Tüm değişken değerleri interface{} türündedir ve ardından gerekli golang
+türlerine atanır. Bu nedenle, örneğin dizi ve harita türleri, []interface{} ve
+map[array]interface{} golang türleridir. Her iki dizi türü de herhangi bir
+türden öğe içerebilir.
 
 ### Expressions {#expressions}
 
-An expression may include arithmetic operations, logical operations, and
-function calls. All expressions are evaluated from left to right by priority of
-operators. If having an equal priority, operators are evaluated from left to
-right.
+Bir ifade aritmetik işlemleri, mantıksal işlemleri ve işlev çağrılarını
+içerebilir. Tüm ifadeler, operatörlerin önceliğine göre soldan sağa doğru
+değerlendirilir. Eşit önceliğe sahipse, operatörler soldan sağa doğru
+değerlendirilir.
 
-Priority of operations from high to low:
+Yüksekten düşüğe operasyonların önceliği:
 
-- **Function call and parentheses** - when a function is called, passed
-  parameters will be calculated from left to right;
+- **Function call and parentheses** - bir fonksiyon çağrıldığında, geçirilen
+  parametreler soldan sağa doğru hesaplanır;
 - **Unary Operation** - logical negation `!` and arithmetic sign change `-`;
 - **Multiplication and Division** - arithmetic multiplication `*` and division
   `/`;
 - **Addition and Subtraction** - arithmetic addition `+` and subtraction `-`;
-- **Logical comparison** - `<= <  > >=`;
+- **Logical comparison** - `>=>> >=`;
 - **Logical equality and inequality** - `== !=`;
 - **Logical AND** - `&&`;
 - **Logical OR** - `||`.
 
-When evaluating logical AND and OR, both sides of the expression are evaluated
-in any case.
+Mantıksal AND ve OR değerlendirilirken, her durumda ifadenin her iki tarafı da
+değerlendirilir.
 
-Needle has no type checking during compilation. When evaluating operands, an
-attempt is made to convert the type to a more complex type. The type of
-complexity order can be as follows: `string, int, float, money`. Only part of
-the type conversions is implemented. The string type supports addition
-operations, and the result will be string concatenation. For example,
-`string + string = string, money-int = money, int * float = float`.
+Derleme sırasında iğnenin tip kontrolü yoktur. İşlenenleri değerlendirirken,
+türü daha karmaşık bir türe dönüştürmeye çalışılır. Karmaşıklık sırasının türü
+şu şekilde olabilir: `string, int, float, money`. Tür dönüşümlerinin yalnızca
+bir kısmı uygulanır. Dize türü, ekleme işlemlerini destekler ve sonuç, dize
+birleştirme olacaktır. Örneğin,
+`string + string = string, money-int = para, int * float = float`.
 
-For functions, type checking is performed on the `string` and `int` types during
-execution.
+İşlevler için, yürütme sırasında `string` ve `int` türlerinde tip kontrolü
+yapılır.
 
-**array** and **map** types can be addressed by index. For the **array** type,
-the **int** value must be specified as the index. For the **map** type, a
-variable or **string** value must be specified. If you assign a value to an
-**array** element whose index is greater than the current maximum index, an
-empty element will be added to the array. The initial value of these elements is
-**nil**. For example:
+**array** ve **map** türleri dizine göre ele alınabilir. **array** türü için
+**int** değeri dizin olarak belirtilmelidir. **harita** türü için bir değişken
+veya **dize** değeri belirtilmelidir. Dizini mevcut maksimum dizinden büyük olan
+bir **array** öğesine bir değer atarsanız, diziye boş bir öğe eklenir. Bu
+öğelerin başlangıç ​​değeri **nil**'dir. Örneğin: .. code:
 
-```go
+```
 var my array
 my[5] = 0
 var mymap map
 mymap["index"] = my[3]
 ```
 
-In expressions of conditional logical values (such as `if, while, &&, ||, !`),
-the type is automatically converted to a logical value. If the type is not the
-default value, it is true.
+Koşullu mantıksal değerlerin ifadelerinde (`if, while, &&, ||, !` gibi), tür
+otomatik olarak mantıksal bir değere dönüştürülür. Tür varsayılan değer değilse,
+doğrudur.
 
-```go
+```
 var mymap map
 var val string
 if mymap && val {
@@ -1204,12 +1155,13 @@ if mymap && val {
 
 ### Scope {#scope}
 
-Braces specify a block that can contain local scope variables. By default, the
-scope of a variable extends to its own blocks and all nested blocks. In a block,
-you can define a new variable using the name of an existing variable. However,
-in this case, external variables with the same name become unavailable.
+Parantezler, yerel kapsam değişkenlerini içerebilen bir blok belirtir.
+Varsayılan olarak, bir değişkenin kapsamı kendi bloklarına ve tüm iç içe
+bloklara uzanır. Bir blokta, mevcut bir değişkenin adını kullanarak yeni bir
+değişken tanımlayabilirsiniz. Ancak bu durumda aynı ada sahip harici değişkenler
+kullanılamaz hale gelir.
 
-```go
+```
 var a int
 a = 3
 {
@@ -1220,27 +1172,28 @@ a = 3
 Println(a) // 3
 ```
 
-### Contract execution {#contract-execution}
+### Kontrat Yürütme {#contract-execution}
 
-When calling a contract, parameters defined in **data** must be passed to it.
-Before executing a contract, the virtual machine receives these parameters and
-assigns them to the corresponding variables ($Param). Then, the predefined
-**conditions** function and **action** function are called.
+Bir kontratı çağırırken, **data** içinde tanımlanan parametreler ona
+iletilmelidir. Bir kontratı yürütmeden önce sanal makine bu parametreleri alır
+ve bunları karşılık gelen değişkenlere ($Param) atar. Ardından, önceden
+tanımlanmış **conditons** işlevi ve **action** işlevi çağrılır.
 
-Errors that occur during contract execution can be divided into two types: form
-errors and environment errors. Form errors are generated using special commands:
-`error, warning, info` and when the built-in function returns `err` not equal to
-_nil_.
+Kontratın yürütülmesi sırasında meydana gelen hatalar iki türe ayrılabilir: form
+hataları ve ortam hataları. Form hataları özel komutlar kullanılarak
+oluşturulur: `error, Warning, info` ve yerleşik işlev `err` döndürdüğünde _nil_
+değerine eşit değildir.
 
-The Needle language does not handle exceptions. Any error will terminate the
-execution of contracts. Since a separate stack and structure for saving variable
-values are created when a contract is executed, the golang garbage collection
-mechanism will automatically delete these data when a contract is executed.
+Needle dili istisnaları işlemez. Herhangi bir hata, sözleşmelerin yürütülmesini
+sonlandıracaktır. Bir sözleşme yürütüldüğünde değişken değerleri kaydetmek için
+ayrı bir yığın ve yapı oluşturulduğundan, bir sözleşme yürütüldüğünde golang
+garbage collection tarafından bu verileri otomatik olarak siler.
 
-## Backus–Naur Form (BNF) {#backus-naur-form-bnf}
+### Backus–Naur Form (BNF) {#backus-naur-form-bnf}
 
-In computer science, BNF is a notation technique for context-free syntax and is
-usually used to describe the syntax of the language used in computing.
+Bilgisayar biliminde BNF, bağlamdan bağımsız sözdizimi için bir gösterim
+tekniğidir ve genellikle hesaplamada kullanılan dilin sözdizimini tanımlamak
+için kullanılır.
 
 - `<decimal digit>`
 

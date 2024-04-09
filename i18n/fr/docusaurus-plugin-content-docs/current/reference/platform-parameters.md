@@ -375,8 +375,8 @@ le nœud de l'expéditeur pendant cette période de temps.
 
 ### number of nodes {#number-of-nodes}
 
-Le nombre maximum de nœuds d'honneur dans le paramètre [honor nodes](#honor-nodes)
-.
+Le nombre maximum de nœuds d'honneur dans le paramètre
+[honor nodes](#honor-nodes) .
 
 ### price create ecosystem {#price-create-ecosystem}
 

@@ -134,12 +134,11 @@ Block height or block HASH, example:
 
 2. - _Object_ - Objet d'informations sur le bloc
 
-     - **id** - _Number_ - Hauteur du bloc, Exemple : `{"id":2}`
-     - **hash** - _Chaîne en [hexadécimal](#hex)_ - HASH du bloc, Exemple :
-       `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
+   - **id** - _Number_ - Hauteur du bloc, Exemple : `{"id":2}`
+   - **hash** - _Chaîne en [hexadécimal](#hex)_ - HASH du bloc, Exemple :
+     `{"hash": "d36b8996c...c616d3043a0d02a0f59"}`
 
-     **La hauteur du bloc et le HASH du bloc ne peuvent être choisis qu'un
-     seul**.
+   **La hauteur du bloc et le HASH du bloc ne peuvent être choisis qu'un seul**.
 
 ### Demandes groupées {#batch-requests}
 
