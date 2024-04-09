@@ -146,7 +146,7 @@ type ObjInfo struct {
 La structure ObjInfo a les éléments suivants:
 
 - **Type** est le type d'objet, qui peut avoir l'une des valeurs suivantes :
-  - **ObjContract** - [contrat](#structure-du-contrat) ;
+  - **ObjContract** - [contrat](#contractinfo-structure) ;
   - **ObjFunc** - fonction ;
   - **ObjExtFunc** - fonction externe golang ;
   - **ObjVar** - variable ;
@@ -264,7 +264,7 @@ type ExtFuncInfo struct {
 La structure ExtFuncInfo comprend les éléments suivants :
 
 - **Name**, **Params**, **Results** les paramètres ont la même structure que
-  [FuncInfo](#structure-funcinfo);
+  [FuncInfo](#funcinfo-structure);
 - **Auto** - un tableau de variables. Si présent, il est transmis à la fonction
   en tant que paramètre supplémentaire. Par exemple, une variable de type
   SmartContract sc;
