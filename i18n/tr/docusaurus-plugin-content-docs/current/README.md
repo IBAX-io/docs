@@ -3,44 +3,42 @@ sidebar_position: 1
 slug: /
 ---
 
-# IBAX Documentation
+# IBAX Dokümantasyonu
 
-The IBAX Network (IBAX) has an integrated application development environment
-(IDE). It is a multi-level access control system for data, user pages and smart
-contracts.
+IBAX Network (IBAX), entegre bir uygulama geliştirme ortamına (IDE) sahiptir. Bu, veri, kullanıcı sayfaları ve akıllı sözleşmeler için çok seviyeli bir erişim kontrol sistemidir.
 
-## Concept
+## Kavram
 
-- [IBAX Overview](concepts/about-the-platform)
-- [The IBAX Network](concepts/blockchain-layers)
-- [Proof-of-Authority Consensus](concepts/consensus)
-- [Terms and Definitions](concepts/thesaurus)
-- [FAQ](concepts/faq)
+- [IBAX Genel Bakış](concepts/about-the-platform)
+- [IBAX Ağı](concepts/blockchain-layers)
+- [Otoriteye Dayalı Konsensus](concepts/consensus)
+- [Terimler ve Tanımlar](concepts/thesaurus)
+- [SSS](concepts/faq)
 
-## Tutorial
+## Öğretici
 
-- [Tutorial for application development](tutorials/app_tutorial)
-- [Development Tutorial](tutorials/tutorial)
+- [Uygulama geliştirme için öğretici](tutorials/app_tutorial)
+- [Geliştirme Öğreticisi](tutorials/tutorial)
 
-## Guide
+## Kılavuz
 
-- [Smart Contracts](topics/script)
-- [Template Language](topics/templates2)
-- [Compiler and Virtual Machine](topics/vm)
+- [Akıllı Sözleşmeler](topics/script)
+- [Şablon Dili](topics/templates2)
+- [Derleyici ve Sanal Makine](topics/vm)
 - [Daemon](topics/daemons)
 
-## Reference
+## Referans
 
 - [RESTful API](reference/api2)
-- [Platform Parameters](reference/platform-parameters)
-- [Server Configuration File](reference/backend-config)
-- [Synchronized Monitoring Tool](reference/desync_monitor)
-- [JSON-RPC Application Programming Interface](reference/json-rpc)
+- [Platform Parametreleri](reference/platform-parameters)
+- [Sunucu Yapılandırma Dosyası](reference/backend-config)
+- [Senkronize İzleme Aracı](reference/desync_monitor)
+- [JSON-RPC Uygulama Programlama Arayüzü](reference/json-rpc)
 
-## Deployment
+## Dağıtım
 
-- [Deployment of A IBAX Network](howtos/deployment)
+- [IBAX Ağı'nın Dağıtımı](howtos/deployment)
 
-## Needle Language
+## Needle Dili
 
-- [Specification](/needle/spec)
+- [Özellikler](/needle/spec)
