@@ -898,12 +898,11 @@ belirteç oluşturur:
   `$myname`.
 
 Mevcut sürümde, lex_table.go dosyasına yazılan belirteçleri ayrıştırmak için
-başlangıçta [lextable.go](#lextable-lextable-go) dosyası
-yardımıyla bir dönüşüm tablosu (sonlu durum makinesi) oluşturulur. Genel olarak,
-dosya tarafından başlangıçta oluşturulan dönüştürme tablosundan kurtulabilir ve
-başlangıçta hemen bellekte (`init()`) bir dönüştürme tablosu oluşturabilirsiniz.
-Sözcük analizinin kendisi [lex.go](#lex-go) dosyasındaki lexParser işlevinde
-gerçekleşir.
+başlangıçta [lextable.go](#lextable-lextable-go) dosyası yardımıyla bir dönüşüm
+tablosu (sonlu durum makinesi) oluşturulur. Genel olarak, dosya tarafından
+başlangıçta oluşturulan dönüştürme tablosundan kurtulabilir ve başlangıçta hemen
+bellekte (`init()`) bir dönüştürme tablosu oluşturabilirsiniz. Sözcük analizinin
+kendisi [lex.go](#lex-go) dosyasındaki lexParser işlevinde gerçekleşir.
 
 ### lextable/lextable.go {#lextable-lextable-go}
 
@@ -1006,10 +1005,10 @@ type Lexem struct {
   - **lexString** - satırlar dize olarak saklanır;
   - **lexComment** - yorumlar dize olarak saklanır;
   - **lexKeyword** - anahtar sözcükler için yalnızca ilgili dizinler saklanır,
-    bkz. `keyContract ... keyTail` sabiti. Bu durumda `Type = KeyID << 8 | lexKeyword`.
-    Ayrıca, "true, false, nil" anahtar sözcüklerinin hemen
-    lexNumber tipi belirteçlere dönüştürüleceği ve ilgili "bool" ve `interface {}`
-    türlerinin kullanılacağına dikkat edilmelidir;
+    bkz. `keyContract ... keyTail` sabiti. Bu durumda
+    `Type = KeyID << 8 | lexKeyword`. Ayrıca, "true, false, nil" anahtar
+    sözcüklerinin hemen lexNumber tipi belirteçlere dönüştürüleceği ve ilgili
+    "bool" ve `interface {}` türlerinin kullanılacağına dikkat edilmelidir;
   - **lexType** – bu değer, karşılık gelen "reflect.Type" tipi değerini içerir;
   - **lexExtend** – `$` ile başlayan tanımlayıcılar. Bu değişkenler ve işlevler
     dışarıdan iletilir ve bu nedenle özel türdeki belirteçlere atanır. Bu değer,

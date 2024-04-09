@@ -1,35 +1,35 @@
 ---
 sidebar_position: 2
-title: Specification
+title: Spesifikasyonu
+
 toc_min_heading_level: 2
 toc_max_heading_level: 4
 ---
 
-# Needle Specification {#needle-specification}
+# Needle Spesifikasyonu {#needle-specification}
 
-The Needle Specification is a formal description of the Needle language. It is
-intended to be a reference for developers who want to understand the language in
-detail.
+Needle Spesifikasyonu, Needle dilinin resmi bir açıklamasıdır. Bu, dilin
+ayrıntılarını anlamak isteyen geliştiriciler için bir referanstır.
 
-It is a statically-typed language with a syntax that is familiar to developers
-who have experience with golang.
+Bu, golang ile deneyimi olan geliştiricilere tanıdık gelen bir sözdizimi ile
+statik olarak tipi belirlenmiş bir dildir.
 
-## File Structure {#file-structure}
+## Dosya Yapısı {#file-structure}
 
-In Needle language, the main code block structure includes
-[Smart Contract](#spec-contract), [Data](#spec-data),
-[Function](#spec-function), [Settings](#spec-settings).
+Needle dilinde, ana kod blok yapısı [Akıllı Sözleşme](#spec-contract),
+[Veri](#spec-data), [Fonksiyon](#spec-function), [Ayarlar](#spec-settings)
+içerir.
 
-### Smart Contract {#spec-contract}
+### Akıllı Sözleşme {#spec-contract}
 
-Use the `contract` keyword to declare a smart contract, followed by the name of
-the smart contract, and its content must be enclosed in curly braces.
+`contract` anahtar kelimesini kullanarak bir akıllı sözleşme bildirin, ardından
+akıllı sözleşmenin adı gelir ve içeriği süslü parantezler içinde olmalıdır.
 
-> ContractStmt = "contract" [Identifier](#spec-identifier) >
+> `ContractStmt` = "contract" [Identifier](#spec-identifier) >
 > [CodeBlockStmt](#spec-codeblock).
 
-Smart contract structure has three main parts: [Data](#spec-data),
-[Settings](#spec-settings), [Function](#spec-function).
+Akıllı sözleşme yapısının üç ana parçası vardır: [Veri](#spec-data),
+[Ayarlar](#spec-settings), [Fonksiyon](#spec-function).
 
 ```go
 contract Name {
@@ -39,22 +39,23 @@ contract Name {
 }
 ```
 
-### Data {#spec-data}
+### Veri {#spec-data}
 
-Use `data` keyword partially describes the smart contract data input as well as
-the received form parameters. The `optional` indicates that the parameter is
-optional and not required.
+`data` anahtar kelimesi, kısmen akıllı sözleşme veri girişini ve alınan form
+parametrelerini tanımlar. `optional` parametrenin isteğe bağlı ve gerekli
+olmadığını belirtir.
 
 > `DataStmt` = `"data"` `"{"` { `ParamSign` } `"}"` .
 >
-> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [
+> `ParamSign` = [Identifier](#spec-identifier) [Typename](#spec-typename) [ >
 > `Tag` ] .
 >
 > `Tag` = `"optional"` .
 
-use the symbol `$` to get the corresponding variable value, it must be used in
-the [Function](#spec-function) within the contract, it is equivalent to the
-global variable of the contract. You can use it directly or reassign it.
+`$` sembolünü kullanarak ilgili değişken değerini alın, bu sembol yalnızca
+sözleşme içindeki [Fonksiyon](#spec-function) içinde kullanılmalıdır, bu
+sözleşmenin global değişkenine eşdeğerdir. Bunu doğrudan kullanabilir veya
+yeniden atayabilirsiniz.
 
 ```go
 contract Name {
@@ -68,13 +69,14 @@ contract Name {
 }
 ```
 
-### Settings {#spec-settings}
+### Ayarlar {#spec-settings}
 
-Use the `settings` keyword to declare constants, the type of constant value can
-be `int`, `float`, `string`, `bool`, it must be within the `contract`.
+`settings` anahtar kelimesini kullanarak sabitleri bildirin, sabit değer türü
+`int`, `float`, `string`, `bool` olabilir, bu mutlaka `contract` içinde
+olmalıdır.
 
-constants value only can be assigned once, and cannot be changed during the
-execution of the contract.
+sabitlerin değeri yalnızca bir kez atanabilir ve sözleşmenin yürütülmesi
+sırasında değiştirilemez.
 
 > `SettingsStmt` = `"settings"` `SettingsScope` .
 >
@@ -93,17 +95,17 @@ contract Name {
 }
 ```
 
-### Function {#spec-function}
+### Fonksiyon {#spec-function}
 
-This function processes the [Data](#spec-data) and [Settings](#spec-settings) in
-the smart contract. It performs operations such as arithmetic, type conversion,
-and establishing interactions between contracts.
+Bu fonksiyon, akıllı sözleşmedeki [Veri](#spec-data) ve
+[Ayarlar](#spec-settings)ı işler. Aritmetik, tip dönüşümü ve sözleşmeler arası
+etkileşimlerin kurulması gibi işlemler gerçekleştirir.
 
-#### Function Declaration {#function-decl}
+#### Fonksiyon Bildirimi {#function-decl}
 
-Functions are declared with the `func` keyword followed by the function name,
-parameters, type parameters, function tail, a return type and finally the
-function body.
+Fonksiyonlar, `func` anahtar kelimesi ile bildirilir, ardından fonksiyon adı,
+parametreler, tip parametreleri, fonksiyon sonu, bir dönüş tipi ve son olarak
+fonksiyon gövdesi gelir.
 
 > `FuncDecl` = "func" FuncName `FuncSign` `FuncBody` .
 >
@@ -126,10 +128,10 @@ function body.
 >
 > `FuncTail` = `"."` [Identifier](#spec-identifier) [ `FuncParams` ] .
 
-The function can have multiple parameters, each parameter followed by a
-parameter name and type, separated by a space or comma. The return value cannot
-be enclosed in parentheses `()`, and the return type cannot declare its variable
-name. Use the keyword `return` to return one or more values.
+Fonksiyonun birden çok parametresi olabilir, her parametre bir parametre adı ve
+tipi ile takip edilir, bir boşluk veya virgül ile ayrılır. Dönüş değeri parantez
+`()` içine alınamaz ve dönüş tipi değişken adını bildiremez. Bir veya daha fazla
+değeri döndürmek için `return` anahtar kelimesini kullanın.
 
 ```go
 func Add(a b, c int, s string) int string{
@@ -140,9 +142,9 @@ func Add(a b, c int, s string) int string{
 }
 ```
 
-If the function does not declare a parameter list, the parentheses `()` in the
-function signature can be omitted, and in this case, the type declaration after
-the function name is called the result parameter.
+Eğer fonksiyon bir parametre listesi bildirmezse, fonksiyon imzasındaki
+parantezler `()` atlanabilir ve bu durumda, fonksiyon adından sonra gelen tip
+bildirimi sonuç parametresi olarak adlandırılır.
 
 ```go
 func Get string{
@@ -150,11 +152,11 @@ func Get string{
 }
 ```
 
-The function signature can use `...` to represent the type of variadic
-parameters, which must be the last parameter, and its data type is
-[array](#spec-typename). The variadic parameter contains all the variables
-starting from the call to pass the parameter. Any type of variable can be
-passed, but conflicts with data types need to be handled.
+Fonksiyon imzası, `...` kullanarak değişken parametrelerin tipini temsil
+edebilir, bu son parametre olmalıdır ve veri tipi [dizi](#spec-typename)dir.
+Değişken parametre, parametreyi geçmek için çağrıdan başlayarak tüm değişkenleri
+içerir. Her türden değişken geçirilebilir, ancak veri türleriyle çakışmaların
+ele alınması gereklidir.
 
 ```go
 func sum(out string, values ...) {
@@ -166,10 +168,10 @@ func Name() {
 }
 ```
 
-THe function thought the `return` statement returns a value, it will not be
-passed to other contracts. If you want to pass the return value of the contract
-to another contract, you need to assign the return value to the `$result`
-variable.
+Fonksiyon, `return` ifadesiyle bir değer döndürse bile, bu değer diğer
+sözleşmelere geçirilmez. Sözleşmenin dönüş değerini başka bir sözleşmeye
+geçirmek istiyorsanız, dönüş değerini `$result` değişkenine atamanız
+gerekmektedir.
 
 ```go
 contract NameB {
@@ -185,7 +187,7 @@ contract NameA {
 }
 ```
 
-If the function name is `action` or `conditions`, the `func` can be omitted.
+Eğer fonksiyon adı `action` veya `conditions` ise, `func` kelimesi atlanabilir.
 
 ```go
 contract Name {
@@ -194,15 +196,16 @@ contract Name {
 }
 ```
 
-#### Tail function {#tail-function}
+#### Kuyruk fonksiyonu {#tail-function}
 
-The function may have many parameters, but when calling them, you only want to
-pass some of them. In this case, you can declare multiple functions with a dot,
-such functions are called `tail functions`, and then you can call the specified
-parameters in any order, without having to call them in the order declared. In
-such a function body, you can use these parameters normally. If no parameters
-are passed, they will be assigned default values. Tail functions do not have
-return values, and the return values are part of the main function.
+Fonksiyonun birçok parametresi olabilir, ancak onları çağırırken yalnızca
+bazılarını geçmek istersiniz. Bu durumda, bir nokta ile birden çok fonksiyon
+bildirebilirsiniz, bu tür fonksiyonlara `kuyruk fonksiyonları` denir ve ardından
+belirtilen parametreleri herhangi bir sırayla çağırabilirsiniz, onları
+bildirilen sırayla çağırmak zorunda kalmazsınız. Bu tür bir fonksiyon
+gövdesinde, bu parametreleri normal olarak kullanabilirsiniz. Parametre
+geçilmezse, varsayılan değerler atanır. Kuyruk fonksiyonlarının dönüş değerleri
+yoktur ve dönüş değerleri ana fonksiyonun bir parçasıdır.
 
 ```go
 func myfunc(name string).Param1(p1 int).Param2(p2 string) int {
@@ -213,12 +216,12 @@ func Name{
 }
 ```
 
-Different functions can be called using a dot. When calling a function, the
-return value of this function can be used as the input of the next function, and
-the return value is obtained in the order of definition. Multiple tail functions
-are only visible to the main function, not to other functions. Tail functions
-cannot be called separately, they must be connected to the main function or
-other tail functions under the main function.
+Bir nokta kullanarak farklı fonksiyonlar çağrılabilir. Bir fonksiyon
+çağrıldığında, bu fonksiyonun dönüş değeri bir sonraki fonksiyonun girişi olarak
+kullanılabilir ve dönüş değeri tanımlama sırasına göre elde edilir. Birden çok
+kuyruk fonksiyonu yalnızca ana fonksiyona görünür, diğer fonksiyonlara değil.
+Kuyruk fonksiyonları ayrı ayrı çağrılamaz, ana fonksiyona veya ana fonksiyon
+altındaki diğer kuyruk fonksiyonlarına bağlı olmalıdırlar.
 
 ```go
 func A(int).tailA() int, string
@@ -231,22 +234,23 @@ func Name(){
 }
 ```
 
-## Syntax base {#syntax-base}
+## Sözdizimi temeli {#syntax-base}
 
-The source code must be encoded using UTF-8.
+Kaynak kod, UTF-8 kullanılarak kodlanmalıdır.
 
-### Code block {#spec-codeblock}
+### Kod bloğu {#spec-codeblock}
 
-The curly braces `{}` specify a code block that can contain local variables.
-Variables in the code block can only be used in the code block and its sub-code
-block. The function body is also a code block.
+Kıvırcık parantezler `{}` yerel değişkenleri içerebilecek bir kod bloğunu
+belirtir. Kod bloğundaki değişkenler yalnızca kod bloğunda ve alt kod bloğunda
+kullanılabilir. Fonksiyon gövdesi de bir kod bloğudur.
 
 > `CodeBlockStmt` = `"{"` ... `"}"` .
 
-By default, variables in a code block are not visible, and the scope of a
-variable can be extended to its sub-code block. In a code block, you can use the
-name of an existing variable to define a new variable. Therefore, it is not
-visible outside its scope. When the scope ends, the variable will be destroyed.
+Varsayılan olarak, bir kod bloğundaki değişkenler görünmez ve bir değişkenin
+kapsamı alt kod bloğuna genişletilebilir. Bir kod bloğunda, mevcut bir
+değişkenin adını yeni bir değişken tanımlamak için kullanabilirsiniz. Bu
+nedenle, kapsamının dışında görünmez. Kapsam sona erdiğinde, değişken yok
+edilir.
 
 ```go
 contract Name {
@@ -261,13 +265,13 @@ contract Name {
 }
 ```
 
-### Comment {#spec-comment}
+### Yorum {#spec-comment}
 
-Comments can be used as documentation, and the content of the comments will be
-ignored by the compiler. There are two types of comments, one is **single-line
-comments**, and the other is **multi-line comments**.
+Yorumlar belgelendirme olarak kullanılabilir ve yorumların içeriği derleyici
+tarafından görmezden gelinir. İki tür yorum vardır, biri **tek satır
+yorumlarıdır**, diğeri ise **çok satırlı yorumlardır**.
 
-1. Single line comments start with `//` and end at the end of the line.
+1. Tek satır yorumlar `//` ile başlar ve satırın sonunda biter.
 
 ```go
 func add(a int, b int) int {
@@ -276,9 +280,9 @@ func add(a int, b int) int {
 }
 ```
 
-2. Multi-line comments start with `/*` and end with `*/`. Multi-line comments
-   are not affected by newline characters, can span multiple lines, and can be
-   commented out anywhere.
+2. Çok satırlı yorumlar `/*` ile başlar ve `*/` ile biter. Çok satırlı yorumlar
+   yeni satır karakterlerinden etkilenmez, birden çok satırı kapsayabilir ve her
+   yerde yorum satırına alınabilir.
 
 ```go
 func /*here*/a() {
@@ -291,11 +295,11 @@ here
 /*everywhere*/
 ```
 
-### Newline {#spec-newline}
+### Yeni Satır {#spec-newline}
 
-The newline character is a delimiter between expressions and statements, and the
-newline character is replaced by a semicolon `;`, which can be used to separate
-multiple expressions or statements.
+Yeni satır karakteri, ifadeler ve deyimler arasında bir ayırıcıdır ve yeni satır
+karakteri bir noktalı virgül `;` ile değiştirilir, bu da birden çok ifadeyi veya
+deyimi ayırmak için kullanılabilir.
 
 ```go
 var a int
@@ -305,46 +309,46 @@ a = 1
 var a int; as = 1
 ```
 
-### Delimiter {#spec-delimiter}
+### Ayırıcı {#spec-delimiter}
 
-Delimiter are used to separate identifiers, such as variable names, function
-names, type names, etc.
+Ayırıcılar, değişken adları, fonksiyon adları, tip adları vb. gibi
+tanımlayıcıları ayırmak için kullanılır.
 
 > `Delimiter` = `"("` | `")"` | `"{"` | `"}"` | `"["` | `"]"` | `"."` | `"," `|
 > `"="` | `":"` .
 
-### Expression {#spec-expression}
+### İfade {#spec-expression}
 
-Expression refers to a statement that calculates a value. An expression consists
-of constants, variables, operators, and functions. A definite value can be
-obtained after calculation. The expression does not change the value, it just
-calculates a value.
+İfade, bir değeri hesaplayan bir ifadeyi ifade eder. Bir ifade, sabitler,
+değişkenler, operatörler ve fonksiyonlardan oluşur. Hesaplama sonrası kesin bir
+değer elde edilebilir. İfade değeri değiştirmez, sadece bir değeri hesaplar.
 
-Some examples of expressions, not limited to:
+İfadelerin bazı örnekleri, sınırlı olmamakla birlikte:
 
-- Literals, including string literals, numeric literals, such as: `100`, `3.14`,
-  `"hello"`.
-- Variable names, such as: `x`, `sum`.
-- Arithmetic expressions, such as: `1 + 2`, `a * b`.
-- Function call expressions, such as: `fnName()`.
-- Comparison expressions, such as: `a == b`, `score > 90`.
-- Logical expressions, such as: `a && b`, `!done`.
-- Array, slice, map index expression, such as: `array[2]`, `map["key"]`,
-  `slice[1:3]`.
-- Type conversion expression, such as: `Int(a)`.
+- Metin katarları, sayısal literaller dahil olmak üzere literaller, örneğin:
+  `100`, `3.14`, `"merhaba"`.
+- Değişken adları, örneğin: `x`, `toplam`.
+- Aritmetik ifadeler, örneğin: `1 + 2`, `a * b`.
+- Fonksiyon çağrı ifadeleri, örneğin: `fnName()`.
+- Karşılaştırma ifadeleri, örneğin: `a == b`, `puan > 90`.
+- Mantıksal ifadeler, örneğin: `a && b`, `!tamamlandı`.
+- Dizi, dilim, harita indeks ifadesi, örneğin: `dizi[2]`, `harita["anahtar"]`,
+  `dilim[1:3]`.
+- Tür dönüşüm ifadesi, örneğin: `Int(a)`.
 
-The value obtained by calculating the expression can be assigned to a variable,
-used as a parameter to a function, combined with other expressions to form more
-complex expressions, and used in if condition statements to control the program
-flow.
+İfadenin hesaplanmasıyla elde edilen değer, bir değişkene atanabilir, bir
+fonksiyona parametre olarak kullanılabilir, diğer ifadelerle birleştirilerek
+daha karmaşık ifadeler oluşturabilir ve if koşul ifadelerinde program akışını
+kontrol etmek için kullanılabilir.
 
-### Identifier {#spec-identifier}
+### Tanımlayıcı {#spec-identifier}
 
-Identifiers are used to identify variables, functions, constants, and other
-program names. Identifiers are composed of one or more letters `A|a` to `Z|z`,
-numbers `0` to `9`, and underscores `_`, and must begin with a letter.
-Identifiers cannot contain spaces and special characters. Identifiers are
-case-sensitive and cannot use [keywords](#spec-keyword) as identifiers.
+Tanımlayıcılar, değişkenleri, fonksiyonları, sabitleri ve diğer program adlarını
+tanımlamak için kullanılır. Tanımlayıcılar bir veya daha fazla harften `A|a`'dan
+`Z|z`'ye, sayılardan `0`'dan `9`'a ve alt çizgilerden `_` oluşur ve bir harfle
+başlamalıdır. Tanımlayıcılar boşluk ve özel karakterler içeremez. Tanımlayıcılar
+büyük-küçük harfe duyarlıdır ve [anahtar kelimeler](#spec-keyword) tanımlayıcı
+olarak kullanılamaz.
 
 > `Identifier` = `unicode_letter` `{` `letter` | `unicode_digit` `}`
 >
@@ -365,13 +369,13 @@ x_123
 αβ
 ```
 
-Multiple identifiers can be combined into an identifier list, separated by
-commas or spaces.
+Birden çok tanımlayıcı, virgül veya boşluklarla ayrılmış bir tanımlayıcı
+listesine birleştirilebilir.
 
-### Keyword {#spec-keyword}
+### Anahtar Kelime {#spec-keyword}
 
-The following keywords are reserved and cannot be used as
-[identifiers](#spec-identifier).
+Aşağıdaki anahtar kelimeler ayrılmıştır ve [tanımlayıcılar](#spec-identifier)
+olarak kullanılamaz.
 
 |          |       |       |          |            |
 | -------- | ----- | ----- | -------- | ---------- |
@@ -381,17 +385,16 @@ The following keywords are reserved and cannot be used as
 | true     | false | info  | warning  | error      |
 | ...      |       |       |          |            |
 
-### Number {#spec-number}
+### Sayı {#spec-number}
 
-Number literal values include: `decimal` integer, `binary` integer, `octal`
-integer, `hexadecimal` integer, and floating-point number and scientific
-notation.
+Sayısal literal değerler şunları içerir: `decimal` tam sayı, `binary` tam sayı,
+`octal` tam sayı, `hexadecimal` tam sayı, ve kayan noktalı sayı ve bilimsel
+notasyon.
 
-There are two basic types: `int` and `float`. If the number contains a decimal
-point or `eE`, it is a **float** type, which conforms to the standard IEEE-754
-64-bit floating-point number, otherwise it is an **int** type. int is equivalent
-to int64 in the Golang language, and float is equivalent to float64 in the
-Golang language.
+İki temel tür vardır: `int` ve `float`. Eğer sayı bir ondalık nokta veya `eE`
+içeriyorsa, bu bir **float** türüdür, standart IEEE-754 64-bit kayan noktalı
+sayıya uyar, aksi takdirde bu bir **int** türüdür. int, Golang dilindeki int64'e
+eşdeğerdir, ve float, Golang dilindeki float64'e eşdeğerdir.
 
 > `int` = `DecimalLit` | `BinaryLit` | `OctalLit` | `HexLit` .
 >
@@ -439,10 +442,10 @@ Golang language.
 
 ### String {#spec-string}
 
-String literals can be enclosed in double quotes `"` or backticks `` ` ``, and
-string literals enclosed in backticks can span multiple lines. The string in
-double quotes can contain escape sequences for double quotes, newline, and
-carriage return. The string in backticks is not escaped.
+String literalleri çift tırnak `"` veya backticks `` ` `` içinde olabilir, ve
+backticks içindeki string literalleri birden çok satıra yayılabilir. Çift tırnak
+içindeki string çift tırnak, yeni satır ve carriage return için kaçış dizileri
+içerebilir. Backticks içindeki string kaçış yapılmaz.
 
 > `StringLiteral` = `RawStringLiteral` | `InterpretedStringLiteral` .
 >
@@ -462,29 +465,29 @@ str = `This is \n \t \r a other string`
 
 ### Boolean {#spec-boolean}
 
-A boolean type has two values: `true` and `false`. It is used to represent the
-truth value of an expression.
+Bir boolean tipinin iki değeri vardır: `true` ve `false`. Bir ifadenin doğruluk
+değerini temsil etmek için kullanılır.
 
 > `Boolean` = "true" | "false" .
 
-### Variable {#spec-variable}
+### Değişken {#spec-variable}
 
-Variables are used to store values, and the values allowed by variables are
-determined by their types. The type is immutable, but the value can be changed
-during program execution.
+Değişkenler değerleri saklamak için kullanılır, ve değişkenler tarafından izin
+verilen değerler türlerine göre belirlenir. Tür değişmez, ancak değer programın
+çalışması sırasında değiştirilebilir.
 
-#### Local Variable {#local-variable}
+#### Yerel Değişken {#local-variable}
 
-The keyword `var` is used to declare local variables, and the variable must be
-followed by a variable name and type.
+`var` anahtar kelimesi yerel değişkenleri bildirmek için kullanılır, ve
+değişkenin ardından bir değişken adı ve türü gelmelidir.
 
 > `LocalVarDecl` = `"var"` [IdentifierList](#spec-identifier) >
 > [Typename](#spec-typename) .
 
-When declaring a variable, its value is the default value. To declare one or
-more variables, you can use a comma or space to separate multiple variable names
-and types. When the types of two or more consecutive named formal parameters of
-a function are the same, all types except the last one can be omitted.
+Bir değişkeni bildirirken, değeri varsayılan değerdir. Bir veya daha fazla
+değişkeni bildirmek için, birden çok değişken adını ve türünü ayırmak için
+virgül veya boşluk kullanabilirsiniz. İki veya daha fazla ardışık isimli formal
+parametrenin türleri aynıysa, sonuncusu dışındaki tüm türler atlanabilir.
 
 ```go
 var a int
@@ -496,8 +499,7 @@ b1, b2 = "string1", "string2"
 c c1 = true 1.2
 ```
 
-Variables cannot be initialized when declared, and must be assigned after
-declaration.
+Değişkenler bildirildiğinde başlatılamaz ve bildirimden sonra atanmalıdır.
 
 ```go
 // invalid
@@ -508,9 +510,9 @@ var a int
 a = 1
 ```
 
-The types `map` and `array` do not support multiple assignments on the same line
-using `{}` and `[]`, but multiple assignments on the same line can be done using
-variable names.
+`map` ve `array` tipleri, `{}` ve `[]` kullanarak aynı satırda birden çok
+atamayı desteklemez, ancak aynı satırda birden çok atama, değişken adları
+kullanılarak yapılabilir.
 
 ```go
 var a b int c c1 map d d1 array
@@ -523,17 +525,17 @@ d[0], d[1] = c, d //invalid
 d[0], d[1] = d[1], d[0] //invalid
 ```
 
-#### Global Variable {#global-variable}
+#### Global Değişken {#global-variable}
 
-The keyword symbol `$` and [Identifier](#spec-identifier) is used to declare and
-use global variables. The syntax is as follows:
+Anahtar sembol `$` ve [Identifier](#spec-identifier) global değişkenleri
+bildirmek ve kullanmak için kullanılır. Sözdizimi aşağıdaki gibidir:
 
 > `GlobalVarDecl` = `"$"` [Identifier](#spec-identifier) .
 
-Global variables can be declared in any function within a single contract scope,
-but must be declared before use. The parameters defined in the `data` section
-are also global variables, but can only be used within the current contract
-scope.
+Global değişkenler tek bir sözleşme kapsamında herhangi bir fonksiyonda
+bildirilebilir, ancak kullanılmadan önce bildirilmelidir. `data` bölümünde
+tanımlanan parametreler aynı zamanda global değişkenlerdir, ancak yalnızca
+mevcut sözleşme kapsamında kullanılabilir.
 
 ```go
 contract Name {
@@ -550,31 +552,32 @@ contract Name {
 }
 ```
 
-#### Predeclared global variables {#predeclared-global-variables}
+#### Önceden Bildirilmiş Global Değişkenler {#predeclared-global-variables}
 
-Predeclared global variables can be used in any contract scope and these global
-variables can be specified as immutable during compilation, which is mutable by
-default.
+Önceden bildirilmiş global değişkenler herhangi bir sözleşme kapsamında
+kullanılabilir ve bu global değişkenler derleme sırasında değiştirilemez olarak
+belirtilebilir, bu varsayılan olarak değiştirilebilirdir.
 
-Predeclared global variables include:
+Önceden bildirilmiş global değişkenler şunları içerir:
 
-- `$original_contract` - name of the contract that initially processed the
-  transaction. It means the contract is called during transaction validation if
-  the variable is an empty string. To check whether the contract is called by
-  another contract or directly by the transaction, you need to compare the
-  values of $original_contract and $this_contract. It means that the contract is
-  called by the transaction if they are equal.
-- `$this_contract` - name of the contract currently being executed.
-- `$stack` - contract array stack with a data type of [array](#spec-typename),
-  containing all contracts executed. The first element of the array represents
-  the name of the contract currently being executed, while the last element
-  represents the name of the contract that initially processed the transaction.
-- `$result` - assigned with the return result of the contract.
+- `$original_contract` - İlk olarak işlemi işleyen sözleşmenin adı. Bu,
+  değişkenin boş bir dize olması durumunda sözleşmenin işlem doğrulaması
+  sırasında çağrıldığı anlamına gelir. Sözleşmenin başka bir sözleşme tarafından
+  mı yoksa işlem tarafından mı doğrudan çağrıldığını kontrol etmek için,
+  $original_contract ve $this_contract değerlerini karşılaştırmanız
+  gerekmektedir. Eğer eşitlerse, sözleşmenin işlem tarafından çağrıldığı
+  anlamına gelir.
+- `$this_contract` - Şu anda yürütülmekte olan sözleşmenin adı.
+- `$stack` - Tüm sözleşmeleri içeren bir [array](#spec-typename) veri tipine
+  sahip sözleşme dizi yığını. Dizinin ilk öğesi, şu anda yürütülmekte olan
+  sözleşmenin adını temsil ederken, son öğe işlemi ilk olarak işleyen
+  sözleşmenin adını temsil eder.
+- `$result` - Sözleşmenin dönüş sonucu ile atanır.
 
-### Typename {#spec-typename}
+### Tip Adı {#spec-typename}
 
-All variables have types, and type names are used to represent the data types of
-variables.
+Tüm değişkenlerin tipleri vardır ve tip adları, değişkenlerin veri tiplerini
+temsil etmek için kullanılır.
 
 > `Type` = `Typename` | `TypeList` .
 >
@@ -583,30 +586,30 @@ variables.
 >
 > `TypeList` = `Typename` `{` ( "," | " " ) `Typename` `}` .
 
-The following type names are reserved and cannot be used as identifiers,
-equivalent to the corresponding types in the Golang language.
+Aşağıdaki tip adları ayrılmıştır ve tanımlayıcı olarak kullanılamaz, Golang
+dilindeki karşılık gelen tiplere eşdeğerdir.
 
-- **int** - int64, zero value is `0`.
-- **string** - string, zero value is `""`.
-- **float** - float64, zero value is `0.0`.
-- **bool** - bool, zero value is `false`.
-- **bytes** - []byte, zero value is `[]byte`.
-- **array** - []interface{}, zero value is `[]`.
-- **map** - map[string]interface{}, zero value is `map[]`.
-- **address** - int64, zero value is `0`.
-- **money** - [decimal.Decimal](https://github.com/shopspring/decimal), zero
-  value is `0`.
-- **file** - map[string]interface{}, zero value is `map[]`.
+- **int** - `int64`, sıfır değeri `0`.
+- **string** - `string`, sıfır değeri `""`.
+- **float** - `float64`, sıfır değeri `0.0`.
+- **bool** - `bool`, sıfır değeri `false`.
+- **bytes** - `[]byte`, sıfır değeri `[]byte`.
+- **array** - `[]interface{}`, sıfır değeri `[]`.
+- **map** - `map[string]interface{}`, sıfır değeri `map[]`.
+- **address** - `int64`, sıfır değeri `0`.
+- **money** - [decimal.Decimal](https://github.com/shopspring/decimal), sıfır
+  değeri `0`.
+- **file** - `map[string]interface{}`, sıfır değeri `map[]`.
 
-#### Object and array literals {#object-and-array-literals}
+#### Nesne ve dizi literalleri {#object-and-array-literals}
 
-`array` and `map` types can be created using `[]` and `{}` operators or
-specified elements.
+`array` ve `map` tipleri `[]` ve `{}` operatörleri veya belirtilen öğeler
+kullanılarak oluşturulabilir.
 
-`array` type index must be `int`. `map` type index must be `string`. If a value
-is assigned to an index greater than the current maximum index of the `array`
-element, an empty element will be added to the array. The initialization value
-of these elements is `nil`.
+`array` tipindeki indeks `int` olmalıdır. `map` tipindeki indeks `string`
+olmalıdır. Eğer bir değer `array` öğesinin mevcut maksimum indeksinden daha
+büyük bir indekse atanırsa, diziye boş bir öğe eklenir. Bu öğelerin başlangıç
+değeri `nil`dir.
 
 ```go
 var arr array m map
@@ -618,22 +621,22 @@ m = {"key": arr[0]} // invalid
 m["key1"] = arr[5] // m["key1"] = nil
 ```
 
-### Operator {#spec-operator}
+### Operatör {#spec-operator}
 
-An operation expression consists of an operator and an operand. Needle supports
-the following operation operators: arithmetic operators, comparison operators,
-logical operators, bitwise operators, and assignment operators.
+Bir işlem ifadesi bir operatör ve bir operanda oluşur. Needle, aşağıdaki işlem
+operatörlerini destekler: aritmetik operatörler, karşılaştırma operatörleri,
+mantıksal operatörler, bit düzeyinde operatörler ve atama operatörleri.
 
-Follow are the currently supported operators:
+Aşağıda desteklenen operatörler bulunmaktadır:
 
-- arithmetic operators: `+`, `-`, `*`, `/`, `%`, `++`, `--`.
-- comparison operators: `==`, `!=`, `>`, `>=`, `<`, `<=`.
-- logical operators: `&&`, `||`, `!`.
-- bitwise operators: `&`, `|`, `^`, `<<`, `>>`.
-- assignment operators: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`,
+- aritmetik operatörler: `+`, `-`, `*`, `/`, `%`, `++`, `--`.
+- karşılaştırma operatörleri: `==`, `!=`, `>`, `>=`, `<`, `<=`.
+- mantıksal operatörler: `&&`, `||`, `!`.
+- bit düzeyinde operatörler: `&`, `|`, `^`, `<<`, `>>`.
+- atama operatörleri: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`,
   `<<=`, `>>=`.
 
-The priority of the operators is from high to low:
+Operatörlerin önceliği yüksekten düşüğe doğrudur:
 
 - `++`, `--`, `!`.
 - `*`, `/`, `%`.
@@ -648,33 +651,32 @@ The priority of the operators is from high to low:
 - `||`.
 - `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`, `<<=`, `>>=`.
 
-The result type of the operation is the same as the type of the operand. Except
-for comparison operators and logical operators, their result type is `bool`. In
-logical expressions, the result type will be automatically converted to a
-logical value, if the operand type is not the default value, and the result is
-`true`.
+İşlemin sonuç türü, operandın türüyle aynıdır. Karşılaştırma operatörleri ve
+mantıksal operatörler hariç, sonuç türleri `bool` olacaktır. Mantıksal
+ifadelerde, operand türü varsayılan değer değilse, sonuç türü otomatik olarak
+mantıksal bir değere dönüştürülür ve sonuç `true` olur.
 
-`a += b` is equivalent to `a = a + b`, `-=`, `*=`, `/=`, `%=`, `&=`, `|=`, `^=`,
-`<<=`, `>>=` are also defined in this way. `a++` is equivalent to `a += 1`.
+`a += b`, `a = a + b` ile eşdeğerdir, `-=` , `*=` , `/=` , `%=` , `&=` , `|=` ,
+`^=` , `<<=` , `>>=` de bu şekilde tanımlanmıştır. `a++`, `a += 1` ile
+eşdeğerdir.
 
-Even if the types of the two operands are different, Needle allows the use of
-operators in expressions. In this case, the operands will be converted to the
-same type and then the operation will be performed. For example, to calculate
-`z = x + y`, where `x` is of type `int` and `y` is of type `float`, `x` and `y`
-will both be converted to type `decimal`. Then the addition operation is
-performed, and the result is of type `decimal`, which is then converted to type
-`float` and assigned to `z`.
+İki operandın türleri farklı olsa bile, Needle ifadelerde operatörlerin
+kullanılmasına izin verir. Bu durumda, operandlar aynı türe dönüştürülür ve
+ardından işlem gerçekleştirilir. Örneğin, `z = x + y` hesaplamak için, `x` `int`
+türünde ve `y` `float` türünde ise, `x` ve `y` her ikisi de `decimal` türüne
+dönüştürülür. Ardından toplama işlemi gerçekleştirilir ve sonuç `decimal`
+türünde olup, `float` türüne dönüştürülür ve `z`'ye atanır.
 
-It should be noted that when performing floating-point operations, the issue of
-precision loss should be considered to avoid incorrect results.
+Yüzer nokta işlemleri gerçekleştirilirken, hassasiyet kaybı sorununun dikkate
+alınması gerektiğini belirtmek gerekir, yanlış sonuçlardan kaçınmak için.
 
-The following lists the operators and result types between operands of different
-types:
+Aşağıdaki, farklı türlerdeki operandlar arasındaki operatörleri ve sonuç
+türlerini listeler:
 
 | operand                       | x       | y       | z       |                            |
 | ----------------------------- | ------- | ------- | ------- | -------------------------- |
 | not(`!`)                      | -       |         | bool    | y to bool                  |
-| unary(`+`,`-`)                | \*      | int     | int     |                            |
+| unary(`+`,`-`)                | -       | int     | int     |                            |
 |                               | -       | float   | float   |                            |
 | `<<` , `>>`                   | int     | int     | int     |                            |
 | `&`,`^`,`｜`                  | int     | int     | int     |                            |
@@ -692,7 +694,7 @@ types:
 |                               | decimal | int     | decimal | y to decimal               |
 |                               | decimal | float   | decimal | y to decimal               |
 |                               | decimal | decimal | decimal |                            |
-| `&&`,\`\\                     |         |         | bool    | x to bool, y to bool       |
+| `&&`,`\|\|`                   |         |         | bool    | x to bool, y to bool       |
 | `==` ,`!=` ,`<`,`<=`,`>`,`>=` | nil     | nil     | bool    | only(`==` ,`!=`)           |
 |                               | bool    | bool    | bool    | only(`==` ,`!=`)           |
 |                               | string  | string  | bool    |                            |
@@ -713,19 +715,19 @@ types:
 |                               | decimal | decimal | bool    |                            |
 |                               |         |         |         |                            |
 
-### Slice {#spec-slice}
+### Dilim {#spec-slice}
 
-The slice operation only applies to the types `array`, `string`, and `bytes`.
-The slice operator `[low:high]` is used to get a part of the array.
+Dilim işlemi yalnızca `array`, `string` ve `bytes` tiplerine uygulanır. Dilim
+operatörü `[low:high]` bir dizinin bir kısmını almak için kullanılır.
 
 ```go
 arr[low:high]
 ```
 
-The range of the index must be positive. If `0<=low<=high<=len(arr)`, the index
-range is valid, otherwise the index range is invalid. For convenience, any index
-can be omitted. The omitted index will be replaced by the first index or the
-last index of the array.
+İndeks aralığının pozitif olması gerekmektedir. Eğer `0<=low<=high<=len(arr)`
+ise, indeks aralığı geçerlidir, aksi takdirde indeks aralığı geçersizdir.
+Kolaylık olması için, herhangi bir indeks atlanabilir. Atlanan indeks, dizinin
+ilk indeksi veya son indeksi ile değiştirilecektir.
 
 ```go
 var a b c d e array str strA string
@@ -739,10 +741,10 @@ str = "abcd"
 strA = str[1:3] // strA = "bc"
 ```
 
-### Increment and Decrement {#spec-increment-and-decrement}
+### Artırma ve Azaltma {#spec-increment-and-decrement}
 
-`++` and `--` increment and decrement the variables of type `int`, `float`, and
-`money`, which can increase or decrease the variable value by 1.
+`++` ve `--` operatörleri, `int`, `float` ve `money` türündeki değişkenleri
+artırır ve azaltır, bu da değişken değerini 1 artırabilir veya azaltabilir.
 
 ```go
 var i int f float m money
@@ -751,30 +753,30 @@ f--
 m++
 ```
 
-### Control Statement {#spec-control-statement}
+### Kontrol İfadesi {#spec-control-statement}
 
-Control statements are used to control the execution flow of the program,
-including return statements, if statements, while statements, break statements,
-and continue statements.
+Kontrol ifadeleri, programın yürütme akışını kontrol etmek için kullanılır,
+bunlar arasında return ifadeleri, if ifadeleri, while ifadeleri, break
+ifadeleri, ve continue ifadeleri bulunur.
 
 > `ControlStmt` = [ReturnStmt](#return-statement) | [IfStmt](#if-statement) |
 > [WhileStmt](#while-statement) | [BreakStmt](#break-statement) |
 > [ContinueStmt](#continue-statement) .
 
-In if statements, the conversion from non-boolean types to boolean types is
-supported. The following rules convert boolean types to `false`, otherwise
-`true`. So, code like `if 1 {}` is valid.
+If ifadelerinde, boolean olmayan türlerden boolean türlere dönüşüm desteklenir.
+Aşağıdaki kurallar boolean türlerini `false`'a dönüştürür, aksi takdirde `true`.
+Yani, `if 1 {}` gibi bir kod geçerlidir.
 
-- `int` and `float`, `money`, `string`, `address` type values are equal to the
-  zero value.
-- `array` and `map`, `bytes`, `file` type values are equal to nil or their
-  length is zero.
+- `int` ve `float`, `money`, `string`, `address` türündeki değerler sıfır
+  değerine eşittir.
+- `array` ve `map`, `bytes`, `file` türündeki değerler nil'e eşittir veya
+  uzunlukları sıfırdır.
 
-#### Return statement {#return-statement}
+#### Return ifadesi {#return-statement}
 
-The `return` statement is used in the function body to terminate the execution
-of the function prematurely. If the function declares result parameters, the
-`return` statement must return the same type and number of values.
+`return` ifadesi, fonksiyonun yürütmesini erken sonlandırmak için fonksiyon
+gövdesinde kullanılır. Eğer fonksiyon sonuç parametrelerini bildirirse, `return`
+ifadesi aynı tür ve sayıda değer döndürmelidir.
 
 > `ReturnStmt` = "return" [ExpressionList](#spec-expression) .
 
@@ -784,14 +786,13 @@ func add(a , b int) int {
 }
 ```
 
-#### If statement {#if-statement}
+#### If ifadesi {#if-statement}
 
-`if` statement executes the code block based on the value of the boolean
-expression. If the expression evaluates to `true`, the `if` code block is
-executed, otherwise the `else` code block is executed.
+`if` ifadesi, kod bloğunu boolean ifadenin değerine göre yürütür. Eğer ifade
+`true` olarak değerlendirilirse, `if` kod bloğu yürütülür, aksi takdirde `else`
+kod bloğu yürütülür.
 
-`elif` is actually equivalent to `else if`, it must be defined before the `else`
-statement.
+`elif` aslında `else if`'e eşdeğerdir, `else` ifadesinden önce tanımlanmalıdır.
 
 > `IfStmt` = "if" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) { `ElIfStmtList` } [`ElseStmt`] .
@@ -811,11 +812,11 @@ if a > b {
 }
 ```
 
-#### while statement {#while-statement}
+#### while ifadesi {#while-statement}
 
-The `while` statement provides the ability to repeatedly execute a code block as
-long as the expression evaluates to `true`. The condition is evaluated before
-each iteration.
+`while` ifadesi, ifadenin `true` olarak değerlendirildiği sürece bir kod bloğunu
+tekrar tekrar çalıştırma yeteneği sağlar. Koşul, her yineleme öncesi
+değerlendirilir.
 
 > `WhileStmt` = "while" [Expression](#spec-expression) >
 > [CodeBlockStmt](#spec-codeblock) .
@@ -829,15 +830,14 @@ while a < 10 {
 
 :::tip
 
-If the condition is always `true`, the `while` statement will be executed
-repeatedly. Therefore, it should include a condition that is `false` at some
-point.
+Eğer koşul her zaman `true` ise, `while` ifadesi tekrar tekrar çalıştırılır. Bu
+nedenle, bir noktada `false` olan bir koşul içermelidir.
 
 :::
 
-#### Break statement {#break-statement}
+#### Break ifadesi {#break-statement}
 
-The `break` statement terminates the innermost `while` statement.
+`break` ifadesi, en içteki `while` ifadesini sonlandırır.
 
 > `BreakStmt` = "break" .
 
@@ -852,10 +852,10 @@ while a < 10 {
 }
 ```
 
-#### Continue statement {#continue-statement}
+#### Continue ifadesi {#continue-statement}
 
-`continue` statement skips the remaining code of the innermost `while` statement
-and continues with the next iteration of the loop.
+`continue` ifadesi, en içteki `while` ifadesinin kalan kodunu atlar ve döngünün
+bir sonraki yinelemesiyle devam eder.
 
 > `ContinueStmt` = "continue" .
 

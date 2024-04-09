@@ -119,9 +119,11 @@ içeren sözleşmelerde kullanılabilir:
 - `$original_contract` - başlangıçta işlemi işleyen sözleşmenin adı. Değişken
   boş bir dize ise, sözleşmenin işlem doğrulaması sırasında çağrıldığı anlamına
   gelir. Sözleşmenin başka bir sözleşme tarafından mı yoksa doğrudan işlem
-  tarafından mı çağrıldığını kontrol etmek için $original_contract ve
-  $this_contract değerlerini karşılaştırmanız gerekir. Bu, sözleşmenin eşit
-  olmaları durumunda işlem tarafından çağrıldığı anlamına gelir;
+  tarafından mı çağrıldığını kontrol etmek için
+  $original_contract ve
+  $this_contract değerlerini karşılaştırmanız gerekir.
+  Bu, sözleşmenin eşit olmaları durumunda işlem tarafından çağrıldığı anlamına
+  gelir;
 - `$this_contract` - şu anda yürütülmekte olan sözleşmenin adı;
 - `$guest_key` - misafir hesabı adresi;
 - `$stack` - yürütülen tüm sözleşmeleri içeren bir dizi veri türü içeren

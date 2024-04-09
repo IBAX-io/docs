@@ -2,14 +2,14 @@
 sidebar_position: 1
 ---
 
-# Introduction
+# Giriş
 
-The Needle language includes a set of functions, operators and structures, which
-can realize data algorithm processing and database operations. it
-general-purpose programming language that is concise, expressive, and efficient.
-It is designed to be a language that is easy to read and write, and is suitable
-for a wide range of DApps developed of smart contract.
+Needle dili, veri algoritma işlemlerini ve veritabanı işlemlerini
+gerçekleştirebilen bir dizi fonksiyon, operatör ve yapı içerir. Genel amaçlı bir
+programlama dilidir ve özlü, anlatım gücü yüksek ve verimlidir. Okuması ve
+yazması kolay bir dil olması amaçlanmıştır ve akıllı sözleşmelerin
+geliştirildiği geniş bir DApps yelpazesi için uygundur.
 
-This repository can be found [here](https://github.com/IBAX-io/needle).
+Bu depo [burada](https://github.com/IBAX-io/needle) bulunabilir.
 
-- [Specification](/needle/spec)
+- [Özellikler](/needle/spec)
