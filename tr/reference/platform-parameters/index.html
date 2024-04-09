@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="tr" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-reference/platform-parameters" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.2.1">
+<title data-rh="true">Platform Parametreleri | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/tr/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/tr/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/tr/reference/platform-parameters"><meta data-rh="true" property="og:locale" content="tr"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="fr"><meta data-rh="true" name="docusaurus_locale" content="tr"><meta data-rh="true" name="docsearch:language" content="tr"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Platform Parametreleri | IBAX"><meta data-rh="true" name="description" content="Bunlar, IBAX&#x27;i yapılandırmak için kullanılan parametrelerdir. Blok zinciri ağına"><meta data-rh="true" property="og:description" content="Bunlar, IBAX&#x27;i yapılandırmak için kullanılan parametrelerdir. Blok zinciri ağına"><link data-rh="true" rel="icon" href="/docs/tr/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/tr/reference/platform-parameters"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/fr/reference/platform-parameters" hreflang="fr"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/tr/reference/platform-parameters" hreflang="tr"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/reference/platform-parameters" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/tr/opensearch.xml"><link rel="stylesheet" href="/docs/tr/assets/css/styles.901e2faf.css">
+<script src="/docs/tr/assets/js/runtime~main.58267a74.js" defer="defer"></script>
+<script src="/docs/tr/assets/js/main.d9e7bad7.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/docs/tr/"><div class="navbar__logo"><img src="/docs/tr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/docs/tr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">IBAX Documentation</b></a></div><div class="navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div><a class="navbar__item navbar__link" href="/docs/tr/concepts/about-the-platform">Concept</a><a class="navbar__item navbar__link" href="/docs/tr/tutorials/app_tutorial">Tutorial</a><a class="navbar__item navbar__link" href="/docs/tr/topics/daemons">Guide</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/tr/reference/api2">Reference</a><a class="navbar__item navbar__link" href="/docs/tr/howtos/deployment">Deployment</a><a class="navbar__item navbar__link" href="/docs/tr/needle/intro">Needle</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Türkçe</a><ul class="dropdown__menu"><li><a href="/docs/reference/platform-parameters" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/docs/fr/reference/platform-parameters" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="fr">Français</a></li><li><a href="/docs/tr/reference/platform-parameters" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="tr">Türkçe</a></li><li><hr style="margin: 0.3rem 0;"></li><li><a href="https://crowdin.com/project/ibax-docs" target="_blank" rel="noopener noreferrer" class="dropdown__link">Help Us Translate<svg width="12" height="12" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/tr/reference/api2">RESTful API v2</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/tr/reference/backend-config">Sunucu Yapılandırma Dosyası</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/tr/reference/desync_monitor">Senkronize İzleme Aracı</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/tr/reference/json-rpc">JSON-RPC Application Programming Interface</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/tr/reference/platform-parameters">Platform Parametreleri</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/docs/tr/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Platform Parametreleri</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Platform Parametreleri</h1>
+<p>Bunlar, IBAX&#x27;i yapılandırmak için kullanılan parametrelerdir. Blok zinciri ağına
+ve içindeki tüm ekosistemlere uygulanabilirler.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="location-to-store-platform-parameters">Platform parametrelerinin depolanacağı konum<a href="#location-to-store-platform-parameters" class="hash-link" aria-label="Direct link to Platform parametrelerinin depolanacağı konum" title="Direct link to Platform parametrelerinin depolanacağı konum">​</a></h2>
+<p>Platform parametreleri <code>sistem parametreleri</code> tablosunda saklanır.</p>
+<p>Bu tablo, blok zinciri ağında oluşturulan ilk (varsayılan) ekosistemde bulunur.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="change-of-platform-parameters">Platform parametrelerinin değiştirilmesi<a href="#change-of-platform-parameters" class="hash-link" aria-label="Direct link to Platform parametrelerinin değiştirilmesi" title="Direct link to Platform parametrelerinin değiştirilmesi">​</a></h2>
+<p>Platform parametrelerinin değiştirilmesi ancak oylama yoluyla yapılabilir.
+Platformun yasal sistemindeki tanımlarla yönetilen herhangi bir platform
+parametresini değiştirmek için yalnızca UpdateSysParam sözleşmesini
+kullanabilirsiniz.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="configure-platform-parameters">Platform parametrelerini yapılandırın<a href="#configure-platform-parameters" class="hash-link" aria-label="Direct link to Platform parametrelerini yapılandırın" title="Direct link to Platform parametrelerini yapılandırın">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-the-blockchain-network">Blok zinciri ağını yapılandırın<a href="#configure-the-blockchain-network" class="hash-link" aria-label="Direct link to Blok zinciri ağını yapılandırın" title="Direct link to Blok zinciri ağını yapılandırın">​</a></h3>
+<p>Nodes:</p>
+<ul>
+<li><a href="#honor-nodes">honor nodes</a></li>
+<li><a href="#number-of-nodes">number of nodes</a></li>
+</ul>
+<p>Node bans:</p>
+<ul>
+<li><a href="#incorrect-blocks-per-day">incorrect blocks per day</a></li>
+<li><a href="#node-ban-time">node ban time</a></li>
+<li><a href="#node-ban-time-local">node ban time local</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-a-new-ecosystem">Yeni bir ekosistem yapılandırın<a href="#configure-a-new-ecosystem" class="hash-link" aria-label="Direct link to Yeni bir ekosistem yapılandırın" title="Direct link to Yeni bir ekosistem yapılandırın">​</a></h3>
+<p>Varsayılan sayfa ve menü:</p>
+<ul>
+<li><a href="#default-ecosystem-page">default ecosystem page</a></li>
+<li><a href="#default-ecosystem-menu">default ecosystem menu</a></li>
+</ul>
+<p>Varsayılan kontrat:</p>
+<ul>
+<li><a href="#default-ecosystem-contract">default ecosystem contract</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-the-database">Veritabanını yapılandır<a href="#configure-the-database" class="hash-link" aria-label="Direct link to Veritabanını yapılandır" title="Direct link to Veritabanını yapılandır">​</a></h3>
+<p>Tablo limitleri:</p>
+<ul>
+<li><a href="#max-columns">max columns</a></li>
+<li><a href="#max-indexes">max indexes</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-the-generation-of-blocks">Blokların oluşturulmasını yapılandırın<a href="#configure-the-generation-of-blocks" class="hash-link" aria-label="Direct link to Blokların oluşturulmasını yapılandırın" title="Direct link to Blokların oluşturulmasını yapılandırın">​</a></h3>
+<p>Zaman limitleri:</p>
+<ul>
+<li><a href="#gap-between-blocks">gap between blocks</a></li>
+<li><a href="#max-block-generation-time">max block generation time</a></li>
+</ul>
+<p>İşlem limitleri:</p>
+<ul>
+<li><a href="#max-tx-block">max tx block</a></li>
+<li><a href="#max-tx-block-per-user">max tx block per user</a></li>
+</ul>
+<p>Boyut limitleri:</p>
+<ul>
+<li><a href="#max-tx-size">max tx size</a></li>
+<li><a href="#max-block-size">max block size</a></li>
+<li><a href="#max-forsign-size">max forsign size</a></li>
+</ul>
+<p>Fuel limitleri:</p>
+<ul>
+<li><a href="#max-fuel-block">max fuel block</a></li>
+<li><a href="#max-fuel-tx">max fuel tx</a></li>
+</ul>
+<p>Blok rollback limitleri:</p>
+<ul>
+<li><a href="#rollback-blocks">rollback blocks</a></li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="configure-the-fuel-tokens">Fuel tokenlarını yapılandırın<a href="#configure-the-fuel-tokens" class="hash-link" aria-label="Direct link to Fuel tokenlarını yapılandırın" title="Direct link to Fuel tokenlarını yapılandırın">​</a></h3>
+<p>Ödüller ve komisyonlar:</p>
+<ul>
+<li><a href="#block-reward">block reward</a></li>
+<li><a href="#commission-wallet">commission wallet</a></li>
+<li><a href="#commission-size">commission size</a></li>
+</ul>
+<p>Fuel oranı dönüşümü:</p>
+<ul>
+<li><a href="#fuel-rate">fuel rate</a></li>
+<li><a href="#price-create-rate">price create rate</a></li>
+</ul>
+<p>İşlem boyutu ve veri fiyatı:</p>
+<ul>
+<li><a href="#price-tx-data">price tx data</a></li>
+<li><a href="#price-tx-size-wallet">price tx size wallet</a></li>
+</ul>
+<p>Yeni elemanların fiyatı:</p>
+<ul>
+<li><a href="#price-create-ecosystem">price create ecosystem</a></li>
+<li><a href="#price-create-table">price create table</a></li>
+<li><a href="#price-create-column">price create column</a></li>
+<li><a href="#price-create-contract">price create contract</a></li>
+<li><a href="#price-create-menu">price create menu</a></li>
+<li><a href="#price-create-page">price create page</a></li>
+<li><a href="#price-create-application">price create application</a></li>
+</ul>
+<p>İşlemler için fiyat:</p>
+<ul>
+<li><a href="#location-to-store-platform-parameters">Location to store platform parameters</a></li>
+<li><a href="#change-of-platform-parameters">Change of platform parameters</a></li>
+<li><a href="#configure-platform-parameters">Configure platform parameters</a>
+<ul>
+<li><a href="#configure-the-blockchain-network">Configure the blockchain network</a></li>
+<li><a href="#configure-a-new-ecosystem">Configure a new ecosystem</a></li>
+<li><a href="#configure-the-database">Configure the database</a></li>
+<li><a href="#configure-the-generation-of-blocks">Configure the generation of blocks</a></li>
+<li><a href="#configure-the-fuel-tokens">Configure the fuel tokens</a></li>
+<li><a href="#depreciated">Depreciated</a></li>
+</ul>
+</li>
+<li><a href="#details-of-platform-parameters">Details of platform parameters</a>
+<ul>
+<li><a href="#block-reward">block reward</a></li>
+<li><a href="#blockchain-url">blockchain url</a></li>
+<li><a href="#commission-size">commission size</a></li>
+<li><a href="#commission-wallet">commission wallet</a></li>
+<li><a href="#default-ecosystem-contract">default ecosystem contract</a></li>
+<li><a href="#default-ecosystem-menu">default ecosystem menu</a></li>
+<li><a href="#default-ecosystem-page">default ecosystem page</a></li>
+<li><a href="#fuel-rate">fuel rate</a></li>
+<li><a href="#price-create-rate">price create rate</a></li>
+<li><a href="#honor-nodes">honor nodes</a></li>
+<li><a href="#gap-between-blocks">gap between blocks</a></li>
+<li><a href="#incorrect-blocks-per-day">incorrect blocks per day</a></li>
+<li><a href="#max-block-generation-time">max block generation time</a></li>
+<li><a href="#max-block-size">max block size</a></li>
+<li><a href="#max-columns">max columns</a></li>
+<li><a href="#max-forsign-size">max forsign size</a></li>
+<li><a href="#max-fuel-block">max fuel block</a></li>
+<li><a href="#max-fuel-tx">max fuel tx</a></li>
+<li><a href="#max-indexes">max indexes</a></li>
+<li><a href="#max-tx-block">max tx block</a></li>
+<li><a href="#max-tx-block-per-user">max tx block per user</a></li>
+<li><a href="#max-tx-size">max tx size</a></li>
+<li><a href="#node-ban-time">node ban time</a></li>
+<li><a href="#node-ban-time-local">node ban time local</a></li>
+<li><a href="#number-of-nodes">number of nodes</a></li>
+<li><a href="#price-create-ecosystem">price create ecosystem</a></li>
+<li><a href="#price-create-application">price create application</a></li>
+<li><a href="#price-create-table">price create table</a></li>
+<li><a href="#price-create-column">price create column</a></li>
+<li><a href="#price-create-contract">price create contract</a></li>
+<li><a href="#price-create-menu">price create menu</a></li>
+<li><a href="#price-create-page">price create page</a></li>
+<li><a href="#price-exec-address-to-id">price exec address to id</a></li>
+<li><a href="#price-exec-bind-wallet">price exec bind wallet</a></li>
+<li><a href="#price-exec-column-condition">price exec column condition</a></li>
+<li><a href="#price-exec-compile-contract">price exec compile contract</a></li>
+<li><a href="#price-exec-contains">price exec contains</a></li>
+<li><a href="#price-exec-contract-by-id">price exec contract by id</a></li>
+<li><a href="#price-exec-contract-by-name">price exec contract by name</a></li>
+<li><a href="#price-exec-contracts-list">price exec contracts list</a></li>
+<li><a href="#price-exec-create-column">price exec create column</a></li>
+<li><a href="#price-exec-create-ecosystem">price exec create ecosystem</a></li>
+<li><a href="#price-exec-create-table">price exec create table</a></li>
+<li><a href="#price-exec-ecosys-param">price exec ecosys param</a></li>
+<li><a href="#price-exec-eval">price exec eval</a></li>
+<li><a href="#price-exec-eval-condition">price exec eval condition</a></li>
+<li><a href="#price-exec-flush-contract">price exec flush contract</a></li>
+<li><a href="#price-exec-has-prefix">price exec has prefix</a></li>
+<li><a href="#price-exec-id-to-address">price exec id to address</a></li>
+<li><a href="#price-exec-is-object">price exec is object</a></li>
+<li><a href="#price-exec-join">price exec join</a></li>
+<li><a href="#price-exec-json-to-map">price exec json to map</a></li>
+<li><a href="#price-exec-len">price exec len</a></li>
+<li><a href="#price-exec-perm-column">price exec perm column</a></li>
+<li><a href="#price-exec-perm-table">price exec perm table</a></li>
+<li><a href="#price-exec-pub-to-id">price exec pub to id</a></li>
+<li><a href="#price-exec-replace">price exec replace</a></li>
+<li><a href="#price-exec-sha256">price exec sha256</a></li>
+<li><a href="#price-exec-size">price exec size</a></li>
+<li><a href="#price-exec-substr">price exec substr</a></li>
+<li><a href="#price-exec-sys-fuel">price exec sys fuel</a></li>
+<li><a href="#price-exec-sys-param-int">price exec sys param int</a></li>
+<li><a href="#price-exec-sys-param-string">price exec sys param string</a></li>
+<li><a href="#price-exec-table-conditions">price exec table conditions</a></li>
+<li><a href="#price-exec-unbind-wallet">price exec unbind wallet</a></li>
+<li><a href="#price-exec-update-lang">price exec update lang</a></li>
+<li><a href="#price-exec-validate-condition">price exec validate condition</a></li>
+<li><a href="#price-tx-data">price tx data</a></li>
+<li><a href="#price-tx-size-wallet">price tx size wallet</a></li>
+<li><a href="#rollback-blocks">rollback blocks</a></li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="depreciated">Amortismana tabi tutuldu<a href="#depreciated" class="hash-link" aria-label="Direct link to Amortismana tabi tutuldu" title="Direct link to Amortismana tabi tutuldu">​</a></h2>
+<p>Amortismana tabi tutulmuş parametreler:</p>
+<ul>
+<li><a href="#blockchain-url">blockchain url</a></li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="details-of-platform-parameters">Platform parametrelerinin ayrıntıları<a href="#details-of-platform-parameters" class="hash-link" aria-label="Direct link to Platform parametrelerinin ayrıntıları" title="Direct link to Platform parametrelerinin ayrıntıları">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-reward">blok ödülü<a href="#block-reward" class="hash-link" aria-label="Direct link to blok ödülü" title="Direct link to blok ödülü">​</a></h3>
+<p>Bloğu oluşturan onur düğümüne verilen IBXC belirteçlerinin sayısı.</p>
+<p>Ödülü alan hesap, <a href="#honor-nodes">honor nodes</a> parametresinde belirtilir.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blockchain-url">blok zinciri url&#x27;i<a href="#blockchain-url" class="hash-link" aria-label="Direct link to blok zinciri url&#x27;i" title="Direct link to blok zinciri url&#x27;i">​</a></h3>
+<p>amortismana tabi tutuldu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="commission-size">komisyon boyutu<a href="#commission-size" class="hash-link" aria-label="Direct link to komisyon boyutu" title="Direct link to komisyon boyutu">​</a></h3>
+<p>Komisyonun yüzdesi.</p>
+<p>Komisyon tutarı, sözleşmenin uygulanmasının toplam maliyetinin bir yüzdesi
+olarak hesaplanır. Komisyon jetonunun birimi IBXC&#x27;dir.</p>
+<p>Komisyon, komisyon_cüzdan parametresinde belirtilen hesap adresine
+aktarılacaktır.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="commission-wallet">komisyon cüzdanı<a href="#commission-wallet" class="hash-link" aria-label="Direct link to komisyon cüzdanı" title="Direct link to komisyon cüzdanı">​</a></h3>
+<p>Komisyonun alınacağı hesap adresi.</p>
+<p>Komisyon miktarı, komisyon_boyutu parametresi ile belirlenir.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="default-ecosystem-contract">varsayılan ekosistem sözleşmesi<a href="#default-ecosystem-contract" class="hash-link" aria-label="Direct link to varsayılan ekosistem sözleşmesi" title="Direct link to varsayılan ekosistem sözleşmesi">​</a></h3>
+<p>Yeni ekosistemdeki varsayılan sözleşmenin kaynak kodu.</p>
+<p>Bu sözleşme, ekosistem oluşturucuya erişim sağlar.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="default-ecosystem-menu">varsayılan ekosistem menüsü<a href="#default-ecosystem-menu" class="hash-link" aria-label="Direct link to varsayılan ekosistem menüsü" title="Direct link to varsayılan ekosistem menüsü">​</a></h3>
+<p>Yeni ekosistemin varsayılan menüsünün kaynak kodu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="default-ecosystem-page">varsayılan ekosistem sayfası<a href="#default-ecosystem-page" class="hash-link" aria-label="Direct link to varsayılan ekosistem sayfası" title="Direct link to varsayılan ekosistem sayfası">​</a></h3>
+<p>Yeni ekosistemin varsayılan sayfasının kaynak kodu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="fuel-rate">fuel oranı<a href="#fuel-rate" class="hash-link" aria-label="Direct link to fuel oranı" title="Direct link to fuel oranı">​</a></h3>
+<p>Fuel birimine göre farklı ekosistem belirteçlerinin döviz kurları.</p>
+<p>Bu parametrenin formatı:</p>
+<p><code>[[&quot;ecosystem_id&quot;, &quot;token_to_fuel_rate&quot;], [&quot;ecosystem_id2&quot;, &quot;token_to_fuel_rate2&quot;], ...]</code></p>
+<ul>
+<li>
+<p><code>ecosystem_id</code></p>
+<p>Ekosistem ID.</p>
+</li>
+<li>
+<p><code>token_to_fuel_rate</code></p>
+<p>Fuel birimine göre tokenın döviz kuru.</p>
+</li>
+</ul>
+<p>Örnek:</p>
+<p><code>[[&quot;1&quot;,&quot;1000000000000&quot;], [&quot;2&quot;, &quot;1000&quot;]]</code></p>
+<p>Ekosistem 1&#x27;in bir jetonu 1.000.000.000.000 Fuel birimiyle değiştirilir.
+Ekosistem 2&#x27;nin bir jetonu 1.000 Fuel birimiyle değiştirilir.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-rate">fiyat oluşturma oranı<a href="#price-create-rate" class="hash-link" aria-label="Direct link to fiyat oluşturma oranı" title="Direct link to fiyat oluşturma oranı">​</a></h3>
+<p>Yeni bir elemanın Fuel oranı.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-nodes">tam nodelar<a href="#honor-nodes" class="hash-link" aria-label="Direct link to tam nodelar" title="Direct link to tam nodelar">​</a></h3>
+<p>Blockchain ağının honor nodelarının listesi.</p>
+<p>Bu parametrenin formatı:</p>
+<p><code>[{&quot;api_address&quot;:&quot;https://apihost1:port1&quot;,&quot;public_key&quot;:&quot;nodepub1&quot;,&quot;tcp_address&quot;:&quot;tcphost1:port2&quot;},{&quot;api_address&quot;:&quot;https://apihost2:port1&quot;,&quot;public_key&quot;:&quot;nodepub2&quot;,&quot;tcp_address&quot;:&quot;tcphost2:port2&quot;}]</code></p>
+<ul>
+<li>
+<p><code>tcp_address</code></p>
+<p>Node ana bilgisayarının TCP adresi ve bağlantı noktası. İşlemler ve yeni
+bloklar, ilk bloktan tam blok zinciri elde etmek için de kullanılabilen bu ana
+bilgisayar adresine gönderilecektir.</p>
+</li>
+<li>
+<p><code>api_address</code></p>
+<p>API adresi ve düğüm ana bilgisayarının bağlantı noktası. API adresi
+aracılığıyla, Weaver kullanmadan platformun herhangi bir işlevine
+erişebilirsiniz. Ayrıntıları RESTful API&#x27;de görün.</p>
+</li>
+<li>
+<p><code>public_key</code></p>
+<p>Blok imzasını doğrulamak için kullanılan düğümün genel anahtarı.</p>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="gap-between-blocks">bloklar arasındaki boşluk<a href="#gap-between-blocks" class="hash-link" aria-label="Direct link to bloklar arasındaki boşluk" title="Direct link to bloklar arasındaki boşluk">​</a></h3>
+<p>Bir düğümde iki blok oluşturmanın zaman aralığı (saniye cinsinden).</p>
+<p>Ağdaki tüm düğümler, ne zaman yeni bir blok oluşturulacağını belirlemek için
+bunu kullanır. Mevcut düğüm bu süre içinde yeni bir blok oluşturmazsa, sıra,
+onur düğümleri listesindeki bir sonraki düğüme geçer.</p>
+<p>The minimum value of this parameter is <code>1</code> second.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="incorrect-blocks-per-day">günlük yanlış bloklar<a href="#incorrect-blocks-per-day" class="hash-link" aria-label="Direct link to günlük yanlış bloklar" title="Direct link to günlük yanlış bloklar">​</a></h3>
+<p>Bir düğümün yasaklanmadan önce bir günde oluşturmasına izin verilen hatalı
+blokların sayısı.</p>
+<p>Ağdaki düğümlerin yarısından fazlası bir düğümden aynı sayıda hatalı blok
+aldığında, düğüm <a href="#node-ban-time">node ban time</a> içinde belirtilen bir süre
+içinde ağdan yasaklanır.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-block-generation-time">maksimum blok oluşturma süresi<a href="#max-block-generation-time" class="hash-link" aria-label="Direct link to maksimum blok oluşturma süresi" title="Direct link to maksimum blok oluşturma süresi">​</a></h3>
+<p>Milisaniye cinsinden bir blok oluşturmak için maksimum süre. Bu süre içinde bir
+blok başarıyla oluşturulmazsa, bir zaman aşımı hatası rapor edilir.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-block-size">maksimum blok boyutu<a href="#max-block-size" class="hash-link" aria-label="Direct link to maksimum blok boyutu" title="Direct link to maksimum blok boyutu">​</a></h3>
+<p>Bir bloğun bayt cinsinden maksimum boyutu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-columns">maksimum sütun<a href="#max-columns" class="hash-link" aria-label="Direct link to maksimum sütun" title="Direct link to maksimum sütun">​</a></h3>
+<p>Tek bir tablodaki maksimum alan sayısı.</p>
+<p>Ancak, önceden tanımlanmış &quot;id&quot; sütununu içermez.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-forsign-size">maksimum forsign boyutu<a href="#max-forsign-size" class="hash-link" aria-label="Direct link to maksimum forsign boyutu" title="Direct link to maksimum forsign boyutu">​</a></h3>
+<p>Bayt cinsinden bir işlem imzasının maksimum boyutu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-fuel-block">maksimum Fuel bloğu<a href="#max-fuel-block" class="hash-link" aria-label="Direct link to maksimum Fuel bloğu" title="Direct link to maksimum Fuel bloğu">​</a></h3>
+<p>Tek bir bloğun maksimum toplam Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-fuel-tx">maksimum Fuel tx<a href="#max-fuel-tx" class="hash-link" aria-label="Direct link to maksimum Fuel tx" title="Direct link to maksimum Fuel tx">​</a></h3>
+<p>Tek bir işlemin maksimum toplam Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-indexes">maksimum dizin<a href="#max-indexes" class="hash-link" aria-label="Direct link to maksimum dizin" title="Direct link to maksimum dizin">​</a></h3>
+<p>Tek bir tablodaki maksimum birincil anahtar alanı sayısı.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-tx-block">maksimum tx bloğu<a href="#max-tx-block" class="hash-link" aria-label="Direct link to maksimum tx bloğu" title="Direct link to maksimum tx bloğu">​</a></h3>
+<p>Tek bir bloktaki maksimum işlem sayısı.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-tx-block-per-user">kullanıcı başına maksimum tx bloğu<a href="#max-tx-block-per-user" class="hash-link" aria-label="Direct link to kullanıcı başına maksimum tx bloğu" title="Direct link to kullanıcı başına maksimum tx bloğu">​</a></h3>
+<p>Bir bloktaki bir hesabın maksimum işlem sayısı.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="max-tx-size">maksimum tx boyutu<a href="#max-tx-size" class="hash-link" aria-label="Direct link to maksimum tx boyutu" title="Direct link to maksimum tx boyutu">​</a></h3>
+<p>Bayt cinsinden bir işlemin maksimum boyutu.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="node-ban-time">düğüm yasağı süresi<a href="#node-ban-time" class="hash-link" aria-label="Direct link to düğüm yasağı süresi" title="Direct link to düğüm yasağı süresi">​</a></h3>
+<p>Milisaniye cinsinden düğümün genel yasaklama süresi.</p>
+<p>Ağdaki düğümlerin yarısından fazlası bir düğümden [günlük yanlış blok](#günlük
+yanlış blok) sayısına kadar hatalı bloklar aldığında, düğüm bu süre boyunca ağda
+yasaklanır .</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="node-ban-time-local">yerel düğüm yasağı zamanı<a href="#node-ban-time-local" class="hash-link" aria-label="Direct link to yerel düğüm yasağı zamanı" title="Direct link to yerel düğüm yasağı zamanı">​</a></h3>
+<p>Düğümün milisaniye cinsinden yerel yasaklama süresi.</p>
+<p>Bir düğüm başka bir düğümden yanlış bir blok aldığında, bu süre zarfında
+gönderenin düğümünü yerel olarak yasaklar.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="number-of-nodes">düğüm sayısı<a href="#number-of-nodes" class="hash-link" aria-label="Direct link to düğüm sayısı" title="Direct link to düğüm sayısı">​</a></h3>
+<p><a href="#honor-nodes">tam düğümler</a> parametresindeki maksimum honor node sayısı.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-ecosystem">fiyat oluşturma ekosistemi<a href="#price-create-ecosystem" class="hash-link" aria-label="Direct link to fiyat oluşturma ekosistemi" title="Direct link to fiyat oluşturma ekosistemi">​</a></h3>
+<p>Yeni bir tek ekosistem oluşturmak için fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewEcosystem</code> sözleşmesinin ek fuel ücretini tanımlar. Sözleşme
+uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için fuel
+ücreti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için <a href="#fuel-rate">fuel oranı</a> ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-application">fiyat oluşturma uygulaması<a href="#price-create-application" class="hash-link" aria-label="Direct link to fiyat oluşturma uygulaması" title="Direct link to fiyat oluşturma uygulaması">​</a></h3>
+<p>Yeni bir tek uygulama oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewApplication</code> sözleşmesinin ek Fuel ücretini tanımlar.
+Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi
+için Fuel ücreti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-table">fiyat tablosu oluştur<a href="#price-create-table" class="hash-link" aria-label="Direct link to fiyat tablosu oluştur" title="Direct link to fiyat tablosu oluştur">​</a></h3>
+<p>Yeni bir tek tablo oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewTable</code> sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme
+uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel
+maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-column">fiyat oluşturma sütunu<a href="#price-create-column" class="hash-link" aria-label="Direct link to fiyat oluşturma sütunu" title="Direct link to fiyat oluşturma sütunu">​</a></h3>
+<p>Yeni bir tek tablo alanı oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewColumn</code> sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme
+uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel
+maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-contract">fiyat sözleşme oluştur<a href="#price-create-contract" class="hash-link" aria-label="Direct link to fiyat sözleşme oluştur" title="Direct link to fiyat sözleşme oluştur">​</a></h3>
+<p>Yeni bir tek sözleşme oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewContract</code> sözleşmesinin ek Fuel maliyetini tanımlar.
+Sözleşme uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi
+için Fuel maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-menu">fiyat oluşturma menüsü<a href="#price-create-menu" class="hash-link" aria-label="Direct link to fiyat oluşturma menüsü" title="Direct link to fiyat oluşturma menüsü">​</a></h3>
+<p>Yeni tek menü oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewMenu</code> sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme
+uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel
+maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-create-page">fiyat oluşturma sayfası<a href="#price-create-page" class="hash-link" aria-label="Direct link to fiyat oluşturma sayfası" title="Direct link to fiyat oluşturma sayfası">​</a></h3>
+<p>Yeni bir tek sayfa oluşturmak için Fuel ücreti.</p>
+<p>Bu parametre, <code>@1NewPage</code> sözleşmesinin ek Fuel maliyetini tanımlar. Sözleşme
+uygulandığında, bu sözleşmenin çeşitli işlevlerinin yerine getirilmesi için Fuel
+maliyeti de hesaplanacak ve toplam maliyete dahil edilecektir.</p>
+<p>Bu parametre Fuel birimlerinde hesaplanır. Fuel birimlerini IBXC jetonlarına
+dönüştürmek için [Fuel oranı](#Fuel oranı) ve
+<a href="#price-create-rate">fiyat oluşturma oranı</a> kullanın.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-address-to-id">kimliğe fiyat yürütme adresi<a href="#price-exec-address-to-id" class="hash-link" aria-label="Direct link to kimliğe fiyat yürütme adresi" title="Direct link to kimliğe fiyat yürütme adresi">​</a></h3>
+<p><code>AddressToId()</code> işlevini çağırmanın Fuel ücreti, Fuel birimi cinsinden
+hesaplanır.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-bind-wallet">fiyat yürütme bağlama cüzdanı<a href="#price-exec-bind-wallet" class="hash-link" aria-label="Direct link to fiyat yürütme bağlama cüzdanı" title="Direct link to fiyat yürütme bağlama cüzdanı">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Activate()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-column-condition">fiyat yürütme sütun koşulu<a href="#price-exec-column-condition" class="hash-link" aria-label="Direct link to fiyat yürütme sütun koşulu" title="Direct link to fiyat yürütme sütun koşulu">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>ColumnCondition()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-compile-contract">fiyat yürütme sözleşmesi derleme<a href="#price-exec-compile-contract" class="hash-link" aria-label="Direct link to fiyat yürütme sözleşmesi derleme" title="Direct link to fiyat yürütme sözleşmesi derleme">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>CompileContract()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-contains">fiyat yürütme şunları içerir<a href="#price-exec-contains" class="hash-link" aria-label="Direct link to fiyat yürütme şunları içerir" title="Direct link to fiyat yürütme şunları içerir">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>İçerir()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-contract-by-id">kimliğe göre fiyat yürütme sözleşmesi<a href="#price-exec-contract-by-id" class="hash-link" aria-label="Direct link to kimliğe göre fiyat yürütme sözleşmesi" title="Direct link to kimliğe göre fiyat yürütme sözleşmesi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>GetContractById()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-contract-by-name">isme göre fiyat yürütme sözleşmesi<a href="#price-exec-contract-by-name" class="hash-link" aria-label="Direct link to isme göre fiyat yürütme sözleşmesi" title="Direct link to isme göre fiyat yürütme sözleşmesi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan <code>GetContractByName()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-contracts-list">fiyat yürütme sözleşmeleri listesi<a href="#price-exec-contracts-list" class="hash-link" aria-label="Direct link to fiyat yürütme sözleşmeleri listesi" title="Direct link to fiyat yürütme sözleşmeleri listesi">​</a></h3>
+<p><code>ContractsList()</code> işlevini çağırmanın Fuel birimi cinsinden hesaplanan Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-create-column">fiyat yürütme sütunu oluştur<a href="#price-exec-create-column" class="hash-link" aria-label="Direct link to fiyat yürütme sütunu oluştur" title="Direct link to fiyat yürütme sütunu oluştur">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>CreateColumn()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-create-ecosystem">fiyat yönetimi ekosistem oluştur<a href="#price-exec-create-ecosystem" class="hash-link" aria-label="Direct link to fiyat yönetimi ekosistem oluştur" title="Direct link to fiyat yönetimi ekosistem oluştur">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>CreateEcosystem()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-create-table">fiyat yürütme tablosu oluştur<a href="#price-exec-create-table" class="hash-link" aria-label="Direct link to fiyat yürütme tablosu oluştur" title="Direct link to fiyat yürütme tablosu oluştur">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>CreateTable()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-ecosys-param">fiyat yürütme ecosys parametresi<a href="#price-exec-ecosys-param" class="hash-link" aria-label="Direct link to fiyat yürütme ecosys parametresi" title="Direct link to fiyat yürütme ecosys parametresi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>EcosysParam()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-eval">fiyat yürütme değerlendirmesi<a href="#price-exec-eval" class="hash-link" aria-label="Direct link to fiyat yürütme değerlendirmesi" title="Direct link to fiyat yürütme değerlendirmesi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Evaluation()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-eval-condition">fiyat yürütme değerlendirme koşulu<a href="#price-exec-eval-condition" class="hash-link" aria-label="Direct link to fiyat yürütme değerlendirme koşulu" title="Direct link to fiyat yürütme değerlendirme koşulu">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>EvalCondition()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-flush-contract">fiyat yürütme gömme sözleşmesi<a href="#price-exec-flush-contract" class="hash-link" aria-label="Direct link to fiyat yürütme gömme sözleşmesi" title="Direct link to fiyat yürütme gömme sözleşmesi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>FlushContract()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-has-prefix">fiyat yürütme ön ekine sahip<a href="#price-exec-has-prefix" class="hash-link" aria-label="Direct link to fiyat yürütme ön ekine sahip" title="Direct link to fiyat yürütme ön ekine sahip">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>HasPrefix()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-id-to-address">adrese fiyat yürütme kimliği<a href="#price-exec-id-to-address" class="hash-link" aria-label="Direct link to adrese fiyat yürütme kimliği" title="Direct link to adrese fiyat yürütme kimliği">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>IdToAddress()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-is-object">fiyat yürütme nesnedir<a href="#price-exec-is-object" class="hash-link" aria-label="Direct link to fiyat yürütme nesnedir" title="Direct link to fiyat yürütme nesnedir">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>IsObject()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-join">fiyat yürütme katılımı<a href="#price-exec-join" class="hash-link" aria-label="Direct link to fiyat yürütme katılımı" title="Direct link to fiyat yürütme katılımı">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Join()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-json-to-map">eşlemek için json fiyat yürütme<a href="#price-exec-json-to-map" class="hash-link" aria-label="Direct link to eşlemek için json fiyat yürütme" title="Direct link to eşlemek için json fiyat yürütme">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>JSONToMap()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-len">fiyat yönetimi<a href="#price-exec-len" class="hash-link" aria-label="Direct link to fiyat yönetimi" title="Direct link to fiyat yönetimi">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Len()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-perm-column">fiyat yürütme izni sütunu<a href="#price-exec-perm-column" class="hash-link" aria-label="Direct link to fiyat yürütme izni sütunu" title="Direct link to fiyat yürütme izni sütunu">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>PermColumn()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-perm-table">fiyat yürütme izin tablosu<a href="#price-exec-perm-table" class="hash-link" aria-label="Direct link to fiyat yürütme izin tablosu" title="Direct link to fiyat yürütme izin tablosu">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>PermTable()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-pub-to-id">fiyat yürütme pub&#x27;ından kimliğe<a href="#price-exec-pub-to-id" class="hash-link" aria-label="Direct link to fiyat yürütme pub&#x27;ından kimliğe" title="Direct link to fiyat yürütme pub&#x27;ından kimliğe">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>PubToID()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-replace">fiyat yürütme değiştir<a href="#price-exec-replace" class="hash-link" aria-label="Direct link to fiyat yürütme değiştir" title="Direct link to fiyat yürütme değiştir">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Değiştir()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-sha256">fiyat yöneticisi sha256<a href="#price-exec-sha256" class="hash-link" aria-label="Direct link to fiyat yöneticisi sha256" title="Direct link to fiyat yöneticisi sha256">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Sha256()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-size">fiyat yürütme boyutu<a href="#price-exec-size" class="hash-link" aria-label="Direct link to fiyat yürütme boyutu" title="Direct link to fiyat yürütme boyutu">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Size()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-substr">fiyat yürütme altdizini<a href="#price-exec-substr" class="hash-link" aria-label="Direct link to fiyat yürütme altdizini" title="Direct link to fiyat yürütme altdizini">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>Substr()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-sys-fuel">fiyat yürütme sistemi Fuelı<a href="#price-exec-sys-fuel" class="hash-link" aria-label="Direct link to fiyat yürütme sistemi Fuelı" title="Direct link to fiyat yürütme sistemi Fuelı">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>SysFuel()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-sys-param-int">fiyat yürütme sistem parametresi int<a href="#price-exec-sys-param-int" class="hash-link" aria-label="Direct link to fiyat yürütme sistem parametresi int" title="Direct link to fiyat yürütme sistem parametresi int">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>SysParamInt()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-sys-param-string">fiyat yürütme sys param dizesi<a href="#price-exec-sys-param-string" class="hash-link" aria-label="Direct link to fiyat yürütme sys param dizesi" title="Direct link to fiyat yürütme sys param dizesi">​</a></h3>
+<p><code>SysParamString()</code> işlevini çağırmanın Fuel ücreti, Fuel birimlerinde
+hesaplanır.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-table-conditions">fiyat yürütme tablosu koşulları<a href="#price-exec-table-conditions" class="hash-link" aria-label="Direct link to fiyat yürütme tablosu koşulları" title="Direct link to fiyat yürütme tablosu koşulları">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>TableConditions()</code> işlevini çağırmanın Fuel
+ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-unbind-wallet">fiyat yürütme cüzdanını çöz<a href="#price-exec-unbind-wallet" class="hash-link" aria-label="Direct link to fiyat y ürütme cüzdanını çöz" title="Direct link to fiyat yürütme cüzdanını çöz">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, &#x27;Deactivate()&#x27; işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-update-lang">fiyat yürütme güncelleme dili<a href="#price-exec-update-lang" class="hash-link" aria-label="Direct link to fiyat yürütme güncelleme dili" title="Direct link to fiyat yürütme güncelleme dili">​</a></h3>
+<p>Fuel birimlerinde hesaplanan, <code>UpdateLang()</code> işlevini çağırmanın Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-exec-validate-condition">fiyat yürütme doğrulama koşulu<a href="#price-exec-validate-condition" class="hash-link" aria-label="Direct link to fiyat yürütme doğrulama koşulu" title="Direct link to fiyat yürütme doğrulama koşulu">​</a></h3>
+<p><code>ValidateCondition()</code> işlevini çağırmanın Fuel ücreti, Fuel birimi cinsinden
+hesaplanır.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-tx-data">fiyat tx verileri<a href="#price-tx-data" class="hash-link" aria-label="Direct link to fiyat tx verileri" title="Direct link to fiyat tx verileri">​</a></h3>
+<p>Bir işlemin her 1024 baytı için Fuel birimi cinsinden hesaplanan Fuel ücreti.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="price-tx-size-wallet">fiyat tx boyutunda cüzdan<a href="#price-tx-size-wallet" class="hash-link" aria-label="Direct link to fiyat tx boyutunda cüzdan" title="Direct link to fiyat tx boyutunda cüzdan">​</a></h3>
+<p>İşlem boyutuna göre ücret, birimi IBXC tokenidir.</p>
+<p>Ekosistem 1 dışında, diğer ekosistemlerde bir sözleşme uygulanırken orantılı
+olarak bir blok alanı kullanım ücreti alınacaktır ve oranı megabayt başına
+<em>fiyat tx boyutlu cüzdan</em> IBXC belirteçleridir.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="rollback-blocks">geri alma blokları<a href="#rollback-blocks" class="hash-link" aria-label="Direct link to geri alma blokları" title="Direct link to geri alma blokları">​</a></h3>
+<p>Blok zincirinde bir fork tespit edildiğinde geri alınabilecek maksimum blok
+sayısı.</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://crowdin.com/project/ibax-docs/tr" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/docs/tr/reference/json-rpc"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">JSON-RPC Application Programming Interface</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#location-to-store-platform-parameters" class="table-of-contents__link toc-highlight">Platform parametrelerinin depolanacağı konum</a></li><li><a href="#change-of-platform-parameters" class="table-of-contents__link toc-highlight">Platform parametrelerinin değiştirilmesi</a></li><li><a href="#configure-platform-parameters" class="table-of-contents__link toc-highlight">Platform parametrelerini yapılandırın</a><ul><li><a href="#configure-the-blockchain-network" class="table-of-contents__link toc-highlight">Blok zinciri ağını yapılandırın</a></li><li><a href="#configure-a-new-ecosystem" class="table-of-contents__link toc-highlight">Yeni bir ekosistem yapılandırın</a></li><li><a href="#configure-the-database" class="table-of-contents__link toc-highlight">Veritabanını yapılandır</a></li><li><a href="#configure-the-generation-of-blocks" class="table-of-contents__link toc-highlight">Blokların oluşturulmasını yapılandırın</a></li><li><a href="#configure-the-fuel-tokens" class="table-of-contents__link toc-highlight">Fuel tokenlarını yapılandırın</a></li></ul></li><li><a href="#depreciated" class="table-of-contents__link toc-highlight">Amortismana tabi tutuldu</a></li><li><a href="#details-of-platform-parameters" class="table-of-contents__link toc-highlight">Platform parametrelerinin ayrıntıları</a><ul><li><a href="#block-reward" class="table-of-contents__link toc-highlight">blok ödülü</a></li><li><a href="#blockchain-url" class="table-of-contents__link toc-highlight">blok zinciri url&#39;i</a></li><li><a href="#commission-size" class="table-of-contents__link toc-highlight">komisyon boyutu</a></li><li><a href="#commission-wallet" class="table-of-contents__link toc-highlight">komisyon cüzdanı</a></li><li><a href="#default-ecosystem-contract" class="table-of-contents__link toc-highlight">varsayılan ekosistem sözleşmesi</a></li><li><a href="#default-ecosystem-menu" class="table-of-contents__link toc-highlight">varsayılan ekosistem menüsü</a></li><li><a href="#default-ecosystem-page" class="table-of-contents__link toc-highlight">varsayılan ekosistem sayfası</a></li><li><a href="#fuel-rate" class="table-of-contents__link toc-highlight">fuel oranı</a></li><li><a href="#price-create-rate" class="table-of-contents__link toc-highlight">fiyat oluşturma oranı</a></li><li><a href="#honor-nodes" class="table-of-contents__link toc-highlight">tam nodelar</a></li><li><a href="#gap-between-blocks" class="table-of-contents__link toc-highlight">bloklar arasındaki boşluk</a></li><li><a href="#incorrect-blocks-per-day" class="table-of-contents__link toc-highlight">günlük yanlış bloklar</a></li><li><a href="#max-block-generation-time" class="table-of-contents__link toc-highlight">maksimum blok oluşturma süresi</a></li><li><a href="#max-block-size" class="table-of-contents__link toc-highlight">maksimum blok boyutu</a></li><li><a href="#max-columns" class="table-of-contents__link toc-highlight">maksimum sütun</a></li><li><a href="#max-forsign-size" class="table-of-contents__link toc-highlight">maksimum forsign boyutu</a></li><li><a href="#max-fuel-block" class="table-of-contents__link toc-highlight">maksimum Fuel bloğu</a></li><li><a href="#max-fuel-tx" class="table-of-contents__link toc-highlight">maksimum Fuel tx</a></li><li><a href="#max-indexes" class="table-of-contents__link toc-highlight">maksimum dizin</a></li><li><a href="#max-tx-block" class="table-of-contents__link toc-highlight">maksimum tx bloğu</a></li><li><a href="#max-tx-block-per-user" class="table-of-contents__link toc-highlight">kullanıcı başına maksimum tx bloğu</a></li><li><a href="#max-tx-size" class="table-of-contents__link toc-highlight">maksimum tx boyutu</a></li><li><a href="#node-ban-time" class="table-of-contents__link toc-highlight">düğüm yasağı süresi</a></li><li><a href="#node-ban-time-local" class="table-of-contents__link toc-highlight">yerel düğüm yasağı zamanı</a></li><li><a href="#number-of-nodes" class="table-of-contents__link toc-highlight">düğüm sayısı</a></li><li><a href="#price-create-ecosystem" class="table-of-contents__link toc-highlight">fiyat oluşturma ekosistemi</a></li><li><a href="#price-create-application" class="table-of-contents__link toc-highlight">fiyat oluşturma uygulaması</a></li><li><a href="#price-create-table" class="table-of-contents__link toc-highlight">fiyat tablosu oluştur</a></li><li><a href="#price-create-column" class="table-of-contents__link toc-highlight">fiyat oluşturma sütunu</a></li><li><a href="#price-create-contract" class="table-of-contents__link toc-highlight">fiyat sözleşme oluştur</a></li><li><a href="#price-create-menu" class="table-of-contents__link toc-highlight">fiyat oluşturma menüsü</a></li><li><a href="#price-create-page" class="table-of-contents__link toc-highlight">fiyat oluşturma sayfası</a></li><li><a href="#price-exec-address-to-id" class="table-of-contents__link toc-highlight">kimliğe fiyat yürütme adresi</a></li><li><a href="#price-exec-bind-wallet" class="table-of-contents__link toc-highlight">fiyat yürütme bağlama cüzdanı</a></li><li><a href="#price-exec-column-condition" class="table-of-contents__link toc-highlight">fiyat yürütme sütun koşulu</a></li><li><a href="#price-exec-compile-contract" class="table-of-contents__link toc-highlight">fiyat yürütme sözleşmesi derleme</a></li><li><a href="#price-exec-contains" class="table-of-contents__link toc-highlight">fiyat yürütme şunları içerir</a></li><li><a href="#price-exec-contract-by-id" class="table-of-contents__link toc-highlight">kimliğe göre fiyat yürütme sözleşmesi</a></li><li><a href="#price-exec-contract-by-name" class="table-of-contents__link toc-highlight">isme göre fiyat yürütme sözleşmesi</a></li><li><a href="#price-exec-contracts-list" class="table-of-contents__link toc-highlight">fiyat yürütme sözleşmeleri listesi</a></li><li><a href="#price-exec-create-column" class="table-of-contents__link toc-highlight">fiyat yürütme sütunu oluştur</a></li><li><a href="#price-exec-create-ecosystem" class="table-of-contents__link toc-highlight">fiyat yönetimi ekosistem oluştur</a></li><li><a href="#price-exec-create-table" class="table-of-contents__link toc-highlight">fiyat yürütme tablosu oluştur</a></li><li><a href="#price-exec-ecosys-param" class="table-of-contents__link toc-highlight">fiyat yürütme ecosys parametresi</a></li><li><a href="#price-exec-eval" class="table-of-contents__link toc-highlight">fiyat yürütme değerlendirmesi</a></li><li><a href="#price-exec-eval-condition" class="table-of-contents__link toc-highlight">fiyat yürütme değerlendirme koşulu</a></li><li><a href="#price-exec-flush-contract" class="table-of-contents__link toc-highlight">fiyat yürütme gömme sözleşmesi</a></li><li><a href="#price-exec-has-prefix" class="table-of-contents__link toc-highlight">fiyat yürütme ön ekine sahip</a></li><li><a href="#price-exec-id-to-address" class="table-of-contents__link toc-highlight">adrese fiyat yürütme kimliği</a></li><li><a href="#price-exec-is-object" class="table-of-contents__link toc-highlight">fiyat yürütme nesnedir</a></li><li><a href="#price-exec-join" class="table-of-contents__link toc-highlight">fiyat yürütme katılımı</a></li><li><a href="#price-exec-json-to-map" class="table-of-contents__link toc-highlight">eşlemek için json fiyat yürütme</a></li><li><a href="#price-exec-len" class="table-of-contents__link toc-highlight">fiyat yönetimi</a></li><li><a href="#price-exec-perm-column" class="table-of-contents__link toc-highlight">fiyat yürütme izni sütunu</a></li><li><a href="#price-exec-perm-table" class="table-of-contents__link toc-highlight">fiyat yürütme izin tablosu</a></li><li><a href="#price-exec-pub-to-id" class="table-of-contents__link toc-highlight">fiyat yürütme pub&#39;ından kimliğe</a></li><li><a href="#price-exec-replace" class="table-of-contents__link toc-highlight">fiyat yürütme değiştir</a></li><li><a href="#price-exec-sha256" class="table-of-contents__link toc-highlight">fiyat yöneticisi sha256</a></li><li><a href="#price-exec-size" class="table-of-contents__link toc-highlight">fiyat yürütme boyutu</a></li><li><a href="#price-exec-substr" class="table-of-contents__link toc-highlight">fiyat yürütme altdizini</a></li><li><a href="#price-exec-sys-fuel" class="table-of-contents__link toc-highlight">fiyat yürütme sistemi Fuelı</a></li><li><a href="#price-exec-sys-param-int" class="table-of-contents__link toc-highlight">fiyat yürütme sistem parametresi int</a></li><li><a href="#price-exec-sys-param-string" class="table-of-contents__link toc-highlight">fiyat yürütme sys param dizesi</a></li><li><a href="#price-exec-table-conditions" class="table-of-contents__link toc-highlight">fiyat yürütme tablosu koşulları</a></li><li><a href="#price-exec-unbind-wallet" class="table-of-contents__link toc-highlight">fiyat yürütme cüzdanını çöz</a></li><li><a href="#price-exec-update-lang" class="table-of-contents__link toc-highlight">fiyat yürütme güncelleme dili</a></li><li><a href="#price-exec-validate-condition" class="table-of-contents__link toc-highlight">fiyat yürütme doğrulama koşulu</a></li><li><a href="#price-tx-data" class="table-of-contents__link toc-highlight">fiyat tx verileri</a></li><li><a href="#price-tx-size-wallet" class="table-of-contents__link toc-highlight">fiyat tx boyutunda cüzdan</a></li><li><a href="#rollback-blocks" class="table-of-contents__link toc-highlight">geri alma blokları</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/tr/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/IBAX-io/needle" target="_blank" rel="noopener noreferrer" class="footer__link-item">Needle<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

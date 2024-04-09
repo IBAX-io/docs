@@ -2,250 +2,260 @@
 <html lang="fr" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-topics/daemons" data-has-hydrated="false">
 <head>
 <meta charset="UTF-8">
-<meta name="generator" content="Docusaurus v3.1.1">
-<title data-rh="true">Daemon | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/fr/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/fr/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/fr/topics/daemons"><meta data-rh="true" property="og:locale" content="fr"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" name="docusaurus_locale" content="fr"><meta data-rh="true" name="docsearch:language" content="fr"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Daemon | IBAX"><meta data-rh="true" name="description" content="daemon}"><meta data-rh="true" property="og:description" content="daemon}"><link data-rh="true" rel="icon" href="/docs/fr/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/fr/topics/daemons"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/daemons" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/fr/topics/daemons" hreflang="fr"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/daemons" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/fr/opensearch.xml"><link rel="stylesheet" href="/docs/fr/assets/css/styles.e4ae71ca.css">
-<script src="/docs/fr/assets/js/runtime~main.20472d3c.js" defer="defer"></script>
-<script src="/docs/fr/assets/js/main.68310519.js" defer="defer"></script>
+<meta name="generator" content="Docusaurus v3.2.1">
+<title data-rh="true">Démon | IBAX</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://ibax-io.github.io/docs/fr/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://ibax-io.github.io/docs/fr/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://ibax-io.github.io/docs/fr/topics/daemons"><meta data-rh="true" property="og:locale" content="fr"><meta data-rh="true" property="og:locale:alternate" content="en"><meta data-rh="true" property="og:locale:alternate" content="tr"><meta data-rh="true" name="docusaurus_locale" content="fr"><meta data-rh="true" name="docsearch:language" content="fr"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="Démon | IBAX"><meta data-rh="true" name="description" content="daemon}"><meta data-rh="true" property="og:description" content="daemon}"><link data-rh="true" rel="icon" href="/docs/fr/img/ibax.ico"><link data-rh="true" rel="canonical" href="https://ibax-io.github.io/docs/fr/topics/daemons"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/daemons" hreflang="en"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/fr/topics/daemons" hreflang="fr"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/tr/topics/daemons" hreflang="tr"><link data-rh="true" rel="alternate" href="https://ibax-io.github.io/docs/topics/daemons" hreflang="x-default"><link data-rh="true" rel="preconnect" href="https://QT93GL41QG-dsn.algolia.net" crossorigin="anonymous"><link rel="search" type="application/opensearchdescription+xml" title="IBAX" href="/docs/fr/opensearch.xml"><link rel="stylesheet" href="/docs/fr/assets/css/styles.901e2faf.css">
+<script src="/docs/fr/assets/js/runtime~main.a30e02d8.js" defer="defer"></script>
+<script src="/docs/fr/assets/js/main.5c44f6e9.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
-<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/docs/fr/"><div class="navbar__logo"><img src="/docs/fr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/docs/fr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">IBAX Documentation</b></a></div><div class="navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div><a class="navbar__item navbar__link" href="/docs/fr/concepts/about-the-platform">Concept</a><a class="navbar__item navbar__link" href="/docs/fr/tutorials/app_tutorial">Tutorial</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fr/topics/daemons">Guide</a><a class="navbar__item navbar__link" href="/docs/fr/reference/api2">Reference</a><a class="navbar__item navbar__link" href="/docs/fr/howtos/deployment">Deployment</a><a class="navbar__item navbar__link" href="/docs/fr/needle/intro">Needle</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Français</a><ul class="dropdown__menu"><li><a href="/docs/topics/daemons" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/docs/fr/topics/daemons" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="fr">Français</a></li><li><hr style="margin: 0.3rem 0;"></li><li><a href="https://crowdin.com/project/ibax-docs" target="_blank" rel="noopener noreferrer" class="dropdown__link">Help Us Translate<svg width="12" height="12" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/fr/topics/daemons">Daemon</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/script">Smart Contracts</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/templates2">Template Language</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/vm">Compiler and Virtual Machine</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/docs/fr/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Daemon</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Daemon</h1>
-<p>In this section, we will describe how IBAX nodes interact with each other from a
-technical perspective.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="about-the-server-daemon">About the server daemon<a href="#about-the-server-daemon" class="hash-link" aria-label="Direct link to About the server daemon" title="Direct link to About the server daemon">​</a></h2>
-<p>The server daemon needs to run on every network node, which executes various
-server functions and supports IBAX&#x27;s blockchain protocol. In the blockchain
-network, the daemon distributes blocks and transactions, generates new blocks,
-and verifies blocks and transactions received, and it can avoid the fork issue.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node-daemon">Honor node daemon<a href="#honor-node-daemon" class="hash-link" aria-label="Direct link to Honor node daemon" title="Direct link to Honor node daemon">​</a></h3>
-<p>A honor node runs the following server daemons:</p>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/docs/fr/"><div class="navbar__logo"><img src="/docs/fr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/docs/fr/img/ibax.png" alt="IBAX Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">IBAX Documentation</b></a></div><div class="navbar__items navbar__items--right"><div class="navbarSearchContainer_Bca1"><button type="button" class="DocSearch DocSearch-Button" aria-label="Search"><span class="DocSearch-Button-Container"><svg width="20" height="20" class="DocSearch-Search-Icon" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg><span class="DocSearch-Button-Placeholder">Search</span></span><span class="DocSearch-Button-Keys"></span></button></div><a class="navbar__item navbar__link" href="/docs/fr/concepts/about-the-platform">Concept</a><a class="navbar__item navbar__link" href="/docs/fr/tutorials/app_tutorial">Tutorial</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/docs/fr/topics/daemons">Guide</a><a class="navbar__item navbar__link" href="/docs/fr/reference/api2">Reference</a><a class="navbar__item navbar__link" href="/docs/fr/howtos/deployment">Deployment</a><a class="navbar__item navbar__link" href="/docs/fr/needle/intro">Needle</a><div class="navbar__item dropdown dropdown--hoverable dropdown--right"><a href="#" aria-haspopup="true" aria-expanded="false" role="button" class="navbar__link"><svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" class="iconLanguage_nlXk"><path fill="currentColor" d="M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62 7l1.62-4.33L19.12 17h-3.24z"></path></svg>Français</a><ul class="dropdown__menu"><li><a href="/docs/topics/daemons" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="en">English</a></li><li><a href="/docs/fr/topics/daemons" target="_self" rel="noopener noreferrer" class="dropdown__link dropdown__link--active" lang="fr">Français</a></li><li><a href="/docs/tr/topics/daemons" target="_self" rel="noopener noreferrer" class="dropdown__link" lang="tr">Türkçe</a></li><li><hr style="margin: 0.3rem 0;"></li><li><a href="https://crowdin.com/project/ibax-docs" target="_blank" rel="noopener noreferrer" class="dropdown__link">Help Us Translate<svg width="12" height="12" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/docs/fr/topics/daemons">Démon</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/script">Contrats intelligents</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/templates2">Langage de modèle</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/docs/fr/topics/vm">Compilateur et Machine Virtuelle</a></li></ul></nav><button type="button" title="Collapse sidebar" aria-label="Collapse sidebar" class="button button--secondary button--outline collapseSidebarButton_PEFL"><svg width="20" height="20" aria-hidden="true" class="collapseSidebarButtonIcon_kv0_"><g fill="#7a7a7a"><path d="M9.992 10.023c0 .2-.062.399-.172.547l-4.996 7.492a.982.982 0 01-.828.454H1c-.55 0-1-.453-1-1 0-.2.059-.403.168-.551l4.629-6.942L.168 3.078A.939.939 0 010 2.528c0-.548.45-.997 1-.997h2.996c.352 0 .649.18.828.45L9.82 9.472c.11.148.172.347.172.55zm0 0"></path><path d="M19.98 10.023c0 .2-.058.399-.168.547l-4.996 7.492a.987.987 0 01-.828.454h-3c-.547 0-.996-.453-.996-1 0-.2.059-.403.168-.551l4.625-6.942-4.625-6.945a.939.939 0 01-.168-.55 1 1 0 01.996-.997h3c.348 0 .649.18.828.45l4.996 7.492c.11.148.168.347.168.55zm0 0"></path></g></svg></button></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/docs/fr/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">Démon</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><h1>Démon</h1>
+<p>Dans cette section, nous décrirons comment les nœuds IBax interagissent les uns
+avec les autres d&#x27;un point de vue technique.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="about-the-server-daemon">À propos du démon du serveur<a href="#about-the-server-daemon" class="hash-link" aria-label="Direct link to À propos du démon du serveur" title="Direct link to À propos du démon du serveur">​</a></h2>
+<p>Le démon du serveur doit s&#x27;exécuter sur chaque nœud du réseau, ce qui exécute
+diverses fonctions de serveur et prend en charge le protocole de blockchain
+d&#x27;IBax. Dans le réseau de blockchain, le démon distribue les blocs et les
+transactions, génère de nouveaux blocs, vérifie les blocs et les transactions
+reçus, et il peut éviter le problème de fork.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node-daemon">Démon du nœud d&#x27;honneur<a href="#honor-node-daemon" class="hash-link" aria-label="Direct link to Démon du nœud d&#x27;honneur" title="Direct link to Démon du nœud d&#x27;honneur">​</a></h3>
+<p>Un nœud d&#x27;honneur exécute les démons de serveur suivants :</p>
 <ul>
 <li>
-<p><a href="#blockgenerator-daemon">BlockGenerator daemon</a></p>
-<p>Generating new blocks.</p>
+<p><a href="#blockgenerator-daemon">démon BlockGenerator</a></p>
+<p>Génération de nouveaux blocs.</p>
 </li>
 <li>
-<p><a href="#blockcollection-daemon">BlockCollection daemon</a></p>
-<p>Downloading new blocks from other nodes.</p>
+<p><a href="#blockcollection-daemon">démon BlockCollection</a></p>
+<p>Téléchargement de nouveaux blocs à partir d&#x27;autres nœuds.</p>
 </li>
 <li>
-<p><a href="#confirmations-daemon">Confirmations daemon</a></p>
-<p>Confirming that blocks on the node also exist on most other nodes.</p>
+<p><a href="#confirmations-daemon">démon Confirmations</a></p>
+<p>Confirmer que les blocs sur le nœud existent également sur la plupart des
+autres nœuds.</p>
 </li>
 <li>
-<p><a href="#disseminator-daemon">Disseminator daemon</a></p>
-<p>Distributing transactions and blocks to other honor nodes.</p>
+<p><a href="#disseminator-daemon">démon Disseminator</a></p>
+<p>Distribution des transactions et des blocs vers d&#x27;autres nœuds honneurs.</p>
 </li>
 <li>
-<p>QueueParserBlocks daemon</p>
-<p>Blocks in the queue, which contains blocks from other nodes.</p>
-<p>Block processing logic is the same as
-<a href="#blockcollection-daemon">BlockCollection daemon</a>.</p>
+<p>QueueParserBlocks démon</p>
+<p>Blocs dans la file d&#x27;attente, qui contient des blocs provenant d&#x27;autres nœuds.</p>
+<p>La logique de traitement des blocs est la même que celle du démon
+<a href="#blockcollection-daemon">démon BlockCollection</a>.</p>
 </li>
 <li>
-<p>QueueParserTx daemon</p>
-<p>Verifying the transactions in queue.</p>
+<p>QueueParserTx démon</p>
+<p>Vérification des transactions en attente.</p>
 </li>
 <li>
-<p>Scheduler daemon</p>
-<p>Running contracts as scheduled.</p>
+<p>Scheduler démon</p>
+<p>Exécution des contrats selon le planning prévu.</p>
 </li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="guardian-node-daemon">Guardian node daemon<a href="#guardian-node-daemon" class="hash-link" aria-label="Direct link to Guardian node daemon" title="Direct link to Guardian node daemon">​</a></h3>
-<p>A guardian node runs the following server daemons:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="guardian-node-daemon">Démon du nœud gardien<a href="#guardian-node-daemon" class="hash-link" aria-label="Direct link to Démon du nœud gardien" title="Direct link to Démon du nœud gardien">​</a></h3>
+<p>Un nœud gardien exécute les démons de serveur suivants :</p>
 <ul>
-<li><a href="#blockcollection-daemon">BlockCollection daemon</a></li>
-<li><a href="#confirmations-daemon">Confirmations daemon</a></li>
-<li><a href="#disseminator-daemon">Disseminator daemon</a></li>
+<li><a href="#blockcollection-daemon">démon BlockCollection</a></li>
+<li><a href="#confirmations-daemon">démon Confirmations</a></li>
+<li><a href="#disseminator-daemon">démon Disseminator</a></li>
 <li>QueueParserTx</li>
 <li>Scheduler</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockcollection-daemon">BlockCollection daemon<a href="#blockcollection-daemon" class="hash-link" aria-label="Direct link to BlockCollection daemon" title="Direct link to BlockCollection daemon">​</a></h2>
-<p>This daemon downloads blocks and synchronizes the blockchain with other network
-nodes.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blockchain-synchronization">Blockchain synchronization<a href="#blockchain-synchronization" class="hash-link" aria-label="Direct link to Blockchain synchronization" title="Direct link to Blockchain synchronization">​</a></h3>
-<p>This daemon synchronizes the blockchain by determining the maximum block height
-in the blockchain network, requesting new blocks, and solving the fork issue in
-the blockchain.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="check-for-blockchain-updates">Check for blockchain updates<a href="#check-for-blockchain-updates" class="hash-link" aria-label="Direct link to Check for blockchain updates" title="Direct link to Check for blockchain updates">​</a></h4>
-<p>This daemon sends requests from the current block ID to all honor nodes.</p>
-<p>If the current block ID of the node running the daemon is less than the current
-block ID of any honor node, the blockchain network node is considered out of
-date.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="download-new-blocks">Download new blocks<a href="#download-new-blocks" class="hash-link" aria-label="Direct link to Download new blocks" title="Direct link to Download new blocks">​</a></h4>
-<p>The node that returns the largest current block height is considered the latest
-node. The daemon downloads all unknown blocks.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="solving-the-fork-issue">Solving the fork issue<a href="#solving-the-fork-issue" class="hash-link" aria-label="Direct link to Solving the fork issue" title="Direct link to Solving the fork issue">​</a></h4>
-<p>If a fork is detected in the blockchain, the daemon moves the fork backward by
-downloading all blocks to a common parent block. When found the common parent
-block, a blockchain rollback is performed on the node running the daemon, and
-the correct block is added to the blockchain until the latest one is included.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-1">Tables<a href="#tables-1" class="hash-link" aria-label="Direct link to Tables" title="Direct link to Tables">​</a></h3>
-<p>The BlocksCollection daemon uses the following tables:</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockcollection-daemon">Démon BlockCollection<a href="#blockcollection-daemon" class="hash-link" aria-label="Direct link to Démon BlockCollection" title="Direct link to Démon BlockCollection">​</a></h2>
+<p>Ce démon télécharge des blocs et synchronise la blockchain avec d&#x27;autres nœuds
+du réseau.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blockchain-synchronization">Synchronisation de la blockchain<a href="#blockchain-synchronization" class="hash-link" aria-label="Direct link to Synchronisation de la blockchain" title="Direct link to Synchronisation de la blockchain">​</a></h3>
+<p>Ce démon synchronise la blockchain en déterminant la hauteur maximale du bloc
+dans le réseau de la blockchain, en demandant de nouveaux blocs et en résolvant
+le problème de la fourche dans la blockchain.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="check-for-blockchain-updates">Vérifiez les mises à jour de la blockchain<a href="#check-for-blockchain-updates" class="hash-link" aria-label="Direct link to Vérifiez les mises à jour de la blockchain" title="Direct link to Vérifiez les mises à jour de la blockchain">​</a></h4>
+<p>Ce démon envoie des requêtes de l&#x27;ID de bloc actuel à tous les nœuds honorés.</p>
+<p>Si l&#x27;ID de bloc actuel du nœud exécutant le démon est inférieur à l&#x27;ID de bloc
+actuel de n&#x27;importe quel nœud honoré, le nœud du réseau blockchain est considéré
+comme obsolète.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="download-new-blocks">Télécharger les nouveaux blocs<a href="#download-new-blocks" class="hash-link" aria-label="Direct link to Télécharger les nouveaux blocs" title="Direct link to Télécharger les nouveaux blocs">​</a></h4>
+<p>Le nœud qui renvoie la hauteur de bloc la plus élevée actuelle est considéré
+comme le dernier nœud. Le démon télécharge tous les blocs inconnus.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="solving-the-fork-issue">Résoudre le problème de la fourche<a href="#solving-the-fork-issue" class="hash-link" aria-label="Direct link to Résoudre le problème de la fourche" title="Direct link to Résoudre le problème de la fourche">​</a></h4>
+<p>Si une fourchette est détectée dans la blockchain, le démon déplace la
+fourchette en arrière en téléchargeant tous les blocs jusqu&#x27;à un bloc parent
+commun. Lorsque le bloc parent commun est trouvé, un retour en arrière de la
+blockchain est effectué sur le nœud exécutant le démon, et le bloc correct est
+ajouté à la blockchain jusqu&#x27;à ce que le dernier soit inclus.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-1">Table de données<a href="#tables-1" class="hash-link" aria-label="Direct link to Table de données" title="Direct link to Table de données">​</a></h3>
+<p>Le démon BlocksCollection utilise les tables suivantes :</p>
 <ul>
 <li>block_chain</li>
 <li>transactions</li>
 <li>transactions_status</li>
 <li>info_block</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-1">Request<a href="#request-1" class="hash-link" aria-label="Direct link to Request" title="Direct link to Request">​</a></h3>
-<p>The BlockCollection daemon sends the following requests to other daemons:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-1">Demande<a href="#request-1" class="hash-link" aria-label="Direct link to Demande" title="Direct link to Demande">​</a></h3>
+<p>Le démon BlockCollection envoie les requêtes suivantes aux autres démons :</p>
 <ul>
-<li><a href="#type-10">Type 10</a> points to the largest block ID among all honor nodes.</li>
-<li><a href="#type-7">Type 7</a> points to the data with the largest block ID.</li>
+<li><a href="#type-10">Type 10</a> pointe vers l&#x27;identifiant de bloc le plus grand parmi tous
+les nœuds honorés.</li>
+<li><a href="#type-7">Type 7</a> pointe vers les données avec l&#x27;identifiant de bloc le plus
+grand.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockgenerator-daemon">BlockGenerator daemon<a href="#blockgenerator-daemon" class="hash-link" aria-label="Direct link to BlockGenerator daemon" title="Direct link to BlockGenerator daemon">​</a></h2>
-<p>The BlockGenerator daemon generates new blocks.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pre-verification">Pre-verification<a href="#pre-verification" class="hash-link" aria-label="Direct link to Pre-verification" title="Direct link to Pre-verification">​</a></h3>
-<p>The BlockGenerator daemon analyzes the latest blocks in the blockchain to make
-new block generation plans.</p>
-<p>If the following conditions are met, a new block can be generated:</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="blockgenerator-daemon">Le démon BlockGenerator<a href="#blockgenerator-daemon" class="hash-link" aria-label="Direct link to Le démon BlockGenerator" title="Direct link to Le démon BlockGenerator">​</a></h2>
+<p>Le démon BlockGenerator génère de nouveaux blocs.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="pre-verification">Pré-vérification<a href="#pre-verification" class="hash-link" aria-label="Direct link to Pré-vérification" title="Direct link to Pré-vérification">​</a></h3>
+<p>Le démon BlockGenerator analyse les derniers blocs de la blockchain pour créer
+de nouveaux plans de génération de blocs.</p>
+<p>Si les conditions suivantes sont remplies, un nouveau bloc peut être généré :</p>
 <ul>
-<li>The node that generated the latest block is in a node within the honor node
-list and runs the daemon.</li>
-<li>The shortest time since the latest unverified block was generated.</li>
+<li>Le nœud qui a généré le dernier bloc se trouve dans un nœud de la liste
+d&#x27;honneur et exécute le démon.</li>
+<li>Le laps de temps le plus court depuis la génération du dernier bloc non
+vérifié.</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-generation">Block generation<a href="#block-generation" class="hash-link" aria-label="Direct link to Block generation" title="Direct link to Block generation">​</a></h3>
-<p>A new block generated by the daemon contains all new transactions, which can be
-received from the <a href="#disseminator-daemon">Disseminator daemon</a> of other nodes or
-generated by the node running the daemon. The block generated is stored in the
-node database.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-2">Tables<a href="#tables-2" class="hash-link" aria-label="Direct link to Tables" title="Direct link to Tables">​</a></h3>
-<p>The BlockGenerator daemon uses the following tables:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-generation">Génération de blocs<a href="#block-generation" class="hash-link" aria-label="Direct link to Génération de blocs" title="Direct link to Génération de blocs">​</a></h3>
+<p>Un nouveau bloc généré par le démon contient toutes les nouvelles transactions,
+qui peuvent être reçues du <a href="#disseminator-daemon">démon Disseminator</a> d&#x27;autres
+nœuds ou générées par le nœud exécutant le démon. Le bloc généré est stocké dans
+la base de données du nœud.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-2">Table de données<a href="#tables-2" class="hash-link" aria-label="Direct link to Table de données" title="Direct link to Table de données">​</a></h3>
+<p>Le démon BlockGenerator utilise les tables suivantes :</p>
 <ul>
 <li>block_chain (saves new blocks)</li>
 <li>transactions</li>
 <li>transactions_status</li>
 <li>info_block</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-2">Request<a href="#request-2" class="hash-link" aria-label="Direct link to Request" title="Direct link to Request">​</a></h3>
-<p>The BlockGenerator daemon does not make any request to other daemons.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="disseminator-daemon">Disseminator daemon<a href="#disseminator-daemon" class="hash-link" aria-label="Direct link to Disseminator daemon" title="Direct link to Disseminator daemon">​</a></h2>
-<p>The Disseminator daemon sends transactions and blocks to all honor nodes.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="guardian-node">Guardian node<a href="#guardian-node" class="hash-link" aria-label="Direct link to Guardian node" title="Direct link to Guardian node">​</a></h3>
-<p>When working on a guardian node, the daemon sends transactions generated by its
-node to all honor nodes.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node">Honor node<a href="#honor-node" class="hash-link" aria-label="Direct link to Honor node" title="Direct link to Honor node">​</a></h3>
-<p>When working on a honor node, the daemon sends blocks generated and transaction
-hashes to all honor nodes.</p>
-<p>Then, the honor node responds to transaction requests unknown to it. The daemon
-sends the complete transaction data as a response.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-3">Tables<a href="#tables-3" class="hash-link" aria-label="Direct link to Tables" title="Direct link to Tables">​</a></h3>
-<p>The Disseminator daemon uses the following tables:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-2">Demande<a href="#request-2" class="hash-link" aria-label="Direct link to Demande" title="Direct link to Demande">​</a></h3>
+<p>Le démon BlockGenerator ne fait aucune demande aux autres démons.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="disseminator-daemon">Démon Disseminator<a href="#disseminator-daemon" class="hash-link" aria-label="Direct link to Démon Disseminator" title="Direct link to Démon Disseminator">​</a></h2>
+<p>Le démon Disseminator envoie des transactions et des blocs à tous les nœuds
+honorés.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="guardian-node">Nœud gardien<a href="#guardian-node" class="hash-link" aria-label="Direct link to Nœud gardien" title="Direct link to Nœud gardien">​</a></h3>
+<p>Lorsque vous travaillez sur un nœud gardien, le démon envoie les transactions
+générées par son nœud à tous les nœuds honorables.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="honor-node">Nœud d&#x27;honneur<a href="#honor-node" class="hash-link" aria-label="Direct link to Nœud d&#x27;honneur" title="Direct link to Nœud d&#x27;honneur">​</a></h3>
+<p>Lorsqu&#x27;il travaille sur un nœud d&#x27;honneur, le démon envoie les blocs générés et
+les hachages de transaction à tous les nœuds d&#x27;honneur.</p>
+<p>Ensuite, le nœud d&#x27;honneur répond aux demandes de transaction qui lui sont
+inconnues. Le démon envoie les données de transaction complètes en réponse.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-3">Table de données<a href="#tables-3" class="hash-link" aria-label="Direct link to Table de données" title="Direct link to Table de données">​</a></h3>
+<p>Le démon Disseminator utilise les tables suivantes :</p>
 <ul>
 <li>transactions</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-3">Request<a href="#request-3" class="hash-link" aria-label="Direct link to Request" title="Direct link to Request">​</a></h3>
-<p>The Disseminator daemon sends the following requests to other daemons:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-3">Demande<a href="#request-3" class="hash-link" aria-label="Direct link to Demande" title="Direct link to Demande">​</a></h3>
+<p>Le démon Disseminator envoie les demandes suivantes à d&#x27;autres démons :</p>
 <ul>
-<li><a href="#type-1">Type 1</a> Send transactions and block hashes to the honor node.</li>
-<li><a href="#type-2">Type 2</a> Receive transaction data from the honor node.</li>
+<li><a href="#type-1">Type 1</a> Envoyer des transactions et des hachages de bloc à l&#x27;hôte
+honor.</li>
+<li><a href="#type-2">Type 2</a> Recevoir des données de transaction de l&#x27;hôte honor.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="confirmations-daemon">Confirmations daemon<a href="#confirmations-daemon" class="hash-link" aria-label="Direct link to Confirmations daemon" title="Direct link to Confirmations daemon">​</a></h2>
-<p>The Confirmations daemon checks whether all the blocks in its node exist on most
-other nodes.</p>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-confirmation">Block confirmation<a href="#block-confirmation" class="hash-link" aria-label="Direct link to Block confirmation" title="Direct link to Block confirmation">​</a></h3>
-<p>A block confirmed by multiple node in the network is considered as a confirmed
-block.</p>
-<p>The daemon confirms all blocks one by one starting from the first that is
-currently not confirmed in the database.</p>
-<p>Each block is confirmed in the way as follows:</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="confirmations-daemon">Démon de confirmations<a href="#confirmations-daemon" class="hash-link" aria-label="Direct link to Démon de confirmations" title="Direct link to Démon de confirmations">​</a></h2>
+<p>Le démon de confirmation vérifie si tous les blocs de son nœud existent sur la
+plupart des autres nœuds.</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="block-confirmation">Confirmation de bloc<a href="#block-confirmation" class="hash-link" aria-label="Direct link to Confirmation de bloc" title="Direct link to Confirmation de bloc">​</a></h3>
+<p>Un bloc confirmé par plusieurs nœuds dans le réseau est considéré comme un bloc
+confirmé.</p>
+<p>Le démon confirme tous les blocs un par un, en commençant par le premier qui
+n&#x27;est pas encore confirmé dans la base de données.</p>
+<p>Chaque bloc est confirmé de la manière suivante :</p>
 <ul>
-<li>Sending a request containing the ID of the block being confirmed to all honor
-nodes.</li>
-<li>All honor nodes respond to the block hash.</li>
-<li>If the hash responded matches the hash of the block on the daemon node, the
-confirmation counter value is increased. If not, the cancellation counter
-value is increased.</li>
+<li>En envoyant une demande contenant l&#x27;ID du bloc en cours de confirmation à tous
+les nœuds honorés.</li>
+<li>Tous les nœuds honorés répondent avec le hachage du bloc.</li>
+<li>Si le hachage renvoyé correspond au hachage du bloc sur le nœud du démon, la
+valeur du compteur de confirmation est augmentée. Sinon, la valeur du compteur
+d&#x27;annulation est augmentée.</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-4">Tables<a href="#tables-4" class="hash-link" aria-label="Direct link to Tables" title="Direct link to Tables">​</a></h3>
-<p>The Confirmations daemon uses the following tables:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="tables-4">Table de données<a href="#tables-4" class="hash-link" aria-label="Direct link to Table de données" title="Direct link to Table de données">​</a></h3>
+<p>Le démon de confirmation utilise les tables suivantes :</p>
 <ul>
 <li>confirmation</li>
 <li>info_block</li>
 </ul>
-<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-4">Request<a href="#request-4" class="hash-link" aria-label="Direct link to Request" title="Direct link to Request">​</a></h3>
-<p>The Confirmations daemon sends the following requests to other daemons:</p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="request-4">Demande<a href="#request-4" class="hash-link" aria-label="Direct link to Demande" title="Direct link to Demande">​</a></h3>
+<p>Le démon de confirmation envoie les demandes suivantes aux autres démons :</p>
 <ul>
-<li><a href="#type-4">Type 4</a> Request block hashes from the honor node.</li>
+<li><a href="#type-4">Type 4</a> Demande les hachages des blocs à partir du nœud d&#x27;honneur.</li>
 </ul>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tcp-service-protocol">TCP service protocol<a href="#tcp-service-protocol" class="hash-link" aria-label="Direct link to TCP service protocol" title="Direct link to TCP service protocol">​</a></h2>
-<p>The TCP service protocol works on honor nodes and guardian nodes, which uses the
-binary protocol on TCP to requests from the BlocksCollection, Disseminator, and
-Confirmation daemons.</p>
-<h2 class="anchor anchorWithStickyNavbar_LWe7" id="request-type">Request type<a href="#request-type" class="hash-link" aria-label="Direct link to Request type" title="Direct link to Request type">​</a></h2>
-<p>Each request has a type defined by the first two bytes of the request.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="tcp-service-protocol">Protocole de service TCP<a href="#tcp-service-protocol" class="hash-link" aria-label="Direct link to Protocole de service TCP" title="Direct link to Protocole de service TCP">​</a></h2>
+<p>Le protocole de service TCP fonctionne sur des nœuds honorables et des nœuds
+gardiens, qui utilisent le protocole binaire sur TCP pour les demandes des
+démons BlocksCollection, Disseminator et Confirmation.</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="request-type">Type de demande<a href="#request-type" class="hash-link" aria-label="Direct link to Type de demande" title="Direct link to Type de demande">​</a></h2>
+<p>Chaque demande a un type défini par les deux premiers octets de la demande.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="type-1">Type 1<a href="#type-1" class="hash-link" aria-label="Direct link to Type 1" title="Direct link to Type 1">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-1">Request sender<a href="#request-sender-1" class="hash-link" aria-label="Direct link to Request sender" title="Direct link to Request sender">​</a></h4>
-<p>This request is sent by the <a href="#disseminator-daemon">Disseminator daemon</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-1">Request data<a href="#request-data-1" class="hash-link" aria-label="Direct link to Request data" title="Direct link to Request data">​</a></h4>
-<p>Hashes of the transaction and block.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-processing-1">Request processing<a href="#request-processing-1" class="hash-link" aria-label="Direct link to Request processing" title="Direct link to Request processing">​</a></h4>
-<p>The block hash is added to the block queue.</p>
-<p>Analyzes and verifies the transaction hashes, and select transactions that have
-not yet appeared on the node.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-1">Response<a href="#response-1" class="hash-link" aria-label="Direct link to Response" title="Direct link to Response">​</a></h4>
-<p>No. After processing the request, a <a href="#type-2">Type 2</a> request is issued.</p>
+<h1>### Demandeur de l&#x27;envoi</h1>
+<p>Cette demande est envoyée par le <a href="#disseminator-daemon">démon Disseminator</a>.</p>
+<h1>### D&#x27;accord, je vais demander les données.</h1>
+<p>Hachages de la transaction et du bloc.</p>
+<h1>### Traitement de la demande</h1>
+<p>Le hachage du bloc est ajouté à la file d&#x27;attente des blocs.</p>
+<p>Analyse et vérifie les hachages des transactions, et sélectionne les
+transactions qui n&#x27;ont pas encore été présentes sur le nœud.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-1">Réponse<a href="#response-1" class="hash-link" aria-label="Direct link to Réponse" title="Direct link to Réponse">​</a></h4>
+<p>Non. Après avoir traité la demande, une demande de <a href="#type-2">Type 2</a> est émise.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="type-2">Type 2<a href="#type-2" class="hash-link" aria-label="Direct link to Type 2" title="Direct link to Type 2">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-2">Request sender<a href="#request-sender-2" class="hash-link" aria-label="Direct link to Request sender" title="Direct link to Request sender">​</a></h4>
-<p>This request is sent by the <a href="#disseminator-daemon">Disseminator daemon</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-2">Request data<a href="#request-data-2" class="hash-link" aria-label="Direct link to Request data" title="Direct link to Request data">​</a></h4>
-<p>The transaction data, including the data size:</p>
+<h1>### Demandeur de l&#x27;expéditeur</h1>
+<p>Cette demande est envoyée par le <a href="#disseminator-daemon">démon Disseminator</a>.</p>
+<h1>### Demande de données</h1>
+<p>Les données de transaction, y compris la taille des données :</p>
 <ul>
 <li>
-<p>data_size (4 bytes)</p>
+<p>data_size (4 octets)</p>
 </li>
 <li>
-<p>Size of the transaction data, in bytes.</p>
+<p>Taille des données de la transaction, en octets.</p>
 </li>
 <li>
-<p>data (data_size bytes)</p>
+<p>données (data_size octets)</p>
 </li>
 </ul>
-<p>The transaction data.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-processing-2">Request processing<a href="#request-processing-2" class="hash-link" aria-label="Direct link to Request processing" title="Direct link to Request processing">​</a></h4>
-<p>Verifies the transaction and add it to the transaction queue.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-2">Response<a href="#response-2" class="hash-link" aria-label="Direct link to Response" title="Direct link to Response">​</a></h4>
+<p>Les données de la transaction.</p>
+<h1>### Traitement de la demande</h1>
+<p>Vérifie la transaction et l&#x27;ajoute à la file d&#x27;attente des transactions.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-2">Réponse<a href="#response-2" class="hash-link" aria-label="Direct link to Réponse" title="Direct link to Réponse">​</a></h4>
 <p>No.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="type-4">Type 4<a href="#type-4" class="hash-link" aria-label="Direct link to Type 4" title="Direct link to Type 4">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-3">Request sender<a href="#request-sender-3" class="hash-link" aria-label="Direct link to Request sender" title="Direct link to Request sender">​</a></h4>
-<p>This request is sent by the <a href="#confirmations-daemon">Confirmations daemon</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-3">Request data<a href="#request-data-3" class="hash-link" aria-label="Direct link to Request data" title="Direct link to Request data">​</a></h4>
-<p>Block ID.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-3">Response<a href="#response-3" class="hash-link" aria-label="Direct link to Response" title="Direct link to Response">​</a></h4>
-<p>Block hash.</p>
-<p>Returns <code>0</code> if not having a block with this ID.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-3">Demande de l&#x27;expéditeur<a href="#request-sender-3" class="hash-link" aria-label="Direct link to Demande de l&#x27;expéditeur" title="Direct link to Demande de l&#x27;expéditeur">​</a></h4>
+<p>Cette demande est envoyée par le <a href="#confirmations-daemon">démon confirmations</a>.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-3">Demande de données<a href="#request-data-3" class="hash-link" aria-label="Direct link to Demande de données" title="Direct link to Demande de données">​</a></h4>
+<p>Identifiant de bloc.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-3">Réponse<a href="#response-3" class="hash-link" aria-label="Direct link to Réponse" title="Direct link to Réponse">​</a></h4>
+<p>Hachage de bloc.</p>
+<p>Renvoie <code>0</code> s&#x27;il n&#x27;y a pas de bloc avec cet identifiant.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="type-7">Type 7<a href="#type-7" class="hash-link" aria-label="Direct link to Type 7" title="Direct link to Type 7">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-4">Request sender<a href="#request-sender-4" class="hash-link" aria-label="Direct link to Request sender" title="Direct link to Request sender">​</a></h4>
-<p>This request is sent by the <a href="#blockcollection-daemon">BlockCollection daemon</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-4">Request data<a href="#request-data-4" class="hash-link" aria-label="Direct link to Request data" title="Direct link to Request data">​</a></h4>
-<p>Block ID.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-4">Demande de l&#x27;expéditeur<a href="#request-sender-4" class="hash-link" aria-label="Direct link to Demande de l&#x27;expéditeur" title="Direct link to Demande de l&#x27;expéditeur">​</a></h4>
+<p>Cette demande est envoyée par le
+<a href="#blockcollection-daemon">démon BlockCollection</a>.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-4">Demande de données<a href="#request-data-4" class="hash-link" aria-label="Direct link to Demande de données" title="Direct link to Demande de données">​</a></h4>
+<p>Identifiant de bloc.</p>
 <ul>
-<li>block_id (4 bytes)</li>
+<li>block_id (4 octets)</li>
 </ul>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-4">Response<a href="#response-4" class="hash-link" aria-label="Direct link to Response" title="Direct link to Response">​</a></h4>
-<p>The block data, including data size.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-4">Réponse<a href="#response-4" class="hash-link" aria-label="Direct link to Réponse" title="Direct link to Réponse">​</a></h4>
+<p>Les données du bloc, y compris la taille des données.</p>
 <ul>
 <li>
-<p>data_size (4 bytes)</p>
+<p>data_size (4 octets)</p>
 </li>
 <li>
-<p>Size of the block data, in bytes.</p>
+<p>Taille des données du bloc, en octets.</p>
 </li>
 <li>
-<p>data (data_size bytes)</p>
+<p>data (data_size octets)</p>
 </li>
 </ul>
-<p>The block data.</p>
-<p>The connection is closed if not having a block with this ID.</p>
+<p>Les données du bloc.</p>
+<p>La connexion est fermée s&#x27;il n&#x27;y a pas de bloc avec cet identifiant.</p>
 <h3 class="anchor anchorWithStickyNavbar_LWe7" id="type-10">Type 10<a href="#type-10" class="hash-link" aria-label="Direct link to Type 10" title="Direct link to Type 10">​</a></h3>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-sender-5">Request sender<a href="#request-sender-5" class="hash-link" aria-label="Direct link to Request sender" title="Direct link to Request sender">​</a></h4>
-<p>This request is sent by the <a href="#blockcollection-daemon">BlockCollection daemon</a>.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="request-data-5">Request data<a href="#request-data-5" class="hash-link" aria-label="Direct link to Request data" title="Direct link to Request data">​</a></h4>
-<p>No.</p>
-<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-5">Response<a href="#response-5" class="hash-link" aria-label="Direct link to Response" title="Direct link to Response">​</a></h4>
-<p>Block ID.</p>
+<h1>### Demande de l&#x27;expéditeur</h1>
+<p>Cette demande est envoyée par le [démon
+BlockCollection].(#blockcollection-daemon).</p>
+<h1>### Demande de données</h1>
+<p>Non.</p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="response-5">Réponse<a href="#response-5" class="hash-link" aria-label="Direct link to Réponse" title="Direct link to Réponse">​</a></h4>
+<p>Identifiant de bloc.</p>
 <ul>
-<li>block_id (4 bytes)</li>
-</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="theme-doc-footer-edit-meta-row row"><div class="col"><a href="https://crowdin.com/project/ibax-docs/fr" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_vwxv"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/fr/topics/script"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Smart Contracts</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#about-the-server-daemon" class="table-of-contents__link toc-highlight">About the server daemon</a><ul><li><a href="#honor-node-daemon" class="table-of-contents__link toc-highlight">Honor node daemon</a></li><li><a href="#guardian-node-daemon" class="table-of-contents__link toc-highlight">Guardian node daemon</a></li></ul></li><li><a href="#blockcollection-daemon" class="table-of-contents__link toc-highlight">BlockCollection daemon</a><ul><li><a href="#blockchain-synchronization" class="table-of-contents__link toc-highlight">Blockchain synchronization</a></li><li><a href="#tables-1" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#request-1" class="table-of-contents__link toc-highlight">Request</a></li></ul></li><li><a href="#blockgenerator-daemon" class="table-of-contents__link toc-highlight">BlockGenerator daemon</a><ul><li><a href="#pre-verification" class="table-of-contents__link toc-highlight">Pre-verification</a></li><li><a href="#block-generation" class="table-of-contents__link toc-highlight">Block generation</a></li><li><a href="#tables-2" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#request-2" class="table-of-contents__link toc-highlight">Request</a></li></ul></li><li><a href="#disseminator-daemon" class="table-of-contents__link toc-highlight">Disseminator daemon</a><ul><li><a href="#guardian-node" class="table-of-contents__link toc-highlight">Guardian node</a></li><li><a href="#honor-node" class="table-of-contents__link toc-highlight">Honor node</a></li><li><a href="#tables-3" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#request-3" class="table-of-contents__link toc-highlight">Request</a></li></ul></li><li><a href="#confirmations-daemon" class="table-of-contents__link toc-highlight">Confirmations daemon</a><ul><li><a href="#block-confirmation" class="table-of-contents__link toc-highlight">Block confirmation</a></li><li><a href="#tables-4" class="table-of-contents__link toc-highlight">Tables</a></li><li><a href="#request-4" class="table-of-contents__link toc-highlight">Request</a></li></ul></li><li><a href="#tcp-service-protocol" class="table-of-contents__link toc-highlight">TCP service protocol</a></li><li><a href="#request-type" class="table-of-contents__link toc-highlight">Request type</a><ul><li><a href="#type-1" class="table-of-contents__link toc-highlight">Type 1</a></li><li><a href="#type-2" class="table-of-contents__link toc-highlight">Type 2</a></li><li><a href="#type-4" class="table-of-contents__link toc-highlight">Type 4</a></li><li><a href="#type-7" class="table-of-contents__link toc-highlight">Type 7</a></li><li><a href="#type-10" class="table-of-contents__link toc-highlight">Type 10</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/fr/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+<li>block_id (4 octets)</li>
+</ul></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://crowdin.com/project/ibax-docs/fr" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--next" href="/docs/fr/topics/script"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Contrats intelligents</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#about-the-server-daemon" class="table-of-contents__link toc-highlight">À propos du démon du serveur</a><ul><li><a href="#honor-node-daemon" class="table-of-contents__link toc-highlight">Démon du nœud d&#39;honneur</a></li><li><a href="#guardian-node-daemon" class="table-of-contents__link toc-highlight">Démon du nœud gardien</a></li></ul></li><li><a href="#blockcollection-daemon" class="table-of-contents__link toc-highlight">Démon BlockCollection</a><ul><li><a href="#blockchain-synchronization" class="table-of-contents__link toc-highlight">Synchronisation de la blockchain</a></li><li><a href="#tables-1" class="table-of-contents__link toc-highlight">Table de données</a></li><li><a href="#request-1" class="table-of-contents__link toc-highlight">Demande</a></li></ul></li><li><a href="#blockgenerator-daemon" class="table-of-contents__link toc-highlight">Le démon BlockGenerator</a><ul><li><a href="#pre-verification" class="table-of-contents__link toc-highlight">Pré-vérification</a></li><li><a href="#block-generation" class="table-of-contents__link toc-highlight">Génération de blocs</a></li><li><a href="#tables-2" class="table-of-contents__link toc-highlight">Table de données</a></li><li><a href="#request-2" class="table-of-contents__link toc-highlight">Demande</a></li></ul></li><li><a href="#disseminator-daemon" class="table-of-contents__link toc-highlight">Démon Disseminator</a><ul><li><a href="#guardian-node" class="table-of-contents__link toc-highlight">Nœud gardien</a></li><li><a href="#honor-node" class="table-of-contents__link toc-highlight">Nœud d&#39;honneur</a></li><li><a href="#tables-3" class="table-of-contents__link toc-highlight">Table de données</a></li><li><a href="#request-3" class="table-of-contents__link toc-highlight">Demande</a></li></ul></li><li><a href="#confirmations-daemon" class="table-of-contents__link toc-highlight">Démon de confirmations</a><ul><li><a href="#block-confirmation" class="table-of-contents__link toc-highlight">Confirmation de bloc</a></li><li><a href="#tables-4" class="table-of-contents__link toc-highlight">Table de données</a></li><li><a href="#request-4" class="table-of-contents__link toc-highlight">Demande</a></li></ul></li><li><a href="#tcp-service-protocol" class="table-of-contents__link toc-highlight">Protocole de service TCP</a></li><li><a href="#request-type" class="table-of-contents__link toc-highlight">Type de demande</a><ul><li><a href="#type-1" class="table-of-contents__link toc-highlight">Type 1</a></li><li><a href="#type-2" class="table-of-contents__link toc-highlight">Type 2</a></li><li><a href="#type-4" class="table-of-contents__link toc-highlight">Type 4</a></li><li><a href="#type-7" class="table-of-contents__link toc-highlight">Type 7</a></li><li><a href="#type-10" class="table-of-contents__link toc-highlight">Type 10</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/docs/fr/">Documentation</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://twitter.com/ibaxnetwork" target="_blank" rel="noopener noreferrer" class="footer__link-item">Twitter<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://github.com/IBAX-io/docs" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://github.com/IBAX-io/needle" target="_blank" rel="noopener noreferrer" class="footer__link-item">Needle<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2024 IBAX Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
 </body>
 </html>

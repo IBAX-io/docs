@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkmy_ibax=self.webpackChunkmy_ibax||[]).push([[416],{416:(e,s,a)=>{a.r(s)}}]);
